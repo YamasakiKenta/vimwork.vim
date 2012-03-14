@@ -1,0 +1,4 @@
+"“ú–{Œê
+set gfn=Terminal:h10:cSHIFTJIS
+:set guioptions-=T
+:set guioptions-=m
