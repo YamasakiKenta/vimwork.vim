@@ -107,4 +107,33 @@ function! okazu#GetFileNameForUnite(args, context) "{{{
 	let a:context.source__linenr = line('.')
 	call unite#print_message('[line] Target: ' . a:context.source__path)
 endfunction "}}}
+function! okazu#get_ronri_seki(a,b) "{{{
+	" ********************************************************************************
+	" ˜_—˜a‚ð‚µ‚Ü‚·
+	" @param[in]	a		
+	" @param[in]	b		
+	" ********************************************************************************
+	
+	let a = a:a
+	let b = a:b
+
+	"‘½‚¢”Žš‚ÌŽæ“¾
+	let [dai,syo] = a > b ? [a,b] : [b,a]
+
+	let rtn = 0
+	let omomi = 1
+	while ( syo > 0 ) 
+		if syo % 2 && dai % 2
+			let rtn += omomi
+		endif
+		let dai = dai / 2
+		let syo = syo / 2
+		let omomi = omomi * 2
+	endwhile
+
+	return rtn
+
+endfunction "}}}
+
+echo okazu#get_ronri_seki(4,4)
 

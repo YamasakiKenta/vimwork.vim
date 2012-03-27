@@ -1,10 +1,29 @@
-" ******************************************************************************** " Readme
-" ********************************************************************************
+" ******************************************************************************** 
+" Readme
+" -------------------------------------------------------------------------------- 
 " ©“®‚Å“Ç‚İ‚Ü‚ê‚éƒtƒ@ƒCƒ‹‚ÌˆÈ‰º‚ğ’Ç‰Á
 "
-" let $IVIM    = " vim ‚Ìİ’è‚ğs‚¤ƒtƒHƒ‹ƒ_
-" let $DESKTOP = " DESKTOP‚ÌêŠ
-" 
+" let $IDESKTOP        = '~/Desktop'
+" let $IVIM            = '~/Dropbox/vim'
+" let $IBUNDLE         = '~/Dropbox/vim/bundle'
+" let $IVIMWORK        = '~/Dropbox/vim/vimwork'
+" let $INEOBUNDLEPATH  = $IBUNDLE.'/Shougo-neobundle.vim'
+" let g:myGrepFileType = g:I_grepFileType
+" ********************************************************************************
+
+"rtp "{{{
+"vimwork“à‚Ìƒtƒ@ƒCƒ‹
+let $IMYBUNDLE=$IVIMWORK.'/myBundle'
+
+set rtp+=$INEOBUNDLEPATH
+set rtp+=$IVIMWORK
+set rtp+=$IMYBUNDLE/okazu
+set rtp+=$IMYBUNDLE/unite-perforce.vim
+"}}}
+"neoBundle "{{{
+call neobundle#rc($IBUNDLE)
+so $IVIMWORK/neobundle.vim 
+"}}}
 "Setting 
 "set - Autoload {{{
 augroup myAugroup
@@ -14,20 +33,19 @@ au Filetype help call okazu#MyQuit()                       " # help—p‚ÌƒL[ƒoƒCƒ
 aug END
 "}}}
 "set - Normal {{{
-set modeline          " # “Ç‚İ‚İ‚Ìİ’è
-set number            " # ”Ô†“ü—Í
-set ignorecase        " # ŒŸõ‚Å‘å•¶š¬•¶š‚ğ‹æ•Ê‚µ‚È‚¢
-set cursorline        " # ƒJ[ƒ\ƒ‹s‚Ì‹­’²
-set hlsearch          " # ŒŸõ
-set incsearch         " # |
-set smartcase         " # |
-set autoread          " # ©“®XV
-set list              " # |
-set hidden            " # ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚¹‚¸ˆÚ“®
-"
-set noswapfile        " # SwapFile
-set nowrap            " # Ü‚è•Ô‚µ
 
+set modeline               " # “Ç‚İ‚İ‚Ìİ’è
+set number                 " # ”Ô†“ü—Í
+set ignorecase             " # ŒŸõ‚Å‘å•¶š¬•¶š‚ğ‹æ•Ê‚µ‚È‚¢
+set cursorline             " # ƒJ[ƒ\ƒ‹s‚Ì‹­’²
+set hlsearch               " # ŒŸõ
+set incsearch              " # |
+set smartcase              " # |
+set autoread               " # ©“®XV
+set list                   " # |
+set hidden                 " # ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚¹‚¸ˆÚ“®
+set noswapfile             " # SwapFile
+set nowrap                 " # Ü‚è•Ô‚µ
 set grepprg=grep\ -nH      " # Grep
 set guioptions-=T          " # ƒƒjƒ…[ƒo[‚ğíœ
 set guioptions-=m          " # ƒc[ƒ‹ƒo[‚ğíœ
@@ -40,6 +58,7 @@ set backupdir=~/vim/backup " # BackupƒtƒHƒ‹ƒ_‚ÌƒpƒX
 set tw=0                   " # ©“®‰üs OFF
 "set enc=utf-8             " # ƒGƒ“ƒR[ƒh‚Ìİ’è
 "set fenc=utf-8            " # |
+
 "}}}
 "set - Terminal {{{
 if 0
@@ -90,17 +109,17 @@ map ;v<CR> :<C-u>lcd $IVIM<CR>|"               " # VIM ‚ğcd ‚É‚·‚é
 map ;sy<CR> :MySyntaxFile<CR>|"                " # ƒVƒ“ƒ^ƒbƒNƒXƒtƒ@ƒCƒ‹‚Ì•ÒW
 map ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|" " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
 map ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|" " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾ ( ƒtƒ‹ƒpƒX )
-map ;de<CR> :<C-u>lcd $DESKTOP<CR>
+map ;de<CR> :<C-u>lcd $IDESKTOP<CR>
 "}}}
 "map - typo {{{
 map <F1> <ESC>
 com! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>) 
 "}}}
 "map - Find {{{
-map ;vc :<C-u>exe 'vim /<C-r>"/ **/*.'.g:I_grepFileType
-map ;vv :<C-u>exe 'vim /<C-r>+/ **/*.'.g:I_grepFileType
-map ;v/ :<C-u>exe 'vim /<C-r>// **/*.'.g:I_grepFileType
-map ;vx :<C-u>exe 'vim /<C-r>// **/*.'.g:I_grepFileType
+map ;vc :<C-u>exe 'vim /<C-r>"/ **/*.'.g:myGrepFileType
+map ;vv :<C-u>exe 'vim /<C-r>+/ **/*.'.g:myGrepFileType
+map ;v/ :<C-u>exe 'vim /<C-r>// **/*.'.g:myGrepFileType
+map ;vx :<C-u>exe 'vim /<C-r>// **/*.'.g:myGrepFileType
 
 map ;tc :<C-u>ta <C-r>"
 map ;tv :<C-u>ta <C-r>+
@@ -119,9 +138,8 @@ let g:Align_xstrlen = 3                                                         
 let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }  " # Toggle
 "}}}
 "plugin - QFixHowm{{{
-let howm_dir = $IVIM.'/howm/'
-"let QFixHowm_FileType='wiki.vim'    " # QFixHowm - Default Type
-"let QFix_CloseOnJump = 1            " # QFixHown - ‚ğ©“®“I‚ÉI—¹‚·‚é
+let howm_dir = $IVIM.'/howm'
+let QFix_CloseOnJump = 1            " # QFixHown - ‚ğ©“®“I‚ÉI—¹‚·‚é
 "}}}
 "plugin - hsp {{{
 autocmd BufRead *.hsp call FileTypeHsp()
@@ -135,6 +153,14 @@ endfunction
 "}}}
 "plugin - Twitter {{{
 map ;tw<CR> :<C-u>PosttoTwitter<CR>
+"}}}
+"plugin - perforce "{{{
+let g:myGrepFileType = 'vim'
+"let g:pf_client_changes_only = 1 " # 1 - ƒNƒ‰ƒCƒAƒ“ƒg‚ÅƒtƒBƒ‹ƒ^
+"let g:pf_user_changes_only = 1   " # 1 - ƒ†[ƒU[‚ÅƒtƒBƒ‹ƒ^
+"let g:pf_is_submit_flg = 1       " # ƒTƒuƒ~ƒbƒg‚·‚é‚©‚Ç‚¤‚©
+"let g:pf_ports = ['1668']        " # ƒ|[ƒg‚Ìİ’è
+"let g:pf_is_out_flg = 1          " # Œ‹‰Êo—Í‚ğs‚¤
 "}}}
 "plugin - Shogo
 "Shogo - unite{{{
@@ -176,8 +202,10 @@ smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"   " # “¯ã
 "\:NeoComplCacheCachingSnippets<CR>
 "}}}
 "}}}
-"git 
-"git - func
+"********************************************************************************
+" GIT 
+"********************************************************************************
+"func
 function! s:git_cmd(cmd) "{{{
 	" ********************************************************************************
 	" git —p‚ÉƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğˆê“I‚É•Ï‚¦‚ÄÀs‚·‚éŠÖ”
@@ -204,7 +232,7 @@ endfunction "}}}
 function! s:git_push() "{{{
 	call <SID>git_cmd('git push '.str)
 endfunction "}}}
-"git - com
+"com
 com! MyGitCommit call <SID>git_commit()
 " map {{{
 map ;gc<CR> <plug>(git_commit)
