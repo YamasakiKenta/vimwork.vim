@@ -10,8 +10,11 @@
 " let $IVIMWORK        = '~/Dropbox/vim/vimwork'
 " let g:myGrepFileType = 'vim'
 " 
-" set rtp+=$IVIMWORK
 " so $IVIMWORK/neobundle.vim
+"
+" " ‚Ç‚¿‚ç‚©‘I‘ð‚·‚é
+" set rtp+=$IVIMWORK
+" NeoBundle "https://YamasakiKenta@github.com/YamasakiKenta/vimwork.git
 "
 " ********************************************************************************
 "rtp "{{{
