@@ -8,9 +8,9 @@
 " let $IBUNDLE         = '~/Dropbox/vim/bundle'
 " let $IVIMWORK        = '~/Dropbox/vim/vimwork'
 " let $INEOBUNDLEPATH  = $IBUNDLE.'/Shougo-neobundle.vim'
-" let g:myGrepFileType = g:I_grepFileType
+" let g:myGrepFileType = 'vim'
+" so $IVIMWORK/vimrc
 " ********************************************************************************
-
 "rtp "{{{
 "vimwork内のファイル
 let $IMYBUNDLE=$IVIMWORK.'/myBundle'
@@ -27,9 +27,11 @@ so $IVIMWORK/neobundle.vim
 "Setting 
 "set - Autoload {{{
 augroup myAugroup
-au!
-au GUIEnter * simalt ~x                             " # 最大化
-au Filetype help call okazu#MyQuit()                       " # help用のキーバインド
+	au!
+	if has('dos32')
+		au GUIEnter * simalt ~x                             " # 最大化
+	endif
+	au Filetype help call okazu#MyQuit()                       " # help用のキーバインド
 aug END
 "}}}
 "set - Normal {{{
@@ -61,8 +63,7 @@ set tw=0                   " # 自動改行 OFF
 
 "}}}
 "set - Terminal {{{
-if 0
-	"todo : vimなら実行するようにする
+if !has('gui')
 	set ruler        " # カーソルの位置の表示
 	set nocompatible " # vimの機能が使える
 	syntax enable    " # 色を付け - 設定がリセットされる
@@ -223,7 +224,7 @@ function! s:git_cmd(cmd) "{{{
 
 	" 元に戻す
 	"exe 'lcd' tmp
-	
+
 endfunction "}}}
 function! s:git_commit() "{{{
 	let str = input('comment : ')
