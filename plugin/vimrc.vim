@@ -3,26 +3,23 @@
 " -------------------------------------------------------------------------------- 
 " 自動で読み込まれるファイルの以下を追加
 "
-" let $IDESKTOP        = '~/Desktop'
+" let $DESKTOP         = '~/Desktop'
 " let $IVIM            = '~/Dropbox/vim'
 " let $IBUNDLE         = '~/Dropbox/vim/bundle'
-" let $IVIMWORK        = '~/Dropbox/vim/vimwork'
 " let $INEOBUNDLEPATH  = $IBUNDLE.'/Shougo-neobundle.vim'
+" let $IVIMWORK        = '~/Dropbox/vim/vimwork'
 " let g:myGrepFileType = 'vim'
-" so $IVIMWORK/vimrc
+" 
+" set rtp+=$IVIMWORK
+" so $IVIMWORK/neobundle.vim
+"
 " ********************************************************************************
 "rtp "{{{
 "vimwork内のファイル
 let $IMYBUNDLE=$IVIMWORK.'/myBundle'
 
-set rtp+=$INEOBUNDLEPATH
-set rtp+=$IVIMWORK
 set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
-"}}}
-"neoBundle "{{{
-call neobundle#rc($IBUNDLE)
-so $IVIMWORK/neobundle.vim 
 "}}}
 "Setting 
 "set - Autoload {{{
@@ -117,15 +114,15 @@ map <F1> <ESC>
 com! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>) 
 "}}}
 "map - Find {{{
-map ;vc :<C-u>exe 'vim /<C-r>"/ **/*.'.g:myGrepFileType
-map ;vv :<C-u>exe 'vim /<C-r>+/ **/*.'.g:myGrepFileType
-map ;v/ :<C-u>exe 'vim /<C-r>// **/*.'.g:myGrepFileType
-map ;vx :<C-u>exe 'vim /<C-r>// **/*.'.g:myGrepFileType
+map ;vc<CR> :<C-u>MyGrep <C-r>"<CR>
+map ;vv<CR> :<C-u>MyGrep <C-r>+<CR>
+map ;v/<CR> :<C-u>MyGrep <C-r>/<CR>
+map ;vx<CR> :<C-u>MyGrep <C-r>/<CR>
 
-map ;tc :<C-u>ta <C-r>"
-map ;tv :<C-u>ta <C-r>+
-map ;tx :<C-u>ta <C-r>/
-map ;t/ :<C-u>ta <C-r>/
+map ;tc<CR> :<C-u>ta <C-r>"<CR>
+map ;tv<CR> :<C-u>ta <C-r>+<CR>
+map ;tx<CR> :<C-u>ta <C-r>/<CR>
+map ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " map - c {{{
 map ;h<CR> :<C-u>e %:r.h<CR>|" " # ファイルの切り替え

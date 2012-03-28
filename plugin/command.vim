@@ -107,3 +107,9 @@ function! MySelectEdit_write() "{{{
 	exe nowbufnr 'buffer'
 
 endfunction "}}}
+
+command -narg=+ MyGrep call <SID>grep(<f-args>)
+function! <SID>grep(...) "{{{
+	let word = join(a:000,'\|')
+	exe 'vim /'.word.'/ **/*.'.g:myGrepFileType
+endfunction "}}}

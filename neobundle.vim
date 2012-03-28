@@ -1,3 +1,6 @@
+set rtp+=$INEOBUNDLEPATH
+call neobundle#rc($IBUNDLE)
+
 "NeoBundle - Shougo 
 NeoBundle 'https://github.com/Shougo/vimfiler'
 NeoBundle 'https://github.com/Shougo/unite.vim.git'  
