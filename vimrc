@@ -233,7 +233,7 @@ function! s:git_commit() "{{{
 	endif
 endfunction "}}}
 function! s:git_push() "{{{
-	call <SID>git_cmd('git push ')
+	call <SID>git_cmd('git push master')
 endfunction "}}}
 "com
 com! MyGitCommit call <SID>git_commit()
