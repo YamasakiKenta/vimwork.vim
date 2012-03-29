@@ -134,6 +134,3 @@ function! okazu#get_ronri_seki(a,b) "{{{
 	return rtn
 
 endfunction "}}}
-
-echo okazu#get_ronri_seki(4,4)
-

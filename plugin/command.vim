@@ -19,7 +19,7 @@ function! s:mySwap(qarg) "{{{
 	endif
 endfunction "}}}
 
-command! MySyntaxFile <SID>mySyntaxFile()
+command! MySyntaxFile call <SID>mySyntaxFile()
 function! s:mySyntaxFile() "{{{
 	exe 'e '.$VIMWORK.'/syntax/'.&filetype.'.vim'
 	call okazu#MyQuit()
@@ -108,7 +108,7 @@ function! MySelectEdit_write() "{{{
 
 endfunction "}}}
 
-command -narg=+ MyGrep call <SID>grep(<f-args>)
+command! -narg=+ MyGrep call <SID>grep(<f-args>)
 function! <SID>grep(...) "{{{
 	let word = join(a:000,'\|')
 	exe 'vim /'.word.'/ **/*.'.g:myGrepFileType
