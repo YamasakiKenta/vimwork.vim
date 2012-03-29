@@ -233,14 +233,18 @@ function! s:git_commit() "{{{
 	endif
 endfunction "}}}
 function! s:git_push() "{{{
-	call <SID>git_cmd('git push '.str)
+	call <SID>git_cmd('git push ')
 endfunction "}}}
 "com
 com! MyGitCommit call <SID>git_commit()
 " map {{{
 map ;gc<CR> <plug>(git_commit)
+map ;gp<CR> <plug>(git_push)
 "}}}
 " plug {{{
 map <silent><buffer> <plug>(git_commit)
 			\ :<C-u>call <SID>git_commit()<CR>
+map <silent><buffer> <plug>(git_push)
+			\ :<C-u>call <SID>git_push()<CR>
+
 "}}}
