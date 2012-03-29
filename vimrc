@@ -1,29 +1,28 @@
 " ********************************************************************************
 " Readme
 " --------------------------------------------------------------------------------
-" 自動で読み込まれるファイルの以下を追加
 "
-" let $DESKTOP         = '~/Desktop'                      " # Desktop Path
-" let $IVIM            = '~/Dropbox/vim'                  " # vimのファイルをまとめるフォルダ ( DropBoxを使用している為、backupフォルダは別の所を使用する )
-" let $IBUNDLE         = '~/Dropbox/vim/bundle'           " # BUNDLE PATH ( for NeoBundle )
-" let $INEOBUNDLEPATH  = $IBUNDLE.'/Shougo-neobundle.vim' " # NeoBUndle Path
-" let $IVIMWORK        = '~/Dropbox/vim/vimwork'          " # 自分の作業用フォルダ
-" let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'          " # このクライアント
-" let $IMYBUNDLE       = $IVIMWORK.'/myBundle'            " # 自分で作成したプラグイン
+" let $DESKTOP         = '~/Desktop'                      
+" let $IVIM            = '~/Dropbox/vim'                  
+" let $IVIMWORK        = '~/Dropbox/vim/vimwork'          
+" let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'          
 " let g:myGrepFileType = 'vim'
+"
+" let $BUNDLE          = '~/Dropbox/vim/bundle'           
+" let $NEOBUNDLE       = $BUNDLE.'/Shougo-neobundle.vim' 
 "
 " so $IVIMWORKCOMMON/neobundle.vim
 " so $IVIMWORKCOMMON/vimrc
 "
-" " このプラグインの呼び出し方
-" set rtp+=$IVIMWORK
-" NeoBundle "https://YamasakiKenta@github.com/YamasakiKenta/vimwork.git
-"
-" set rtp+=$IMYBUNDLE/okazu
-" set rtp+=$IMYBUNDLE/unite-perforce.vim
+" set rtp+=$IVIMWORK  " NeoBundle 'https://YamasakiKenta@github.com/YamasakiKenta/vimwork.git'
 "
 " ********************************************************************************
 "Setting
+"set - myBundle "{{{
+let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
+set rtp+=$IMYBUNDLE/okazu
+set rtp+=$IMYBUNDLE/unite-perforce.vim
+"}}}
 "set - Autoload {{{
 augroup myAugroup
 	au!
@@ -216,7 +215,7 @@ function! s:git_cmd(cmd) "{{{
 	let tmp = getcwd()
 
 	" 一時的にカレントディレクトリの場所を変える
-	lcd ~\Dropbox\vim
+	lcd ~\Dropbox\vim\vimwork
 
 	" 実際にコミットする
 	call okazu#LogFile('gitlog',okazu#Get_cmds(a:cmd))
@@ -227,7 +226,11 @@ function! s:git_cmd(cmd) "{{{
 endfunction "}}}
 function! s:git_commit() "{{{
 	let str = input('comment : ')
-	call <SID>git_cmd('git commit -am '.str)
+	if str == ""
+		echo 'END... '
+	else 
+		call <SID>git_cmd('git commit -am '.str)
+	endif
 endfunction "}}}
 function! s:git_push() "{{{
 	call <SID>git_cmd('git push '.str)

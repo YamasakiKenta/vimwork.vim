@@ -1,5 +1,5 @@
-set rtp+=$INEOBUNDLEPATH
-call neobundle#rc($IBUNDLE)
+set rtp+=$NEOBUNDLE
+call neobundle#rc($BUNDLE)
 
 "NeoBundle - Shougo 
 NeoBundle 'https://github.com/Shougo/vimfiler'
