@@ -221,7 +221,7 @@ function! s:git_cmd(cmd) "{{{
 	call okazu#LogFile('gitlog',okazu#Get_cmds(a:cmd))
 
 	" Œ³‚É–ß‚·
-	"exe 'lcd' tmp
+	exe 'lcd' tmp
 
 endfunction "}}}
 function! s:git_commit() "{{{
@@ -229,7 +229,7 @@ function! s:git_commit() "{{{
 	if str == ""
 		echo 'END... '
 	else 
-		call <SID>git_cmd('git commit -am '.str)
+		call <SID>git_cmd('git commit -am '.okazu#Get_kk(str))
 	endif
 endfunction "}}}
 function! s:git_push() "{{{
