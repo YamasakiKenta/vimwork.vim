@@ -20,6 +20,7 @@
 "Setting
 "set - myBundle "{{{
 let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
+set rtp+=$IVIMWORKCOMMON
 set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
 "}}}
