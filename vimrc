@@ -23,6 +23,7 @@ let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'
 set rtp+=$IVIMWORKCOMMON
 set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
+set rtp+=$IMYBUNDLE/cells
 "}}}
 "set - Autoload {{{
 augroup myAugroup
