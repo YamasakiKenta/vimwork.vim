@@ -17,6 +17,7 @@
 " set rtp+=$IVIMWORK  " NeoBundle 'https://YamasakiKenta@github.com/YamasakiKenta/vimwork.git'
 "
 " ********************************************************************************
+"
 "Setting
 "set - myBundle "{{{
 let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
@@ -72,7 +73,83 @@ if !has('gui')
 	filetype plugin on
 endif
 "}}}
-"map
+"
+"plugin
+"plugin - Other {{{
+so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
+let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
+let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
+"}}}
+"plugin - QFixHowm{{{
+let howm_dir = $IVIM.'/howm'
+let QFix_CloseOnJump = 1                                                                                 " # QFixHown - を自動的に終了する
+"}}}
+"plugin - hsp {{{
+autocmd BufRead *.hsp call FileTypeHsp()
+function! FileTypeHsp()
+	compiler hsp
+	set filetype=hsp
+	se omnifunc=hspcomplete#Complete
+	map <buffer> <F5> :make<CR>
+	map <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
+endfunction
+"}}}
+"plugin - Twitter {{{
+map ;tw<CR> :<C-u>PosttoTwitter<CR>
+"}}}
+"plugin - perforce "{{{
+let g:myGrepFileType = 'vim'
+"let g:pf_client_changes_only = 1                                                                        " # 1 - クライアントでフィルタ
+"let g:pf_user_changes_only = 1                                                                          " # 1 - ユーザーでフィルタ
+"let g:pf_is_submit_flg = 1                                                                              " # サブミットするかどうか
+"let g:pf_ports = ['1668']                                                                               " # ポートの設定
+"let g:pf_is_out_flg = 1                                                                                 " # 結果出力を行う
+"}}}
+
+"plugin - Shogo
+"Shogo - unite{{{
+let g:unite_enable_start_insert = 0         " # 自動起動
+let g:unite_source_history_yank_enable = 0
+map ;ur<CR>  :<C-u>UniteResume<CR>
+map ;us<CR>  :<C-u>Unite source<CR>
+map ;um<CR>  :<C-u>Unite file_mru<CR>
+map ;uf<CR>  :<C-u>Unite file<CR>
+map ;ut<CR>  :<C-u>Unite tag<CR>
+map ;ug<CR>  :<C-u>Unite grep -no-quit<CR>
+map ;ub<CR>  :<C-u>Unite buffer<CR>
+map ;ubt<CR> :<C-u>Unite buffer_tags<CR>
+map ;uh<CR>  :<C-u>Unite history/yank<CR>
+map ;ul<CR>  :<C-u>Unite line<CR>
+"}}}
+"Shogo - vimfiler{{{
+let g:vimfiler_as_default_explorer = 1                                                                   " # 初期filer
+let g:vimfiler_safe_mode_by_default = 0                                                                  " # safe_mode
+"}}}
+"Shogo - neocomplcache{{{
+"neocomplcache - Init {{{
+let g:neocomplcache_snippets_dir = $IVIMWORK.'/snippets'                                                 " # snippet ファイル作成場所
+let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
+let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
+"let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ
+"}}}
+"neocomplcache - Mapping {{{
+map ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
+imap <C-s>  <Plug>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
+imap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
+smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # 同上
+"}}}
+"neocomplcache - caching "{{{
+"\:NeoComplCacheCachingBuffer<CR>
+"\:NeoComplCacheCachingSyntax<CR>
+"\:NeoComplCacheCachingTags<CR>
+"\:NeoComplCacheCachingTags<CR>
+"\:NeoComplCacheCachingSnippets<CR>
+"}}}
+"}}}
+
+"********************************************************************************
+" mapping
+"********************************************************************************
 "map - simple {{{
 map <C-n> :<C-u>cn<CR>|"                                                                                 " # Grepに移動 ( 次 )
 map <C-p> :<C-u>cN<CR>|"                                                                                 " # Grepに移動 ( 前 )
@@ -132,121 +209,4 @@ map ;h<CR> :<C-u>e %:r.h<CR>|"                                                  
 map ;m<CR> :<C-u>e %:r.m<CR>|"                                                                           " # ファイルの切り替え
 map ;c<CR> :<C-u>e %:r.c<CR>|"                                                                           " # ファイルの切り替え
 " }}}
-"plugin
-"plugin - Other {{{
-so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
-let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
-let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
-"}}}
-"plugin - QFixHowm{{{
-let howm_dir = $IVIM.'/howm'
-let QFix_CloseOnJump = 1                                                                                 " # QFixHown - を自動的に終了する
-"}}}
-"plugin - hsp {{{
-autocmd BufRead *.hsp call FileTypeHsp()
-function! FileTypeHsp()
-	compiler hsp
-	set filetype=hsp
-	se omnifunc=hspcomplete#Complete
-	map <buffer> <F5> :make<CR>
-	map <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
-endfunction
-"}}}
-"plugin - Twitter {{{
-map ;tw<CR> :<C-u>PosttoTwitter<CR>
-"}}}
-"plugin - perforce "{{{
-let g:myGrepFileType = 'vim'
-"let g:pf_client_changes_only = 1                                                                        " # 1 - クライアントでフィルタ
-"let g:pf_user_changes_only = 1                                                                          " # 1 - ユーザーでフィルタ
-"let g:pf_is_submit_flg = 1                                                                              " # サブミットするかどうか
-"let g:pf_ports = ['1668']                                                                               " # ポートの設定
-"let g:pf_is_out_flg = 1                                                                                 " # 結果出力を行う
-"}}}
-"plugin - Shogo
-"Shogo - unite{{{
-let g:unite_enable_start_insert = 0                                                                      " # 自動起動
-let g:unite_source_history_yank_enable = 0
-map ;ur<CR>  :<C-u>UniteResume<CR>
-map ;us<CR>  :<C-u>Unite source<CR>
-map ;um<CR>  :<C-u>Unite file_mru<CR>
-map ;uf<CR>  :<C-u>Unite file<CR>
-map ;ut<CR>  :<C-u>Unite tag<CR>
-map ;ug<CR>  :<C-u>Unite grep -no-quit<CR>
-map ;ub<CR>  :<C-u>Unite buffer<CR>
-map ;ubt<CR> :<C-u>Unite buffer_tags<CR>
-map ;uh<CR>  :<C-u>Unite history/yank<CR>
-map ;ul<CR>  :<C-u>Unite line<CR>
-"}}}
-"Shogo - vimfiler{{{
-let g:vimfiler_as_default_explorer = 1                                                                   " # 初期filer
-let g:vimfiler_safe_mode_by_default = 0                                                                  " # safe_mode
-"}}}
-"Shogo - neocomplcache{{{
-"neocomplcache - Init {{{
-let g:neocomplcache_snippets_dir = $IVIMWORK.'/snippets'                                                 " # snippet ファイル作成場所
-let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
-let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
-"let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ
-"}}}
-"neocomplcache - Mapping {{{
-map ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
-imap <C-s>  <Plug>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
-imap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
-smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # 同上
-"}}}
-"neocomplcache - caching "{{{
-"\:NeoComplCacheCachingBuffer<CR>
-"\:NeoComplCacheCachingSyntax<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingSnippets<CR>
-"}}}
-"}}}
-"********************************************************************************
-" GIT
-"********************************************************************************
-"func
-function! s:git_cmd(cmd) "{{{
-	" ********************************************************************************
-	" git 用にカレントディレクトリを一時的に変えて実行する関数
-	" @param[in]	cmd		git コマンド
-	" ********************************************************************************
 
-	" 一時的に保存する
-	let tmp = getcwd()
-
-	" 一時的にカレントディレクトリの場所を変える
-	lcd ~\Dropbox\vim\vimwork
-
-	" 実際にコミットする
-	call okazu#LogFile('gitlog',okazu#Get_cmds(a:cmd))
-
-	" 元に戻す
-	exe 'lcd' tmp
-
-endfunction "}}}
-function! s:git_commit() "{{{
-	let str = input('comment : ')
-	if str == ""
-		echo 'END... '
-	else 
-		call <SID>git_cmd('git commit -am '.okazu#Get_kk(str))
-	endif
-endfunction "}}}
-function! s:git_push() "{{{
-	call <SID>git_cmd('git push master')
-endfunction "}}}
-"com
-com! MyGitCommit call <SID>git_commit()
-" map {{{
-map ;gc<CR> <plug>(git_commit)
-map ;gp<CR> <plug>(git_push)
-"}}}
-" plug {{{
-map <silent><buffer> <plug>(git_commit)
-			\ :<C-u>call <SID>git_commit()<CR>
-map <silent><buffer> <plug>(git_push)
-			\ :<C-u>call <SID>git_push()<CR>
-
-"}}}
