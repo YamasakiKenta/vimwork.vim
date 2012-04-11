@@ -25,6 +25,7 @@ set rtp+=$IVIMWORKCOMMON
 set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
 set rtp+=$IMYBUNDLE/cells
+set rtp+=$IMYBUNDLE/git
 "}}}
 "set - Autoload {{{
 augroup myAugroup
@@ -187,7 +188,7 @@ map ;v<CR> :<C-u>lcd $IVIM<CR>|"                                                
 map ;sy<CR> :MySyntaxFile<CR>|"                                                                          " # シンタックスファイルの編集
 map ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"                                                           " # ファイル名の取得
 map ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"                                                           " # ファイル名の取得 ( フルパス )
-map ;de<CR> :<C-u>lcd $IDESKTOP<CR>
+map ;de<CR> :<C-u>lcd $DESKTOP<CR>
 "}}}
 "map - typo {{{
 map <F1> <ESC>
