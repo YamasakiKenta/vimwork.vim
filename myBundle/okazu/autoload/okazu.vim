@@ -39,7 +39,8 @@ function! okazu#event_save_file(tmpfile,strs,func) "{{{
 	" @param[in]	strs		‰Šú‚Ì•¶Í
 	" @param[in]	func		Às‚·‚éŠÖ”–¼
 	" ********************************************************************************
-	"
+
+
 	"‰æ–Êİ’è
 	exe 'vnew' a:tmpfile
     setlocal noswapfile bufhidden=hide buftype=acwrite
@@ -53,10 +54,8 @@ function! okazu#event_save_file(tmpfile,strs,func) "{{{
 
 	aug okazu_event_save_file "{{{
 		au!
-		autocmd! BufWriteCmd <buffer>
 		exe 'autocmd BufWriteCmd <buffer> nested call '.a:func
 	aug END "}}}
-
 
 endfunction "}}}
 function! okazu#Get_cmds(cmd) "{{{

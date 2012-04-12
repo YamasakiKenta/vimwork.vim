@@ -14,18 +14,28 @@
 " so $IVIMWORKCOMMON/neobundle.vim
 " so $IVIMWORKCOMMON/vimrc
 "
-" set rtp+=$IVIMWORK  " NeoBundle 'https://YamasakiKenta@github.com/YamasakiKenta/vimwork.git'
+" if 0
+" 	set rtp+=$IVIMWORK  
+" else
+" 	NeoBundle 'https://YamasakiKenta@github.com/YamasakiKenta/vimwork.git'
+" endif
 "
 " ********************************************************************************
 "
-"Setting
-"set - myBundle "{{{
+"rtp
+"rtp - myBundle "{{{
 let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
 set rtp+=$IVIMWORKCOMMON
 set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
 set rtp+=$IMYBUNDLE/cells
 set rtp+=$IMYBUNDLE/git
+"}}}
+"
+"Setting
+"set - ClientMove "{{{
+let g:ClientMove_diffcmd = "WinMergeU"
+let g:ClientMove_recursive_flg = 1
 "}}}
 "set - Autoload {{{
 augroup myAugroup
@@ -99,7 +109,6 @@ endfunction
 map ;tw<CR> :<C-u>PosttoTwitter<CR>
 "}}}
 "plugin - perforce "{{{
-let g:myGrepFileType = 'vim'
 "let g:pf_client_changes_only = 1                                                                        " # 1 - クライアントでフィルタ
 "let g:pf_user_changes_only = 1                                                                          " # 1 - ユーザーでフィルタ
 "let g:pf_is_submit_flg = 1                                                                              " # サブミットするかどうか
