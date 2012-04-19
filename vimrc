@@ -43,7 +43,6 @@ augroup myAugroup
 	if has('win32')
 		au GUIEnter * simalt ~x             " # 最大化
 	endif
-	au Filetype help call okazu#MyQuit() " # help用のキーバインド
 aug END
 "}}}
 "set - Normal {{{
@@ -109,11 +108,11 @@ endfunction
 map ;tw<CR> :<C-u>PosttoTwitter<CR>
 "}}}
 "plugin - perforce "{{{
-"let g:pf_client_changes_only = 1                                                                        " # 1 - クライアントでフィルタ
-"let g:pf_user_changes_only = 1                                                                          " # 1 - ユーザーでフィルタ
-"let g:pf_is_submit_flg = 1                                                                              " # サブミットするかどうか
-"let g:pf_ports = ['1668']                                                                               " # ポートの設定
-"let g:pf_is_out_flg = 1                                                                                 " # 結果出力を行う
+let g:pf_client_changes_only = 1                                                                        " # 1 - クライアントでフィルタ
+let g:pf_user_changes_only = 1                                                                          " # 1 - ユーザーでフィルタ
+let g:pf_is_submit_flg = 1                                                                              " # サブミットするかどうか
+let g:pf_ports = ['localhost:1818']                                                                               " # ポートの設定
+let g:pf_is_out_flg = 1                                                                                 " # 結果出力を行う
 "}}}
 
 "plugin - Shogo
@@ -161,6 +160,7 @@ smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                          
 " mapping
 "********************************************************************************
 "map - simple {{{
+map * :<C-u>let @/ = "<C-r>=expand("<cword>")<CR>"<CR>
 map <C-n> :<C-u>cn<CR>|"                                                                                 " # Grepに移動 ( 次 )
 map <C-p> :<C-u>cN<CR>|"                                                                                 " # Grepに移動 ( 前 )
 map <A-Space> :simalt ~<CR>|"                                                                            " # Window変更
@@ -184,11 +184,6 @@ map <S-LEFT> <C-w><|"
 map <S-RIGHT> <C-w>>|"
 map <S-UP> <C-w>-|"
 map <S-DOWN> <C-w>+|"
-"}}}
-"map - nop {{{
-" map qの入力が遅くなる
-"map q: <nop>|"
-"map q/ <nop>|"
 "}}}
 "map - Normal "{{{
 map ;ry<CR> :<C-u>windo set scrollbind<CR>|"
@@ -220,3 +215,4 @@ map ;m<CR> :<C-u>e %:r.m<CR>|"                                                  
 map ;c<CR> :<C-u>e %:r.c<CR>|"                                                                           " # ファイルの切り替え
 " }}}
 
+nnoremap ;dv<CR> :<C-u>e $IVIMWORKCOMMON/vimrc<CR>

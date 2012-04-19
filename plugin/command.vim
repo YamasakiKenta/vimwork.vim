@@ -28,7 +28,7 @@ endfunction "}}}
 " ********************************************************************************
 command! MySyntaxFile call <SID>mySyntaxFile()
 function! s:mySyntaxFile() "{{{
-	exe 'e '.$VIMWORK.'/syntax/'.&filetype.'.vim'
+	exe 'e '.$IVIMWORK.'/syntax/'.&filetype.'.vim'
 	call okazu#MyQuit()
 endfunction "}}}
 
