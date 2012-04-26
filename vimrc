@@ -160,19 +160,18 @@ smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                          
 " mapping
 "********************************************************************************
 "nnoremap - simple {{{
-nnoremap * :<C-u>let @/ = "<C-r>=expand("<cword>")<CR>"<CR>
-nnoremap <C-n> :<C-u>cn<CR>|"                                                                                 " # Grepに移動 ( 次 )
-nnoremap <C-p> :<C-u>cN<CR>|"                                                                                 " # Grepに移動 ( 前 )
-nnoremap <A-Space> :simalt ~<CR>|"                                                                            " # Window変更
-nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"                                     " # 検索値の選択
-nnoremap j gj|"                                                                                               " # カーソル移動
-nnoremap k gk|"                                                                                               " # カーソル移動
-nnoremap <C-]> <C-]>zz|"                                                                                      " # タグジャンプ
-nnoremap <S-Space> za|"                                                                                       " # 折畳み
-nmap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                                                     " # ハイライト
-vmap * "ty:let @/=@t<CR>N|"                                                                              " # 選択文字を検索
-vmap < <gv|"                                                                                             " # カーソル移動
-vmap > >gv|"                                                                                             " # 再選択
+nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
+nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepに移動 ( 前 )
+nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
+nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # 検索値の選択
+nnoremap j gj|"                                                                " # カーソル移動
+nnoremap k gk|"                                                                " # カーソル移動
+nnoremap <C-]> <C-]>zz|"                                                       " # タグジャンプ
+nnoremap <S-Space> za|"                                                        " # 折畳み
+nmap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                           " # ハイライト
+vmap * "ty:let @/=@t<CR>N|"                                                    " # 選択文字を検索
+vmap < <gv|"                                                                   " # カーソル移動
+vmap > >gv|"                                                                   " # 再選択
 "}}}
 "nnoremap - diff {{{
 nnoremap ;dy<CR> :<C-u>windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
