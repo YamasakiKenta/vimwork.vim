@@ -79,13 +79,12 @@ function! okazu#Map_diff_reset() "{{{
 	map <buffer> <right> <right>
 endfunction "}}}
 function! okazu#is_different(path,path2) "{{{
-	" return  TRUE : 差分あり
 	" ********************************************************************************
 	" 差分を調べる
 	" @param[in]	path				比較ファイル1
 	" @param[in]	path2				比較ファイル2
-	" @return		flg			TRUE	差分あり
-	" 							TRUE	差分なし
+	" @retval		flg			TRUE	差分あり
+	" 							FALSE	差分なし
 	" ********************************************************************************
 	let flg = 1
 	let outs = okazu#Get_cmds('fc '.okazu#Get_kk(a:path).' '.okazu#Get_kk(a:path2))
@@ -95,10 +94,7 @@ function! okazu#is_different(path,path2) "{{{
 	return flg
 endfunction "}}}
 function! okazu#get_pathSrash(path) "{{{
-	let path = a:path
-	let path = substitute(path,'\','/','g') " # / マークに統一
-	"let path = substitute(path,'[^/]$','&/','') " # / を最後につける
-	return path
+	return substitute(a:path,'\','/','g') " # / マークに統一
 endfunction "}}}
 function! okazu#GetFileNameForUnite(args, context) "{{{
 	" ファイル名の取得
