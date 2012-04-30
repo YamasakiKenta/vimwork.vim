@@ -43,6 +43,8 @@ augroup myAugroup
 	if has('win32')
 		au GUIEnter * simalt ~x             " # 最大化
 	endif
+
+	au FileType unite nmap P <Plug>(unite_toggle_auto_preview)
 aug END
 "}}}
 "set - Normal {{{
@@ -108,11 +110,13 @@ endfunction
 nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
 "}}}
 "plugin - perforce "{{{
-let g:pf_client_changes_only = 1                                                                        " # 1 - クライアントでフィルタ
-let g:pf_user_changes_only = 1                                                                          " # 1 - ユーザーでフィルタ
-let g:pf_is_submit_flg = 1                                                                              " # サブミットするかどうか
-let g:pf_ports = ['localhost:1818']                                                                               " # ポートの設定
-let g:pf_is_out_flg = 1                                                                                 " # 結果出力を行う
+call perforce#init()
+let g:pf_setting.bool.client_changes_only.value = 1   " # 1 - クライアントでフィルタ
+let g:pf_setting.bool.user_changes_only.value = 1     " # 1 - ユーザーでフィルタ
+let g:pf_setting.bool.is_submit_flg.value = 1         " # サブミットするかどうか
+let g:pf_setting.bool.is_out_flg.value = 1            " # 結果出力を行う
+
+let g:pf_setting.str.ports.value = ['localhost:1818'] " # ポートの設定
 "}}}
 
 "plugin - Shogo
@@ -168,10 +172,11 @@ nnoremap j gj|"                                                                "
 nnoremap k gk|"                                                                " # カーソル移動
 nnoremap <C-]> <C-]>zz|"                                                       " # タグジャンプ
 nnoremap <S-Space> za|"                                                        " # 折畳み
-nmap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                           " # ハイライト
-vmap * "ty:let @/=@t<CR>N|"                                                    " # 選択文字を検索
-vmap < <gv|"                                                                   " # カーソル移動
-vmap > >gv|"                                                                   " # 再選択
+nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                           " # ハイライト
+map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
+vnoremap * "ty:let @/=@t<CR>N|"                                                    " # 選択文字を検索
+vnoremap < <gv|"                                                                   " # カーソル移動
+vnoremap > >gv|"                                                                   " # 再選択
 "}}}
 "nnoremap - diff {{{
 nnoremap ;dy<CR> :<C-u>windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
@@ -185,13 +190,14 @@ nnoremap <S-UP> <C-w>-|"
 nnoremap <S-DOWN> <C-w>+|"
 "}}}
 "nnoremap - Normal "{{{
+nnoremap ;sy<CR> :MySyntaxFile<CR>|"                   " # シンタックスファイルの編集
+nnoremap ;v<CR> :<C-u>lcd $IVIM<CR>|"                  " # VIM をcd にする
 nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
-nnoremap ;v<CR> :<C-u>lcd $IVIM<CR>|"                                                                         " # VIM をcd にする
-nnoremap ;sy<CR> :MySyntaxFile<CR>|"                                                                          " # シンタックスファイルの編集
-nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"                                                           " # ファイル名の取得
-nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"                                                           " # ファイル名の取得 ( フルパス )
+nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
+nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
 nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>
+nnoremap ;dv<CR> :<C-u>e $IVIMWORKCOMMON/vimrc<CR>
 "}}}
 "nnoremap - typo {{{
 nnoremap <F1> <ESC>
@@ -213,5 +219,17 @@ nnoremap ;h<CR> :<C-u>e %:r.h<CR>|"                                             
 nnoremap ;m<CR> :<C-u>e %:r.m<CR>|"                                                                           " # ファイルの切り替え
 nnoremap ;c<CR> :<C-u>e %:r.c<CR>|"                                                                           " # ファイルの切り替え
 " }}}
+"
+" test
+nmap ;test<CR> <Plug>test
+nnoremap <Plug>test :<C-u>echo 'hello world'<CR>
 
-nnoremap ;dv<CR> :<C-u>e $IVIMWORKCOMMON/vimrc<CR>
+nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+
+function! s:move_unite_tags(str) "{{{
+	if a:str =~ '^k_'
+		exe 'ta unite#kinds#'.a:str.'#define'
+	elseif a:str =~ 'a_'
+		exe 'ta kind.action_table.'.a:str.'.func'
+	endif
+endfunction "}}}

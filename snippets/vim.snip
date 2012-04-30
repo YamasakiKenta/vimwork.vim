@@ -1,4 +1,8 @@
 "perforce
+snippet value
+    \ 'value' : ${1},
+    \ 'description' : '${2}',
+    \ }
 snippet log
 	call <SID>logFile('p4log')
 "main
@@ -72,6 +76,3 @@ snippet head
 	" @param[in]	
     " @retval       
 	" ********************************************************************************
-    function! ${2}(${3}) "{{{
-    endfunction "}}}
-

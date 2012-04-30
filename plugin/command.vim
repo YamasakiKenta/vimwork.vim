@@ -118,7 +118,18 @@ endfunction "}}}
 " Grep を行う
 " ********************************************************************************
 command! -narg=+ MyGrep call <SID>grep(<f-args>)
-function! <SID>grep(...) "{{{
+function! s:grep(...) "{{{
 	let word = join(a:000,'\|')
 	exe 'vim /'.word.'/ **/*.'.g:myGrepFileType
+endfunction "}}}
+
+" ********************************************************************************
+" 検索ワードの追加 ( OR 検索 )
+" @param[in]	検索ワード
+" ********************************************************************************
+command! -narg=* ASearch call <SID>aserach(<f-args>)
+function! s:aserach(...) "{{{
+	if a:0 > 0
+		let @/ = @/.'\|'.join(a:000,'\|')
+	endif
 endfunction "}}}
