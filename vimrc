@@ -109,15 +109,7 @@ endfunction
 "plugin - Twitter {{{
 nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
 "}}}
-"plugin - perforce "{{{
 call perforce#init()
-let g:pf_setting.bool.client_changes_only.value = 1   " # 1 - クライアントでフィルタ
-let g:pf_setting.bool.user_changes_only.value = 1     " # 1 - ユーザーでフィルタ
-let g:pf_setting.bool.is_submit_flg.value = 1         " # サブミットするかどうか
-let g:pf_setting.bool.is_out_flg.value = 1            " # 結果出力を行う
-
-let g:pf_setting.str.ports.value = ['localhost:1818'] " # ポートの設定
-"}}}
 
 "plugin - Shogo
 "Shogo - unite{{{
