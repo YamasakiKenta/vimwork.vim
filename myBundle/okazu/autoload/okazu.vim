@@ -96,36 +96,12 @@ endfunction "}}}
 function! okazu#get_pathSrash(path) "{{{
 	return substitute(a:path,'\','/','g') " # / マークに統一
 endfunction "}}}
+function! okazu#get_pathEn(path) "{{{
+	return substitute(a:path,'/','\','g') " # / マークに統一
+endfunction "}}}
 function! okazu#GetFileNameForUnite(args, context) "{{{
 	" ファイル名の取得
 	let a:context.source__path = expand('%:p')
 	let a:context.source__linenr = line('.')
 	call unite#print_message('[line] Target: ' . a:context.source__path)
-endfunction "}}}
-function! okazu#get_ronri_seki(a,b) "{{{
-	" ********************************************************************************
-	" 論理和をします
-	" @param[in]	a		
-	" @param[in]	b		
-	" ********************************************************************************
-	
-	let a = a:a
-	let b = a:b
-
-	"多い数字の取得
-	let [dai,syo] = a > b ? [a,b] : [b,a]
-
-	let rtn = 0
-	let omomi = 1
-	while ( syo > 0 ) 
-		if syo % 2 && dai % 2
-			let rtn += omomi
-		endif
-		let dai = dai / 2
-		let syo = syo / 2
-		let omomi = omomi * 2
-	endwhile
-
-	return rtn
-
 endfunction "}}}

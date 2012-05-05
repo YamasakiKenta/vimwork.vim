@@ -6,6 +6,8 @@
 " let $IVIM            = '~/Dropbox/vim'                  
 " let $IVIMWORK        = '~/Dropbox/vim/vimwork'          
 " let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'          
+" let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
+" let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc'
 " let g:myGrepFileType = 'vim'
 "
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
@@ -30,6 +32,7 @@ set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
 set rtp+=$IMYBUNDLE/cells
 set rtp+=$IMYBUNDLE/git
+set rtp+=$IMYBUNDLE/bit
 "}}}
 "
 "Setting
@@ -183,13 +186,16 @@ nnoremap <S-DOWN> <C-w>+|"
 "}}}
 "nnoremap - Normal "{{{
 nnoremap ;sy<CR> :MySyntaxFile<CR>|"                   " # シンタックスファイルの編集
-nnoremap ;v<CR> :<C-u>lcd $IVIM<CR>|"                  " # VIM をcd にする
 nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
 nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
 nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
-nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>
-nnoremap ;dv<CR> :<C-u>e $IVIMWORKCOMMON/vimrc<CR>
+"}}}
+"nnoremap - lcd "{{{
+nnoremap ;v<CR>  :<C-u>lcd $IVIM<CR>|"
+nnoremap ;p<CR>  :<C-u>lcd $PFPATH<CR>|"
+nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>|"
+nnoremap ;dv<CR> :<C-u>e $VIMRC<CR>|"
 "}}}
 "nnoremap - typo {{{
 nnoremap <F1> <ESC>
@@ -212,16 +218,21 @@ nnoremap ;m<CR> :<C-u>e %:r.m<CR>|"                                             
 nnoremap ;c<CR> :<C-u>e %:r.c<CR>|"                                                                           " # ファイルの切り替え
 " }}}
 "
-" test
-nmap ;test<CR> <Plug>test
-nnoremap <Plug>test :<C-u>echo 'hello world'<CR>
-
+"********************************************************************************
+" Unte Jump
+"********************************************************************************
 nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-
 function! s:move_unite_tags(str) "{{{
 	if a:str =~ '^k_'
 		exe 'ta unite#kinds#'.a:str.'#define'
 	elseif a:str =~ 'a_'
 		exe 'ta kind.action_table.'.a:str.'.func'
+	else
+		" let source = unite#get_sources(a:str)
+
+		" ソースが存在する場合
+		" if source =~ ""
+
+		" endif
 	endif
 endfunction "}}}
