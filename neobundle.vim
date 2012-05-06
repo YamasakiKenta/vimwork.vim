@@ -18,6 +18,8 @@ NeoBundle 'https://github.com/tsukkee/unite-tag.git'
 NeoBundle 'https://github.com/fuenor/qfixhowm.git'
 NeoBundle 'https://github.com/vim-scripts/Align.git'
 NeoBundle 'https://github.com/thinca/vim-qfreplace.git'
+NeoBundle 'https://github.com/sgur/unite-qf.git'
+NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 
 "NeoBundle 'https://github.com/mattn/webapi-vim.git'
 "NeoBundle 'https://github.com/tyru/open-browser.vim'

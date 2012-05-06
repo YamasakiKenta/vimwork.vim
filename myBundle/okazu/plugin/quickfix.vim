@@ -11,6 +11,9 @@ call unite#custom_action('file', 'add qfix', action)
 call unite#custom_action('jump_list', 'add qfix', action)
 
 function! action.func(candidates) "{{{
+	call <SID>add_qfix(a:candidates)
+endfunction "}}}
+function! s:add_qfix(candidates) "{{{
 	for candidate in a:candidates
 
 		let word = candidate.word
@@ -19,13 +22,16 @@ function! action.func(candidates) "{{{
 
 		if exists("candidate.action__line")
 			let line = candidate.action__line
+			caddexpr file . ":" . line .  ":" . word
 		else
-			exe 'edit' file
-			call search(pattern,'')
-			let line = line(".")
+			setl errorformat+=%f:%s:%m
+			echo
+			echo pattern
+			setl errorformat
+			call input("")
+			caddexpr file . ":" . pattern .  ":" . word
 		endif
 
-		caddexpr file . ":" . line .  ":" . word
 	endfor
 endfunction "}}}
 
