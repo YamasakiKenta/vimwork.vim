@@ -1,10 +1,11 @@
 function! okazu#MyQuit() "{{{
 	map <buffer> q :q<CR>
 endfunction "}}}
-function! okazu#LogFile(name,...) "{{{
+function! okazu#LogFile(name, deleteFlg, ...) "{{{
 	" ********************************************************************************
 	" 新しいファイルを開いて書き込み禁止にする 
 	" @param[in]	name		書き込み用tmpFileName
+	" @param[in]	deleteFlg	初期化する
 	" @param[in]	[...]		書き込むデータ
 	" ********************************************************************************
 	
@@ -18,11 +19,17 @@ function! okazu#LogFile(name,...) "{{{
 		" 画面内になければ新規作成
 		exe 'sp ~/'.name
 		%delete _          " # ファイル消去
-		set buftype=nofile " # 保存禁止
+		setl buftype=nofile " # 保存禁止
+		setl fdm=manual
 		call okazu#MyQuit()
 	else
 		" 表示しているなら切り替える
 		exe bnum . 'wincmd w'
+	endif
+
+	" 初期化する
+	if a:deleteFlg == 1
+		%delete _
 	endif
 
 	" 書き込みデータがあるなら書き込む

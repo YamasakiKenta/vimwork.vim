@@ -47,7 +47,7 @@ augroup myAugroup
 		au GUIEnter * simalt ~x             " # �ő剻
 	endif
 
-	au FileType unite nmap P <Plug>(unite_toggle_auto_preview)
+	au FileType unite nmap <buffer> P <Plug>(unite_toggle_auto_preview)
 aug END
 "}}}
 "set - Normal {{{

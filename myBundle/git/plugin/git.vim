@@ -15,7 +15,7 @@ function! s:git_cmd(cmd) "{{{
 	lcd ~\Dropbox\vim\vimwork
 
 	" 実際にコミットする
-	call okazu#LogFile('gitlog',okazu#Get_cmds(a:cmd))
+	call okazu#LogFile('gitlog', 0, okazu#Get_cmds(a:cmd))
 
 	" 元に戻す
 	exe 'lcd' tmp
