@@ -84,9 +84,8 @@ endfunction "}}}
 function! bit#get_nums_form_bit(bit) "{{{
 
 	let nums = []
-	let bit = a:bit
-
-	let val = 0
+	let bit  = a:bit
+	let val  = 0
 
 	while bit > 0 
 		" BIT が有効ならリストに追加する
@@ -101,14 +100,6 @@ function! bit#get_nums_form_bit(bit) "{{{
 		let val += 1
 	endwhile
 
-	" リストが１つなら数値を返す
-
-	if len(nums) == 1
-		let rtns = nums[0]	
-	else
-		let rtns = nums
-	endif
-
-	return rtns
+	return nums
 
 endfunction "}}}
