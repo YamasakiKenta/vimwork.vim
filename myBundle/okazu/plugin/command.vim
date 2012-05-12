@@ -133,3 +133,27 @@ function! s:aserach(...) "{{{
 		let @/ = @/.'\|'.join(a:000,'\|')
 	endif
 endfunction "}}}
+
+" ********************************************************************************
+" howm に追加する
+" ********************************************************************************
+command! -narg=1 QuickMemo call <SID>quickMemo(<f-args>)
+function! s:quickMemo(str) "{{{
+
+	echo a:str
+	" 現在のファイルを保存
+	let bufnr = bufnr("%")
+
+	" howm ファイルを開く
+	exe 'edit' g:howm_dir.strftime("/%Y-%m-%d-000000.txt")
+
+	" 保存する
+	call append(1,  strftime("[%Y-%m-%d %H:%M]".a:str))
+
+	write
+
+	" 編集中のファイルに戻す
+	exe bufnr 'buffer'
+
+endfunction "}}}
+

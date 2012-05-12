@@ -158,6 +158,9 @@ smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                          
 "********************************************************************************
 " mapping
 "********************************************************************************
+" nmap - <Plug>"{{{
+nmap <C-s> <Plug>set_number|" " ”Ô†‚Ì‰ÁZ
+" "}}}
 "nnoremap - simple {{{
 nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grep‚ÉˆÚ“® ( Ÿ )
 nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grep‚ÉˆÚ“® ( ‘O )
