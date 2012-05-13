@@ -45,3 +45,11 @@ NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 "NeoBundle 'Shougo/git-vim'
 "NeoBundle 'gitvimdiff'
 "NeoBundle 'https://github.com/mattn/unite-advent_calendar.git'
+"
+"
+
+
+
+
+NeoBundle 'https://github.com/thinca/vim-editvar.git'
+NeoBundle 'https://github.com/vim-scripts/Visual-Mark.git'

@@ -137,18 +137,24 @@ endfunction "}}}
 " ********************************************************************************
 " howm に追加する
 " ********************************************************************************
-command! -narg=1 QuickMemo call <SID>quickMemo(<f-args>)
-function! s:quickMemo(str) "{{{
+command! -narg=* QuickMemo call <SID>quickMemo(<f-args>)
+function! s:quickMemo(...) "{{{
 
-	echo a:str
+	"let str = input('comment: ',join(a:000))
+	if a:0 == 0 
+		let str = input('comment: ')
+	else
+		let str = join(a:000)
+	endif 
+
 	" 現在のファイルを保存
 	let bufnr = bufnr("%")
 
 	" howm ファイルを開く
-	exe 'edit' g:howm_dir.strftime("/%Y-%m-%d-000000.txt")
+	exe 'edit' g:howm_dir.strftime("/%Y/%m/%Y-%m-%d-000000.txt")
 
 	" 保存する
-	call append(1,  strftime("[%Y-%m-%d %H:%M]".a:str))
+	call append(1, strftime("[%Y-%m-%d %H:%M]".str))
 
 	write
 
@@ -156,4 +162,59 @@ function! s:quickMemo(str) "{{{
 	exe bufnr 'buffer'
 
 endfunction "}}}
+
+" ********************************************************************************
+" フォルダ構造のコピー
+" @param[in]	file1	コピー元
+" @param[in]	root2	コピー先のルート
+" @param[in]	root1	コピー元のルート
+" ********************************************************************************
+
+let g:copyFileDir_defaultRoot  = get(g:, 'copyFileDir_defaultRoot', 'c:')
+let g:copyFileDir_defaultFile2 = get(g:, 'copyFileDir_defaultFile2', 'c:\tmp')
+
+command! -nargs=+ CopyFileDir call <SID>copyFileDir(<f-args>)
+function! s:copyFileDir(file,...) "{{{
+
+	let defaultRoot  = g:copyFileDir_defaultRoot
+	let defaultFile2 = g:copyFileDir_defaultFile2
+
+	let file1 = substitute(a:file, '/','\','g')
+
+	" 空白と引数がない場合は、defaultを設定する
+	let root2 = get(a:,'1',defaultFile2)
+	let root2 = substitute(root2, '/', '\','g')
+	if root2 == ' ' | let root2 = defaultFile2 | endif
+
+	" 末尾の \ を削除する
+	let root2 = substitute(root2,'\\$','','')
+
+	" 空白と引数がない場合は、defaultを設定する
+	let root1  = get(a:,'2',defaultRoot)
+	let root1  = substitute(root1, '/', '\','g')
+	if root1 == ' ' | let root1 = defaultRoot | endif
+
+	" 置換するため、スペースはエスケープする
+	let root1 = escape(root1,'\')
+
+	" ルートの削除
+	let path1 = substitute(file1, root1,'','')
+
+	" コピー先
+	let file2 = root2.''.path1
+
+	"--------------------------------------------------------------------------------
+	" 実行する
+	"--------------------------------------------------------------------------------
+	" フォルダの作成
+	call system('mkdir "'.fnamemodify(file2,':h').'"')
+
+	" コピーする
+	call system('copy "'.file1.'" "'.file2.'"')
+
+	echo 'mkdir "'.fnamemodify(file2,':h').'"'
+	echo 'copy "'.file1.'" "'.file2.'"'
+
+endfunction
+"}}}
 

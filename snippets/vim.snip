@@ -31,8 +31,7 @@ snippet action
     endfunction "}}}
     unlet s:action "}}}
 snippet kaction
-	"kind action - ${1} "{{{
-	let s:kind.action_table.$1 = {
+	let s:kind.action_table.${1} = {
 		\ 'description' : '',
 		\ 'is_selectable' : 1,
 		\ }
@@ -40,7 +39,6 @@ snippet kaction
 		for candidate in a:candidates
 		endfor
 	endfunction "}}}
-	"}}}
 snippet source
     "source - ${1} "{{{
     let s:source = {

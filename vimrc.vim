@@ -7,14 +7,14 @@
 " let $IVIMWORK        = '~/Dropbox/vim/vimwork'          
 " let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'          
 " let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
-" let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc'
+" let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
 " let g:myGrepFileType = 'vim'
 "
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
-" let $NEOBUNDLE       = $BUNDLE.'/Shougo-neobundle.vim' 
+" let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
 "
 " so $IVIMWORKCOMMON/neobundle.vim
-" so $IVIMWORKCOMMON/vimrc
+" so $IVIMRC
 "
 " if 0
 " 	set rtp+=$IVIMWORK  
