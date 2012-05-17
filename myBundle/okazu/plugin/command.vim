@@ -38,79 +38,23 @@ endfunction "}}}
 command! -range=% SelectEdit :call s:selectEdit(<line1>, <line2>)
 function! s:selectEdit(start, end) "{{{
 
-	" 行の保存
-	let g:selectEdit_start = a:start
-	let g:selectEdit_end   = a:end
-
 	" 現在のファイルタイプを保存する
 	let ft = &filetype
 
-	" bufnrの保存
-	let g:selectEdit_bufnr = bufnr("")
+	let selectEdit = {
+				\ 'start' : a:start,
+				\ 'end' : a:end,
+				\ 'bufnr' : bufnr(""),
+				\ }
 
-	if 0
-		tabe! ~/vim/tmp/selectEdit
-		% delete _
-		0put t 
-	else
-		let strs = getline(g:selectEdit_start,g:selectEdit_end)
-		call okazu#event_save_file('selectEdit',strs,"MySelectEdit_write()")
-		$ delete _
 
-		if 0 
-			let tmpfile = 'selectEdit'
-
-			"画面設定
-			exe 'vnew' tmpfile
-			setlocal noswapfile bufhidden=hide buftype=acwrite
-
-			"文の書き込み
-			%delete _
-			call append(0,strs)
-
-			"なぜか空白行なので削除
-			$ delete
-
-			" リセットする
-			aug selectEdit
-				autocmd!
-				autocmd BufWriteCmd <buffer> nested call MySelectEdit_write()
-			aug END
-		endif
-
-	endif
+	let strs = getline(selectEdit.start,selectEdit.end)
+	call okazu#event_save_file('[selectEdit]',strs,"okazu#selectEdit_write",selectEdit)
+	$ delete _
 
 	exe 'set ft='.ft
 
-endfunction "}}}
-function! MySelectEdit_write() "{{{
-	" ********************************************************************************
-	" 選択した範囲に書き込み
-	"
-	" ********************************************************************************
-	let start    = g:selectEdit_start
-	let end      = g:selectEdit_end
-	let bufnr    = g:selectEdit_bufnr
-
-	" tmpfileの保存
-	let nowbufnr = bufnr('%')
-	let strs     = getline(0,'$')
-
-	" 行の変更
-	let g:selectEdit_end = start + line('$') - 1
-
-	" 編集するファイル の編集
-	exe bufnr 'buffer'
-
-	" 削除
-	exe start.','.end 'delete'
-
-	" 追加
-	" todo : 空白行なら追加しない
-	call append(start-1,strs)
-
-	" tmpfileに戻す
-	exe nowbufnr 'buffer'
+	set nomodified
 
 endfunction "}}}
 

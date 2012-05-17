@@ -3,15 +3,33 @@
 " --------------------------------------------------------------------------------
 "
 " let $DESKTOP         = '~/Desktop'                      
+" ;de<CR>
+"
 " let $IVIM            = '~/Dropbox/vim'                  
-" let $IVIMWORK        = '~/Dropbox/vim/vimwork'          
-" let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'          
-" let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
+" ;v<CR>
+" howm
+"
+" let $IVIMWORK        = '~/Dropbox/vim/vimwork' <- 各PC毎に設定するフォルダ         
+" ;snippets
+"
+" let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork' <- このファイルを指定してください
+" myBundle
+" rtp
+"
 " let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
+" ;dv<CR>
+"
+" let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
+" ;p<CR>
+"
 " let g:myGrepFileType = 'vim'
+" MyGrep
 "
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
+" neobundle
+"
 " let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
+" neobundle
 "
 " so $IVIMWORKCOMMON/neobundle.vim
 " so $IVIMRC
@@ -24,6 +42,8 @@
 "
 " ********************************************************************************
 "
+" path の設定
+"　
 "rtp
 "rtp - myBundle "{{{
 let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
@@ -128,6 +148,7 @@ nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>
 nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>
 nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>
 nnoremap ;ul<CR>  :<C-u>Unite line<CR>
+nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
 "}}}
 "Shogo - vimfiler{{{
 let g:vimfiler_as_default_explorer = 1                                                                   " # 初期filer

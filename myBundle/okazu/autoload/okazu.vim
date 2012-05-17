@@ -39,32 +39,8 @@ function! okazu#LogFile(name, deleteFlg, ...) "{{{
 	cal cursor(1,1) " # 一行目に移動する
 
 endfunction "}}}
-function! okazu#event_save_file(tmpfile,strs,func) "{{{
-	" ********************************************************************************
-	" ファイルを保存したときに、関数を実行します
-	" @param[in]	tmpfile		保存するファイル名 ( 分割するファイル名 ) 
-	" @param[in]	strs		初期の文章
-	" @param[in]	func		実行する関数名
-	" ********************************************************************************
 
 
-	"画面設定
-	exe 'vnew' a:tmpfile
-    setlocal noswapfile bufhidden=hide buftype=acwrite
-
-	"文の書き込み
-	%delete _
-	call append(0,a:strs)
-
-	"一行目に移動
-	cal cursor(1,1) 
-
-	aug okazu_event_save_file "{{{
-		au!
-		exe 'autocmd BufWriteCmd <buffer> nested call '.a:func
-	aug END "}}}
-
-endfunction "}}}
 function! okazu#Get_cmds(cmd) "{{{
 	return split(system(a:cmd),'\n')
 endfunction "}}}
@@ -141,8 +117,6 @@ function! okazu#set_num() "{{{
 	" 数字の末尾で分割
 	"--------------------------------------------------------------------------------
 	" 1 : aaa12(3)4aaaa  : () カーソル位置
-NeoBundle 'https://github.com/vim-scripts/wokmarks.vim.git'
-
 	" 2 : aaa1234 , aaaa : カーソルより後ろの数字の末尾で分割
 	" 3 : aaa     , aaa  : 数字の削除
 	"********************************************************************************
@@ -170,5 +144,82 @@ NeoBundle 'https://github.com/vim-scripts/wokmarks.vim.git'
 		" カーソル移動
 		call cursor(lnum, len(str[0].str[1]))
 	endif
+
+endfunction "}}}
+
+"********************************************************************************
+" Select Edit の保存
+" @param[in]	args.start	開始位置
+" @param[in]	args.end	終了位置
+" @param[in]	args.bufnr	番号
+"********************************************************************************
+function! okazu#selectEdit_write(args) "{{{
+	
+	let start    = a:args.start
+	let end      = a:args.end
+	let bufnr    = a:args.bufnr
+
+	" tmpfileの保存
+	set nomodified
+	let nowbufnr = bufnr('%')
+	let strs     = getline(0,'$')
+
+	" 行の変更
+	let a:args.end = start + line('$') - 1
+
+	" argsの更新
+	call okazu#event_save_file_autocmd('okazu#selectEdit_write',a:args)
+
+
+	" 編集するファイル の編集
+	exe bufnr 'buffer'
+
+	" 削除
+	exe start.','.end 'delete'
+
+	" 追加
+	call append(start-1,strs)
+
+	" tmpfileに戻す
+	exe nowbufnr 'buffer'
+
+endfunction "}}}
+
+" ********************************************************************************
+" ファイルを保存したときに、関数を実行します
+" @param[in]	tmpfile		保存するファイル名 ( 分割するファイル名 ) 
+" @param[in]	strs		初期の文章
+" @param[in]	func		実行する関数名
+" @param[in]	args		実行する関数名に渡す 引数
+" ********************************************************************************
+function! okazu#event_save_file(tmpfile,strs,func,args) "{{{
+
+	"画面設定
+	let bnum = bufwinnr(a:tmpfile) 
+
+	if bnum == -1
+		exe 'vnew' a:tmpfile
+		setlocal noswapfile bufhidden=hide buftype=acwrite
+	else
+		" 表示しているなら切り替える
+		exe bnum . 'wincmd w'
+	endif
+
+	"文の書き込み
+	%delete _
+	call append(0,a:strs)
+
+	"一行目に移動
+	call cursor(1,1) 
+
+	call okazu#event_save_file_autocmd(a:func,a:args)
+
+endfunction "}}}
+function! okazu#event_save_file_autocmd(func,args) "{{{
+
+	aug okazu_event_save_file
+		au!
+		exe 'autocmd BufWriteCmd <buffer> nested call '.a:func.'('.string(a:args).')'
+	aug END
 
 endfunction "}}}
