@@ -34,6 +34,7 @@
 "  - vimrc.vim
 "  |- $IMYBUNDLE
 "  |- rtp
+"  |- snippets
 " $VIMRC 
 "  - vimrc.vim
 "  |- ;dv<CR>
@@ -163,7 +164,7 @@ let g:vimfiler_safe_mode_by_default = 0                                         
 "}}}
 "Shogo - neocomplcache{{{
 "neocomplcache - Init {{{
-let g:neocomplcache_snippets_dir = $IVIMWORK.'/snippets'                                                 " # snippet ファイル作成場所
+let g:neocomplcache_snippets_dir = $IVIMWORKCOMMON.'/snippets'.','.$IVIMWORK.'/snippets'                 " # snippet ファイル作成場所
 let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
 let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
 "let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ
