@@ -2,48 +2,55 @@
 " Readme
 " --------------------------------------------------------------------------------
 "
-" let $DESKTOP         = '~/Desktop'                      
-" ;de<CR>
-"
-" let $IVIM            = '~/Dropbox/vim'                  
-" ;v<CR>
-" howm
-"
-" let $IVIMWORK        = '~/Dropbox/vim/vimwork' <- 各PC毎に設定するフォルダ         
-" ;snippets
-"
+" = script =
+" let $IVIMWORK        = '~/Dropbox/vim/' <- 各PC毎に設定するフォルダ         
 " let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork' <- このファイルを指定してください
-" myBundle
-" rtp
+" so $IVIMWORKCOMMON/vimrc.vim
 "
-" let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
-" ;dv<CR>
-"
-" let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
-" ;p<CR>
-"
-" let g:myGrepFileType = 'vim'
-" MyGrep
-"
+" = bundle =
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
-" neobundle
-"
 " let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
-" neobundle
-"
 " so $IVIMWORKCOMMON/neobundle.vim
-" so $IVIMRC
 "
-" if 0
-" 	set rtp+=$IVIMWORK  
-" else
-" 	NeoBundle 'https://YamasakiKenta@github.com/YamasakiKenta/vimwork.git'
-" endif
+" = command =
+" let $DESKTOP         = '~/Desktop'                      
+" let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
+" let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
+"
+" = MyGrep = 
+" let g:myGrepFileType = 'vim'
 "
 " ********************************************************************************
+" [使用箇所]
+" $DESKTOP
+"  - vimrc.vim
+"  |- ;de<CR>
+" $IVIMWORK
+"  - vimrc.vim
+"  |- ;v<CR>
+"  |- snippets
+"  |- howm
+" $IVIMWORKCOMMON
+"  - vimrc.vim
+"  |- $IMYBUNDLE
+"  |- rtp
+" $VIMRC 
+"  - vimrc.vim
+"  |- ;dv<CR>
+" $PFPATH
+"  - vimrc.vim
+"  |- ;p<CR>
+" g:myGrepFileType
+"  - command.vim
+"  |- MyGrep
+" $BUNDLE
+"  - neobundle.vim
+"  |- NeoBundle
+" $NEOBUNDLE
+"  - neobundle.vim
+"  |- rtp
+" ********************************************************************************
 "
-" path の設定
-"　
 "rtp
 "rtp - myBundle "{{{
 let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
@@ -116,7 +123,7 @@ let g:Align_xstrlen = 3                                                         
 let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
 "}}}
 "plugin - QFixHowm{{{
-let howm_dir = $IVIM.'/howm'
+let howm_dir = $IVIMWORK.'/howm'
 let QFix_CloseOnJump = 1                                                                                 " # QFixHown - を自動的に終了する
 "}}}
 "plugin - hsp {{{
@@ -216,7 +223,7 @@ nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
 nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
 "}}}
 "nnoremap - lcd "{{{
-nnoremap ;v<CR>  :<C-u>lcd $IVIM<CR>|"
+nnoremap ;v<CR>  :<C-u>lcd $IVIMWORK<CR>|"
 nnoremap ;p<CR>  :<C-u>lcd $PFPATH<CR>|"
 nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>|"
 nnoremap ;dv<CR> :<C-u>e $VIMRC<CR>|"
