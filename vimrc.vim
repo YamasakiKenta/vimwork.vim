@@ -3,10 +3,13 @@
 " --------------------------------------------------------------------------------
 "
 " = script =
-" let $IVIMWORK        = '~/Dropbox/vim/' <- 各PC毎に設定するフォルダ         
-" let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork' <- このファイルを指定してください
+" let $IVIMWORK        = '~/Dropbox/vim/'            " <- 各PC毎に設定するフォルダ         
+" let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
+" so $IVIMWORK/vimrc.vim
 " so $IVIMWORKCOMMON/vimrc.vim
 "
+" = tmp = 
+" let $IVIMTMP         = '~/vim/'
 " = bundle =
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
 " let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
@@ -30,6 +33,7 @@
 "  |- ;v<CR>
 "  |- snippets
 "  |- howm
+"  |- rtp
 " $IVIMWORKCOMMON
 "  - vimrc.vim
 "  |- $IMYBUNDLE
@@ -54,8 +58,9 @@
 "
 "rtp
 "rtp - myBundle "{{{
-let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
+set rtp+=$IVIMWORK
 set rtp+=$IVIMWORKCOMMON
+let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
 set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
 set rtp+=$IMYBUNDLE/cells
@@ -100,10 +105,10 @@ set tabstop=4                                                                   
 set shiftwidth=4                                                                                         " # |
 set lcs=tab:`\                                                                                           " # 記号の表示
 set fdm=marker                                                                                           " # 自動的に折りたたみ
-set backupdir=~/vim/backup                                                                               " # Backupフォルダのパス
 set tw=0                                                                                                 " # 自動改行 OFF
 "set enc=utf-8                                                                                           " # エンコードの設定
 "set fenc=utf-8                                                                                          " # |
+exe 'set backupdir='.$IVIMTMP.'/backup'                                                                 |" # Backupフォルダのパス
 
 "}}}
 "set - Terminal {{{
@@ -124,7 +129,7 @@ let g:Align_xstrlen = 3                                                         
 let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
 "}}}
 "plugin - QFixHowm{{{
-let howm_dir = $IVIMWORK.'/howm'
+let howm_dir = $IVIMTMP.'/howm'
 let QFix_CloseOnJump = 1                                                                                 " # QFixHown - を自動的に終了する
 "}}}
 "plugin - hsp {{{
@@ -245,9 +250,9 @@ nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " nnoremap - c {{{
-nnoremap ;h<CR> :<C-u>e %:r.h<CR>|"                                                                           " # ファイルの切り替え
-nnoremap ;m<CR> :<C-u>e %:r.m<CR>|"                                                                           " # ファイルの切り替え
-nnoremap ;c<CR> :<C-u>e %:r.c<CR>|"                                                                           " # ファイルの切り替え
+"nnoremap ;h<CR> :<C-u>e %:r.h<CR>|"                                                                           " # ファイルの切り替え
+"nnoremap ;m<CR> :<C-u>e %:r.m<CR>|"                                                                           " # ファイルの切り替え
+"nnoremap ;c<CR> :<C-u>e %:r.c<CR>|"                                                                           " # ファイルの切り替え
 " }}}
 "
 "********************************************************************************
