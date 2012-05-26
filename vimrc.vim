@@ -1,15 +1,17 @@
 " ********************************************************************************
-" Readme
+" Readme 
 " --------------------------------------------------------------------------------
+" = tmp = 
+" let $IVIMTMP         = '~/vim/'
 "
 " = script =
-" let $IVIMWORK        = '~/Dropbox/vim/'            " <- 各PC毎に設定するフォルダ         
+" let $IVIMWORK        = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ         
 " let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
+"
+" = source = 
 " so $IVIMWORK/vimrc.vim
 " so $IVIMWORKCOMMON/vimrc.vim
 "
-" = tmp = 
-" let $IVIMTMP         = '~/vim/'
 " = bundle =
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
 " let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
@@ -24,7 +26,8 @@
 " let g:myGrepFileType = 'vim'
 "
 " ********************************************************************************
-" [使用箇所]
+" [使用箇所] 
+" --------------------------------------------------------------------------------
 " $DESKTOP
 "  - vimrc.vim
 "  |- ;de<CR>
@@ -39,6 +42,7 @@
 "  |- $IMYBUNDLE
 "  |- rtp
 "  |- snippets
+"  |- ;vc<CR>
 " $VIMRC 
 "  - vimrc.vim
 "  |- ;dv<CR>
@@ -55,7 +59,6 @@
 "  - neobundle.vim
 "  |- rtp
 " ********************************************************************************
-"
 "rtp
 "rtp - myBundle "{{{
 set rtp+=$IVIMWORK
@@ -67,10 +70,8 @@ set rtp+=$IMYBUNDLE/cells
 set rtp+=$IMYBUNDLE/git
 set rtp+=$IMYBUNDLE/bit
 "}}}
-"
 "Setting
 "set - ClientMove "{{{
-let g:ClientMove_diffcmd = "WinMergeU"
 let g:ClientMove_recursive_flg = 1
 "}}}
 "set - Autoload {{{
@@ -121,7 +122,6 @@ if !has('gui')
 	filetype plugin on
 endif
 "}}}
-"
 "plugin
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
@@ -230,6 +230,7 @@ nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フ
 "}}}
 "nnoremap - lcd "{{{
 nnoremap ;v<CR>  :<C-u>lcd $IVIMWORK<CR>|"
+nnoremap ;vc<CR>  :<C-u>lcd $IVIMWORKCOMMON<CR>|"
 nnoremap ;p<CR>  :<C-u>lcd $PFPATH<CR>|"
 nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>|"
 nnoremap ;dv<CR> :<C-u>e $VIMRC<CR>|"
@@ -250,9 +251,7 @@ nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " nnoremap - c {{{
-"nnoremap ;h<CR> :<C-u>e %:r.h<CR>|"                                                                           " # ファイルの切り替え
-"nnoremap ;m<CR> :<C-u>e %:r.m<CR>|"                                                                           " # ファイルの切り替え
-"nnoremap ;c<CR> :<C-u>e %:r.c<CR>|"                                                                           " # ファイルの切り替え
+nnoremap ;h<CR> :<C-u>call okazu#change_extension()<CR>|"
 " }}}
 "
 "********************************************************************************

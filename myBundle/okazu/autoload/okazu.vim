@@ -8,7 +8,7 @@ function! okazu#LogFile(name, deleteFlg, ...) "{{{
 	" @param[in]	deleteFlg	初期化する
 	" @param[in]	[...]		書き込むデータ
 	" ********************************************************************************
-	
+
 	let @t = expand("%:p") " # mapで呼び出し用
 	let name = a:name
 
@@ -154,7 +154,7 @@ endfunction "}}}
 " @param[in]	args.bufnr	番号
 "********************************************************************************
 function! okazu#selectEdit_write(args) "{{{
-	
+
 	let start    = a:args.start
 	let end      = a:args.end
 	let bufnr    = a:args.bufnr
@@ -222,4 +222,16 @@ function! okazu#event_save_file_autocmd(func,args) "{{{
 		exe 'autocmd BufWriteCmd <buffer> nested call '.a:func.'('.string(a:args).')'
 	aug END
 
+endfunction "}}}
+
+" ********************************************************************************
+" ファイルの切り替え
+" ********************************************************************************
+function! okazu#change_extension() "{{{
+	let extension = expand("%:e")
+	if extension == 'c'
+		e %:r.h
+	elseif extension == 'h'
+		e %:r.c
+	endif
 endfunction "}}}
