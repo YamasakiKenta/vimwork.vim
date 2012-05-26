@@ -1,69 +1,77 @@
-" ********************************************************************************
-" Readme 
-" --------------------------------------------------------------------------------
-" = tmp = 
+"" ********************************************************************************
+"" Readme 
+"" --------------------------------------------------------------------------------
+"" = tmp = 
 " let $IVIMTMP         = '~/vim/'
 "
-" = script =
-" let $IVIMWORK        = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ         
-" let $IVIMWORKCOMMON  = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
-"
-" = source = 
-" so $IVIMWORK/vimrc.vim
-" so $IVIMWORKCOMMON/vimrc.vim
-"
-" = bundle =
+"" = script =
+" let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ         
+" let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
+""
+"" = source = 
+" so $LOCALWORK/vimrc.vim
+" so $VIMWORK/vimrc.vim
+""
+"" = bundle =
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
 " let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
-" so $IVIMWORKCOMMON/neobundle.vim
-"
-" = command =
+" so $VIMWORK/neobundle.vim
+""
+"" = command =
 " let $DESKTOP         = '~/Desktop'                      
 " let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
 " let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
-"
-" = MyGrep = 
+""
+"" = MyGrep = 
 " let g:myGrepFileType = 'vim'
-"
-" ********************************************************************************
-" [使用箇所] 
-" --------------------------------------------------------------------------------
-" $DESKTOP
-"  - vimrc.vim
-"  |- ;de<CR>
-" $IVIMWORK
-"  - vimrc.vim
-"  |- ;v<CR>
-"  |- snippets
-"  |- howm
-"  |- rtp
-" $IVIMWORKCOMMON
-"  - vimrc.vim
-"  |- $IMYBUNDLE
-"  |- rtp
-"  |- snippets
-"  |- ;vc<CR>
-" $VIMRC 
-"  - vimrc.vim
-"  |- ;dv<CR>
-" $PFPATH
-"  - vimrc.vim
-"  |- ;p<CR>
-" g:myGrepFileType
-"  - command.vim
-"  |- MyGrep
-" $BUNDLE
-"  - neobundle.vim
-"  |- NeoBundle
-" $NEOBUNDLE
-"  - neobundle.vim
-"  |- rtp
-" ********************************************************************************
+
+"" ********************************************************************************
+"" [使用箇所] 
+"" --------------------------------------------------------------------------------
+"" $DESKTOP
+""  - vimrc.vim
+""  |- ;de<CR>
+"" $LOCALWORK
+""  - vimrc.vim
+""  |- ;v<CR>
+""  |- snippets
+""  |- howm
+""  |- rtp
+"" $VIMWORK
+""  - vimrc.vim
+""  |- $IMYBUNDLE
+""  |- rtp
+""  |- snippets
+""  |- ;vc<CR>
+"" $VIMRC 
+""  - vimrc.vim
+""  |- ;dv<CR>
+"" $PFPATH
+""  - vimrc.vim
+""  |- ;p<CR>
+"" g:myGrepFileType
+""  - command.vim
+""  |- MyGrep
+"" $BUNDLE
+""  - neobundle.vim
+""  |- NeoBundle
+"" $NEOBUNDLE
+""  - neobundle.vim
+""  |- rtp
+"" ********************************************************************************
+" 前のvetion との調整
+if !exists('$LOCALWORK') 
+	let $LOCALWORK = $IVIMWORK  
+endif
+if !exists('$VIMWORK') 
+	let $VIMWORK = $IVIMWORKCOMMON 
+endif
+
 "rtp
 "rtp - myBundle "{{{
-set rtp+=$IVIMWORK
-set rtp+=$IVIMWORKCOMMON
-let $IMYBUNDLE = $IVIMWORKCOMMON.'/myBundle'            
+set rtp+=$LOCALWORK
+set rtp+=$VIMWORK
+let $IMYBUNDLE = $VIMWORK.'/myBundle'            
 set rtp+=$IMYBUNDLE/okazu
 set rtp+=$IMYBUNDLE/unite-perforce.vim
 set rtp+=$IMYBUNDLE/cells
@@ -169,7 +177,7 @@ let g:vimfiler_safe_mode_by_default = 0                                         
 "}}}
 "Shogo - neocomplcache{{{
 "neocomplcache - Init {{{
-let g:neocomplcache_snippets_dir = $IVIMWORKCOMMON.'/snippets'.','.$IVIMWORK.'/snippets'                 " # snippet ファイル作成場所
+let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                 " # snippet ファイル作成場所
 let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
 let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
 "let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ
@@ -229,8 +237,8 @@ nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
 nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
 "}}}
 "nnoremap - lcd "{{{
-nnoremap ;v<CR>  :<C-u>lcd $IVIMWORK<CR>|"
-nnoremap ;vc<CR>  :<C-u>lcd $IVIMWORKCOMMON<CR>|"
+nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
+nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
 nnoremap ;p<CR>  :<C-u>lcd $PFPATH<CR>|"
 nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>|"
 nnoremap ;dv<CR> :<C-u>e $VIMRC<CR>|"
