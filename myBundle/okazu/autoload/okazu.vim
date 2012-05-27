@@ -48,19 +48,6 @@ function! okazu#Get_kk(str) "{{{
 	"return substitute(a:str,'^\"?\(.*\)\"?','"\1"','')
 	return len(a:str) ? '"'.a:str.'"' : ''
 endfunction "}}}
-function! okazu#Map_diff() "{{{
-	map <buffer> <up> [c
-	map <buffer> <down> ]c
-	map <buffer> <left> dp:<C-u>diffupdate<CR>
-	map <buffer> <right> dn:<C-u>diffupdate<CR>
-	map <buffer> <tab> <C-w><C-w>
-endfunction "}}}
-function! okazu#Map_diff_reset() "{{{
-	map <buffer> <up> <up>
-	map <buffer> <down> <down>
-	map <buffer> <left> <left>
-	map <buffer> <right> <right>
-endfunction "}}}
 function! okazu#is_different(path,path2) "{{{
 	" ********************************************************************************
 	" 差分を調べる
@@ -225,7 +212,7 @@ function! okazu#event_save_file_autocmd(func,args) "{{{
 endfunction "}}}
 
 " ********************************************************************************
-" ファイルの切り替え
+" ファイルの切り替え ( C 言語 ) 
 " ********************************************************************************
 function! okazu#change_extension() "{{{
 	let extension = expand("%:e")
@@ -234,4 +221,53 @@ function! okazu#change_extension() "{{{
 	elseif extension == 'h'
 		e %:r.c
 	endif
+endfunction "}}}
+
+" ********************************************************************************
+" ファイルの切り替え ( unite ) 
+" ********************************************************************************
+function! okazu#change_unite() "{{{
+	let root = substitute(expand("%:h"), '[\\/][^\\/]*$', '', '')
+	let file = expand("%:t")
+	let type = substitute(expand("%:h"), '.*[\\/]\ze.\{-}[\\/]', '', '')
+
+	echo type
+	if type =~ 'unite[\\/]kinds'
+		let file = substitute(file, 'k_', '', '')
+		exe 'e '.root.'/sources/'.file
+	elseif type =~ 'unite[\\/]sources'
+		exe 'e '.root.'/kinds/k_'.file
+	endif
+
+endfunction "}}}
+
+" ********************************************************************************
+" Diff  
+" ********************************************************************************
+function! okazu#Map_diff() "{{{
+	map <buffer> <up> [c
+	map <buffer> <down> ]c
+	map <buffer> <left>  do:<C-u>diffupdate<CR>|"
+	map <buffer> <right> do:<C-u>diffupdate<CR>|"
+	map <buffer> <tab> :<C-u>call okazu#Map_diff_tab()<CR>
+endfunction "}}}
+function! okazu#Map_diff_reset() "{{{
+	map <buffer> <up> <up>
+	map <buffer> <down> <down>
+	map <buffer> <left> <left>
+	map <buffer> <right> <right>
+endfunction "}}}
+function! okazu#Map_diff_tab() "{{{
+	wincmd w
+endfunction "}}}
+function! okazu#tabcopy() "{{{
+	let bufnrs = []
+	windo let bufnrs += [bufnr("%")]
+
+	tabe
+	exe 'b' bufnrs[0]
+	for bufnr in bufnrs[1:]
+		exe 'sb' bufnr
+	endfor	
+	
 endfunction "}}}

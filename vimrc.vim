@@ -2,7 +2,7 @@
 "" Readme 
 "" --------------------------------------------------------------------------------
 "" = tmp = 
-" let $IVIMTMP         = '~/vim/'
+" let $IVIMTMP         = '~/vim'
 "
 "" = script =
 " let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ         
@@ -218,11 +218,6 @@ vnoremap * "ty:let @/=@t<CR>N|"                                                 
 vnoremap < <gv|"                                                                   " # カーソル移動
 vnoremap > >gv|"                                                                   " # 再選択
 "}}}
-"nnoremap - diff {{{
-nnoremap ;dy<CR> :<C-u>windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
-nnoremap ;do<CR> :<C-u>DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
-nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>|"
-"}}}
 "nnoremap - window {{{
 nnoremap <S-LEFT> <C-w><|"
 nnoremap <S-RIGHT> <C-w>>|"
@@ -260,6 +255,7 @@ nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " nnoremap - c {{{
 nnoremap ;h<CR> :<C-u>call okazu#change_extension()<CR>|"
+nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
 " }}}
 "
 "********************************************************************************
@@ -280,3 +276,11 @@ function! s:move_unite_tags(str) "{{{
 		" endif
 	endif
 endfunction "}}}
+
+" ********************************************************************************
+" diff
+" ********************************************************************************
+nnoremap ;dy<CR> :<C-u>call okazu#tabcopy()<CR>:windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
+"nnoremap ;dy<CR> :<C-u>windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
+nnoremap ;do<CR> :<C-u>call okazu#tabcopy()<CR>:DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
+nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<CR>|"
