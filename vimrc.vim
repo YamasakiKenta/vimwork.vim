@@ -8,15 +8,11 @@
 " let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ         
 " let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
 ""
-"" = source = 
-" so $LOCALWORK/vimrc.vim
-" so $VIMWORK/vimrc.vim
-""
 "" = bundle =
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
 " let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
 " so $VIMWORK/neobundle.vim
-""
+"
 "" = command =
 " let $DESKTOP         = '~/Desktop'                      
 " let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
@@ -24,6 +20,10 @@
 ""
 "" = MyGrep = 
 " let g:myGrepFileType = 'vim'
+"
+"" = source = 
+" so $LOCALWORK/vimrc.vim
+" so $VIMWORK/vimrc.vim
 
 "" ********************************************************************************
 "" [使用箇所] 
