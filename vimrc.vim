@@ -2,7 +2,7 @@
 "" Readme 
 "" --------------------------------------------------------------------------------
 "" = tmp = 
-" let $IVIMTMP         = '~/vim'
+" let $VIMTMP         = '~/vim'
 "
 "" = script =
 " let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ         
@@ -37,9 +37,11 @@
 ""  |- snippets
 ""  |- howm
 ""  |- rtp
+""  - command.vim
+""  |- syntax
 "" $VIMWORK
 ""  - vimrc.vim
-""  |- $IMYBUNDLE
+""  |- $MYBUNDLE
 ""  |- rtp
 ""  |- snippets
 ""  |- ;vc<CR>
@@ -59,24 +61,17 @@
 ""  - neobundle.vim
 ""  |- rtp
 "" ********************************************************************************
-" 前のvetion との調整
-if !exists('$LOCALWORK') 
-	let $LOCALWORK = $IVIMWORK  
-endif
-if !exists('$VIMWORK') 
-	let $VIMWORK = $IVIMWORKCOMMON 
-endif
 
 "rtp
 "rtp - myBundle "{{{
 set rtp+=$LOCALWORK
 set rtp+=$VIMWORK
-let $IMYBUNDLE = $VIMWORK.'/myBundle'            
-set rtp+=$IMYBUNDLE/okazu
-set rtp+=$IMYBUNDLE/unite-perforce.vim
-set rtp+=$IMYBUNDLE/cells
-set rtp+=$IMYBUNDLE/git
-set rtp+=$IMYBUNDLE/bit
+let $MYBUNDLE = $VIMWORK.'/myBundle'            
+set rtp+=$MYBUNDLE/okazu
+set rtp+=$MYBUNDLE/unite-perforce.vim
+set rtp+=$MYBUNDLE/cells
+set rtp+=$MYBUNDLE/git
+set rtp+=$MYBUNDLE/bit
 "}}}
 "Setting
 "set - ClientMove "{{{
@@ -117,7 +112,7 @@ set fdm=marker                                                                  
 set tw=0                                                                                                 " # 自動改行 OFF
 "set enc=utf-8                                                                                           " # エンコードの設定
 "set fenc=utf-8                                                                                          " # |
-exe 'set backupdir='.$IVIMTMP.'/backup'                                                                 |" # Backupフォルダのパス
+exe 'set backupdir='.$VIMTMP.'/backup'                                                                 |" # Backupフォルダのパス
 
 "}}}
 "set - Terminal {{{
@@ -137,7 +132,7 @@ let g:Align_xstrlen = 3                                                         
 let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
 "}}}
 "plugin - QFixHowm{{{
-let howm_dir = $IVIMTMP.'/howm'
+let howm_dir = $VIMTMP.'/howm'
 let QFix_CloseOnJump = 1                                                                                 " # QFixHown - を自動的に終了する
 "}}}
 "plugin - hsp {{{
@@ -169,6 +164,8 @@ nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>
 nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>
 nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>
 nnoremap ;ul<CR>  :<C-u>Unite line<CR>
+nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
+nnoremap ;uk<CR>  :<C-u>Unite bookmark<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
 "}}}
 "Shogo - vimfiler{{{
@@ -201,7 +198,9 @@ smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                          
 " mapping
 "********************************************************************************
 " nmap - <Plug>"{{{
-nmap <C-s> <Plug>set_number|" " 番号の加算
+nmap <C-s> 		<Plug>(set_number)
+nmap v/ 		<Plug>(select_search)
+nmap ;uq<CR> 	<Plug>(uniq_line)
 " "}}}
 "nnoremap - simple {{{
 nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
@@ -281,6 +280,6 @@ endfunction "}}}
 " diff
 " ********************************************************************************
 nnoremap ;dy<CR> :<C-u>call okazu#tabcopy()<CR>:windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
-"nnoremap ;dy<CR> :<C-u>windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;do<CR> :<C-u>call okazu#tabcopy()<CR>:DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<CR>|"
+
