@@ -62,28 +62,37 @@
 ""  |- rtp
 "" ********************************************************************************
 
+
 "rtp
 "rtp - myBundle "{{{
-set rtp+=$LOCALWORK
+
 set rtp+=$VIMWORK
+set rtp+=$LOCALWORK
+
 let $MYBUNDLE = $VIMWORK.'/myBundle'            
-set rtp+=$MYBUNDLE/okazu
-set rtp+=$MYBUNDLE/unite-perforce.vim
 set rtp+=$MYBUNDLE/cells
 set rtp+=$MYBUNDLE/git
 set rtp+=$MYBUNDLE/bit
+set rtp+=$MYBUNDLE/okazu
+
 "}}}
+
 "Setting
 "set - ClientMove "{{{
 let g:ClientMove_recursive_flg = 1
 "}}}
+if has('win32') "{{{
+	augroup myAugroup_win32
+		au!
+		" Mac で使用しないもの
+		au GUIEnter * simalt ~x             " # 最大化
+	aug END
+	set rtp+=$MYBUNDLE/unite-perforce.vim
+	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
+endif "}}}
 "set - Autoload {{{
 augroup myAugroup
 	au!
-	if has('win32')
-		au GUIEnter * simalt ~x             " # 最大化
-	endif
-
 	au FileType unite nmap <buffer> P <Plug>(unite_toggle_auto_preview)
 aug END
 "}}}
@@ -126,6 +135,7 @@ if !has('gui')
 endif
 "}}}
 "plugin
+
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
 let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
@@ -148,7 +158,7 @@ endfunction
 "plugin - Twitter {{{
 nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
 "}}}
-call perforce#init()
+" call perforce#init()
 
 "plugin - Shogo
 "Shogo - unite{{{
@@ -205,7 +215,6 @@ nmap ;uq<CR> 	<Plug>(uniq_line)
 "nnoremap - simple {{{
 nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
 nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepに移動 ( 前 )
-nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
 nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # 検索値の選択
 nnoremap j gj|"                                                                " # カーソル移動
 nnoremap k gk|"                                                                " # カーソル移動
@@ -282,4 +291,3 @@ endfunction "}}}
 nnoremap ;dy<CR> :<C-u>call okazu#tabcopy()<CR>:windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;do<CR> :<C-u>call okazu#tabcopy()<CR>:DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<CR>|"
-
