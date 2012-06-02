@@ -61,35 +61,30 @@
 ""  - neobundle.vim
 ""  |- rtp
 "" ********************************************************************************
-
-
-"rtp
-"rtp - myBundle "{{{
-
-set rtp+=$VIMWORK
-set rtp+=$LOCALWORK
-
 let $MYBUNDLE = $VIMWORK.'/myBundle'            
-set rtp+=$MYBUNDLE/cells
-set rtp+=$MYBUNDLE/git
-set rtp+=$MYBUNDLE/bit
-set rtp+=$MYBUNDLE/okazu
-
-"}}}
-
-"Setting
-"set - ClientMove "{{{
-let g:ClientMove_recursive_flg = 1
-"}}}
+"win32
 if has('win32') "{{{
 	augroup myAugroup_win32
 		au!
 		" Mac Ç≈égópÇµÇ»Ç¢Ç‡ÇÃ
 		au GUIEnter * simalt ~x             " # ç≈ëÂâª
 	aug END
-	set rtp+=$MYBUNDLE/unite-perforce.vim
 	nnoremap <A-Space> :simalt ~<CR>|"                                             " # WindowïœçX
+	set rtp+=$MYBUNDLE/unite-perforce.vim
 endif "}}}
+"rtp
+"rtp - myBundle "{{{
+set rtp+=$VIMWORK
+set rtp+=$LOCALWORK
+set rtp+=$MYBUNDLE/cells
+set rtp+=$MYBUNDLE/git
+set rtp+=$MYBUNDLE/bit
+set rtp+=$MYBUNDLE/okazu
+"}}}
+"Setting
+"set - ClientMove "{{{
+let g:ClientMove_recursive_flg = 1
+"}}}
 "set - Autoload {{{
 augroup myAugroup
 	au!
