@@ -1,7 +1,5 @@
 " file ‚É’Ç‰Á
 
-call input("")
- 
 let action = {
 			\ 'is_selectable' : 1, 
 			\ 'description' : 'qfix‚É’Ç‰Á',
