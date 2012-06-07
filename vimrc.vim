@@ -63,7 +63,7 @@
 "" ********************************************************************************
 let $MYBUNDLE = $VIMWORK.'/myBundle'            
 "win32
-if has('win32') "{{{
+if has('win32') || has('win64') "{{{
 	augroup myAugroup_win32
 		au!
 		" Mac で使用しないもの
@@ -71,6 +71,11 @@ if has('win32') "{{{
 	aug END
 	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
 	set rtp+=$MYBUNDLE/unite-perforce.vim
+	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
+endif "}}}
+if has('mac') "{{{
+	set makeprg=xcodebuild
+	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'm' : 'h', 'h' : 'm' })<CR>|"
 endif "}}}
 "rtp
 "rtp - myBundle "{{{
@@ -108,6 +113,7 @@ set nowrap                                                                      
 set grepprg=grep\ -nH                                                                                    " # Grep
 set guioptions-=T                                                                                        " # メニューバーを削除
 set guioptions-=m                                                                                        " # ツールバーを削除
+set fo+=ro " # 自動でコメント挿入
 set laststatus=2                                                                                         " # ステータス行の表示
 set tabstop=4                                                                                            " # tabの設定
 set shiftwidth=4                                                                                         " # |
@@ -157,7 +163,7 @@ nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
 
 "plugin - Shogo
 "Shogo - unite{{{
-let g:unite_enable_start_insert = 0         " # 自動起動
+let g:unite_enable_start_insert = 0
 let g:unite_source_history_yank_enable = 0
 nnoremap ;ur<CR>  :<C-u>UniteResume<CR>
 nnoremap ;us<CR>  :<C-u>Unite source<CR>
@@ -170,7 +176,8 @@ nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>
 nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>
 nnoremap ;ul<CR>  :<C-u>Unite line<CR>
 nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
-nnoremap ;uk<CR>  :<C-u>Unite bookmark<CR>
+nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>
+nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
 "}}}
 "Shogo - vimfiler{{{
@@ -257,7 +264,6 @@ nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " nnoremap - c {{{
-nnoremap ;h<CR> :<C-u>call okazu#change_extension()<CR>|"
 nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
 " }}}
 "

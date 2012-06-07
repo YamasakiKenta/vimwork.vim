@@ -156,13 +156,13 @@ endfunction "}}}
 " ********************************************************************************
 " ÉtÉ@ÉCÉãÇÃêÿÇËë÷Ç¶ ( C åæåÍ ) 
 " ********************************************************************************
-function! okazu#change_extension() "{{{
+function! okazu#change_extension(exts) "{{{
 	let extension = expand("%:e")
-	if extension == 'c'
-		e %:r.h
-	elseif extension == 'h'
-		e %:r.c
+
+	if exists('a:exts[extension]')
+		exe 'e %:r.'.a:exts[extension]
 	endif
+
 endfunction "}}}
 
 " ********************************************************************************
