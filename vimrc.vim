@@ -70,12 +70,21 @@ if has('win32') || has('win64') "{{{
 		au GUIEnter * simalt ~x             " # 最大化
 	aug END
 	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
-	set rtp+=$MYBUNDLE/unite-perforce.vim
 	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
-endif "}}}
-if has('mac') "{{{
+
+	set rtp+=$MYBUNDLE/unite-perforce.vim
+	call perforce#init()
+
+	"}}}
+elseif has('mac') "{{{
 	set makeprg=xcodebuild
 	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'm' : 'h', 'h' : 'm' })<CR>|"
+
+	augroup my_vimrc_for_mac
+		au!
+		autocmd BufRead *.h setf objc
+		autocmd BufRead *.snip setf snip
+	augroup END
 endif "}}}
 "rtp
 "rtp - myBundle "{{{
@@ -97,7 +106,6 @@ augroup myAugroup
 aug END
 "}}}
 "set - Normal {{{
-
 set modeline                                                                                             " # 読み込み時の設定
 set number                                                                                               " # 番号入力
 set ignorecase                                                                                           " # 検索で大文字小文字を区別しない
@@ -120,6 +128,7 @@ set shiftwidth=4                                                                
 set lcs=tab:`\                                                                                           " # 記号の表示
 set fdm=marker                                                                                           " # 自動的に折りたたみ
 set tw=0                                                                                                 " # 自動改行 OFF
+set ve=block
 "set enc=utf-8                                                                                           " # エンコードの設定
 "set fenc=utf-8                                                                                          " # |
 exe 'set backupdir='.$VIMTMP.'/backup'                                                                 |" # Backupフォルダのパス
@@ -135,8 +144,10 @@ if !has('gui')
 	filetype plugin on
 endif
 "}}}
-"plugin
+"set - Tlist
+let Tlist_Show_One_File = 1
 
+"plugin
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
 let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
@@ -159,7 +170,6 @@ endfunction
 "plugin - Twitter {{{
 nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
 "}}}
-" call perforce#init()
 
 "plugin - Shogo
 "Shogo - unite{{{
@@ -268,7 +278,7 @@ nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
 " }}}
 "
 "********************************************************************************
-" Unte Jump
+" Unite Jump
 "********************************************************************************
 nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
 function! s:move_unite_tags(str) "{{{
