@@ -61,17 +61,39 @@
 ""  - neobundle.vim
 ""  |- rtp
 "" ********************************************************************************
+let $MYBUNDLE = $VIMWORK.'/myBundle'            
+"win32
+if has('win32') || has('win64') "{{{
+	augroup myAugroup_win32
+		au!
+		" Mac で使用しないもの
+		au GUIEnter * simalt ~x             " # 最大化
+	aug END
+	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
+	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
 
+	set rtp+=$MYBUNDLE/unite-perforce.vim
+	call perforce#init()
+
+	"}}}
+elseif has('mac') "{{{
+	set makeprg=xcodebuild
+	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'm' : 'h', 'h' : 'm' })<CR>|"
+
+	augroup my_vimrc_for_mac
+		au!
+		autocmd BufRead *.h setf objc
+		autocmd BufRead *.snip setf snip
+	augroup END
+endif "}}}
 "rtp
 "rtp - myBundle "{{{
-set rtp+=$LOCALWORK
 set rtp+=$VIMWORK
-let $MYBUNDLE = $VIMWORK.'/myBundle'            
-set rtp+=$MYBUNDLE/okazu
-set rtp+=$MYBUNDLE/unite-perforce.vim
+set rtp+=$LOCALWORK
 set rtp+=$MYBUNDLE/cells
 set rtp+=$MYBUNDLE/git
 set rtp+=$MYBUNDLE/bit
+set rtp+=$MYBUNDLE/okazu
 "}}}
 "Setting
 "set - ClientMove "{{{
@@ -80,15 +102,10 @@ let g:ClientMove_recursive_flg = 1
 "set - Autoload {{{
 augroup myAugroup
 	au!
-	if has('win32')
-		au GUIEnter * simalt ~x             " # 最大化
-	endif
-
 	au FileType unite nmap <buffer> P <Plug>(unite_toggle_auto_preview)
 aug END
 "}}}
 "set - Normal {{{
-
 set modeline                                                                                             " # 読み込み時の設定
 set number                                                                                               " # 番号入力
 set ignorecase                                                                                           " # 検索で大文字小文字を区別しない
@@ -104,12 +121,14 @@ set nowrap                                                                      
 set grepprg=grep\ -nH                                                                                    " # Grep
 set guioptions-=T                                                                                        " # メニューバーを削除
 set guioptions-=m                                                                                        " # ツールバーを削除
+set fo+=ro " # 自動でコメント挿入
 set laststatus=2                                                                                         " # ステータス行の表示
 set tabstop=4                                                                                            " # tabの設定
 set shiftwidth=4                                                                                         " # |
 set lcs=tab:`\                                                                                           " # 記号の表示
 set fdm=marker                                                                                           " # 自動的に折りたたみ
 set tw=0                                                                                                 " # 自動改行 OFF
+set ve=block
 "set enc=utf-8                                                                                           " # エンコードの設定
 "set fenc=utf-8                                                                                          " # |
 exe 'set backupdir='.$VIMTMP.'/backup'                                                                 |" # Backupフォルダのパス
@@ -125,6 +144,9 @@ if !has('gui')
 	filetype plugin on
 endif
 "}}}
+"set - Tlist
+let Tlist_Show_One_File = 1
+
 "plugin
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
@@ -148,11 +170,10 @@ endfunction
 "plugin - Twitter {{{
 nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
 "}}}
-call perforce#init()
 
 "plugin - Shogo
 "Shogo - unite{{{
-let g:unite_enable_start_insert = 0         " # 自動起動
+let g:unite_enable_start_insert = 0
 let g:unite_source_history_yank_enable = 0
 nnoremap ;ur<CR>  :<C-u>UniteResume<CR>
 nnoremap ;us<CR>  :<C-u>Unite source<CR>
@@ -165,7 +186,8 @@ nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>
 nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>
 nnoremap ;ul<CR>  :<C-u>Unite line<CR>
 nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
-nnoremap ;uk<CR>  :<C-u>Unite bookmark<CR>
+nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>
+nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
 "}}}
 "Shogo - vimfiler{{{
@@ -205,7 +227,6 @@ nmap ;uq<CR> 	<Plug>(uniq_line)
 "nnoremap - simple {{{
 nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
 nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepに移動 ( 前 )
-nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
 nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # 検索値の選択
 nnoremap j gj|"                                                                " # カーソル移動
 nnoremap k gk|"                                                                " # カーソル移動
@@ -253,12 +274,11 @@ nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " nnoremap - c {{{
-nnoremap ;h<CR> :<C-u>call okazu#change_extension()<CR>|"
 nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
 " }}}
 "
 "********************************************************************************
-" Unte Jump
+" Unite Jump
 "********************************************************************************
 nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
 function! s:move_unite_tags(str) "{{{
@@ -282,4 +302,3 @@ endfunction "}}}
 nnoremap ;dy<CR> :<C-u>call okazu#tabcopy()<CR>:windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;do<CR> :<C-u>call okazu#tabcopy()<CR>:DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<CR>|"
-
