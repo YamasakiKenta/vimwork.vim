@@ -24,9 +24,6 @@
 "" = source = 
 " so $LOCALWORK/vimrc.vim
 " so $VIMWORK/vimrc.vim
-"
-"" = unite =
-" let g:atmark_jump_is_unite = 1
 
 "" ********************************************************************************
 "" [使用箇所] 
@@ -283,24 +280,21 @@ nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
 "********************************************************************************
 " Unite Jump
 "********************************************************************************
+nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
 function! s:move_unite_tags(str) "{{{
 	if a:str =~ '^k_'
 		exe 'ta unite#kinds#'.a:str.'#define'
 	elseif a:str =~ 'a_'
 		exe 'ta kind.action_table.'.a:str.'.func'
 	else
-		" unite source の場合
-		let source_flg = unite#get_sources(a:str)
-		if len(source_flg) > 0
-			let fnc = 's:source_'.a:str
-			exe 'ta' fnc
-		endif
+		" let source = unite#get_sources(a:str)
 
+		" ソースが存在する場合
+		" if source =~ ""
+
+		" endif
 	endif
 endfunction "}}}
-if get(g:, 'atmark_jump_is_unite', 0)
-	nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-endif
 
 " ********************************************************************************
 " diff
@@ -308,13 +302,3 @@ endif
 nnoremap ;dy<CR> :<C-u>call okazu#tabcopy()<CR>:windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;do<CR> :<C-u>call okazu#tabcopy()<CR>:DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
 nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<CR>|"
-
-"********************************************************************************
-" MEMO
-"--------------------------------------------------------------------------------
-" ctags 対策
-" unite ソースに移動するために、変数名と関連付けする
-" source_*
-" kind_*
-" action_*
-
