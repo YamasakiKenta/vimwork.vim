@@ -317,4 +317,6 @@ nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<C
 " source_*
 " kind_*
 " action_*
-
+"
+" Ž©“®‰üs‰ñ”ð
+" set tw=0
