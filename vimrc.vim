@@ -16,7 +16,7 @@
 "" = command =
 " let $DESKTOP         = '~/Desktop'                      
 " let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
-" let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
+" let $PFPATH          = '~/Dropbox/vim/vimwork/bundle/unite-perforce.vim'
 ""
 "" = MyGrep = 
 " let g:myGrepFileType = 'vim'
@@ -44,7 +44,7 @@
 ""  |- syntax
 "" $VIMWORK
 ""  - vimrc.vim
-""  |- $MYBUNDLE
+""  |- $VIMWORK_BUNDLE
 ""  |- rtp
 ""  |- snippets
 ""  |- ;vc<CR>
@@ -64,7 +64,7 @@
 ""  - neobundle.vim
 ""  |- rtp
 "" ********************************************************************************
-let $MYBUNDLE = $VIMWORK.'/myBundle'            
+let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'            
 "win32
 if has('win32') || has('win64') "{{{
 	augroup myAugroup_win32
@@ -75,7 +75,7 @@ if has('win32') || has('win64') "{{{
 	nnoremap <A-Space> :simalt ~<CR>|"                                             " # WindowïœçX
 	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
 
-	set rtp+=$MYBUNDLE/unite-perforce.vim
+	set rtp+=$VIMWORK_BUNDLE/unite-perforce.vim
 	call perforce#init()
 
 	"}}}
@@ -93,10 +93,10 @@ endif "}}}
 "rtp - myBundle "{{{
 set rtp+=$VIMWORK
 set rtp+=$LOCALWORK
-set rtp+=$MYBUNDLE/cells
-set rtp+=$MYBUNDLE/git
-set rtp+=$MYBUNDLE/bit
-set rtp+=$MYBUNDLE/okazu
+set rtp+=$VIMWORK_BUNDLE/cells
+set rtp+=$VIMWORK_BUNDLE/git
+set rtp+=$VIMWORK_BUNDLE/bit
+set rtp+=$VIMWORK_BUNDLE/okazu
 "}}}
 "Setting
 "set - ClientMove "{{{
