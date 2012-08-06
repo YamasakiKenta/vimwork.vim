@@ -1,13 +1,12 @@
-<<<<<<< HEAD
 "" ********************************************************************************
-"" Readme 
+"" Readme
 "" --------------------------------------------------------------------------------
 "" = tmp = 
 " let $VIMTMP         = '~/vim'
 "
 "" = script =
-" let $LOCALWORK = '~/Dropbox/vim/local'       " <- ŠePC–ˆ‚Éİ’è‚·‚éƒtƒHƒ‹ƒ_         
-" let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- ‚±‚Ìƒtƒ@ƒCƒ‹‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢
+" let $LOCALWORK = '~/Dropbox/vim/local'       " <- å„PCæ¯ã«è¨­å®šã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€         
+" let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¦ãã ã•ã„
 ""
 "" = bundle =
 " let $BUNDLE          = '~/Dropbox/vim/bundle'           
@@ -30,7 +29,7 @@
 " let g:atmark_jump_is_unite = 1
 
 "" ********************************************************************************
-"" [g—p‰ÓŠ] 
+"" [ä½¿ç”¨ç®‡æ‰€] 
 "" --------------------------------------------------------------------------------
 "" $DESKTOP
 ""  - vimrc.vim
@@ -70,10 +69,10 @@ let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'
 if has('win32') || has('win64') "{{{
 	augroup myAugroup_win32
 		au!
-		" Mac ‚Åg—p‚µ‚È‚¢‚à‚Ì
-		au GUIEnter * simalt ~x             " # Å‘å‰»
+		" Mac ã§ä½¿ç”¨ã—ãªã„ã‚‚ã®
+		au GUIEnter * simalt ~x             " # æœ€å¤§åŒ–
 	aug END
-	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window•ÏX
+	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Windowå¤‰æ›´
 	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
 
 	set rtp+=$VIMWORK_BUNDLE/unite-perforce.vim
@@ -91,7 +90,7 @@ elseif has('mac') "{{{
 	augroup END
 endif "}}}
 "rtp
-"rtp - myBundle "{{{
+"rtp - bundle "{{{
 set rtp+=$VIMWORK
 set rtp+=$LOCALWORK
 set rtp+=$VIMWORK_BUNDLE/cells
@@ -110,39 +109,39 @@ augroup myAugroup
 aug END
 "}}}
 "set - Normal {{{
-set modeline                                                                                             " # “Ç‚İ‚İ‚Ìİ’è
-set number                                                                                               " # ”Ô†“ü—Í
-set ignorecase                                                                                           " # ŒŸõ‚Å‘å•¶š¬•¶š‚ğ‹æ•Ê‚µ‚È‚¢
-set cursorline                                                                                           " # ƒJ[ƒ\ƒ‹s‚Ì‹­’²
-set hlsearch                                                                                             " # ŒŸõ
+set modeline                                                                                             " # èª­ã¿è¾¼ã¿æ™‚ã®è¨­å®š
+set number                                                                                               " # ç•ªå·å…¥åŠ›
+set ignorecase                                                                                           " # æ¤œç´¢ã§å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒºåˆ¥ã—ãªã„
+set cursorline                                                                                           " # ã‚«ãƒ¼ã‚½ãƒ«è¡Œã®å¼·èª¿
+set hlsearch                                                                                             " # æ¤œç´¢
 set incsearch                                                                                            " # |
 set smartcase                                                                                            " # |
-set autoread                                                                                             " # ©“®XV
+set autoread                                                                                             " # è‡ªå‹•æ›´æ–°
 set list                                                                                                 " # |
-set hidden                                                                                               " # ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚¹‚¸ˆÚ“®
+set hidden                                                                                               " # ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã›ãšç§»å‹•
 set noswapfile                                                                                           " # SwapFile
-set nowrap                                                                                               " # Ü‚è•Ô‚µ
+set nowrap                                                                                               " # æŠ˜ã‚Šè¿”ã—
 set grepprg=grep\ -nH                                                                                    " # Grep
-set guioptions-=T                                                                                        " # ƒƒjƒ…[ƒo[‚ğíœ
-set guioptions-=m                                                                                        " # ƒc[ƒ‹ƒo[‚ğíœ
-set fo+=ro " # ©“®‚ÅƒRƒƒ“ƒg‘}“ü
-set laststatus=2                                                                                         " # ƒXƒe[ƒ^ƒXs‚Ì•\¦
-set tabstop=4                                                                                            " # tab‚Ìİ’è
+set guioptions-=T                                                                                        " # ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’å‰Šé™¤
+set guioptions-=m                                                                                        " # ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’å‰Šé™¤
+set fo+=ro " # è‡ªå‹•ã§ã‚³ãƒ¡ãƒ³ãƒˆæŒ¿å…¥
+set laststatus=2                                                                                         " # ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡Œã®è¡¨ç¤º
+set tabstop=4                                                                                            " # tabã®è¨­å®š
 set shiftwidth=4                                                                                         " # |
-set lcs=tab:`\                                                                                           " # ‹L†‚Ì•\¦
-set fdm=marker                                                                                           " # ©“®“I‚ÉÜ‚è‚½‚½‚İ
-set tw=0                                                                                                 " # ©“®‰üs OFF
+set lcs=tab:`\                                                                                           " # è¨˜å·ã®è¡¨ç¤º
+set fdm=marker                                                                                           " # è‡ªå‹•çš„ã«æŠ˜ã‚ŠãŸãŸã¿
+set tw=0                                                                                                 " # è‡ªå‹•æ”¹è¡Œ OFF
 set ve=block
-"set enc=utf-8                                                                                           " # ƒGƒ“ƒR[ƒh‚Ìİ’è
+"set enc=utf-8                                                                                           " # ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã®è¨­å®š
 "set fenc=utf-8                                                                                          " # |
-exe 'set backupdir='.$VIMTMP.'/backup'                                                                 |" # BackupƒtƒHƒ‹ƒ_‚ÌƒpƒX
+exe 'set backupdir='.$VIMTMP.'/backup'                                                                 |" # Backupãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ‘ã‚¹
 
 "}}}
 "set - Terminal {{{
 if !has('gui')
-	set ruler                                                                                                " # ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Ì•\¦
-	set nocompatible                                                                                         " # vim‚Ì‹@”\‚ªg‚¦‚é
-	syntax enable                                                                                            " # F‚ğ•t‚¯ - İ’è‚ªƒŠƒZƒbƒg‚³‚ê‚é
+	set ruler                                                                                                " # ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã®è¡¨ç¤º
+	set nocompatible                                                                                         " # vimã®æ©Ÿèƒ½ãŒä½¿ãˆã‚‹
+	syntax enable                                                                                            " # è‰²ã‚’ä»˜ã‘ - è¨­å®šãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹
 	filetype on
 	filetype indent on
 	filetype plugin on
@@ -153,13 +152,13 @@ let Tlist_Show_One_File = 1
 
 "plugin
 "plugin - Other {{{
-so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - ƒ}ƒbƒ`‚Ì‹­‰»
-let g:Align_xstrlen = 3                                                                                  " # Align - c‚É®Œ`
+so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - ãƒãƒƒãƒã®å¼·åŒ–
+let g:Align_xstrlen = 3                                                                                  " # Align - ç¸¦ã«æ•´å½¢
 let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
 "}}}
 "plugin - QFixHowm{{{
 let howm_dir = $VIMTMP.'/howm'
-let QFix_CloseOnJump = 1                                                                                 " # QFixHown - ‚ğ©“®“I‚ÉI—¹‚·‚é
+let QFix_CloseOnJump = 1                                                                                 " # QFixHown - ã‚’è‡ªå‹•çš„ã«çµ‚äº†ã™ã‚‹
 "}}}
 "plugin - hsp {{{
 autocmd BufRead *.hsp call FileTypeHsp()
@@ -195,21 +194,21 @@ nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
 "}}}
 "Shogo - vimfiler{{{
-let g:vimfiler_as_default_explorer = 1                                                                   " # ‰Šúfiler
+let g:vimfiler_as_default_explorer = 1                                                                   " # åˆæœŸfiler
 let g:vimfiler_safe_mode_by_default = 0                                                                  " # safe_mode
 "}}}
 "Shogo - neocomplcache{{{
 "neocomplcache - Init {{{
-let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                 " # snippet ƒtƒ@ƒCƒ‹ì¬êŠ
-let g:neocomplcache_enable_at_startup = 1                                                                " # ‹N“®
-let g:neocomplcache_disable_auto_complete = 1                                                            " # ©“®•âŠ®–³Œø
-"let g:neocomplcache_auto_completion_start_length = 3                                                    " # ©“®•âŠ®ŠJn’·‚³
+let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                 " # snippet ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆå ´æ‰€
+let g:neocomplcache_enable_at_startup = 1                                                                " # èµ·å‹•
+let g:neocomplcache_disable_auto_complete = 1                                                            " # è‡ªå‹•è£œå®Œç„¡åŠ¹
+"let g:neocomplcache_auto_completion_start_length = 3                                                    " # è‡ªå‹•è£œå®Œé–‹å§‹é•·ã•
 "}}}
 "neocomplcache - Mapping {{{
 nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
-imap <C-s>  <Plug>(neocomplcache_start_unite_complete)|"                                                 " # Unite‚ğg—p‚·‚é
-imap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # Snippet‚ğg—p‚·‚é
-smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # “¯ã
+imap <C-s>  <Plug>(neocomplcache_start_unite_complete)|"                                                 " # Uniteã‚’ä½¿ç”¨ã™ã‚‹
+imap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # Snippetã‚’ä½¿ç”¨ã™ã‚‹
+smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # åŒä¸Š
 "}}}
 "neocomplcache - caching "{{{
 "\:NeoComplCacheCachingBuffer<CR>
@@ -229,18 +228,18 @@ nmap v/ 		<Plug>(select_search)
 nmap ;uq<CR> 	<Plug>(uniq_line)
 " "}}}
 "nnoremap - simple {{{
-nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grep‚ÉˆÚ“® ( Ÿ )
-nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grep‚ÉˆÚ“® ( ‘O )
-nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # ŒŸõ’l‚Ì‘I‘ğ
-nnoremap j gj|"                                                                " # ƒJ[ƒ\ƒ‹ˆÚ“®
-nnoremap k gk|"                                                                " # ƒJ[ƒ\ƒ‹ˆÚ“®
-nnoremap <C-]> <C-]>zz|"                                                       " # ƒ^ƒOƒWƒƒƒ“ƒv
-nnoremap <S-Space> za|"                                                        " # Üô‚İ
-nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                           " # ƒnƒCƒ‰ƒCƒg
+nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepã«ç§»å‹• ( æ¬¡ )
+nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepã«ç§»å‹• ( å‰ )
+nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # æ¤œç´¢å€¤ã®é¸æŠ
+nnoremap j gj|"                                                                " # ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+nnoremap k gk|"                                                                " # ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+nnoremap <C-]> <C-]>zz|"                                                       " # ã‚¿ã‚°ã‚¸ãƒ£ãƒ³ãƒ—
+nnoremap <S-Space> za|"                                                        " # æŠ˜ç•³ã¿
+nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                           " # ãƒã‚¤ãƒ©ã‚¤ãƒˆ
 map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
-vnoremap * "ty:let @/=@t<CR>N|"                                                    " # ‘I‘ğ•¶š‚ğŒŸõ
-vnoremap < <gv|"                                                                   " # ƒJ[ƒ\ƒ‹ˆÚ“®
-vnoremap > >gv|"                                                                   " # Ä‘I‘ğ
+vnoremap * "ty:let @/=@t<CR>N|"                                                    " # é¸æŠæ–‡å­—ã‚’æ¤œç´¢
+vnoremap < <gv|"                                                                   " # ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+vnoremap > >gv|"                                                                   " # å†é¸æŠ
 "}}}
 "nnoremap - window {{{
 nnoremap <S-LEFT> <C-w><|"
@@ -249,11 +248,11 @@ nnoremap <S-UP> <C-w>-|"
 nnoremap <S-DOWN> <C-w>+|"
 "}}}
 "nnoremap - Normal "{{{
-nnoremap ;sy<CR> :MySyntaxFile<CR>|"                   " # ƒVƒ“ƒ^ƒbƒNƒXƒtƒ@ƒCƒ‹‚Ì•ÒW
+nnoremap ;sy<CR> :MySyntaxFile<CR>|"                   " # ã‚·ãƒ³ã‚¿ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®ç·¨é›†
 nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
-nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
-nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾ ( ƒtƒ‹ƒpƒX )
+nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—
+nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾— ( ãƒ•ãƒ«ãƒ‘ã‚¹ )
 "}}}
 "nnoremap - lcd "{{{
 nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
@@ -290,7 +289,7 @@ function! s:move_unite_tags(str) "{{{
 	elseif a:str =~ 'a_'
 		exe 'ta kind.action_table.'.a:str.'.func'
 	else
-		" unite source ‚Ìê‡
+		" unite source ã®å ´åˆ
 		let source_flg = unite#get_sources(a:str)
 		if len(source_flg) > 0
 			let fnc = 's:source_'.a:str
@@ -313,335 +312,11 @@ nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<C
 "********************************************************************************
 " MEMO
 "--------------------------------------------------------------------------------
-" ctags ‘Îô
-" unite ƒ\[ƒX‚ÉˆÚ“®‚·‚é‚½‚ß‚ÉA•Ï”–¼‚ÆŠÖ˜A•t‚¯‚·‚é
+" ctags å¯¾ç­–
+" unite ã‚½ãƒ¼ã‚¹ã«ç§»å‹•ã™ã‚‹ãŸã‚ã«ã€å¤‰æ•°åã¨é–¢é€£ä»˜ã‘ã™ã‚‹
 " source_*
 " kind_*
 " action_*
 "
-" ©“®‰üs‰ñ”ğ
+" è‡ªå‹•æ”¹è¡Œå›é¿
 " set tw=0
-=======
-"" ********************************************************************************
-"" Readme
-"" --------------------------------------------------------------------------------
-"" = tmp = 
-" let $VIMTMP         = '~/vim'
-"
-"" = script =
-" let $LOCALWORK = '~/Dropbox/vim/local'       " <- ŠePC–ˆ‚Éİ’è‚·‚éƒtƒHƒ‹ƒ_         
-" let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- ‚±‚Ìƒtƒ@ƒCƒ‹‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢
-""
-"" = bundle =
-" let $BUNDLE          = '~/Dropbox/vim/bundle'           
-" let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
-" so $VIMWORK/neobundle.vim
-"
-"" = command =
-" let $DESKTOP         = '~/Desktop'                      
-" let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
-" let $PFPATH          = '~/Dropbox/vim/vimwork/myBundle/unite-perforce.vim'
-""
-"" = MyGrep = 
-" let g:myGrepFileType = 'vim'
-"
-"" = source = 
-" so $LOCALWORK/vimrc.vim
-" so $VIMWORK/vimrc.vim
-"
-"" = unite =
-" let g:atmark_jump_is_unite = 1
-
-"" ********************************************************************************
-"" [g—p‰ÓŠ] 
-"" --------------------------------------------------------------------------------
-"" $DESKTOP
-""  - vimrc.vim
-""  |- ;de<CR>
-"" $LOCALWORK
-""  - vimrc.vim
-""  |- ;v<CR>
-""  |- snippets
-""  |- howm
-""  |- rtp
-""  - command.vim
-""  |- syntax
-"" $VIMWORK
-""  - vimrc.vim
-""  |- $MYBUNDLE
-""  |- rtp
-""  |- snippets
-""  |- ;vc<CR>
-"" $VIMRC 
-""  - vimrc.vim
-""  |- ;dv<CR>
-"" $PFPATH
-""  - vimrc.vim
-""  |- ;p<CR>
-"" g:myGrepFileType
-""  - command.vim
-""  |- MyGrep
-"" $BUNDLE
-""  - neobundle.vim
-""  |- NeoBundle
-"" $NEOBUNDLE
-""  - neobundle.vim
-""  |- rtp
-"" ********************************************************************************
-let $MYBUNDLE = $VIMWORK.'/myBundle'            
-"win32
-if has('win32') || has('win64') "{{{
-	augroup myAugroup_win32
-		au!
-		" Mac ‚Åg—p‚µ‚È‚¢‚à‚Ì
-		au GUIEnter * simalt ~x             " # Å‘å‰»
-	aug END
-	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window•ÏX
-	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
-
-	set rtp+=$MYBUNDLE/unite-perforce.vim
-	call perforce#init()
-
-	"}}}
-elseif has('mac') "{{{
-	set makeprg=xcodebuild
-	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'm' : 'h', 'h' : 'm' })<CR>|"
-
-	augroup my_vimrc_for_mac
-		au!
-		autocmd BufRead *.h setf objc
-		autocmd BufRead *.snip setf snip
-	augroup END
-endif "}}}
-"rtp
-"rtp - myBundle "{{{
-set rtp+=$VIMWORK
-set rtp+=$LOCALWORK
-set rtp+=$MYBUNDLE/cells
-set rtp+=$MYBUNDLE/git
-set rtp+=$MYBUNDLE/bit
-set rtp+=$MYBUNDLE/okazu
-"}}}
-"Setting
-"set - ClientMove "{{{
-let g:ClientMove_recursive_flg = 1
-"}}}
-"set - Autoload {{{
-augroup myAugroup
-	au!
-	au FileType unite nmap <buffer> P <Plug>(unite_toggle_auto_preview)
-aug END
-"}}}
-"set - Normal {{{
-set modeline                                                                                             " # “Ç‚İ‚İ‚Ìİ’è
-set number                                                                                               " # ”Ô†“ü—Í
-set ignorecase                                                                                           " # ŒŸõ‚Å‘å•¶š¬•¶š‚ğ‹æ•Ê‚µ‚È‚¢
-set cursorline                                                                                           " # ƒJ[ƒ\ƒ‹s‚Ì‹­’²
-set hlsearch                                                                                             " # ŒŸõ
-set incsearch                                                                                            " # |
-set smartcase                                                                                            " # |
-set autoread                                                                                             " # ©“®XV
-set list                                                                                                 " # |
-set hidden                                                                                               " # ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚¹‚¸ˆÚ“®
-set noswapfile                                                                                           " # SwapFile
-set nowrap                                                                                               " # Ü‚è•Ô‚µ
-set grepprg=grep\ -nH                                                                                    " # Grep
-set guioptions-=T                                                                                        " # ƒƒjƒ…[ƒo[‚ğíœ
-set guioptions-=m                                                                                        " # ƒc[ƒ‹ƒo[‚ğíœ
-set fo+=ro " # ©“®‚ÅƒRƒƒ“ƒg‘}“ü
-set laststatus=2                                                                                         " # ƒXƒe[ƒ^ƒXs‚Ì•\¦
-set tabstop=4                                                                                            " # tab‚Ìİ’è
-set shiftwidth=4                                                                                         " # |
-set lcs=tab:`\                                                                                           " # ‹L†‚Ì•\¦
-set fdm=marker                                                                                           " # ©“®“I‚ÉÜ‚è‚½‚½‚İ
-set tw=0                                                                                                 " # ©“®‰üs OFF
-set ve=block
-"set enc=utf-8                                                                                           " # ƒGƒ“ƒR[ƒh‚Ìİ’è
-"set fenc=utf-8                                                                                          " # |
-exe 'set backupdir='.$VIMTMP.'/backup'                                                                 |" # BackupƒtƒHƒ‹ƒ_‚ÌƒpƒX
-
-"}}}
-"set - Terminal {{{
-if !has('gui')
-	set ruler                                                                                                " # ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Ì•\¦
-	set nocompatible                                                                                         " # vim‚Ì‹@”\‚ªg‚¦‚é
-	syntax enable                                                                                            " # F‚ğ•t‚¯ - İ’è‚ªƒŠƒZƒbƒg‚³‚ê‚é
-	filetype on
-	filetype indent on
-	filetype plugin on
-endif
-"}}}
-"set - Tlist
-let Tlist_Show_One_File = 1
-
-"plugin
-"plugin - Other {{{
-so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - ƒ}ƒbƒ`‚Ì‹­‰»
-let g:Align_xstrlen = 3                                                                                  " # Align - c‚É®Œ`
-let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
-"}}}
-"plugin - QFixHowm{{{
-let howm_dir = $VIMTMP.'/howm'
-let QFix_CloseOnJump = 1                                                                                 " # QFixHown - ‚ğ©“®“I‚ÉI—¹‚·‚é
-"}}}
-"plugin - hsp {{{
-autocmd BufRead *.hsp call FileTypeHsp()
-function! FileTypeHsp()
-	compiler hsp
-	set filetype=hsp
-	se omnifunc=hspcomplete#Complete
-	nnoremap <buffer> <F5> :make<CR>
-	nnoremap <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
-endfunction
-"}}}
-"plugin - Twitter {{{
-nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
-"}}}
-
-"plugin - Shogo
-"Shogo - unite{{{
-let g:unite_enable_start_insert = 0
-let g:unite_source_history_yank_enable = 0
-nnoremap ;ur<CR>  :<C-u>UniteResume<CR>
-nnoremap ;us<CR>  :<C-u>Unite source<CR>
-nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>
-nnoremap ;uf<CR>  :<C-u>Unite file<CR>
-nnoremap ;ut<CR>  :<C-u>Unite tag<CR>
-nnoremap ;ug<CR>  :<C-u>Unite grep -no-quit<CR>
-nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>
-nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>
-nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>
-nnoremap ;ul<CR>  :<C-u>Unite line<CR>
-nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
-nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>
-nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
-nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
-"}}}
-"Shogo - vimfiler{{{
-let g:vimfiler_as_default_explorer = 1                                                                   " # ‰Šúfiler
-let g:vimfiler_safe_mode_by_default = 0                                                                  " # safe_mode
-"}}}
-"Shogo - neocomplcache{{{
-"neocomplcache - Init {{{
-let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                 " # snippet ƒtƒ@ƒCƒ‹ì¬êŠ
-let g:neocomplcache_enable_at_startup = 1                                                                " # ‹N“®
-let g:neocomplcache_disable_auto_complete = 1                                                            " # ©“®•âŠ®–³Œø
-"let g:neocomplcache_auto_completion_start_length = 3                                                    " # ©“®•âŠ®ŠJn’·‚³
-"}}}
-"neocomplcache - Mapping {{{
-nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
-imap <C-s>  <Plug>(neocomplcache_start_unite_complete)|"                                                 " # Unite‚ğg—p‚·‚é
-imap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # Snippet‚ğg—p‚·‚é
-smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # “¯ã
-"}}}
-"neocomplcache - caching "{{{
-"\:NeoComplCacheCachingBuffer<CR>
-"\:NeoComplCacheCachingSyntax<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingSnippets<CR>
-"}}}
-"}}}
-
-"********************************************************************************
-" mapping
-"********************************************************************************
-" nmap - <Plug>"{{{
-nmap <C-s> 		<Plug>(set_number)
-nmap v/ 		<Plug>(select_search)
-nmap ;uq<CR> 	<Plug>(uniq_line)
-" "}}}
-"nnoremap - simple {{{
-nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grep‚ÉˆÚ“® ( Ÿ )
-nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grep‚ÉˆÚ“® ( ‘O )
-nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # ŒŸõ’l‚Ì‘I‘ğ
-nnoremap j gj|"                                                                " # ƒJ[ƒ\ƒ‹ˆÚ“®
-nnoremap k gk|"                                                                " # ƒJ[ƒ\ƒ‹ˆÚ“®
-nnoremap <C-]> <C-]>zz|"                                                       " # ƒ^ƒOƒWƒƒƒ“ƒv
-nnoremap <S-Space> za|"                                                        " # Üô‚İ
-nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                           " # ƒnƒCƒ‰ƒCƒg
-map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
-vnoremap * "ty:let @/=@t<CR>N|"                                                    " # ‘I‘ğ•¶š‚ğŒŸõ
-vnoremap < <gv|"                                                                   " # ƒJ[ƒ\ƒ‹ˆÚ“®
-vnoremap > >gv|"                                                                   " # Ä‘I‘ğ
-"}}}
-"nnoremap - window {{{
-nnoremap <S-LEFT> <C-w><|"
-nnoremap <S-RIGHT> <C-w>>|"
-nnoremap <S-UP> <C-w>-|"
-nnoremap <S-DOWN> <C-w>+|"
-"}}}
-"nnoremap - Normal "{{{
-nnoremap ;sy<CR> :MySyntaxFile<CR>|"                   " # ƒVƒ“ƒ^ƒbƒNƒXƒtƒ@ƒCƒ‹‚Ì•ÒW
-nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
-nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
-nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
-nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾ ( ƒtƒ‹ƒpƒX )
-"}}}
-"nnoremap - lcd "{{{
-nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
-nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
-nnoremap ;p<CR>  :<C-u>lcd $PFPATH<CR>|"
-nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>|"
-nnoremap ;dv<CR> :<C-u>e $VIMRC<CR>|"
-"}}}
-"nnoremap - typo {{{
-nnoremap <F1> <ESC>
-com! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
-"}}}
-"nnoremap - Find {{{
-nnoremap ;vc<CR> :<C-u>MyGrep <C-r>"<CR>
-nnoremap ;vv<CR> :<C-u>MyGrep <C-r>+<CR>
-nnoremap ;v/<CR> :<C-u>MyGrep <C-r>/<CR>
-nnoremap ;vx<CR> :<C-u>MyGrep <C-r>/<CR>
-
-nnoremap ;tc<CR> :<C-u>ta <C-r>"<CR>
-nnoremap ;tv<CR> :<C-u>ta <C-r>+<CR>
-nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
-nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
-"}}}
-" nnoremap - c {{{
-nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
-" }}}
-"
-"********************************************************************************
-" Unite Jump
-"********************************************************************************
-function! s:move_unite_tags(str) "{{{
-	if a:str =~ '^k_'
-		exe 'ta unite#kinds#'.a:str.'#define'
-	elseif a:str =~ 'a_'
-		exe 'ta kind.action_table.'.a:str.'.func'
-	else
-		" unite source ‚Ìê‡
-		let source_flg = unite#get_sources(a:str)
-		if len(source_flg) > 0
-			let fnc = 's:source_'.a:str
-			exe 'ta' fnc
-		endif
-
-	endif
-endfunction "}}}
-if get(g:, 'atmark_jump_is_unite', 0)
-	nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-endif
-
-" ********************************************************************************
-" diff
-" ********************************************************************************
-nnoremap ;dy<CR> :<C-u>call okazu#tabcopy()<CR>:windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
-nnoremap ;do<CR> :<C-u>call okazu#tabcopy()<CR>:DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
-nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<CR>|"
-
-"********************************************************************************
-" MEMO
-"--------------------------------------------------------------------------------
-" ctags ‘Îô
-" unite ƒ\[ƒX‚ÉˆÚ“®‚·‚é‚½‚ß‚ÉA•Ï”–¼‚ÆŠÖ˜A•t‚¯‚·‚é
-" source_*
-" kind_*
-" action_*
-"
-" ©“®‰üs‰ñ”ğ
-" set tw=0
->>>>>>> mac book
