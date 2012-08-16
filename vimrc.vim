@@ -28,6 +28,9 @@
 "" = unite =
 " let g:atmark_jump_is_unite = 1
 
+"" = perforce =
+" set rtp+=$VIMWORK_BUNDLE/unite-perforce.vim
+" call perforce#init()
 "" ********************************************************************************
 "" [使用箇所] 
 "" --------------------------------------------------------------------------------
@@ -75,8 +78,6 @@ if has('win32') || has('win64') "{{{
 	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
 	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
 
-	set rtp+=$VIMWORK_BUNDLE/unite-perforce.vim
-	call perforce#init()
 
 	"}}}
 elseif has('mac') "{{{
