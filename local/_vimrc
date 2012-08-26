@@ -1,0 +1,23 @@
+let $DESKTOP   = '~/Desktop'
+let $BUNDLE    = '~/Dropbox/vim/bundle'
+let $NEOBUNDLE = '~/Dropbox/vim/bundle/Shougo-neobundle.vim'
+let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ
+let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
+let $VIMTMP    = '~/vim'
+
+" = plugin =
+"set rtp+=~/Dropbox/vim/rtp/unite-perforce.vim
+"call perforce#init()
+
+" = map =
+nnoremap ;dv<CR> :e ~/Dropbox/vim/vimwork/vimrc.vim<CR>
+
+" = unite =
+let g:atmark_jump_is_unite = 1
+
+ "= source =
+so ~/Dropbox/vim/vimwork/neobundle.vim
+so ~/Dropbox/vim/vimwork/vimrc.vim
+
+" = flg =
+let g:atmark_jump_is_unite = 1

@@ -1,32 +1,4 @@
 "" ********************************************************************************
-"" Readme 
-"" --------------------------------------------------------------------------------
-"let $DESKTOP   = '~/Desktop'
-"let $BUNDLE    = '~/Dropbox/vim/bundle'
-"let $NEOBUNDLE = '~/Dropbox/vim/bundle/Shougo-neobundle.vim'
-"let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ
-"let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
-"let $VIMTMP    = '~/vim'
-"
-"" = plugin =
-""set rtp+=~/Dropbox/vim/rtp/unite-perforce.vim
-""call perforce#init()
-"
-"" = map =
-"nnoremap ;dv<CR> :e ~/Dropbox/vim/vimwork/vimrc.vim<CR>
-"
-"" = unite =
-"let g:atmark_jump_is_unite = 1
-"
-" "= source =
-" rtp で行うと、vimfiler 設定がおかしい
-"so ~/Dropbox/vim/vimwork/neobundle.vim
-"so ~/Dropbox/vim/vimwork/vimrc.vim
-"
-" " = flg = 
-" let g:atmark_jump_is_unite = 1
-
-"" ********************************************************************************
 "" [使用箇所] 
 "" --------------------------------------------------------------------------------
 " $VIMTMP
@@ -47,8 +19,6 @@
 ""  - vimrc.vim
 ""  |- $VIMWORK_BUNDLE
 ""  |- rtp
-""  |- snippets
-""  |- ;vc<CR>
 "}}}
 "" $BUNDLE "{{{
 ""  - neobundle.vim
@@ -59,32 +29,41 @@
 ""  |- rtp
 "}}}
 "" ********************************************************************************
-let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'            
-"win32
-if has('win32') || has('win64') "{{{
-	augroup myAugroup_win32
+"set - windows "{{{
+if has('win32') || has('win64') 
+	nnoremap <A-Space> :simalt ~<CR>|" " # Window変更
+	aug my_vimrc
 		au!
-		" Mac で使用しないもの
-		au GUIEnter * simalt ~x             " # 最大化
+		au BufRead *.h setf c
+		au GUIEnter * simalt ~x        " # 最大化
 	aug END
-	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
-	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
+	lt s:ext = {
+				\ 'c' : 'h',
+				\ 'h' : 'c',
+				\ }
 
 	"}}}
-elseif has('mac') "{{{
+	"set - mac "{{{
+elseif has('mac') 
 	set makeprg=xcodebuild
-	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'm' : 'h', 'h' : 'm' })<CR>|"
+	lt s:ext = {
+				\ 'c' : 'h',
+				\ 'h' : 'c',
+				\ }
 
-	augroup my_vimrc_for_mac
+	aug my_vimrc
 		au!
-		autocmd BufRead *.h setf objc
-		autocmd BufRead *.snip setf snip
-	augroup END
+		aut BufRead *.h setf objc
+	aug END
 endif "}}}
+"set - common"{{{
+nnoremap ;h<CR> :<C-u>call okazu#change_extension(s:ext)<CR>|"
+"}}}
 "rtp
 "rtp - myBundle "{{{
-set rtp+=$VIMWORK
+let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'            
 set rtp+=$LOCALWORK
+set rtp+=$VIMWORK
 set rtp+=$VIMWORK_BUNDLE/cells
 set rtp+=$VIMWORK_BUNDLE/git
 set rtp+=$VIMWORK_BUNDLE/bit
@@ -94,6 +73,7 @@ set rtp+=$VIMWORK_BUNDLE/okazu
 "set - Autoload {{{
 augroup myAugroup
 	au!
+	aut BufRead *.snip setf snip
 	au FileType unite nmap <buffer> P <PLUG>(unite_toggle_auto_preview)
 aug END
 "}}}
@@ -137,11 +117,11 @@ if !has('gui')
 endif
 "}}}
 "set - cscope "{{{
-	set cscopequickfix=s-,c-,d-,i-,t-,e-
-	"}}}
-"set - Tlist
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+"}}}
+"set - Tlist "{{{
 let Tlist_Show_One_File = 1
-
+""}}}
 "plugin
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
@@ -156,9 +136,10 @@ let g:toggle_pairs = {
 "}}}
 "plugin - QFixHowm{{{
 let howm_dir = $VIMTMP.'/howm'
-let QFix_CloseOnJump = 1                                                                                 " # QFixHown - を自動的に終了する
+let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
 "}}}
 "plugin - hsp {{{
+if 0
 autocmd BufRead *.hsp call FileTypeHsp()
 function! FileTypeHsp()
 	compiler hsp
@@ -167,11 +148,8 @@ function! FileTypeHsp()
 	nnoremap <buffer> <F5> :make<CR>
 	nnoremap <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
 endfunction
+endif
 "}}}
-"plugin - Twitter {{{
-nnoremap ;tw<CR> :<C-u>PosttoTwitter<CR>
-"}}}
-
 "plugin - Shogo
 "Shogo - unite{{{
 let g:unite_enable_start_insert = 0
@@ -192,8 +170,8 @@ nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
 "}}}
 "Shogo - vimfiler{{{
-let g:vimfiler_as_default_explorer = 1                                                                   " # 初期filer
-let g:vimfiler_safe_mode_by_default = 0                                                                  " # safe_mode
+let g:vimfiler_as_default_explorer = 1   " # 初期filer
+let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 "}}}
 "Shogo - neocomplcache{{{
 "neocomplcache - Init {{{
