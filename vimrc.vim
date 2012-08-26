@@ -1,40 +1,40 @@
 "" ********************************************************************************
 "" Readme 
 "" --------------------------------------------------------------------------------
-"" = tmp = 
-" let $VIMTMP         = '~/vim'
+"let $DESKTOP   = '~/Desktop'
+"let $BUNDLE    = '~/Dropbox/vim/bundle'
+"let $NEOBUNDLE = '~/Dropbox/vim/bundle/Shougo-neobundle.vim'
+"let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ
+"let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
+"let $VIMTMP    = '~/vim'
 "
-"" = script =
-" let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ         
-" let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
-""
-"" = bundle =
-" let $BUNDLE          = '~/Dropbox/vim/bundle'           
-" let $NEOBUNDLE       = '~/Dropbox/vim/bundle/Shougo-neobundle.vim' 
-" so $VIMWORK/neobundle.vim
+"" = plugin =
+""set rtp+=~/Dropbox/vim/rtp/unite-perforce.vim
+""call perforce#init()
 "
-"" = command =
-" let $DESKTOP         = '~/Desktop'                      
-" let $VIMRC           = '~/Dropbox/vim/vimwork/vimrc.vim'
-" let $PFPATH          = '~/Dropbox/vim/vimwork/bundle/unite-perforce.vim'
-""
-"" = MyGrep = 
-" let g:myGrepFileType = 'vim'
-"
-"" = source = 
-" so $LOCALWORK/vimrc.vim
-" so $VIMWORK/vimrc.vim
+"" = map =
+"nnoremap ;dv<CR> :e ~/Dropbox/vim/vimwork/vimrc.vim<CR>
 "
 "" = unite =
+"let g:atmark_jump_is_unite = 1
+"
+" "= source =
+" rtp で行うと、vimfiler 設定がおかしい
+"so ~/Dropbox/vim/vimwork/neobundle.vim
+"so ~/Dropbox/vim/vimwork/vimrc.vim
+"
+" " = flg = 
 " let g:atmark_jump_is_unite = 1
 
 "" ********************************************************************************
 "" [使用箇所] 
 "" --------------------------------------------------------------------------------
-"" $DESKTOP
-""  - vimrc.vim
+" $VIMTMP
+"" $DESKTOP "{{{
+""  - vimrc.vim 
 ""  |- ;de<CR>
-"" $LOCALWORK
+"}}}
+"" $LOCALWORK "{{{
 ""  - vimrc.vim
 ""  |- ;v<CR>
 ""  |- snippets
@@ -42,27 +42,22 @@
 ""  |- rtp
 ""  - command.vim
 ""  |- syntax
-"" $VIMWORK
+"}}}
+"" $VIMWORK "{{{
 ""  - vimrc.vim
 ""  |- $VIMWORK_BUNDLE
 ""  |- rtp
 ""  |- snippets
 ""  |- ;vc<CR>
-"" $VIMRC 
-""  - vimrc.vim
-""  |- ;dv<CR>
-"" $PFPATH
-""  - vimrc.vim
-""  |- ;p<CR>
-"" g:myGrepFileType
-""  - command.vim
-""  |- MyGrep
-"" $BUNDLE
+"}}}
+"" $BUNDLE "{{{
 ""  - neobundle.vim
 ""  |- NeoBundle
-"" $NEOBUNDLE
+"}}}
+"" $NEOBUNDLE "{{{
 ""  - neobundle.vim
 ""  |- rtp
+"}}}
 "" ********************************************************************************
 let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'            
 "win32
@@ -74,9 +69,6 @@ if has('win32') || has('win64') "{{{
 	aug END
 	nnoremap <A-Space> :simalt ~<CR>|"                                             " # Window変更
 	nnoremap ;h<CR> :<C-u>call okazu#change_extension({ 'c' : 'h', 'h' : 'c' })<CR>|"
-
-	set rtp+=$VIMWORK_BUNDLE/unite-perforce.vim
-	call perforce#init()
 
 	"}}}
 elseif has('mac') "{{{
@@ -99,43 +91,40 @@ set rtp+=$VIMWORK_BUNDLE/bit
 set rtp+=$VIMWORK_BUNDLE/okazu
 "}}}
 "Setting
-"set - ClientMove "{{{
-let g:ClientMove_recursive_flg = 1
-"}}}
 "set - Autoload {{{
 augroup myAugroup
 	au!
-	au FileType unite nmap <buffer> P <Plug>(unite_toggle_auto_preview)
+	au FileType unite nmap <buffer> P <PLUG>(unite_toggle_auto_preview)
 aug END
 "}}}
-"set - Normal {{{
-set modeline                                                                                             " # 読み込み時の設定
-set number                                                                                               " # 番号入力
-set ignorecase                                                                                           " # 検索で大文字小文字を区別しない
-set cursorline                                                                                           " # カーソル行の強調
-set hlsearch                                                                                             " # 検索
-set incsearch                                                                                            " # |
-set smartcase                                                                                            " # |
-set autoread                                                                                             " # 自動更新
-set list                                                                                                 " # |
-set hidden                                                                                               " # ファイルを保存せず移動
-set noswapfile                                                                                           " # SwapFile
-set nowrap                                                                                               " # 折り返し
-set grepprg=grep\ -nH                                                                                    " # Grep
-set guioptions-=T                                                                                        " # メニューバーを削除
-set guioptions-=m                                                                                        " # ツールバーを削除
-set fo+=ro " # 自動でコメント挿入
-set laststatus=2                                                                                         " # ステータス行の表示
-set tabstop=4                                                                                            " # tabの設定
-set shiftwidth=4                                                                                         " # |
-set lcs=tab:`\                                                                                           " # 記号の表示
-set fdm=marker                                                                                           " # 自動的に折りたたみ
-set tw=0                                                                                                 " # 自動改行 OFF
-set ve=block
+"set - Normal = "{{{
 "set enc=utf-8                                                                                           " # エンコードの設定
 "set fenc=utf-8                                                                                          " # |
-exe 'set backupdir='.$VIMTMP.'/backup'                                                                 |" # Backupフォルダのパス
-
+"set grepprg=grep\ -nH                                                                                   " # Grep
+set fdm=marker                                                                                           " # 自動的に折りたたみ
+set fo+=ro                                                                                               " # 自動でコメント挿入
+set guioptions-=T                                                                                        " # メニューバーを削除
+set guioptions-=m                                                                                        " # ツールバーを削除
+set laststatus=2                                                                                         " # ステータス行の表示
+set lcs=tab:`\                                                                                           " # 記号の表示
+set shiftwidth=4                                                                                         " # |
+set tabstop=4                                                                                            " # tabの設定
+set tw=0                                                                                                 " # 自動改行 OFF
+exe 'set backupdir='.$VIMTMP.'/backup.'                                                                 |" # Backupフォルダのパス
+"}}}
+"set - Normal {{{
+set autoread                                                                                             " # 自動更新
+set cursorline                                                                                           " # カーソル行の強調
+set hidden                                                                                               " # ファイルを保存せず移動
+set hlsearch                                                                                             " # 検索
+set ignorecase                                                                                           " # 検索で大文字小文字を区別しない
+set incsearch                                                                                            " # |
+set list                                                                                                 " # |
+set modeline                                                                                             " # 読み込み時の設定
+set noswapfile                                                                                           " # SwapFile
+set nowrap                                                                                               " # 折り返し
+set number                                                                                               " # 番号入力
+set smartcase                                                                                            " # |
 "}}}
 "set - Terminal {{{
 if !has('gui')
@@ -147,6 +136,9 @@ if !has('gui')
 	filetype plugin on
 endif
 "}}}
+"set - cscope "{{{
+	set cscopequickfix=s-,c-,d-,i-,t-,e-
+	"}}}
 "set - Tlist
 let Tlist_Show_One_File = 1
 
@@ -154,7 +146,13 @@ let Tlist_Show_One_File = 1
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
 let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
-let g:toggle_pairs = { 'and':'or', 'or':'and', 'if':'elsif', 'elsif':'else', 'else':'if' }               " # Toggle
+let g:toggle_pairs = {
+			\ 'and'   : 'or',
+			\ 'or'    : 'and',
+			\ 'if'    : 'elsif',
+			\ 'elsif' : 'else',
+			\ 'else'  : 'if'
+			\ }
 "}}}
 "plugin - QFixHowm{{{
 let howm_dir = $VIMTMP.'/howm'
@@ -206,9 +204,9 @@ let g:neocomplcache_disable_auto_complete = 1                                   
 "}}}
 "neocomplcache - Mapping {{{
 nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
-imap <C-s>  <Plug>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
-imap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
-smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                                                   " # 同上
+imap <C-s>  <PLUG>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
+imap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
+smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # 同上
 "}}}
 "neocomplcache - caching "{{{
 "\:NeoComplCacheCachingBuffer<CR>
@@ -222,10 +220,10 @@ smap <C-Space> <Plug>(neocomplcache_snippets_expand)|"                          
 "********************************************************************************
 " mapping
 "********************************************************************************
-" nmap - <Plug>"{{{
-nmap <C-s> 		<Plug>(set_number)
-nmap v/ 		<Plug>(select_search)
-nmap ;uq<CR> 	<Plug>(uniq_line)
+" nmap - <PLUG>"{{{
+nmap <C-s> 		<PLUG>(set_number)
+nmap v/ 		<PLUG>(select_search)
+nmap ;uq<CR> 	<PLUG>(uniq_line)
 " "}}}
 "nnoremap - simple {{{
 nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
@@ -257,9 +255,7 @@ nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フ
 "nnoremap - lcd "{{{
 nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
 nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
-nnoremap ;p<CR>  :<C-u>lcd $PFPATH<CR>|"
 nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>|"
-nnoremap ;dv<CR> :<C-u>e $VIMRC<CR>|"
 "}}}
 "nnoremap - typo {{{
 nnoremap <F1> <ESC>
@@ -278,6 +274,20 @@ nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " nnoremap - c {{{
 nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
+" }}}
+" nnoremap - cscope "{{{
+noremap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
+noremap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>|"
+nnoremap <C-_>L :call system("cscope -b -R")<CR>:cs kill -1<CR>:cs add .<CR>|"
+nnoremap <C-_>l :cs kill -1<CR>:cs add .<CR>|"
+nnoremap <C-_>K :call system("ctags -R")<CR>|"
+nnoremap <C-_>v :gre
 " }}}
 "
 "********************************************************************************
@@ -305,10 +315,9 @@ endif
 " ********************************************************************************
 " diff
 " ********************************************************************************
-nnoremap ;dy<CR> :<C-u>call okazu#tabcopy()<CR>:windo diffthis<CR>:windo call okazu#Map_diff()<CR>|"
-nnoremap ;do<CR> :<C-u>call okazu#tabcopy()<CR>:DiffOrig<CR>:windo call okazu#Map_diff()<CR>|"
-nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<CR>|"
-
+nmap ;dy<CR> <PLUG>(tab_diff_start)
+nmap ;dn<CR> <PLUG>(tab_diff_end)
+nmap ;do<CR> <PLUG>(tab_diff_orig)
 "********************************************************************************
 " MEMO
 "--------------------------------------------------------------------------------
@@ -317,6 +326,3 @@ nnoremap ;dn<CR> :<C-u>diffoff!<CR>:windo call okazu#Map_diff_reset()<CR>:tabc<C
 " source_*
 " kind_*
 " action_*
-"
-" 自動改行回避
-" set tw=0
