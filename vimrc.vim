@@ -37,7 +37,7 @@ if has('win32') || has('win64')
 		au BufRead *.h setf c
 		au GUIEnter * simalt ~x        " # �ő剻
 	aug END
-	lt s:ext = {
+	let s:ext = {
 				\ 'c' : 'h',
 				\ 'h' : 'c',
 				\ }
@@ -46,7 +46,7 @@ if has('win32') || has('win64')
 	"set - mac "{{{
 elseif has('mac') 
 	set makeprg=xcodebuild
-	lt s:ext = {
+	let s:ext = {
 				\ 'c' : 'h',
 				\ 'h' : 'c',
 				\ }
