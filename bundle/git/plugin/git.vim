@@ -2,7 +2,7 @@
 " GIT
 "********************************************************************************
 "func
-function! s:git_cmd(cmd) "{{{
+function! <SID>git_cmd(cmd) "{{{
 	" ********************************************************************************
 	" git 用にカレントディレクトリを一時的に変えて実行する関数
 	" @param[in]	cmd		git コマンド
@@ -15,13 +15,13 @@ function! s:git_cmd(cmd) "{{{
 	lcd ~\Dropbox\vim\vimwork
 
 	" 実際にコミットする
-	call okazu#LogFile('gitlog', 0, okazu#Get_cmds(a:cmd))
+	call common#LogFile('gitlog', 0, common#Get_cmds(a:cmd))
 
 	" 元に戻す
 	exe 'lcd' tmp
 
 endfunction "}}}
-function! s:git_push() "{{{
+function! <SID>git_push() "{{{
 	call <SID>git_cmd('git push master')
 endfunction "}}}
 
@@ -30,12 +30,12 @@ endfunction "}}}
 " command
 " ********************************************************************************
 com! MyGitCommit call <SID>git_commit()
-function! s:git_commit() "{{{
+function! <SID>git_commit() "{{{
 	let str = input('comment : ')
 	if str == ""
 		echo 'END... '
 	else 
-		call <SID>git_cmd('git commit -am '.okazu#Get_kk(str))
+		call <SID>git_cmd('git commit -am '.common#Get_kk(str))
 	endif
 endfunction "}}}
 

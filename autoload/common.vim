@@ -1,7 +1,7 @@
-function! okazu#MyQuit() "{{{
+function! common#MyQuit() "{{{
 	map <buffer> q :q<CR>
 endfunction "}}}
-function! okazu#LogFile(name, deleteFlg, ...) "{{{
+function! common#LogFile(name, deleteFlg, ...) "{{{
 	" ********************************************************************************
 	" 新しいファイルを開いて書き込み禁止にする 
 	" @param[in]	name		書き込み用tmpFileName
@@ -21,7 +21,7 @@ function! okazu#LogFile(name, deleteFlg, ...) "{{{
 		%delete _          " # ファイル消去
 		setl buftype=nofile " # 保存禁止
 		setl fdm=manual
-		call okazu#MyQuit()
+		call common#MyQuit()
 	else
 		" 表示しているなら切り替える
 		exe bnum . 'wincmd w'
@@ -41,14 +41,14 @@ function! okazu#LogFile(name, deleteFlg, ...) "{{{
 endfunction "}}}
 
 
-function! okazu#Get_cmds(cmd) "{{{
+function! common#Get_cmds(cmd) "{{{
 	return split(system(a:cmd),'\n')
 endfunction "}}}
-function! okazu#Get_kk(str) "{{{
+function! common#Get_kk(str) "{{{
 	"return substitute(a:str,'^\"?\(.*\)\"?','"\1"','')
 	return len(a:str) ? '"'.a:str.'"' : ''
 endfunction "}}}
-function! okazu#is_different(path,path2) "{{{
+function! common#is_different(path,path2) "{{{
 	" ********************************************************************************
 	" 差分を調べる
 	" @param[in]	path				比較ファイル1
@@ -57,19 +57,19 @@ function! okazu#is_different(path,path2) "{{{
 	" 							FALSE	差分なし
 	" ********************************************************************************
 	let flg = 1
-	let outs = okazu#Get_cmds('fc '.okazu#Get_kk(a:path).' '.okazu#Get_kk(a:path2))
+	let outs = common#Get_cmds('fc '.common#Get_kk(a:path).' '.common#Get_kk(a:path2))
 	if outs[1] =~ '^FC: 相違点は検出されませんでした'
 		let flg = 0
 	endif
 	return flg
 endfunction "}}}
-function! okazu#get_pathSrash(path) "{{{
+function! common#get_pathSrash(path) "{{{
 	return substitute(a:path,'\','/','g') " # / マークに統一
 endfunction "}}}
-function! okazu#get_pathEn(path) "{{{
+function! common#get_pathEn(path) "{{{
 	return substitute(a:path,'/','\','g') " # / マークに統一
 endfunction "}}}
-function! okazu#GetFileNameForUnite(args, context) "{{{
+function! common#GetFileNameForUnite(args, context) "{{{
 	" ファイル名の取得
 	let a:context.source__path = expand('%:p')
 	let a:context.source__linenr = line('.')
@@ -82,7 +82,7 @@ endfunction "}}}
 " @param[in]	args.end	終了位置
 " @param[in]	args.bufnr	番号
 "********************************************************************************
-function! okazu#selectEdit_write(args) "{{{
+function! common#selectEdit_write(args) "{{{
 
 	let start    = a:args.start
 	let end      = a:args.end
@@ -97,7 +97,7 @@ function! okazu#selectEdit_write(args) "{{{
 	let a:args.end = start + line('$') - 1
 
 	" argsの更新
-	call okazu#event_save_file_autocmd('okazu#selectEdit_write',a:args)
+	call common#event_save_file_autocmd('common#selectEdit_write',a:args)
 
 
 	" 編集するファイル の編集
@@ -121,7 +121,7 @@ endfunction "}}}
 " @param[in]	func		実行する関数名
 " @param[in]	args		実行する関数名に渡す 引数
 " ********************************************************************************
-function! okazu#event_save_file(tmpfile,strs,func,args) "{{{
+function! common#event_save_file(tmpfile,strs,func,args) "{{{
 
 	"画面設定
 	let bnum = bufwinnr(a:tmpfile) 
@@ -141,10 +141,10 @@ function! okazu#event_save_file(tmpfile,strs,func,args) "{{{
 	"一行目に移動
 	call cursor(1,1) 
 
-	call okazu#event_save_file_autocmd(a:func,a:args)
+	call common#event_save_file_autocmd(a:func,a:args)
 
 endfunction "}}}
-function! okazu#event_save_file_autocmd(func,args) "{{{
+function! common#event_save_file_autocmd(func,args) "{{{
 
 	aug okazu_event_save_file
 		au!
@@ -156,7 +156,7 @@ endfunction "}}}
 " ********************************************************************************
 " ファイルの切り替え ( C 言語 ) 
 " ********************************************************************************
-function! okazu#change_extension(exts) "{{{
+function! common#change_extension(exts) "{{{
 	let extension = expand("%:e")
 
 	if exists('a:exts[extension]')
@@ -168,7 +168,7 @@ endfunction "}}}
 " ********************************************************************************
 " ファイルの切り替え ( unite ) 
 " ********************************************************************************
-function! okazu#change_unite() "{{{
+function! common#change_unite() "{{{
 	let root = substitute(expand("%:h"), '[\\/][^\\/]*$', '', '')
 	let file = expand("%:t")
 	let type = substitute(expand("%:h"), '.*[\\/]\ze.\{-}[\\/]', '', '')
@@ -181,35 +181,4 @@ function! okazu#change_unite() "{{{
 		exe 'e '.root.'/kinds/k_'.file
 	endif
 
-endfunction "}}}
-
-" ********************************************************************************
-" Diff  
-" ********************************************************************************
-function! okazu#Map_diff() "{{{
-	map <buffer> <up> [c
-	map <buffer> <down> ]c
-	map <buffer> <left>  do:<C-u>diffupdate<CR>|"
-	map <buffer> <right> do:<C-u>diffupdate<CR>|"
-	map <buffer> <tab> :<C-u>call okazu#Map_diff_tab()<CR>
-endfunction "}}}
-function! okazu#Map_diff_reset() "{{{
-	map <buffer> <up> <up>
-	map <buffer> <down> <down>
-	map <buffer> <left> <left>
-	map <buffer> <right> <right>
-endfunction "}}}
-function! okazu#Map_diff_tab() "{{{
-	wincmd w
-endfunction "}}}
-function! okazu#tabcopy() "{{{
-	let bufnrs = []
-	windo let bufnrs += [bufnr("%")]
-
-	tabe
-	exe 'b' bufnrs[0]
-	for bufnr in bufnrs[1:]
-		exe 'sb' bufnr
-	endfor	
-	
 endfunction "}}}

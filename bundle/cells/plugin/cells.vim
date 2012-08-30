@@ -26,7 +26,7 @@ function! g:set_lens(strs1, strs2) "{{{
 	
 endfunction "}}}
 "文字幅の取得
-function! s:get_maxs_from_str(str, maxs) "{{{
+function! <SID>get_maxs_from_str(str, maxs) "{{{
 	" ********************************************************************************
 	" 最大幅の取得 ( 文字列 ) 
 	" @param[in]	str		設定更新する文字列
@@ -75,7 +75,7 @@ function! s:get_maxs_from_str(str, maxs) "{{{
 	return maxs
 
 endfunction "}}}
-function! s:get_maxs_from_strs(strs) "{{{
+function! <SID>get_maxs_from_strs(strs) "{{{
 	" ********************************************************************************
 	" 最大幅の取得 ( 文字列 ) 
 	" @param[in]	strs	設定する文字列
@@ -95,7 +95,7 @@ function! s:get_maxs_from_strs(strs) "{{{
 endfunction "}}}
 
 "幅に合わせて、文字列の更新
-function! s:is_line(str) "{{{
+function! <SID>is_line(str) "{{{
 " ********************************************************************************
 " 行の線か調べる
 " @param[in]	str		調べる文字列
@@ -117,7 +117,7 @@ function! s:is_line(str) "{{{
 	return rtn
 
 endfunction "}}}
-function! s:get_line(str, maxs) "{{{
+function! <SID>get_line(str, maxs) "{{{
 	" ********************************************************************************
 	" 線の行なら、線を表示する
 	" @param[in]	str		線の行か調べる行
@@ -159,7 +159,7 @@ function! g:add_list(name1, list1, name2, list2) "{{{
 	
 	return dicts
 endfunction "}}}
-function! s:get_str(str, maxs) "{{{
+function! <SID>get_str(str, maxs) "{{{
 	let maxs      = a:maxs
 	let while_max = len(maxs)
 	let strs      = split(a:str, "|")
@@ -185,7 +185,7 @@ function! s:get_str(str, maxs) "{{{
 	return rtn
 
 endfunction "}}}
-function! s:get_strs(strs, maxs) "{{{
+function! <SID>get_strs(strs, maxs) "{{{
 
 	let outs = []
 	for str in a:strs
@@ -200,7 +200,7 @@ function! s:get_strs(strs, maxs) "{{{
 
 endfunction "}}}
 
-function! s:cells(line1,line2) "{{{
+function! <SID>cells(line1,line2) "{{{
 	let line1 = a:line1
 	let line2 = a:line2
 

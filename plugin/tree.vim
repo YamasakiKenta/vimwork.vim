@@ -6,7 +6,7 @@ aug tree "{{{
 	au BufRead *.tree call <SID>init()
 	au BufRead *.tree setf tree
 aug END "}}}
-function! s:init() "{{{
+function! <SID>init() "{{{
 	aug tree_init
 		au!
 		" à⁄ìÆÇµÇΩèÍçá
@@ -20,7 +20,7 @@ function! s:init() "{{{
 	syn match Todo /|-\ze.*-$/
 
 endfunction "}}}
-function! s:force_reload() "{{{
+function! <SID>force_reload() "{{{
 <<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let subs_pattern = '\s\?\(\d\+\)\?[-= ]\?$' 
 
@@ -45,7 +45,7 @@ function! s:force_reload() "{{{
 
 	call <SID>reload(1)
 endfunction "}}}
-function! s:reload(...) "{{{
+function! <SID>reload(...) "{{{
 	" çƒï`âÊ
 <<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let force_flg = 0

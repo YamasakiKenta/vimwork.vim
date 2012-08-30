@@ -1,34 +1,54 @@
-"" ********************************************************************************
-"" [使用箇所] 
-"" --------------------------------------------------------------------------------
-" $VIMTMP
-"" $DESKTOP "{{{
-""  - vimrc.vim 
-""  |- ;de<CR>
+" [使用箇所] 
+" $VIMTMP " {{{
+"  - vimrc.vim
+"  |- howm
+"  |- backupdir
+" }}}
+" $DESKTOP "{{{
+"  - vimrc.vim 
+"  |- ;de<CR>
 "}}}
-"" $LOCALWORK "{{{
-""  - vimrc.vim
-""  |- ;v<CR>
-""  |- snippets
-""  |- howm
-""  |- rtp
-""  - command.vim
-""  |- syntax
+" $LOCALWORK "{{{
+"  - vimrc.vim
+"  |- ;v<CR>
+"  |- snippets
+"  |- howm
+"  |- rtp
+"  - command.vim
+"  |- syntax
 "}}}
-"" $VIMWORK "{{{
-""  - vimrc.vim
-""  |- $VIMWORK_BUNDLE
-""  |- rtp
+" $VIMWORK "{{{
+"  - vimrc.vim
+"  |- $VIMWORK_BUNDLE
+"  |- rtp
 "}}}
-"" $BUNDLE "{{{
-""  - neobundle.vim
-""  |- NeoBundle
+" $BUNDLE "{{{
+"  - neobundle.vim
+"  |- NeoBundle
 "}}}
-"" $NEOBUNDLE "{{{
-""  - neobundle.vim
-""  |- rtp
+" $NEOBUNDLE "{{{
+"  - neobundle.vim
+"  |- rtp
 "}}}
-"" ********************************************************************************
+" ********************************************************************************
+"rtp
+" ********************************************************************************
+"rtp - myBundle "{{{
+" vimwork に含まれるスクリプトの入力
+let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'            
+set rtp+=$LOCALWORK
+set rtp+=$VIMWORK
+set rtp+=$VIMWORK_BUNDLE/diff
+set rtp+=$VIMWORK_BUNDLE/cells
+set rtp+=$VIMWORK_BUNDLE/git
+set rtp+=$VIMWORK_BUNDLE/bit
+set rtp+=$VIMWORK_BUNDLE/okazu
+"}}}
+" ********************************************************************************
+" setting
+" ********************************************************************************
+"Setting
+" set - os "{{{
 "set - windows "{{{
 if has('win32') || has('win64') 
 	nnoremap <A-Space> :simalt ~<CR>|" " # Window変更
@@ -56,20 +76,7 @@ elseif has('mac')
 		aut BufRead *.h setf objc
 	aug END
 endif "}}}
-"set - common"{{{
-nnoremap ;h<CR> :<C-u>call okazu#change_extension(s:ext)<CR>|"
 "}}}
-"rtp
-"rtp - myBundle "{{{
-let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'            
-set rtp+=$LOCALWORK
-set rtp+=$VIMWORK
-set rtp+=$VIMWORK_BUNDLE/cells
-set rtp+=$VIMWORK_BUNDLE/git
-set rtp+=$VIMWORK_BUNDLE/bit
-set rtp+=$VIMWORK_BUNDLE/okazu
-"}}}
-"Setting
 "set - Autoload {{{
 augroup myAugroup
 	au!
@@ -122,79 +129,6 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 "set - Tlist "{{{
 let Tlist_Show_One_File = 1
 ""}}}
-"plugin
-"plugin - Other {{{
-so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
-let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
-let g:toggle_pairs = {
-			\ 'and'   : 'or',
-			\ 'or'    : 'and',
-			\ 'if'    : 'elsif',
-			\ 'elsif' : 'else',
-			\ 'else'  : 'if'
-			\ }
-"}}}
-"plugin - QFixHowm{{{
-let howm_dir = $VIMTMP.'/howm'
-let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
-"}}}
-"plugin - hsp {{{
-if 0
-autocmd BufRead *.hsp call FileTypeHsp()
-function! FileTypeHsp()
-	compiler hsp
-	set filetype=hsp
-	se omnifunc=hspcomplete#Complete
-	nnoremap <buffer> <F5> :make<CR>
-	nnoremap <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
-endfunction
-endif
-"}}}
-"plugin - Shogo
-"Shogo - unite{{{
-let g:unite_enable_start_insert = 0
-let g:unite_source_history_yank_enable = 0
-nnoremap ;ur<CR>  :<C-u>UniteResume<CR>
-nnoremap ;us<CR>  :<C-u>Unite source<CR>
-nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>
-nnoremap ;uf<CR>  :<C-u>Unite file<CR>
-nnoremap ;ut<CR>  :<C-u>Unite tag<CR>
-nnoremap ;ug<CR>  :<C-u>Unite grep -no-quit<CR>
-nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>
-nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>
-nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>
-nnoremap ;ul<CR>  :<C-u>Unite line<CR>
-nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
-nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>
-nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
-nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
-"}}}
-"Shogo - vimfiler{{{
-let g:vimfiler_as_default_explorer = 1   " # 初期filer
-let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
-"}}}
-"Shogo - neocomplcache{{{
-"neocomplcache - Init {{{
-let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                 " # snippet ファイル作成場所
-let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
-let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
-"let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ
-"}}}
-"neocomplcache - Mapping {{{
-nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
-imap <C-s>  <PLUG>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
-imap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
-smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # 同上
-"}}}
-"neocomplcache - caching "{{{
-"\:NeoComplCacheCachingBuffer<CR>
-"\:NeoComplCacheCachingSyntax<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingSnippets<CR>
-"}}}
-"}}}
-
 "********************************************************************************
 " mapping
 "********************************************************************************
@@ -251,27 +185,112 @@ nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 " nnoremap - c {{{
-nnoremap ;k<CR> :<C-u>call okazu#change_unite()<CR>|"
+nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
 " }}}
 " nnoremap - cscope "{{{
-noremap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
-noremap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>|"
-nnoremap <C-_>L :call system("cscope -b -R")<CR>:cs kill -1<CR>:cs add .<CR>|"
-nnoremap <C-_>l :cs kill -1<CR>:cs add .<CR>|"
-nnoremap <C-_>K :call system("ctags -R")<CR>|"
-nnoremap <C-_>v :gre
+noremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
+noremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
+noremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>|"
+nnoremap <C-\>L :call system("cscope -b -R")<CR>:cs kill -1<CR>:cs add cscope.out<CR>|"
+nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
+nnoremap <C-\>K :call system("ctags -R")<CR>|"
+nnoremap <C-\>v :vim /<C-R>=expand("<cword>")<CR>/ **/*.vim **.*.[ch]<CR>
+nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
 " }}}
+" nnoremap - call "{{{
+nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
+"}}}
 "
 "********************************************************************************
-" Unite Jump
+" Plugin
 "********************************************************************************
-function! s:move_unite_tags(str) "{{{
+"plugin - Other {{{
+so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
+let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
+let g:toggle_pairs = {
+			\ 'and'   : 'or',
+			\ 'or'    : 'and',
+			\ 'if'    : 'elsif',
+			\ 'elsif' : 'else',
+			\ 'else'  : 'if'
+			\ }
+"}}}
+"plugin - QFixHowm{{{
+let howm_dir = $VIMTMP.'/howm'
+let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
+"}}}
+"plugin - hsp {{{
+if 0
+autocmd BufRead *.hsp call FileTypeHsp()
+function! FileTypeHsp()
+	compiler hsp
+	set filetype=hsp
+	se omnifunc=hspcomplete#Complete
+	nnoremap <buffer> <F5> :make<CR>
+	nnoremap <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
+endfunction
+endif
+"}}}
+"plugin - diff {{{
+nmap ;dy<CR> <PLUG>(tab_diff_start)
+nmap ;dn<CR> <PLUG>(tab_diff_end)
+nmap ;do<CR> <PLUG>(tab_diff_orig)
+"}}}
+"plugin - Shogo
+"Shogo - unite{{{
+let g:unite_enable_start_insert = 0
+let g:unite_source_history_yank_enable = 0
+nnoremap ;ur<CR>  :<C-u>UniteResume<CR>
+nnoremap ;us<CR>  :<C-u>Unite source<CR>
+nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>
+nnoremap ;uf<CR>  :<C-u>Unite file<CR>
+nnoremap ;ut<CR>  :<C-u>Unite tag<CR>
+nnoremap ;ug<CR>  :<C-u>Unite grep -no-quit<CR>
+nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>
+nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>
+nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>
+nnoremap ;ul<CR>  :<C-u>Unite line<CR>
+nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
+nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>
+nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
+nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
+"}}}
+"Shogo - vimfiler{{{
+let g:vimfiler_as_default_explorer = 1   " # 初期filer
+let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
+"}}}
+"Shogo - neocomplcache{{{
+"neocomplcache - Init {{{
+let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                 " # snippet ファイル作成場所
+let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
+let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
+"let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ
+"}}}
+"neocomplcache - Mapping {{{
+nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
+imap <C-s>  <PLUG>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
+imap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
+smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # 同上
+"}}}
+"neocomplcache - caching "{{{
+"\:NeoComplCacheCachingBuffer<CR>
+"\:NeoComplCacheCachingSyntax<CR>
+"\:NeoComplCacheCachingTags<CR>
+"\:NeoComplCacheCachingTags<CR>
+"\:NeoComplCacheCachingSnippets<CR>
+"}}}
+"}}}
+" script
+" script - unite jump "{{{
+if get(g:, 'atmark_jump_is_unite', 0) "{{{
+	nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+endif "}}}
+function! <SID>move_unite_tags(str) "{{{
 	if a:str =~ '^k_'
 		exe 'ta unite#kinds#'.a:str.'#define'
 	elseif a:str =~ 'a_'
@@ -286,21 +305,4 @@ function! s:move_unite_tags(str) "{{{
 
 	endif
 endfunction "}}}
-if get(g:, 'atmark_jump_is_unite', 0)
-	nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-endif
-
-" ********************************************************************************
-" diff
-" ********************************************************************************
-nmap ;dy<CR> <PLUG>(tab_diff_start)
-nmap ;dn<CR> <PLUG>(tab_diff_end)
-nmap ;do<CR> <PLUG>(tab_diff_orig)
-"********************************************************************************
-" MEMO
-"--------------------------------------------------------------------------------
-" ctags 対策
-" unite ソースに移動するために、変数名と関連付けする
-" source_*
-" kind_*
-" action_*
+"}}}

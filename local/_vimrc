@@ -1,13 +1,15 @@
 let $DESKTOP   = '~/Desktop'
 let $BUNDLE    = '~/Dropbox/vim/bundle'
-let $NEOBUNDLE = '~/Dropbox/vim/bundle/Shougo-neobundle.vim'
+let $NEOBUNDLE = '~/Dropbox/vim/bundle/neobundle.vim'
 let $LOCALWORK = '~/Dropbox/vim/local'       " <- 各PC毎に設定するフォルダ
 let $VIMWORK   = '~/Dropbox/vim/vimwork'     " <- このファイルを指定してください
 let $VIMTMP    = '~/vim'
 
 " = plugin =
-"set rtp+=~/Dropbox/vim/rtp/unite-perforce.vim
-"call perforce#init()
+if 1 " perforce use
+set rtp+=~/Dropbox/vim/rtp/unite-perforce.vim " <- provide thier own
+call perforce#init()
+endif 
 
 " = map =
 nnoremap ;dv<CR> :e ~/Dropbox/vim/vimwork/vimrc.vim<CR>

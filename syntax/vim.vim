@@ -1,2 +1,2 @@
 syn keyword type test
-syn match Function /okazu#\w*/
+syn match Function /common#\w*/

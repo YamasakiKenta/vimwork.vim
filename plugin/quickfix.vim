@@ -11,7 +11,7 @@ call unite#custom_action('jump_list', 'add qfix', action)
 function! action.func(candidates) "{{{
 	call <SID>add_qfix(a:candidates)
 endfunction "}}}
-function! s:add_qfix(candidates) "{{{
+function! <SID>add_qfix(candidates) "{{{
 	for candidate in a:candidates
 
 		let word = candidate.word
