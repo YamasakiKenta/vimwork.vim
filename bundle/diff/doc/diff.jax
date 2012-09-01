@@ -1,9 +1,0 @@
-*mapping*
-
-<PLUG>(tab_diff_start)
-
-<PLUG>(tab_diff_end)
-
-<PLUG>(tab_diff_orig)
---------------------------------------------------------------------------------
- vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:

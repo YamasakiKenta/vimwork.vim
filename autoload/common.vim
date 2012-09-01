@@ -1,3 +1,6 @@
+" ********************************************************************************
+" 使用しているスクリプト
+" ********************************************************************************
 function! common#MyQuit() "{{{
 	map <buffer> q :q<CR>
 endfunction "}}}
@@ -39,8 +42,6 @@ function! common#LogFile(name, deleteFlg, ...) "{{{
 	cal cursor(1,1) " # 一行目に移動する
 
 endfunction "}}}
-
-
 function! common#Get_cmds(cmd) "{{{
 	return split(system(a:cmd),'\n')
 endfunction "}}}
@@ -75,14 +76,13 @@ function! common#GetFileNameForUnite(args, context) "{{{
 	let a:context.source__linenr = line('.')
 	call unite#print_message('[line] Target: ' . a:context.source__path)
 endfunction "}}}
-
+function! common#selectEdit_write(args) "{{{
 "********************************************************************************
 " Select Edit の保存
 " @param[in]	args.start	開始位置
 " @param[in]	args.end	終了位置
 " @param[in]	args.bufnr	番号
 "********************************************************************************
-function! common#selectEdit_write(args) "{{{
 
 	let start    = a:args.start
 	let end      = a:args.end
@@ -113,7 +113,7 @@ function! common#selectEdit_write(args) "{{{
 	exe nowbufnr 'buffer'
 
 endfunction "}}}
-
+function! common#event_save_file(tmpfile,strs,func,args) "{{{
 " ********************************************************************************
 " ファイルを保存したときに、関数を実行します
 " @param[in]	tmpfile		保存するファイル名 ( 分割するファイル名 ) 
@@ -121,7 +121,6 @@ endfunction "}}}
 " @param[in]	func		実行する関数名
 " @param[in]	args		実行する関数名に渡す 引数
 " ********************************************************************************
-function! common#event_save_file(tmpfile,strs,func,args) "{{{
 
 	"画面設定
 	let bnum = bufwinnr(a:tmpfile) 
@@ -152,11 +151,10 @@ function! common#event_save_file_autocmd(func,args) "{{{
 	aug END
 
 endfunction "}}}
-
+function! common#change_extension(exts) "{{{
 " ********************************************************************************
 " ファイルの切り替え ( C 言語 ) 
 " ********************************************************************************
-function! common#change_extension(exts) "{{{
 	let extension = expand("%:e")
 
 	if exists('a:exts[extension]')
@@ -164,11 +162,10 @@ function! common#change_extension(exts) "{{{
 	endif
 
 endfunction "}}}
-
+function! common#change_unite() "{{{
 " ********************************************************************************
 " ファイルの切り替え ( unite ) 
 " ********************************************************************************
-function! common#change_unite() "{{{
 	let root = substitute(expand("%:h"), '[\\/][^\\/]*$', '', '')
 	let file = expand("%:t")
 	let type = substitute(expand("%:h"), '.*[\\/]\ze.\{-}[\\/]', '', '')
@@ -181,4 +178,39 @@ function! common#change_unite() "{{{
 		exe 'e '.root.'/kinds/k_'.file
 	endif
 
+endfunction "}}}
+function! common#map_diff_reset() "{{{
+	map <buffer> <A-up> <A-up>
+	map <buffer> <A-down> <A-down>
+	map <buffer> <A-left> <A-left>
+	map <buffer> <A-right> <A-right>
+endfunction "}}}
+function! common#map_diff_tab() "{{{
+	"********************************************************************************
+	" タブ切り替え時に処理を追加するため作成した
+	"********************************************************************************
+	wincmd w
+endfunction "}}}
+function! common#tabcopy() "{{{
+	let bufnrs = []
+	windo let bufnrs += [bufnr("%")]
+
+	tabe
+	" 最初の画面の更新
+	exe 'b' bufnrs[0]
+
+	" 2画面目からは、分割する
+	for bufnr in bufnrs[1:]
+		exe 'sb' bufnr
+	endfor	
+	
+endfunction "}}}
+function! common#map_diff() "{{{
+	map <buffer> <A-up> [c
+	map <buffer> <A-down> ]c
+	map <buffer> <A-left>  :diffget<CR>:<C-u>diffupdate<CR>|"
+	map <buffer> <A-right> :diffget<CR>:<C-u>diffupdate<CR>|"
+	map <buffer> <tab> :<C-u>call common#map_diff_tab()<CR>|"
+
+	echo 'vimwork'
 endfunction "}}}

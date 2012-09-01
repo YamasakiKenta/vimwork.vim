@@ -41,7 +41,6 @@ set rtp+=$VIMWORK
 set rtp+=$VIMWORK_BUNDLE/diff
 set rtp+=$VIMWORK_BUNDLE/cells
 set rtp+=$VIMWORK_BUNDLE/git
-set rtp+=$VIMWORK_BUNDLE/bit
 set rtp+=$VIMWORK_BUNDLE/okazu
 "}}}
 " ********************************************************************************
@@ -235,11 +234,6 @@ function! FileTypeHsp()
 	nnoremap <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
 endfunction
 endif
-"}}}
-"plugin - diff {{{
-nmap ;dy<CR> <PLUG>(tab_diff_start)
-nmap ;dn<CR> <PLUG>(tab_diff_end)
-nmap ;do<CR> <PLUG>(tab_diff_orig)
 "}}}
 "plugin - Shogo
 "Shogo - unite{{{
