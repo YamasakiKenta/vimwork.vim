@@ -300,3 +300,21 @@ function! <SID>move_unite_tags(str) "{{{
 	endif
 endfunction "}}}
 "}}}
+
+
+"********************************************************************************
+" ˆê’è‹`
+"********************************************************************************
+command! -narg=1 GetWord call <SID>get_word(<line1>, <line2>, <f-args>)
+function! <SID>get_word(lnum1, lnum2, word) "{{{
+	let lnum1 = a:lnum1
+	let lnum2 = a:lnum2
+	let word = a:word
+	
+	" ‘ÎÛ•¶š—ñˆÈŠO‚Ìíœ
+	"let cmd = lnum1.','.lnum2.'s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
+	let cmd = '*s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
+	exe cmd
+	echo cmd
+
+endfunction "}}}
