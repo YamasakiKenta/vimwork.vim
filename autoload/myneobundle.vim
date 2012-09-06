@@ -1,5 +1,5 @@
-set rtp+=$NEOBUNDLE
-call neobundle#rc($BUNDLE)
+function! myneobundle#init() "{{{
+endfunction "}}}
 
 "NeoBundle 'Shougo/git-vim'
 "NeoBundle 'ShowMarks7'
@@ -26,7 +26,7 @@ call neobundle#rc($BUNDLE)
 "NeoBundle 'thinca/vim-rtputil'
 "NeoBundle 'tpope/vim-surround.git'  
 "NeoBundle 'vundle'
-"
+
 NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'  

@@ -1,6 +1,4 @@
-let $BUNDLE    = '~/Dropbox/vim/bundle'
-let $NEOBUNDLE = '~/Dropbox/vim/bundle/neobundle.vim'
-let $LOCALWORK = '~/vimtmp'       " <- 各PC毎に設定するフォルダ
+let $LOCALWORK = '~/vimtmp'       				  " <- 各PC毎に設定するフォルダ
 let $VIMWORK   = '~/Dropbox/vim/mind/vimwork'     " <- このファイルを指定してください
 
 let g:atmark_jump_is_unite = 1
@@ -14,7 +12,10 @@ so ~/Dropbox/vim/mind/vimwork/neobundle.vim
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 set rtp+=~/Dropbox/vim/mind/tab-diff
 set rtp+=~/Dropbox/vim/mind/vimwork
+set rtp+=~/Dropbox/vim/bundle/neobundle.vim
+
+call neobundle#rc('~/Dropbox/vim/bundle')
 
 call vimrc#init()
 call perforce#init()
-
+call myneobundle#init()
