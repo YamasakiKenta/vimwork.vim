@@ -1,13 +1,6 @@
+function! vimrc#init() "{{{
+endfunction "}}}
 " [使用箇所] 
-" $VIMTMP " {{{
-"  - vimrc.vim
-"  |- howm
-"  |- backupdir
-" }}}
-" $DESKTOP "{{{
-"  - vimrc.vim 
-"  |- ;de<CR>
-"}}}
 " $LOCALWORK "{{{
 "  - vimrc.vim
 "  |- ;v<CR>
@@ -30,23 +23,16 @@
 "  - neobundle.vim
 "  |- rtp
 "}}}
-" ********************************************************************************
-"rtp
-" ********************************************************************************
-"rtp - myBundle "{{{
+" rtp
+"rtp - bundle "{{{
 " vimwork に含まれるスクリプトの入力
-let $VIMWORK_BUNDLE = $VIMWORK.'/bundle'            
 set rtp+=$LOCALWORK
 set rtp+=$VIMWORK
-set rtp+=$VIMWORK_BUNDLE/diff
-set rtp+=$VIMWORK_BUNDLE/cells
-set rtp+=$VIMWORK_BUNDLE/git
-set rtp+=$VIMWORK_BUNDLE/okazu
+set rtp+=$VIMWORK/bundle/diff
+set rtp+=$VIMWORK/bundle/cells
+set rtp+=$VIMWORK/bundle/git
 "}}}
-" ********************************************************************************
 " setting
-" ********************************************************************************
-"Setting
 " set - os "{{{
 "set - windows "{{{
 if has('win32') || has('win64') 
@@ -96,7 +82,7 @@ set lcs=tab:`\                                                                  
 set shiftwidth=4                                                                                         " # |
 set tabstop=4                                                                                            " # tabの設定
 set tw=0                                                                                                 " # 自動改行 OFF
-exe 'set backupdir='.$VIMTMP.'/backup.'                                                                 |" # Backupフォルダのパス
+exe 'set backupdir='.$LOCALWORK.'/backup.'                                                                 |" # Backupフォルダのパス
 "}}}
 "set - Normal {{{
 set autoread                                                                                             " # 自動更新
@@ -128,9 +114,7 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 "set - Tlist "{{{
 let Tlist_Show_One_File = 1
 ""}}}
-"********************************************************************************
 " mapping
-"********************************************************************************
 " nmap - <PLUG>"{{{
 nmap <C-s> 		<PLUG>(set_number)
 nmap v/ 		<PLUG>(select_search)
@@ -166,7 +150,6 @@ nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フ
 "nnoremap - lcd "{{{
 nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
 nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
-nnoremap ;de<CR> :<C-u>lcd $DESKTOP<CR>|"
 "}}}
 "nnoremap - typo {{{
 nnoremap <F1> <ESC>
@@ -204,10 +187,7 @@ nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
 " nnoremap - call "{{{
 nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
 "}}}
-"
-"********************************************************************************
 " Plugin
-"********************************************************************************
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
 let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
@@ -220,7 +200,7 @@ let g:toggle_pairs = {
 			\ }
 "}}}
 "plugin - QFixHowm{{{
-let howm_dir = $VIMTMP.'/howm'
+let howm_dir = $LOCALWORK.'/howm'
 let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
 "}}}
 "plugin - hsp {{{
@@ -300,21 +280,3 @@ function! <SID>move_unite_tags(str) "{{{
 	endif
 endfunction "}}}
 "}}}
-
-
-"********************************************************************************
-" 一時定義
-"********************************************************************************
-command! -narg=1 GetWord call <SID>get_word(<line1>, <line2>, <f-args>)
-function! <SID>get_word(lnum1, lnum2, word) "{{{
-	let lnum1 = a:lnum1
-	let lnum2 = a:lnum2
-	let word = a:word
-	
-	" 対象文字列以外の削除
-	"let cmd = lnum1.','.lnum2.'s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
-	let cmd = '*s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
-	exe cmd
-	echo cmd
-
-endfunction "}}}
