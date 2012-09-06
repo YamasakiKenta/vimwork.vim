@@ -4,10 +4,8 @@ let $VIMWORK   = '~/Dropbox/vim/mind/vimwork'     " <- ‚±‚Ìƒtƒ@ƒCƒ‹‚ðŽw’è‚µ‚Ä‚­‚
 let g:atmark_jump_is_unite = 1
 
 nnoremap ;m<CR> :lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork/vimrc.vim<CR>|"
+nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork/local/vimrc.vim<CR>
 nnoremap ;de<CR> :<C-u>lcd '~/Desktop'
-
-so ~/Dropbox/vim/mind/vimwork/neobundle.vim
 
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 set rtp+=~/Dropbox/vim/mind/tab-diff
