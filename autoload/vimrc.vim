@@ -69,7 +69,7 @@ augroup myAugroup
 	au FileType unite nmap <buffer> P <PLUG>(unite_toggle_auto_preview)
 aug END
 "}}}
-"set - Normal = "{{{
+"set - normal "{{{
 "set enc=utf-8                                                                                           " # エンコードの設定
 "set fenc=utf-8                                                                                          " # |
 "set grepprg=grep\ -nH                                                                                   " # Grep
@@ -116,9 +116,9 @@ let Tlist_Show_One_File = 1
 ""}}}
 " mapping
 " nmap - <PLUG>"{{{
-nmap <C-s> 		<PLUG>(set_number)
 nmap v/ 		<PLUG>(select_search)
 nmap ;uq<CR> 	<PLUG>(uniq_line)
+nmap ;sy<CR> 	<PLUG>(edit_syntax_file)
 " "}}}
 "nnoremap - simple {{{
 nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
@@ -140,8 +140,7 @@ nnoremap <S-RIGHT> <C-w>>|"
 nnoremap <S-UP> <C-w>-|"
 nnoremap <S-DOWN> <C-w>+|"
 "}}}
-"nnoremap - Normal "{{{
-nnoremap ;sy<CR> :MySyntaxFile<CR>|"                   " # シンタックスファイルの編集
+"nnoremap - normal "{{{
 nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
 nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
@@ -153,9 +152,9 @@ nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
 "}}}
 "nnoremap - typo {{{
 nnoremap <F1> <ESC>
-com! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
+command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
 "}}}
-"nnoremap - Find {{{
+"nnoremap - find {{{
 nnoremap ;vc<CR> :<C-u>MyGrep <C-r>"<CR>
 nnoremap ;vv<CR> :<C-u>MyGrep <C-r>+<CR>
 nnoremap ;v/<CR> :<C-u>MyGrep <C-r>/<CR>
@@ -166,9 +165,6 @@ nnoremap ;tv<CR> :<C-u>ta <C-r>+<CR>
 nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
-" nnoremap - c {{{
-nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
-" }}}
 " nnoremap - cscope "{{{
 noremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
 noremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
@@ -187,6 +183,12 @@ nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
 " nnoremap - call "{{{
 nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
 "}}}
+" nnoremap - c {{{
+nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
+" }}}
+" nnoremap - other "{{{
+nnoremap <C-s> 	:<C-u>SetNum<CR>
+" }}}
 " Plugin
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
