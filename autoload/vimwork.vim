@@ -261,9 +261,9 @@ smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                          
 "@script
 " script - unite jump "{{{
 if get(g:, 'atmark_jump_is_unite', 0) "{{{
-	nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+	nmap <C-@> :<C-u>call s:move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
 endif "}}}
-function! <SID>move_unite_tags(str) "{{{
+function! s:move_unite_tags(str) "{{{
 	if a:str =~ '^k_'
 		exe 'ta unite#kinds#'.a:str.'#define'
 	elseif a:str =~ 'a_'

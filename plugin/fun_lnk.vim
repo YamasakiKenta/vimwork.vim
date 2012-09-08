@@ -1,9 +1,9 @@
-command! GetFunclnk call <SID>getFunclnk()
+command! GetFunclnk call s:getFunclnk()
 
-function! <SID>get_fnc_from_line(line) "{{{
+function! s:get_fnc_from_line(line) "{{{
 	return a:line
 endfunction "}}}
-function! <SID>getFunclnk() "{{{
+function! s:getFunclnk() "{{{
 let file = expand("%")
 let lines = readfile(file);
 
@@ -11,7 +11,7 @@ arg = {
 			\ 'lines' : lines,
 			\ 'start' : 'function',
 			\ 'end'   : 'endfunction',
-			\ 'fnc'   : function('<SID>get_fnc')
+			\ 'fnc'   : function('s:get_fnc')
 			\ }
 for line in line
 
@@ -19,7 +19,7 @@ endfor
 
 endfunction "}}}
 
-function! <SID>get_str_from_loop(arg) "{{{
+function! s:get_str_from_loop(arg) "{{{
 	let lines = a:arg.lines
 	let start = a:arg.start
 	let end   = a:arg.end

@@ -1,16 +1,16 @@
-nnoremap <plug>(tree_syntax_force_reload) :<C-u>call <SID>force_reload()<CR>
+nnoremap <plug>(tree_syntax_force_reload) :<C-u>call s:force_reload()<CR>
 
 aug tree "{{{
 	au!
 	" èâä˙âª
-	au BufRead *.tree call <SID>init()
+	au BufRead *.tree call s:init()
 	au BufRead *.tree setf tree
 aug END "}}}
-function! <SID>init() "{{{
+function! s:init() "{{{
 	aug tree_init
 		au!
 		" à⁄ìÆÇµÇΩèÍçá
-		au CursorMoved <buffer> call <SID>reload()
+		au CursorMoved <buffer> call s:reload()
 	aug END
 	setl ft=tree fdm=indent shiftwidth=1 tabstop=1 expandtab
 	nmap <buffer> <C-l> <plug>(tree_syntax_force_reload)
@@ -20,7 +20,7 @@ function! <SID>init() "{{{
 	syn match Todo /|-\ze.*-$/
 
 endfunction "}}}
-function! <SID>force_reload() "{{{
+function! s:force_reload() "{{{
 <<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let subs_pattern = '\s\?\(\d\+\)\?[-= ]\?$' 
 
@@ -43,9 +43,9 @@ function! <SID>force_reload() "{{{
 	endwhile
 >>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 
-	call <SID>reload(1)
+	call s:reload(1)
 endfunction "}}}
-function! <SID>reload(...) "{{{
+function! s:reload(...) "{{{
 	" çƒï`âÊ
 <<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let force_flg = 0

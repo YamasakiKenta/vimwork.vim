@@ -1,6 +1,6 @@
 " 前後の入れ替え
-command! -range -nargs=? MySwap <line1>,<line2>call <SID>mySwap(<q-args>) "{{{
-function! <SID>mySwap(qarg)
+command! -range -nargs=? MySwap <line1>,<line2>call s:mySwap(<q-args>) "{{{
+function! s:mySwap(qarg)
 	let lineNum = line(".")
 	let line = getline(".") " # 文字の取得
 
@@ -20,8 +20,8 @@ function! <SID>mySwap(qarg)
 endfunction "}}}
 
 " 選択した部分を、コピーして別画面で開く
-command! -range=% SelectEdit :call <SID>selectEdit(<line1>, <line2>) "{{{
-function! <SID>selectEdit(start, end) 
+command! -range=% SelectEdit :call s:selectEdit(<line1>, <line2>) "{{{
+function! s:selectEdit(start, end) 
 
 	" 現在のファイルタイプを保存する
 	let ft = &filetype
@@ -44,8 +44,8 @@ function! <SID>selectEdit(start, end)
 endfunction "}}}
 
 " 検索ワードの追加
-command! -narg=* ASearch call <SID>aserach(<f-args>) "{{{
-function! <SID>aserach(...) 
+command! -narg=* ASearch call s:aserach(<f-args>) "{{{
+function! s:aserach(...) 
 " ********************************************************************************
 " 検索ワードの追加 ( OR 検索 )
 " @param[in]	検索ワード
@@ -56,8 +56,8 @@ function! <SID>aserach(...)
 endfunction "}}}
 
 " howm に追加する
-command! -narg=* QuickMemo call <SID>quickMemo(<f-args>) "{{{
-function! <SID>quickMemo(...)
+command! -narg=* QuickMemo call s:quickMemo(<f-args>) "{{{
+function! s:quickMemo(...)
 
 	"let str = input('comment: ',join(a:000))
 	if a:0 == 0 
@@ -83,8 +83,8 @@ function! <SID>quickMemo(...)
 endfunction "}}}
 
 " フォルダ構造のコピー
-command! -nargs=+ CopyFileDir call <SID>copyFileDir(<f-args>) "{{{
-function! <SID>copyFileDir(file,...)
+command! -nargs=+ CopyFileDir call s:copyFileDir(<f-args>) "{{{
+function! s:copyFileDir(file,...)
 	let g:copyFileDir_defaultRoot  = get(g:, 'copyFileDir_defaultRoot', 'c:')
 	let g:copyFileDir_defaultFile2 = get(g:, 'copyFileDir_defaultFile2', 'c:\tmp')
 	" ********************************************************************************
@@ -137,8 +137,8 @@ endfunction
 "}}}
 "
 " 対象の文言を抽出する
-command! -narg=1 GetWord call <SID>get_word(<line1>, <line2>, <f-args>) "{{{
-function! <SID>get_word(lnum1, lnum2, word) 
+command! -narg=1 GetWord call s:get_word(<line1>, <line2>, <f-args>) "{{{
+function! s:get_word(lnum1, lnum2, word) 
 	let lnum1 = a:lnum1
 	let lnum2 = a:lnum2
 	let word = a:word
@@ -152,8 +152,8 @@ function! <SID>get_word(lnum1, lnum2, word)
 endfunction "}}}
 
 " 連番の作成
-command! -narg=0 SetNum call <SID>set_num() "{{{
-function! <SID>set_num()
+command! -narg=0 SetNum call s:set_num() "{{{
+function! s:set_num()
 " ********************************************************************************
 " 連番の作成
 " カーソル以降の数字を、前の数字にひとつ加算したものにする ( マイナスは、考慮しない ) 

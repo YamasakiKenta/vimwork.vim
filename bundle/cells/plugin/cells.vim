@@ -1,6 +1,6 @@
 "todo : 最初の |より前はそのまま
 
-com! -range Cells call <SID>cells(<line1>,<line2>)
+com! -range Cells call s:cells(<line1>,<line2>)
 
 "幅を合わせる
 function! g:set_lens(strs1, strs2) "{{{
@@ -26,7 +26,7 @@ function! g:set_lens(strs1, strs2) "{{{
 	
 endfunction "}}}
 "文字幅の取得
-function! <SID>get_maxs_from_str(str, maxs) "{{{
+function! s:get_maxs_from_str(str, maxs) "{{{
 	" ********************************************************************************
 	" 最大幅の取得 ( 文字列 ) 
 	" @param[in]	str		設定更新する文字列
@@ -75,7 +75,7 @@ function! <SID>get_maxs_from_str(str, maxs) "{{{
 	return maxs
 
 endfunction "}}}
-function! <SID>get_maxs_from_strs(strs) "{{{
+function! s:get_maxs_from_strs(strs) "{{{
 	" ********************************************************************************
 	" 最大幅の取得 ( 文字列 ) 
 	" @param[in]	strs	設定する文字列
@@ -87,7 +87,7 @@ function! <SID>get_maxs_from_strs(strs) "{{{
 	"
 	let maxs = []
 	for str in strs
-		let maxs = <SID>get_maxs_from_str(str,maxs)
+		let maxs = s:get_maxs_from_str(str,maxs)
 	endfor
 
 	return maxs
@@ -95,7 +95,7 @@ function! <SID>get_maxs_from_strs(strs) "{{{
 endfunction "}}}
 
 "幅に合わせて、文字列の更新
-function! <SID>is_line(str) "{{{
+function! s:is_line(str) "{{{
 " ********************************************************************************
 " 行の線か調べる
 " @param[in]	str		調べる文字列
@@ -117,7 +117,7 @@ function! <SID>is_line(str) "{{{
 	return rtn
 
 endfunction "}}}
-function! <SID>get_line(str, maxs) "{{{
+function! s:get_line(str, maxs) "{{{
 	" ********************************************************************************
 	" 線の行なら、線を表示する
 	" @param[in]	str		線の行か調べる行
@@ -127,7 +127,7 @@ function! <SID>get_line(str, maxs) "{{{
 	let str = a:str
 	let str1 = substitute(str, "\[+|].*","","")
 
-	if <SID>is_line(str)
+	if s:is_line(str)
 
 		" 一番最初は、表示しない
 		let strs = []
@@ -159,7 +159,7 @@ function! g:add_list(name1, list1, name2, list2) "{{{
 	
 	return dicts
 endfunction "}}}
-function! <SID>get_str(str, maxs) "{{{
+function! s:get_str(str, maxs) "{{{
 	let maxs      = a:maxs
 	let while_max = len(maxs)
 	let strs      = split(a:str, "|")
@@ -185,14 +185,14 @@ function! <SID>get_str(str, maxs) "{{{
 	return rtn
 
 endfunction "}}}
-function! <SID>get_strs(strs, maxs) "{{{
+function! s:get_strs(strs, maxs) "{{{
 
 	let outs = []
 	for str in a:strs
-		if <SID>is_line(str)
-			call add(outs, <SID>get_line(str, a:maxs))
+		if s:is_line(str)
+			call add(outs, s:get_line(str, a:maxs))
 		else
-			call add(outs, <SID>get_str(str, a:maxs))
+			call add(outs, s:get_str(str, a:maxs))
 		endif
 	endfor
 
@@ -200,7 +200,7 @@ function! <SID>get_strs(strs, maxs) "{{{
 
 endfunction "}}}
 
-function! <SID>cells(line1,line2) "{{{
+function! s:cells(line1,line2) "{{{
 	let line1 = a:line1
 	let line2 = a:line2
 
@@ -208,10 +208,10 @@ function! <SID>cells(line1,line2) "{{{
 	let strs = getline(line1,line2)
 
 	" | の場所の取得 ( 各列の幅の設定 ) 
-	let maxs =  <SID>get_maxs_from_strs(strs)
+	let maxs =  s:get_maxs_from_strs(strs)
 
 	" 幅の設定
-	let strs = <SID>get_strs(strs, maxs)
+	let strs = s:get_strs(strs, maxs)
 
 	call setline(line1, strs)	
 
