@@ -1,4 +1,4 @@
-function! myneobundle#init() "{{{
+function! vimwork_neobundle#init() "{{{
 endfunction "}}}
 
 "NeoBundle 'Shougo/git-vim'
