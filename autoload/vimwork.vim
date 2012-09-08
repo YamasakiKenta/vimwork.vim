@@ -78,7 +78,7 @@ set lcs=tab:`\                                                                  
 set shiftwidth=4                                                                                         " # |
 set tabstop=4                                                                                            " # tabの設定
 set tw=0                                                                                                 " # 自動改行 OFF
-exe 'set backupdir='.$VIMTMP.'/backup.'                                                                 |" # Backupフォルダのパス
+set backupdir=$VIMTMP/backup                                                                 " # Backupフォルダのパス
 "}}}
 "set - Normal {{{
 set autoread                                                                                             " # 自動更新
