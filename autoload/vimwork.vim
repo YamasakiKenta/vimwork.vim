@@ -1,11 +1,12 @@
 function! vimwork#init() "{{{
-let $VIMWORK = expand   ( exists ( '$VIMWORK'   )  ? $VIMWORK   : '~/vimwork'   ) 
-let $LOCALWORK = expand ( exists ( '$LOCALWORK' )  ? $LOCALWORK : '~/localwork' ) 
-let $VIMTMP = expand    ( exists ( '$LOCALWORK' )  ? $VIMTMP    : '~/vimtmp'    ) 
+let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
+let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
+let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   ) 
 endfunction "}}}
 "@point of use
 "$VIMTMP "{{{
-" rtp
+" - backupdir
+" - howm
 " }}}
 " $LOCALWORK "{{{
 "  - vimrc.vim

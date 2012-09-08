@@ -11,7 +11,7 @@ call neobundle#rc('~/Dropbox/vim/bundle')
 
 " = vimwork = 
 set rtp+=~/Dropbox/vim/mind/vimwork
-let $LOCALWORK = expand('~/vimtmp')	
+let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork')	
 let $VIMWORK   = expand('~/Dropbox/vim/mind/vimwork')
 let $VIMTMP    = expand('~/vimtmp')
 let g:atmark_jump_is_unite = 1
