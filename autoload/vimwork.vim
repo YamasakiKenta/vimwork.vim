@@ -117,8 +117,12 @@ nmap v/ 		<PLUG>(select_search)
 nmap ;uq<CR> 	<PLUG>(uniq_line)
 nmap ;sy<CR> 	<PLUG>(edit_syntax_file)
 " "}}}
-"nnoremap - simple {{{
+"map - simple "{{{
 map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
+"}}}
+"nnoremap - simple {{{
+nnoremap <C-j> j.|"                                                            " # 作業の繰り返し                     
+nnoremap <C-k> k.|"                                                            " # 作業の繰り返し
 nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
 nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepに移動 ( 前 )
 nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # 検索値の選択
@@ -127,9 +131,6 @@ nnoremap k gk|"                                                                "
 nnoremap <C-]> <C-]>zz|"                                                       " # タグジャンプ
 nnoremap <S-Space> za|"                                                        " # 折畳み
 nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                       " # ハイライト
-vnoremap * "ty:let @/=@t<CR>N|"                                                " # 選択文字を検索
-vnoremap < <gv|"                                                               " # カーソル移動
-vnoremap > >gv|"                                                               " # 再選択
 "}}}
 "nnoremap - window {{{
 nnoremap <S-LEFT> <C-w><|"
@@ -186,6 +187,11 @@ nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
 " nnoremap - other "{{{
 nnoremap <C-s> 	:<C-u>SetNum<CR>
 " }}}
+"vnoremap - simple "{{{
+vnoremap * "ty:let @/=@t<CR>N|"                                                " # 選択文字を検索
+vnoremap < <gv|"                                                               " # カーソル移動
+vnoremap > >gv|"                                                               " # 再選択
+"}}}
 "@plugin
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化

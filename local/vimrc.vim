@@ -1,6 +1,6 @@
 nnoremap ;m<CR> :lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork/local/vimrc.vim<CR>
-nnoremap ;de<CR> :<C-u>lcd '~/Desktop'
+nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork/local/vimrc.vim<CR>|"
+nnoremap ;de<CR> :<C-u>lcd '~/Desktop'|"
 
 " = rtp = 
 set rtp+=~/Dropbox/vim/mind/tab-diff
@@ -8,7 +8,6 @@ set rtp+=~/Dropbox/vim/mind/tab-diff
 " = neobundle.vim =
 set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 call neobundle#rc('~/Dropbox/vim/bundle')
-
 
 " = vimwork = 
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork')	
@@ -21,7 +20,7 @@ call vimwork#init()
 call vimwork_neobundle#init()
 
 " = unite-perforce =
-if 0
+if 1
 	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 	let $PFTMP    = '~/vimtmp'
 	call perforce#init()
