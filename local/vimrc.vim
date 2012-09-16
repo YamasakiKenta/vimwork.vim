@@ -9,17 +9,20 @@ set rtp+=~/Dropbox/vim/mind/tab-diff
 set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 call neobundle#rc('~/Dropbox/vim/bundle')
 
+
 " = vimwork = 
-set rtp+=~/Dropbox/vim/mind/vimwork
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork')	
 let $VIMWORK   = expand('~/Dropbox/vim/mind/vimwork')
 let $VIMTMP    = expand('~/vimtmp')
 let g:atmark_jump_is_unite = 1
-call vimwork_neobundle#init()
+
+set rtp+=~/Dropbox/vim/mind/vimwork
 call vimwork#init()
+call vimwork_neobundle#init()
 
 " = unite-perforce =
-set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
-let $PFTMP    = '~/vimtmp'
-call perforce#init()
-
+if 0
+	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
+	let $PFTMP    = '~/vimtmp'
+	call perforce#init()
+endif
