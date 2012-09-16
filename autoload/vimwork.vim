@@ -238,8 +238,8 @@ let g:vimfiler_as_default_explorer = 1   " # 初期filer
 let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 "}}}
 "Shogo - neocomplcache{{{
-"neocomplcache - Init {{{
-let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                 " # snippet ファイル作成場所
+"neocomplcache - init {{{
+let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                       " # snippet ファイル作成場所
 let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
 let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
 "let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ

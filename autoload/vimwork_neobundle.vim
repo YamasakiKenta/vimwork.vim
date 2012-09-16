@@ -1,6 +1,8 @@
 function! vimwork_neobundle#init() "{{{
 endfunction "}}}
 
+"NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+"
 "NeoBundle 'Shougo/git-vim'
 "NeoBundle 'ShowMarks7'
 "NeoBundle 'Toggle'
@@ -26,18 +28,19 @@ endfunction "}}}
 "NeoBundle 'thinca/vim-rtputil'
 "NeoBundle 'tpope/vim-surround.git'  
 "NeoBundle 'vundle'
+"NeoBundle 'git://github.com/tpope/vim-fugitive.git'
+
 
 NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'  
 NeoBundle 'git://github.com/Shougo/vimfiler'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
-NeoBundle 'git://github.com/Shougo/vimshell.git'
-NeoBundle 'git://github.com/fuenor/qfixhowm.git'
-NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
-NeoBundle 'git://github.com/thinca/vim-unite-history'
-NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-NeoBundle 'git://github.com/tsukkee/unite-tag.git'
-NeoBundle 'git://github.com/vim-scripts/Align.git'
-NeoBundle 'git://github.com/vim-scripts/taglist.vim.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+
+"NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+"NeoBundle 'git://github.com/Shougo/vimshell.git'
+"NeoBundle 'git://github.com/fuenor/qfixhowm.git'
+"NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
+"NeoBundle 'git://github.com/thinca/vim-unite-history'
+"NeoBundle 'git://github.com/tsukkee/unite-tag.git'
+"NeoBundle 'git://github.com/vim-scripts/Align.git'
+"NeoBundle 'git://github.com/vim-scripts/taglist.vim.git'
