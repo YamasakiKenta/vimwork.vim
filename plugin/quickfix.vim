@@ -1,15 +1,6 @@
-" file ‚É’Ç‰Á
-
-let action = {
-			\ 'is_selectable' : 1, 
-			\ 'description' : 'qfix‚É’Ç‰Á',
-			\ }
-
-call unite#custom_action('file', 'add qfix', action)
-call unite#custom_action('jump_list', 'add qfix', action)
-function! action.func(candidates) "{{{
-	call s:add_qfix(a:candidates)
-endfunction "}}}
+if 0
+"if exists('g:loaded_unite')
+"@ sub
 function! s:add_qfix(candidates) "{{{
 	for candidate in a:candidates
 
@@ -31,4 +22,16 @@ function! s:add_qfix(candidates) "{{{
 
 	endfor
 endfunction "}}}
+
+"@ main
+let action = {
+			\ 'is_selectable' : 1, 
+			\ 'description' : 'add qfix',
+			\ }
+call unite#custom_action('file', 'add qfix', action)
+call unite#custom_action('jump_list', 'add qfix', action)
+function! action.func(candidates) "{{{
+	call s:add_qfix(a:candidates)
+endfunction "}}}
 unlet action
+endif
