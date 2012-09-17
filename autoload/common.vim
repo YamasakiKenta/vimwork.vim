@@ -47,7 +47,7 @@ endfunction "}}}
 function! common#Get_cmds(cmd) "{{{
 	return split(system(a:cmd),'\n')
 endfunction "}}}
-function! common#Get_kk(str) "{{{
+function! common#get_kk(str) "{{{
 	"return substitute(a:str,'^\"?\(.*\)\"?','"\1"','')
 	return len(a:str) ? '"'.a:str.'"' : ''
 endfunction "}}}
@@ -60,7 +60,7 @@ function! common#is_different(path,path2) "{{{
 	" 							FALSE	ç∑ï™Ç»Çµ
 	" ********************************************************************************
 	let flg = 1
-	let outs = common#Get_cmds('fc '.common#Get_kk(a:path).' '.common#Get_kk(a:path2))
+	let outs = common#Get_cmds('fc '.common#get_kk(a:path).' '.common#Get_kk(a:path2))
 	if outs[1] =~ '^FC: ëäà·ì_ÇÕåüèoÇ≥ÇÍÇ‹ÇπÇÒÇ≈ÇµÇΩ'
 		let flg = 0
 	endif
