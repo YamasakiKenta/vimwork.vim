@@ -1,5 +1,3 @@
-if 0
-"if exists('g:loaded_unite')
 "source - git_status "{{{
 let s:source = {
 			\ 'name' : 'git_status',
@@ -16,4 +14,3 @@ function! s:source.gather_candidates(args, context) "{{{
 	return candidates
 endfunction "}}}
 unlet s:source "}}}
-endif

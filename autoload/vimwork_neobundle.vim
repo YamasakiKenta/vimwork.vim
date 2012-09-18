@@ -30,6 +30,7 @@ endfunction "}}}
 "NeoBundle 'vundle'
 "NeoBundle 'git://github.com/tpope/vim-fugitive.git'
 
+NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'  
 NeoBundle 'git://github.com/Shougo/vimfiler'
@@ -37,7 +38,6 @@ NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
 NeoBundle 'git://github.com/fuenor/qfixhowm.git'
 
-"NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 "NeoBundle 'git://github.com/Shougo/vimshell.git'
 "NeoBundle 'git://github.com/thinca/vim-unite-history'
 "NeoBundle 'git://github.com/tsukkee/unite-tag.git'
