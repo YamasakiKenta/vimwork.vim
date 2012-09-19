@@ -1,5 +1,3 @@
-if 0
-"if exists('g:loaded_unite')
 "@ sub
 function! s:add_qfix(candidates) "{{{
 	for candidate in a:candidates
@@ -34,4 +32,3 @@ function! action.func(candidates) "{{{
 	call s:add_qfix(a:candidates)
 endfunction "}}}
 unlet action
-endif
