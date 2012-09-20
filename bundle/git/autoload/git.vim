@@ -14,4 +14,3 @@ function! git#cmds(cmd, ...) "{{{
 	let lines = split(system(cmd), "\n")
 	return lines
 endfunction "}}}
-

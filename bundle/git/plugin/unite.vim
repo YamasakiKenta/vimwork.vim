@@ -16,9 +16,6 @@ endfunction "}}}
 unlet s:source "}}}
 
 let $GITPATH = 'C:/Users/yamasaki.mac/Dropbox/vim/mind/vimwork/'
-
-nnoremap ;gh<CR> :<C-u>Unite git_ls_files<CR>
-
 "source - gi_ls_files "{{{
 let s:source = {
 			\ 'name' : 'git_ls_files',
@@ -31,8 +28,10 @@ function! s:source.gather_candidates(args, context) "{{{
 	let candidates = map( datas, "{
 				\ 'word' : v:val,
 				\ 'kind' : 'file',
-				\ 'action__path' : v:val,
+				\ 'action__path' : $GITPATH.v:val,
 				\ }")
 	return candidates
 endfunction "}}}
 unlet s:source "}}}
+
+nnoremap ;gh<CR> :<C-u>Unite git_ls_files<CR>
