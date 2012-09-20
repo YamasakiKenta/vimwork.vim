@@ -24,4 +24,8 @@ if 1
 	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 	let $PFTMP    = '~/vimtmp'
 	call perforce#init()
+
+	let g:perforce_merge_tool         = 'winmergeu /r'
+	let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
 endif
+
