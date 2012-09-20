@@ -28,7 +28,7 @@ function! s:source.gather_candidates(args, context) "{{{
 	let candidates = map( datas, "{
 				\ 'word' : v:val,
 				\ 'kind' : 'file',
-				\ 'action__path' : $GITPATH.v:val,
+				\ 'action__path' : v:val,
 				\ }")
 	return candidates
 endfunction "}}}
