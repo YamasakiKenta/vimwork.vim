@@ -4,15 +4,13 @@ function! s:add_qfix(candidates) "{{{
 
 		let word = candidate.word
 		let file = candidate.action__path
-		let pattern = candidate.action__pattern
 
 		if exists("candidate.action__line")
 			let line = candidate.action__line
 			caddexpr file . ":" . line .  ":" . word
 		else
 			setl errorformat+=%f:%s:%m
-			echo
-			echo pattern
+			let pattern = candidate.action__pattern
 			setl errorformat
 			call input("")
 			caddexpr file . ":" . pattern .  ":" . word
