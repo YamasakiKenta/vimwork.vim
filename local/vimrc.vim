@@ -29,3 +29,16 @@ if 1
 	let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
 endif
 
+" ŠJ”­—p‚ÉˆÚ“®
+if get(g:, 'atmark_jump_is_unite', 0) "{{{
+	nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+endif "}}}
+function! s:move_unite_tags(str) "{{{
+	let str = a:str
+
+	if str == '^s:'
+		let str = matchstr(str, 's:\zs.*')
+	endif
+	
+	exe 'ta' str
+endfunction "}}}

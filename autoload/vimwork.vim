@@ -265,23 +265,3 @@ smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                          
 "}}}
 "}}}
 "@script
-" script - unite jump "{{{
-if get(g:, 'atmark_jump_is_unite', 0) "{{{
-	nmap <C-@> :<C-u>call s:move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-endif "}}}
-function! s:move_unite_tags(str) "{{{
-	if a:str =~ '^k_'
-		exe 'ta unite#kinds#'.a:str.'#define'
-	elseif a:str =~ 'a_'
-		exe 'ta kind.action_table.'.a:str.'.func'
-	else
-		" unite source �̏ꍇ
-		let source_flg = unite#get_sources(a:str)
-		if len(source_flg) > 0
-			let fnc = 's:source_'.a:str
-			exe 'ta' fnc
-		endif
-
-	endif
-endfunction "}}}
-"}}}
