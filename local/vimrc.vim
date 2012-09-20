@@ -31,14 +31,15 @@ endif
 
 " ŠJ”­—p‚ÉˆÚ“®
 if get(g:, 'atmark_jump_is_unite', 0) "{{{
-	nmap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+	nnoremap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
 endif "}}}
 function! s:move_unite_tags(str) "{{{
 	let str = a:str
 
-	if str == '^s:'
+	if str =~ '^s:'
 		let str = matchstr(str, 's:\zs.*')
 	endif
 	
+	echo str
 	exe 'ta' str
 endfunction "}}}
