@@ -1,9 +1,15 @@
-"@ sub
-function! s:add_qfix(candidates) "{{{
+let action = {
+			\ 'is_selectable' : 1, 
+			\ 'description' : 'add qfix[file, jump_list]',
+			\ }
+call unite#custom_action('file', 'add qfix', action)
+call unite#custom_action('jump_list', 'add qfix', action)
+function! action.func(candidates) "{{{
+
 	for candidate in a:candidates
 
 		let word = candidate.word
-		let file = candidate.action__path
+		let file = get(candidate, 'action__path', expand("%"))
 
 		if exists("candidate.action__line")
 			let line = candidate.action__line
@@ -17,16 +23,5 @@ function! s:add_qfix(candidates) "{{{
 		endif
 
 	endfor
-endfunction "}}}
-
-"@ main
-let action = {
-			\ 'is_selectable' : 1, 
-			\ 'description' : 'add qfix',
-			\ }
-call unite#custom_action('file', 'add qfix', action)
-call unite#custom_action('jump_list', 'add qfix', action)
-function! action.func(candidates) "{{{
-	call s:add_qfix(a:candidates)
 endfunction "}}}
 unlet action
