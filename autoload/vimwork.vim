@@ -208,18 +208,6 @@ let g:toggle_pairs = {
 let howm_dir = $VIMTMP.'/howm'
 let QFix_CloseOnJump = 1" # QFixHown - Çé©ìÆìIÇ…èIóπÇ∑ÇÈ
 "}}}
-"plugin - hsp {{{
-if 0
-autocmd BufRead *.hsp call FileTypeHsp()
-function! FileTypeHsp()
-	compiler hsp
-	set filetype=hsp
-	se omnifunc=hspcomplete#Complete
-	nnoremap <buffer> <F5> :make<CR>
-	nnoremap <buffer> <F1> :execute "!\"c:\\Local\\hsp32\\hsphelp\\helpman.exe\"" . " " . expand( "<cword>" )<CR>
-endfunction
-endif
-"}}}
 "@plugin - Shogo
 "Shogo - unite{{{
 let g:unite_enable_start_insert = 0
