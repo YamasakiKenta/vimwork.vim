@@ -5,6 +5,10 @@ nnoremap ;de<CR> :<C-u>lcd '~/Desktop'|"
 " = rtp = 
 set rtp+=~/Dropbox/vim/mind/tab-diff
 
+" = git = 
+set rtp+=~/Dropbox/vim/mind/unite-git.vim
+let $GITTMP = '~/vimtmp'
+
 " = neobundle.vim =
 set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 call neobundle#rc('~/Dropbox/vim/bundle')
@@ -20,14 +24,12 @@ call vimwork#init()
 call vimwork_neobundle#init()
 
 " = unite-perforce =
-if 1
-	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
-	let $PFTMP    = '~/vimtmp'
-	call perforce#init()
+set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
+let $PFTMP    = '~/vimtmp'
+call perforce#init()
 
-	let g:perforce_merge_tool         = 'winmergeu /r'
-	let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
-endif
+let g:perforce_merge_tool         = 'winmergeu /r'
+let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
 
 " ŠJ”­—p‚ÉˆÚ“®
 if get(g:, 'atmark_jump_is_unite', 0) "{{{
@@ -39,7 +41,7 @@ function! s:move_unite_tags(str) "{{{
 	if str =~ '^s:'
 		let str = matchstr(str, 's:\zs.*')
 	endif
-	
+
 	echo str
 	exe 'ta' str
 endfunction "}}}

@@ -32,8 +32,8 @@ snippet action
     unlet s:action "}}}
 snippet kaction
 	let s:kind.action_table.${1} = {
-		\ 'description' : '',
 		\ 'is_selectable' : 1,
+		\ 'description' : '',
 		\ }
 	function! s:kind.action_table.$1.func(candidates) "{{{
 		for candidate in a:candidates
