@@ -21,50 +21,27 @@ function! s:init() "{{{
 
 endfunction "}}}
 function! s:force_reload() "{{{
-<<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let subs_pattern = '\s\?\(\d\+\)\?[-= ]\?$' 
 
 	exe 'silent %s/'.subs_pattern.'//'
 	norm 
 
 	echo 'force_reload'
-=======
-	echo 'TEST'
-	let max = line('$')
-	let lnum = line('.')
-	let subs_pattern = '\s\?\(\d\+\)\?[-= ]\?$' 
-
-	echo max
-	while ( lnum < max ) 
-		let str = getline(lnum)
-		let str = substitute(str, subs_pattern, '','')
-		call setline(lnum, str)
-		let lnum = lnum + 1
-	endwhile
->>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 
 	call s:reload(1)
 endfunction "}}}
 function! s:reload(...) "{{{
 	" Ä•`‰æ
-<<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let force_flg = 0
 	if a:0 > 0
 		let force_flg = a:1
 	endif
 
-=======
-	let force_flg = a:0 > 0 ? a:1 : 0
->>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 
 	" ‰Šú‰»
 	let lnum         = line(".")
 	let tree_pattern = '|-'
-<<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let subs_pattern = '\s*\(\d\+\)\?[-= ]\?$'
-=======
-	let subs_pattern = '\s\?\(\d\+\)\?[- = ]\?$'
->>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 	let index        = {}
 
 	let str = getline(lnum)
@@ -72,11 +49,7 @@ function! s:reload(...) "{{{
 	let index.old   = match(str, tree_pattern)
 
 	" syntax •¶š‚ÌƒŠƒZƒbƒg
-<<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 	let str = substitute(str, subs_pattern, ' '.index.old.' ','')
-=======
-	let str = substitute(str, subs_pattern, '  ','')
->>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 	call setline(lnum, str)
 
 	" XVˆÊ’u‚Ìİ’è
@@ -85,22 +58,15 @@ function! s:reload(...) "{{{
 		let index.stop = match(getline(1+lnum), tree_pattern)
 
 		" Œ»İ‚ÌˆÊ’u‚©Aˆês‰º‚ÌˆÊ’u‚Æ“¯‚¶ˆÊ’u‚É—ˆ‚½ê‡AXVI—¹
-<<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 		if index.stop < 0 || index.stop > index.old
 			let index.stop = index.old 
 		endif
-=======
-		let index.stop = index.stop > index.old ? index.old : index.stop
->>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 	else 
 		" ‚·‚×‚ÄXV
 		let index.stop = -1
 	endif
 
-<<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 
-=======
->>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 	while (1) "{{{
 		"--------------------------------------------------------------------------------
 		" index.now : Œ»İ‚ÌˆÊ’u
@@ -115,7 +81,6 @@ function! s:reload(...) "{{{
 
 		" syntax •¶š‚Ìİ’è
 		if index.now < index.old
-<<<<<<< HEAD:bundle/okazu/plugin/tree.vim
 			let subs_str = '='
 		elseif index.now == index.old
 			let subs_str = '-'
@@ -133,23 +98,6 @@ function! s:reload(...) "{{{
 		" I—¹”»’è
 		if ( lnum < 0 || index.now < 0 || index.stop > index.now ) 
 					echo 'END : '.lnum.' , '.index.now
-=======
-			" ‘O‰ñ‚ÌˆÊ’u‚ğXV‚·‚é
-			let index.old = index.now
-			let subs_str = ' ='
-		elseif index.now == index.old
-			let subs_str = ' -'
-		elseif index.now > index.old
-			let subs_str = '  '
-		endif
-
-		" XV
-		let str = substitute(str, subs_pattern, subs_str,'')
-		call setline(lnum, str)
-
-		" I—¹”»’è
-		if ( lnum > 0 || index.stop >= index.now || index.now < 0 ) 
->>>>>>> mac book:myBundle/okazu/plugin/tree.vim
 			break
 		endif 
 

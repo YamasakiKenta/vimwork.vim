@@ -1,6 +1,6 @@
 nnoremap ;m<CR> :lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork/local/vimrc.vim<CR>|"
-nnoremap ;de<CR> :<C-u>lcd '~/Desktop'|"
+nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
 
 " = rtp = 
 set rtp+=~/Dropbox/vim/mind/tab-diff
