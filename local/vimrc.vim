@@ -11,19 +11,13 @@ let $VIMTMP    = expand('~/vimtmp')
 let g:atmark_jump_is_unite = 1
 
 
-" = unite-perforce =
-set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
-let $PFTMP    = '~/vimtmp'
-call perforce#init()
-
-let g:perforce_merge_tool         = 'winmergeu /r'
-let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
 endif
 
 " = rtp =
 set rtp+=~/Dropbox/vim/mind/vimwork
 set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 set rtp+=~/Dropbox/vim/mind/unite-git.vim
+set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 
 " = vimwork = 
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork')	
@@ -54,3 +48,9 @@ nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork/local/vimrc.vim<CR>|"
 nnoremap ;m<CR> :lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
 nnoremap ;up<CR> :<c-u>Unite settings<CR>
+
+" = unite-perforce =
+let $PFTMP    = '~/vimtmp'
+let g:perforce_merge_tool         = 'winmergeu /r'
+let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
+call perforce#init()
