@@ -38,6 +38,7 @@ NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
 NeoBundle 'git://github.com/fuenor/qfixhowm.git'
 NeoBundle 'git://github.com/vim-scripts/Align.git'
+NeoBundle 'git://github.com/Shougo/unite-outline.git'
 
 "NeoBundle 'git://github.com/Shougo/vimshell.git'
 "NeoBundle 'git://github.com/thinca/vim-unite-history'

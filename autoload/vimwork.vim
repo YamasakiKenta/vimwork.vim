@@ -226,6 +226,7 @@ nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
 nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>
 nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
+nnoremap ;ue<CR>  :<C-u>Unite outline<CR>
 "}}}
 "Shogo - vimfiler{{{
 let g:vimfiler_as_default_explorer = 1   " # ‰Šúfiler

@@ -27,7 +27,7 @@ syntax keyword Green BGCOLOR COLOR SIZE LEFT CENTER RIGHT
 "syntax region String start=+"+ skip=+\\"+ end=+"+
 
 "link
-"todo : > URLã ã‘è‰²ã‚’å¤‰ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹
+"todo : > URL‚¾‚¯F‚ğ•Ï‚¦‚é‚æ‚¤‚É‚·‚é
 syntax region Underlined start=+\[\[+ skip=+\\"+ end=+\]\]+
 
 syntax match Purple /#\|&\|:/
