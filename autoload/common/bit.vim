@@ -65,7 +65,7 @@ endfunction "}}}
 " @param[in]	bit		•
 " @retval       flg		bit ‚Ìæ“¾
 " ********************************************************************************
-function! s:get_bit(num, bit) "{{{
+function! common#bit#get_bit(num, bit) "{{{
 	
 	let num1 = float2nr(pow(2, a:bit+1))
 	let num2 = num1 / 2 
@@ -103,3 +103,4 @@ function! common#bit#get_nums_form_bit(bit) "{{{
 	return nums
 
 endfunction "}}}
+

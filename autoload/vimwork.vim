@@ -1,7 +1,7 @@
 function! vimwork#init() "{{{
-let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
-let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
-let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   ) 
+	let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
+	let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
+	let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   ) 
 endfunction "}}}
 "@point of use
 "$VIMTMP "{{{
@@ -30,9 +30,7 @@ set rtp+=$VIMWORK/bundle/cells
 set rtp+=$VIMWORK/bundle/git
 "}}}
 "@setting
-" set - os "{{{
-"set - windows "{{{
-if has('win32') || has('win64') 
+if has('win32') || has('win64') "{{{
 	nnoremap <A-Space> :simalt ~<CR>|" " # Window変更
 	aug my_vimrc
 		au!
@@ -43,10 +41,9 @@ if has('win32') || has('win64')
 				\ 'c' : 'h',
 				\ 'h' : 'c',
 				\ }
-
-	"}}}
-	"set - mac "{{{
-elseif has('mac') 
+endif
+"}}}
+if has('mac') "{{{
 	set makeprg=xcodebuild
 	let s:ext = {
 				\ 'c' : 'h',
@@ -58,18 +55,23 @@ elseif has('mac')
 		aut BufRead *.h setf objc
 	aug END
 endif "}}}
+if !has('gui') "{{{
+	set ruler                                                                                                " # カーソルの位置の表示
+	set nocompatible                                                                                         " # vimの機能が使える
+	syntax enable                                                                                            " # 色を付け - 設定がリセットされる
+	filetype on
+	filetype indent on
+	filetype plugin on
+endif
 "}}}
-"set - Autoload {{{
-augroup myAugroup
+augroup myAugroup "{{{
 	au!
 	aut BufRead *.snip setf snip
 	au FileType unite nmap <buffer> P <PLUG>(unite_toggle_auto_preview)
 aug END
 "}}}
-"set - normal "{{{
-"set enc=utf-8                                                                                           " # エンコードの設定
-"set fenc=utf-8                                                                                          " # |
-"set grepprg=grep\ -nH                                                                                   " # Grep
+"set - input "{{{
+set ve=block
 set fdm=marker                                                                                           " # 自動的に折りたたみ
 set fo+=ro                                                                                               " # 自動でコメント挿入
 set guioptions-=T                                                                                        " # メニューバーを削除
@@ -81,7 +83,7 @@ set tabstop=4                                                                   
 set tw=0                                                                                                 " # 自動改行 OFF
 set backupdir=$VIMTMP/backup                                                                 " # Backupフォルダのパス
 "}}}
-"set - Normal {{{
+"set - normal {{{
 set autoread                                                                                             " # 自動更新
 set cursorline                                                                                           " # カーソル行の強調
 set hidden                                                                                               " # ファイルを保存せず移動
@@ -95,63 +97,42 @@ set nowrap                                                                      
 set number                                                                                               " # 番号入力
 set smartcase                                                                                            " # |
 "}}}
-"set - Terminal {{{
-if !has('gui')
-	set ruler                                                                                                " # カーソルの位置の表示
-	set nocompatible                                                                                         " # vimの機能が使える
-	syntax enable                                                                                            " # 色を付け - 設定がリセットされる
-	filetype on
-	filetype indent on
-	filetype plugin on
-endif
-"}}}
 "set - cscope "{{{
-set cscopequickfix=s-,c-,d-,i-,t-,e-
+set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 "}}}
-"set - Tlist "{{{
-let Tlist_Show_One_File = 1
-""}}}
 "@mapping
+"map - simple "{{{
+map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
+"}}}
 " nmap - <Plug>"{{{
 nmap v/ 		<Plug>(select_search)
 nmap ;uq<CR> 	<Plug>(uniq_line)
 nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 " "}}}
-"map - simple "{{{
-map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
+" nnoremap - c {{{
+nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
+" }}}
+" nnoremap - call "{{{
+nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
 "}}}
-"nnoremap - simple {{{
-nnoremap <C-j> j.|"                                                            " # 作業の繰り返し                     
-nnoremap <C-k> k.|"                                                            " # 作業の繰り返し
-nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
-nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepに移動 ( 前 )
-nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # 検索値の選択
-nnoremap j gj|"                                                                " # カーソル移動
-nnoremap k gk|"                                                                " # カーソル移動
-nnoremap <C-]> <C-]>zz|"                                                       " # タグジャンプ
-nnoremap <S-Space> za|"                                                        " # 折畳み
-nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                       " # ハイライト
-"}}}
-"nnoremap - window {{{
-nnoremap <S-LEFT> <C-w><|"
-nnoremap <S-RIGHT> <C-w>>|"
-nnoremap <S-UP> <C-w>-|"
-nnoremap <S-DOWN> <C-w>+|"
-"}}}
-"nnoremap - normal "{{{
-nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
-nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
-nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
-nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
-"}}}
-"nnoremap - lcd "{{{
-nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
-nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
-"}}}
-"nnoremap - typo {{{
-nnoremap <F1> <ESC>
-command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
-"}}}
+" nnoremap - cscope "{{{
+nnoremap <C-\>K :call system("ctags -R")<CR>|"
+nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R")<CR>:cs add cscope.out<CR>|"
+nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
+nnoremap <C-\>v :vim /<C-R>=expand("<cword>")<CR>/ **/*.vim **.*.[ch]<CR>
+nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
+nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
+nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>|"
+nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
+" }}}
+" nnoremap - other "{{{
+nnoremap <C-s> 	:<C-u>SetNum<CR>
+" }}}
 "nnoremap - find {{{
 nnoremap ;vc<CR> :<C-u>MyGrep <C-r>"<CR>
 nnoremap ;vv<CR> :<C-u>MyGrep <C-r>+<CR>
@@ -163,30 +144,39 @@ nnoremap ;tv<CR> :<C-u>ta <C-r>+<CR>
 nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
-" nnoremap - cscope "{{{
-noremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
-noremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
-noremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>|"
-nnoremap <C-\>L :call system("cscope -b -R")<CR>:cs kill -1<CR>:cs add cscope.out<CR>|"
-nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
-nnoremap <C-\>K :call system("ctags -R")<CR>|"
-nnoremap <C-\>v :vim /<C-R>=expand("<cword>")<CR>/ **/*.vim **.*.[ch]<CR>
-nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
-" }}}
-" nnoremap - call "{{{
-nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
+"nnoremap - lcd "{{{
+nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
+nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
 "}}}
-" nnoremap - c {{{
-nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
-" }}}
-" nnoremap - other "{{{
-nnoremap <C-s> 	:<C-u>SetNum<CR>
-" }}}
+"nnoremap - normal "{{{
+nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
+nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
+nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
+nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
+"}}}
+"nnoremap - simple {{{
+nnoremap <C-j> j.|"                                                            " # 作業の繰り返し                     
+nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
+nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepに移動 ( 前 )
+nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # 検索値の選択
+nnoremap j gj|"                                                                " # カーソル移動
+nnoremap k gk|"                                                                " # カーソル移動
+nnoremap <C-]> <C-]>zz|"                                                       " # タグジャンプ
+nnoremap <S-Space> za|"                                                        " # 折畳み
+nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"                                       " # ハイライト
+nnoremap [[ [[zz|"
+nnoremap ]] ]]zz|"
+"}}}
+"nnoremap - typo {{{
+nnoremap <F1> <ESC>
+command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
+"}}}
+"nnoremap - window {{{
+nnoremap <S-LEFT> <C-w><|"
+nnoremap <S-RIGHT> <C-w>>|"
+nnoremap <S-UP> <C-w>-|"
+nnoremap <S-DOWN> <C-w>+|"
+"}}}
 "vnoremap - simple "{{{
 vnoremap * "ty:let @/=@t<CR>N|"                                                " # 選択文字を検索
 vnoremap < <gv|"                                                               " # カーソル移動
