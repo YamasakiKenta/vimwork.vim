@@ -112,10 +112,10 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 let Tlist_Show_One_File = 1
 ""}}}
 "@mapping
-" nmap - <PLUG>"{{{
-nmap v/ 		<PLUG>(select_search)
-nmap ;uq<CR> 	<PLUG>(uniq_line)
-nmap ;sy<CR> 	<PLUG>(edit_syntax_file)
+" nmap - <Plug>"{{{
+nmap v/ 		<Plug>(select_search)
+nmap ;uq<CR> 	<Plug>(uniq_line)
+nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 " "}}}
 "map - simple "{{{
 map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"

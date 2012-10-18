@@ -1,3 +1,4 @@
+if 0
 "action - debug_print "{{{
 let s:action = { 
 			\ 'is_selectable' : 1, 
@@ -9,3 +10,4 @@ function! s:action.func(candidates) "{{{
 	call input("")
 endfunction "}}}
 unlet s:action "}}}
+endif

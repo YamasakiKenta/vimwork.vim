@@ -213,6 +213,4 @@ function! common#map_diff() "{{{
 	map <buffer> <A-left>  :diffget<CR>:<C-u>diffupdate<CR>|"
 	map <buffer> <A-right> :diffget<CR>:<C-u>diffupdate<CR>|"
 	map <buffer> <tab> :<C-u>call common#map_diff_tab()<CR>|"
-
-	echo 'vimwork'
 endfunction "}}}

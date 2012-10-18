@@ -17,6 +17,7 @@ set rtp+=~/Dropbox/vim/mind/sort-function.vim
 set rtp+=~/Dropbox/vim/mind/tab-diff
 set rtp+=~/Dropbox/vim/mind/unite-git.vim
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
+set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 set rtp+=~/Dropbox/vim/mind/vimwork
 
 " = vimwork = 
@@ -48,6 +49,7 @@ nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork/local/vimrc.vim<CR>|"
 nnoremap ;m<CR> :lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
 nnoremap ;up<CR> :<c-u>Unite settings:g\:unite_data<CR>
+nnoremap ;up<CR> :<c-u>Unite -input=test settings_var<CR>
 
 " = unite-perforce =
 let $PFTMP    = '~/vimtmp'

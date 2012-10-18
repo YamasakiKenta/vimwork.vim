@@ -44,8 +44,8 @@ function! s:selectEdit(start, end)
 endfunction "}}}
 
 " 検索ワードの追加
-command! -narg=* ASearch call s:aserach(<f-args>) "{{{
-function! s:aserach(...) 
+command! -narg=* AddSearch call s:add_serach(<f-args>) "{{{
+function! s:add_serach(...) 
 " ********************************************************************************
 " 検索ワードの追加 ( OR 検索 )
 " @param[in]	検索ワード
