@@ -64,12 +64,6 @@ if !has('gui') "{{{
 	filetype plugin on
 endif
 "}}}
-augroup myAugroup "{{{
-	au!
-	aut BufRead *.snip setf snip
-	au FileType unite nmap <buffer> P <PLUG>(unite_toggle_auto_preview)
-aug END
-"}}}
 "set - input "{{{
 set ve=block
 set fdm=marker                                                                                           " # é©ìÆìIÇ…ê‹ÇËÇΩÇΩÇ›
@@ -97,9 +91,6 @@ set nowrap                                                                      
 set number                                                                                               " # î‘çÜì¸óÕ
 set smartcase                                                                                            " # |
 "}}}
-"set - cscope "{{{
-set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
-"}}}
 "@mapping
 "map - simple "{{{
 map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
@@ -115,21 +106,6 @@ nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
 " nnoremap - call "{{{
 nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
 "}}}
-" nnoremap - cscope "{{{
-nnoremap <C-\>K :call system("ctags -R")<CR>|"
-nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R")<CR>:cs add cscope.out<CR>|"
-nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
-nnoremap <C-\>v :vim /<C-R>=expand("<cword>")<CR>/ **/*.vim **.*.[ch]<CR>
-nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
-nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
-nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>|"
-nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
-" }}}
 " nnoremap - other "{{{
 nnoremap <C-s> 	:<C-u>SetNum<CR>
 " }}}
@@ -244,3 +220,20 @@ smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                          
 "}}}
 "}}}
 "@script
+" nnoremap - cscope "{{{
+nnoremap <C-\>K :call system("ctags -R")<CR>|"
+nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R")<CR>:cs add cscope.out<CR>|"
+nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
+nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>|"
+nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
+nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>v :vim /\<<C-R>=expand("<cword>")<CR>\>/ **/*.vim **.*.[ch]<CR>
+nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
+set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
+" }}}
+
