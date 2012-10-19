@@ -181,7 +181,7 @@ let g:unite_source_history_yank_enable = 0
 nnoremap ;ur<CR>  :<C-u>UniteResume<CR>
 nnoremap ;us<CR>  :<C-u>Unite source<CR>
 nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>
-nnoremap ;uf<CR>  :<C-u>Unite file<CR>
+nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>
 nnoremap ;ut<CR>  :<C-u>Unite tag<CR>
 nnoremap ;ug<CR>  :<C-u>Unite grep -no-quit<CR>
 nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>

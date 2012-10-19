@@ -144,10 +144,9 @@ function! s:get_word(lnum1, lnum2, word)
 	let word = a:word
 	
 	" ‘ÎÛ•¶š—ñˆÈŠO‚Ìíœ
-	"let cmd = lnum1.','.lnum2.'s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
 	let cmd = '*s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
 	exe cmd
-	echo cmd
+	*sort u
 
 endfunction "}}}
 
