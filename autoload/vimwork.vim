@@ -110,11 +110,6 @@ nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
 nnoremap <C-s> 	:<C-u>SetNum<CR>
 " }}}
 "nnoremap - find {{{
-nnoremap ;vc<CR> :<C-u>MyGrep <C-r>"<CR>
-nnoremap ;vv<CR> :<C-u>MyGrep <C-r>+<CR>
-nnoremap ;v/<CR> :<C-u>MyGrep <C-r>/<CR>
-nnoremap ;vx<CR> :<C-u>MyGrep <C-r>/<CR>
-
 nnoremap ;tc<CR> :<C-u>ta <C-r>"<CR>
 nnoremap ;tv<CR> :<C-u>ta <C-r>+<CR>
 nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
@@ -221,19 +216,23 @@ smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                          
 "}}}
 "@script
 " nnoremap - cscope "{{{
-nnoremap <C-\>K :call system("ctags -R")<CR>|"
+set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i
 nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R")<CR>:cs add cscope.out<CR>|"
+nnoremap <C-\>i :cs find i <C-R>=expand("%:p:t")<CR><CR>|"
+nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
+nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
+
 nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
 nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
 nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
-nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>|"
+nnoremap <C-\>f :cs find f <C-R>=expand("%:p:t")<CR><CR>|"
 nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
-nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
 nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
+
+nnoremap ;cv<CR> :<C-u>cs f s <C-R>+<CR>|"
+nnoremap ;cc<CR> :<C-u>cs f s <C-R>"<CR>|"
+
+nnoremap <C-\>K :call system("ctags -R")<CR>|"
 nnoremap <C-\>v :vim /\<<C-R>=expand("<cword>")<CR>\>/ **/*.vim **.*.[ch]<CR>
-nnoremap <expr> <C-\>t  ':echo'.expand('<cword>')
-set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 " }}}
 
