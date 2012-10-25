@@ -216,7 +216,7 @@ smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                          
 "}}}
 "@script
 " nnoremap - cscope "{{{
-set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i
+set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R")<CR>:cs add cscope.out<CR>|"
 nnoremap <C-\>i :cs find i <C-R>=expand("%:p:t")<CR><CR>|"
 nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
