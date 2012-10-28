@@ -22,20 +22,11 @@ call vimwork_neobundle#init()
 let $GITTMP = '~/vimtmp'
 
 " = mapping = 
-function! s:move_unite_tags(str) "{{{
-	let str = a:str
-
-	if str =~ '^s:'
-		let str = matchstr(str, 's:\zs.*')
-	endif
-
-	echo str
-	exe 'ta' str
-endfunction "}}}
-nnoremap ;dv<CR> :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;m<CR> :lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap <C-@> :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-nnoremap ;up<CR> :<c-u>Unite settings_var<CR>
+nnoremap ;dv<CR>  :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+nnoremap ;m<CR>   :lcd ~/Dropbox/vim/mind<CR>|"
+nnoremap <C-@>    :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+nnoremap ;up<CR>  :<c-u>Unite settings_var<CR>
+nnoremap ;upa<CR> :<c-u>Unite settings_var_all<CR>
 
 " = unite-perforce =
 let $PFTMP    = '~/vimtmp'
@@ -51,4 +42,14 @@ nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
 "let g:unite_source_grep_default_opts = '/N'
 let g:unite_source_grep_recursive_opt = '-r'
 
-"
+function! s:move_unite_tags(str) "{{{
+	let str = a:str
+
+	if str =~ '^s:'
+		let str = matchstr(str, 's:\zs.*')
+	endif
+
+	echo str
+	exe 'ta' str
+endfunction "}}}
+
