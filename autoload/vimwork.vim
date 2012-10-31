@@ -29,31 +29,6 @@ function! vimwork#init() "{{{
 	set rtp+=$VIMWORK/bundle/git
 	"}}}
 	"@setting
-	if has('win32') || has('win64') "{{{
-		nnoremap <A-Space> :simalt ~<CR>|" " # Window変更
-		aug my_vimrc
-			au!
-			au BufRead *.h setf c
-			au GUIEnter * simalt ~x        " # 最大化
-		aug END
-		let s:ext = {
-					\ 'c' : 'h',
-					\ 'h' : 'c',
-					\ }
-	endif
-	"}}}
-	if has('mac') "{{{
-		set makeprg=xcodebuild
-		let s:ext = {
-					\ 'c' : 'h',
-					\ 'h' : 'c',
-					\ }
-
-		aug my_vimrc
-			au!
-			aut BufRead *.h setf objc
-		aug END
-	endif "}}}
 	if !has('gui') "{{{
 		set ruler                                                                                                " # カーソルの位置の表示
 		set nocompatible                                                                                         " # vimの機能が使える
