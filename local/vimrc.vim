@@ -25,8 +25,10 @@ let $GITTMP = '~/vimtmp'
 nnoremap ;dv<CR>  :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
 nnoremap ;m<CR>   :lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <C-@>    :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-nnoremap ;up<CR>  :<c-u>Unite settings_var<CR>
-nnoremap ;upa<CR> :<c-u>Unite settings_var_all<CR>
+
+nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>
+nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>
+nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>
 
 " = unite-perforce =
 let $PFTMP    = '~/vimtmp'
@@ -64,3 +66,8 @@ let s:ext = {
 			\ 'c' : 'h',
 			\ 'h' : 'c',
 			\ }
+
+aug local_vimrc
+au!
+au BufEnter *.snip setf snip
+aug END
