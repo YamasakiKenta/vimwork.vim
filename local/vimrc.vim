@@ -40,9 +40,6 @@ call perforce#init()
 "set enc=utf-8
 nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
 
-"let g:unite_source_grep_command = 'findstr'
-"let g:unite_source_grep_default_opts = '/N'
-let g:unite_source_grep_recursive_opt = '-r'
 
 function! s:move_unite_tags(str) "{{{
 	let str = a:str
