@@ -45,6 +45,7 @@ NeoBundle 'git://github.com/tsukkee/unite-tag.git'
 NeoBundle 'git://github.com/vim-jp/vital.vim.git'
 NeoBundle 'git://github.com/sgur/unite-everything.git'
 NeoBundle 'git://github.com/Shougo/vesting.git'
+NeoBundle "git://github.com/osyo-manga/unite-quickfix.git"
 
 "NeoBundle 'git://github.com/Shougo/vimshell.git'
 "NeoBundle 'git://github.com/thinca/vim-unite-history'
