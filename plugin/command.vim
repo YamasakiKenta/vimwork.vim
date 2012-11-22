@@ -130,8 +130,8 @@ function! s:copyFileDir(file,...)
 	" ÉRÉsÅ[Ç∑ÇÈ
 	call system('copy "'.file1.'" "'.file2.'"')
 
-	echo 'mkdir "'.fnamemodify(file2,':h').'"'
-	echo 'copy "'.file1.'" "'.file2.'"'
+	echo '--'.expand("<sfile>").':'.expand("<slnum>").'--'.'mkdir "'.fnamemodify(file2,':h').'"'
+	echo '--'.expand("<sfile>").':'.expand("<slnum>").'--'.'copy "'.file1.'" "'.file2.'"'
 
 endfunction
 "}}}

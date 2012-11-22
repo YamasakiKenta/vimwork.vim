@@ -172,7 +172,7 @@ function! common#change_unite() "{{{
 	let file = expand("%:t")
 	let type = substitute(expand("%:h"), '.*[\\/]\ze.\{-}[\\/]', '', '')
 
-	echo type
+	echo '--'.expand("<sfile>").':'.expand("<slnum>").'--'.type
 	if type =~ 'unite[\\/]kinds'
 		let file = substitute(file, 'k_', '', '')
 		exe 'e '.root.'/sources/'.file

@@ -6,6 +6,8 @@ set rtp+=~/Dropbox/vim/mind/unite-git.vim
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 set rtp+=~/Dropbox/vim/mind/vimwork.vim
+set rtp+=~/Dropbox/vim/mind/yamaken.vim
+set rtp+=~/Dropbox/vim/mind/vital.vim
 
 " = vimwork = 
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork.vim')	
@@ -48,7 +50,7 @@ function! s:move_unite_tags(str) "{{{
 		let str = matchstr(str, 's:\zs.*')
 	endif
 
-	echo str
+	echo '--'.expand("<sfile>").':'.expand("<slnum>").'--'.str
 	exe 'ta' str
 endfunction "}}}
 
