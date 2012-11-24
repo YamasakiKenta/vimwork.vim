@@ -1,24 +1,26 @@
 " = rtp =
 set rtp+=~/Dropbox/vim/bundle/neobundle.vim
+set rtp+=~/Dropbox/vim/bundle/vital.vim
 set rtp+=~/Dropbox/vim/mind/sort-function.vim
 set rtp+=~/Dropbox/vim/mind/tab-diff.vim
 set rtp+=~/Dropbox/vim/mind/unite-git.vim
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 set rtp+=~/Dropbox/vim/mind/vimwork.vim
-set rtp+=~/Dropbox/vim/mind/yamaken.vim
-set rtp+=~/Dropbox/vim/mind/vital.vim
+set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/vital.vim
 
 " = vimwork = 
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork.vim')	
 let $VIMWORK   = expand('~/Dropbox/vim/mind/vimwork.vim')
 let $VIMTMP    = expand('~/vimtmp')
 let g:atmark_jump_is_unite = 1
+
 call vimwork#init()
 
 " = neobundle.vim =
 call neobundle#rc('~/Dropbox/vim/bundle')
 call vimwork_neobundle#init()
+
 
 " = unite-git.vim = 
 let $GITTMP = '~/vimtmp'
@@ -37,6 +39,7 @@ let $PFTMP    = '~/vimtmp'
 let g:perforce_merge_tool         = 'winmergeu /r'
 let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
 call perforce#init()
+
 
 "set fenc=utf-8
 "set enc=utf-8
@@ -70,3 +73,4 @@ aug local_vimrc
 au!
 au BufEnter *.snip setf snip
 aug END
+"Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug

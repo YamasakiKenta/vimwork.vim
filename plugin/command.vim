@@ -19,30 +19,6 @@ function! s:mySwap(qarg)
 	endif
 endfunction "}}}
 
-" 選択した部分を、コピーして別画面で開く
-command! -range=% SelectEdit :call s:selectEdit(<line1>, <line2>) "{{{
-function! s:selectEdit(start, end) 
-
-	" 現在のファイルタイプを保存する
-	let ft = &filetype
-
-	let selectEdit = {
-				\ 'start' : a:start,
-				\ 'end' : a:end,
-				\ 'bufnr' : bufnr(""),
-				\ }
-
-
-	let strs = getline(selectEdit.start,selectEdit.end)
-	call common#event_save_file('[selectEdit]',strs,"common#selectEdit_write",selectEdit)
-	$ delete _
-
-	exe 'set ft='.ft
-
-	set nomodified
-
-endfunction "}}}
-
 " 検索ワードの追加
 command! -narg=* AddSearch call s:add_serach(<f-args>) "{{{
 function! s:add_serach(...) 
