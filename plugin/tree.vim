@@ -26,7 +26,7 @@ function! s:force_reload() "{{{
 	exe 'silent %s/'.subs_pattern.'//'
 	norm 
 
-	echo '--'.expand("<sfile>").':'.expand("<slnum>").'--'.'force_reload'
+	echo 'force_reload'
 
 	call s:reload(1)
 endfunction "}}}
@@ -97,7 +97,7 @@ function! s:reload(...) "{{{
 
 		" èIóπîªíË
 		if ( lnum < 0 || index.now < 0 || index.stop > index.now ) 
-					echo '--'.expand("<sfile>").':'.expand("<slnum>").'--'.'END : '.lnum.' , '.index.now
+			echo 'END : '.lnum.' , '.index.now
 			break
 		endif 
 

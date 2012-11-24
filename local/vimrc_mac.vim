@@ -61,6 +61,6 @@ function! s:move_unite_tags(str) "{{{
 		let str = matchstr(str, 's:\zs.*')
 	endif
 
-	echo '--'.expand("<sfile>").':'.expand("<slnum>").'--'.str
+	echo str
 	exe 'ta' str
 endfunction "}}}
