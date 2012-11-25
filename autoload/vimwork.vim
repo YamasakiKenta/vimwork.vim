@@ -79,7 +79,8 @@ nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
 " }}}
 " nnoremap - call "{{{
-nnoremap ;h<CR> :<C-u>call common#change_extension(s:ext)<CR>|"
+"nnoremap ;h<CR> :<C-u>call common#change_extension(g:ext)<CR>|"
+nnoremap ;h<CR> :<C-u>ChaineFile <C-r>=expand("%:t")<CR><CR>
 "}}}
 " nnoremap - other "{{{
 nnoremap <C-s> 	:<C-u>SetNum<CR>
