@@ -6,24 +6,26 @@ let g:chain_extension = get(g:, 'chain_extension', {
 			\ 'h' : 'c',
 			\ })
 
-command! -nargs=1 chainFile call s:chain_file(<q-args>)
+command! -nargs=1 ChainFile call s:chain_file(<q-args>)
 function! s:chain_file(str) "{{{
-	let filename = s:get_chain_filename(a:str)
-	exe 'edit' filename
+	let filename_ = s:get_chain_filename(a:str)
+	exe 'edit' filename_
 endfunction
 "}}}
 function! s:get_chain_filename(str)  "{{{
-	let rtn_str = a:str
-	let extension = fnamemodify(a:str, ":e")
+	let extension = expand("%:e")
+	let filename_ = expand("%:t")
+	let cd_       = expand("%:h")
+
+	let rtn_str = filename_
 
 	if exists('g:chain_files[a:str]')
-		let rtn_str = g:chain_files[a:str]
+		let rtn_str = g:chain_files[filename_]
 	elseif exists('g:chain_extension[extension]')
-		let rtn_str = fnamemodify(a:str, ":r").'.'.
-					\ g:chain_extension[extension]
+		let rtn_str = g:chain_extension[extension]
 	endif
 
-	return rtn_str
+	return cd_.'/'.rtn_str
 
 endfunction
 "}}}
