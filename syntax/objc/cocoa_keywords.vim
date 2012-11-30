@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+"
 " Description:    Syntax highlighting for the cocoa.vim plugin.
 "                 Adds highlighting for Cocoa keywords (classes, types, etc.).
 " Last Generated: September 08, 2009
@@ -26,3 +30,7 @@ hi link cocoaProtocol cocoaClass
 hi link cocoaType Type
 hi link cocoaConstant Constant
 hi link cocoaNotification Constant
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

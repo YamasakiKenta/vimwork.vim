@@ -17,7 +17,10 @@ function! s:mySwap(qarg)
 		" # todo : “K“–‚É“ü‘Ö‚¦
 		" # •¶š‚Ì‘€ì
 	endif
-endfunction "}}}
+endfunction "}}}let s:save_cpo = &cpo
+set cpo&vim
+
+
 
 " ŒŸõƒ[ƒh‚Ì’Ç‰Á
 command! -narg=* AddSearch call s:add_serach(<f-args>) "{{{
@@ -185,3 +188,7 @@ function! s:set_num()
 	endif
 
 endfunction "}}}
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

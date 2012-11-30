@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+
 function! vimwork#init() "{{{
 endfunction "}}}
 let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
@@ -79,8 +83,7 @@ nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
 " }}}
 " nnoremap - call "{{{
-"nnoremap ;h<CR> :<C-u>call common#change_extension(g:ext)<CR>|"
-nnoremap ;h<CR> :<C-u>ChainFile <C-r>=expand("%:t")<CR><CR>
+nnoremap ;h<CR> :<C-u>ChainFile<CR>
 "}}}
 " nnoremap - other "{{{
 nnoremap <C-s> 	:<C-u>SetNum<CR>
@@ -164,6 +167,10 @@ nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
 nnoremap ;ue<CR>  :<C-u>Unite -input=<C-r>=expand("<cword>")<CR> outline<CR>
 nnoremap ;et<CR>  :<C-u>Unite everything<CR>
+nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>
+nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>
+nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>
+
 "}}}
 "Shogo - vimfiler{{{
 let g:vimfiler_as_default_explorer = 1   " # èâä˙filer
@@ -215,3 +222,8 @@ let mygrepprg = 'grep'
 nnoremap <C-\>v :RGrep <C-R>=expand("<cword>")<CR> *.vim\ *.c\ *.h<CR>
 nnoremap ;ug<CR> :<C-u>call unite#start([['grep', '*', '--include="*.c" --include="*.h" --include="*.vim"', '<C-r>=expand('<cword>')<CR>']])<CR>
 "}}}
+"
+"
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

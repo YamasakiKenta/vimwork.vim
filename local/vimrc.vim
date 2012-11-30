@@ -1,13 +1,15 @@
 " = rtp =
-set rtp+=~/Dropbox/vim/bundle/neobundle.vim
-set rtp+=~/Dropbox/vim/bundle/vital.vim
+set rtp+=~/Dropbox/vim/bundle/neobundle.vimlet s:save_cpo = &cpo
+set cpo&vim
+
+
+set rtp+=~/Dropbox/vim/mind/vital.vim
 set rtp+=~/Dropbox/vim/mind/sort-function.vim
 set rtp+=~/Dropbox/vim/mind/tab-diff.vim
 set rtp+=~/Dropbox/vim/mind/unite-git.vim
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 set rtp+=~/Dropbox/vim/mind/vimwork.vim
-set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/vital.vim
 set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/chaine-file.vim
 
 " = vimwork = 
@@ -30,10 +32,6 @@ let $GITTMP = '~/vimtmp'
 nnoremap ;dv<CR>  :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
 nnoremap ;m<CR>   :lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <C-@>    :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-
-nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>
-nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>
-nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>
 
 " = unite-perforce =
 let $PFTMP    = '~/vimtmp'
@@ -75,3 +73,8 @@ au!
 au BufEnter *.snip setf snip
 aug END
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
+"
+"
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

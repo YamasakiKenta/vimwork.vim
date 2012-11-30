@@ -19,7 +19,10 @@ function! s:init() "{{{
 	syn match Todo /|-.*=$/
 	syn match Todo /|-\ze.*-$/
 
-endfunction "}}}
+endfunction "}}}let s:save_cpo = &cpo
+set cpo&vim
+
+
 function! s:force_reload() "{{{
 	let subs_pattern = '\s\?\(\d\+\)\?[-= ]\?$' 
 
@@ -104,3 +107,7 @@ function! s:reload(...) "{{{
 	endwhile "}}}
 
 endfunction "}}}
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

@@ -9,7 +9,10 @@ endfunction "}}}
 "source - message
 let s:source = {
 			\ 'name'           : 'message',
-			\ 'description'    : '',
+			\ 'description'    : '',let s:save_cpo = &cpo
+set cpo&vim
+
+
 			\ 'default_action' : '',
 			\ }
 call unite#define_source(s:source)
@@ -22,3 +25,7 @@ function! s:source.gather_candidates(args, context) "{{{
 	return candidates
 endfunction "}}}
 unlet s:source 
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+"
 " Author:       Michael Sanders (msanders42 [at] gmail [dot] com)
 " Description:  Better syntax highlighting for Objective-C files (part of the
 "               cocoa.vim plugin).
@@ -57,3 +61,7 @@ hi link objcSubclass objcMethodName
 hi link objcSuperclass String
 
 hi link objcError Error
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

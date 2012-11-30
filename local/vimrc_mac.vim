@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+
 
 set makeprg=xcodebuild
 let s:ext = {
@@ -64,3 +68,7 @@ function! s:move_unite_tags(str) "{{{
 	echo str
 	exe 'ta' str
 endfunction "}}}
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

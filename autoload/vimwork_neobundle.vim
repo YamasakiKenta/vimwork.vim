@@ -16,8 +16,14 @@ NeoBundle 'git://github.com/sgur/unite-everything.git'
 NeoBundle 'git://github.com/sgur/unite-qf.git'
 NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-NeoBundle 'git://github.com/tsukkee/unite-tag.git'
-NeoBundle 'git://github.com/vim-jp/vital.vim.git'
+NeoBundle 'git://github.com/tsukkee/unite-tag.git'let s:save_cpo = &cpo
+set cpo&vim
+
+
 NeoBundle 'git://github.com/vim-scripts/Align.git'
 NeoBundle 'git://github.com/vim-scripts/DirDiff.vim.git'
+
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
 

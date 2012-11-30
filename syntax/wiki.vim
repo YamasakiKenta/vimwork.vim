@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+"
 "Vim syntax file
 "Language: @wiki
 "----
@@ -92,3 +96,7 @@ syntax keyword Statement flipbook_in online nifty_timeline wikiname wikiurl goog
 
 "plugin
 syntax keyword Statement border
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

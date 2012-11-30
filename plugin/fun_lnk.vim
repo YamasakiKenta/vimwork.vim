@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+
 command! GetFunclnk call s:getFunclnk()
 
 function! s:get_fnc_from_line(line) "{{{
@@ -40,3 +44,7 @@ function! s:get_str_from_loop(arg) "{{{
 		endif
 	endfor
 endfunction
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

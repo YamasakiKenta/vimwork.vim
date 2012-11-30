@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+"
 "todo : ç≈èâÇÃ |ÇÊÇËëOÇÕÇªÇÃÇ‹Ç‹
 
 com! -range Cells call s:cells(<line1>,<line2>)
@@ -229,3 +233,8 @@ endfunction "}}}
 "
 "
 "
+"
+"
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

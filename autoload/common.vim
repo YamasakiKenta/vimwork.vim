@@ -152,18 +152,9 @@ function! common#event_save_file_autocmd(func,args) "{{{
 		exe 'autocmd BufWriteCmd <buffer> nested call '.a:func.'('.string(a:args).')'
 	aug END
 
-endfunction "}}}
-function! common#change_extension(exts) "{{{
-" ********************************************************************************
-" ファイルの切り替え ( C 言語 ) 
-" ********************************************************************************
-	let extension = expand("%:e")
+endfunction "}}}let s:save_cpo = &cpo
+set cpo&vim
 
-	if exists('a:exts[extension]')
-		exe 'e %:r.'.a:exts[extension]
-	endif
-
-endfunction "}}}
 function! common#change_unite() "{{{
 " ********************************************************************************
 " ファイルの切り替え ( unite ) 
@@ -214,3 +205,7 @@ function! common#map_diff() "{{{
 	map <buffer> <A-right> :diffget<CR>:<C-u>diffupdate<CR>|"
 	map <buffer> <tab> :<C-u>call common#map_diff_tab()<CR>|"
 endfunction "}}}
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+

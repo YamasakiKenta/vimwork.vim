@@ -1,3 +1,7 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+
 let action = {
 			\ 'is_selectable' : 1, 
 			\ 'description' : 'add qfix[file, jump_list]',
@@ -25,3 +29,7 @@ function! action.func(candidates) "{{{
 	endfor
 endfunction "}}}
 unlet action
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
