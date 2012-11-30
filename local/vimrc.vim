@@ -75,6 +75,10 @@ aug END
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 "
 "
+" test
+nnoremap ;h<CR> :<C-u>ChainFile g:dict2 g:dict1<CR>
+"
+"
 let &cpo = s:save_cpo
 unlet s:save_cpo
 

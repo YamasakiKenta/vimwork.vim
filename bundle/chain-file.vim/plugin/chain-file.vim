@@ -1,8 +1,11 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:Common = vital#of('chain-file.vim').import('Mind.Common')
 
+"let s:Common = vital#of('chain-file.vim').import('Mind.Common')
+let s:Common = vital#of('vital').import('Mind.Common')
+
+" setting "{{{
 let g:chain_files     = get(g:, 'chain_files', {})
 let g:chain_extension = get(g:, 'chain_extension', { 'c' : 'h', 'h' : 'c'})
 
@@ -17,52 +20,36 @@ let s:chain_files_1 = {
 			\ 'bc2/a.c' : '../include/ab.h',
 			\ }
 
-let s:dict = { 
+let g:dict1 = { 
 			\ '__file'     : g:chain_files,
 			\ '__extension' : g:chain_extension,
 			\ }
 
-let s:dict = { 
+let g:dict2 = { 
 			\ '__file'     : s:chain_files_1,
 			\ '__extension' : g:chain_extension,
 			\ }
-
-function! s:get_key(file_d, fname_full) "{{{
-	let file_d    = a:file_d
-	let fname_tmp  = a:fname_full
-
-	while len(fname_tmp) && !exists('file_d[fname_tmp]')
-		let fname_tmp  = matchstr(fname_tmp, '.\{-}\/\zs.*')
-	endwhile
-	return fname_tmp
-endfunction
 "}}}
 
-function! s:get_chain_filename(...)  "{{{
+function! s:get_chain_filename(dicts)  "{{{
 	let extension    = expand("%:e")
-	let fname        = expand("%:t")
-	let fname_full   = substitute(expand("%"), '\\', '\/', 'g')
 	let rtn_str      = expand("%")
+	let fname_full   = substitute(expand("%"), '\\', '\/', 'g')
 
 	" 辞書データの設定
-	if a:0 > 0
-		let tmp_d = { '__file' : {} , '__extension' : {} }
-		for a_d in a:000
-			if type(a_d) == type({})
-				call extend(tmp_d.__file,      get(a_d, '__file',      {}))
-				call extend(tmp_d.__extension, get(a_d, '__extension', {}))
-			endif
-		endfor
+	let tmp_d = { '__file' : {} , '__extension' : {} }
+	for dict_d in a:dicts
+		if type(dict_d) == type({})
+			let tmp_d.__file      = s:Common.set_dict_extend(tmp_d.__file,      get(dict_d, '__file',      {}))
+			let tmp_d.__extension = s:Common.set_dict_extend(tmp_d.__extension, get(dict_d, '__extension', {}))
+		endif
+	endfor
 
-		let file_d       = tmp_d.__file
-		let extension_d  = tmp_d.__extension
-	else
-		let file_d      = get(g:, 'chain_files', {})
-		let extension_d = get(g:, 'chain_extension', { 'c' : 'h', 'h' : 'c'})
-	endif
+	let file_d       = tmp_d.__file
+	let extension_d  = tmp_d.__extension
 
 	" KEYを取得する 
-	let fname_tmp = s:get_key(file_d, fname_full)
+	let fname_tmp = s:Common.get_fname_key(file_d, fname_full)
 
 	if exists('file_d[fname_tmp]') 
 		" 対応するファイル
@@ -71,7 +58,7 @@ function! s:get_chain_filename(...)  "{{{
 
 		" 並び替え - 最後に開いたファイルを優先させる
 		let fname_next = substitute(expand(rtn_str), '\\', '\/', 'g')
-		let fname_tmp  = s:get_key(file_d, fname_next)
+		let fname_tmp  = s:Common.get_fname_key(file_d, fname_next)
 		if exists('file_d[fname_tmp]') 
 			let tmps = s:Common.get_list(file_d[fname_tmp])
 			for num_ in range(len(tmps))
@@ -94,9 +81,23 @@ function! s:get_chain_filename(...)  "{{{
 endfunction
 "}}}
 
-command! ChainFile call s:chain_file()
-function! s:chain_file() "{{{
-	exe 'edit' s:get_chain_filename(s:dict)
+command! -nargs=* ChainFile call s:chain_file(<f-args>)
+function! s:chain_file(...) "{{{
+	if len(a:1) > 0
+		let dicts = []
+		for dict in a:000
+			if dict =~ '.'
+				exe 'call add(dicts, '.dict.')'
+			endif
+		endfor
+	else
+		let dicts = [{
+					\ '__file'      :  get(g:, 'chain_files', {}),
+					\ '__extension' :  get(g:, 'chain_extension', { 'c' : 'h', 'h' : 'c'}),
+					\ }]
+	endif
+
+	exe 'edit' s:get_chain_filename(dicts)
 endfunction
 "}}}
 
