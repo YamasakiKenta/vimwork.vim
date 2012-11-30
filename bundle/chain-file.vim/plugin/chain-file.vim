@@ -4,16 +4,20 @@ set cpo&vim
 
 "let s:Common = vital#of('chain-file.vim').import('Mind.Common')
 let s:Common = vital#of('vital').import('Mind.Common')
+let s:cache_fname     = {}
+let s:cache_extension = {}
 
 " setting "{{{
 let g:chain_files     = get(g:, 'chain_files', {})
-let g:chain_extension = get(g:, 'chain_extension', { 'c' : 'h', 'h' : 'c'})
+let g:chain_extension = get(g:, 'chain_extension', { 'c' : 'h', 'h' : ['c', 'm'] , 'm' : 'h' })
 
 let g:chain_files = {
 			\ 'a.c' : 'include/ab.h',
 			\ 'b.c' : 'include/ab.h',
 			\ 'ab.h' : ['../a.c', '../b.c'],
 			\ }
+
+let g:chain_extension =  { 'c' : 'h', 'h' : ['c', 'm'] , 'm' : 'h' }
 
 let s:chain_files_1 = {
 			\ 'ab.h' : '../bc2/a.c',
@@ -34,14 +38,14 @@ let g:dict2 = {
 function! s:get_chain_filename(dicts)  "{{{
 	let extension    = expand("%:e")
 	let rtn_str      = expand("%")
-	let fname_full   = substitute(expand("%"), '\\', '\/', 'g')
+	let fname_full   = expand("%")
 
 	" 辞書データの設定
-	let tmp_d = { '__file' : {} , '__extension' : {} }
+	let tmp_d = { '__file' : copy(s:cache_fname) , '__extension' : copy(s:cache_extension) }
 	for dict_d in a:dicts
 		if type(dict_d) == type({})
-			let tmp_d.__file      = s:Common.set_dict_extend(tmp_d.__file,      get(dict_d, '__file',      {}))
-			let tmp_d.__extension = s:Common.set_dict_extend(tmp_d.__extension, get(dict_d, '__extension', {}))
+			 call s:Common.set_dict_extend(tmp_d.__file,      get(dict_d, '__file',      {}))
+			 call s:Common.set_dict_extend(tmp_d.__extension, get(dict_d, '__extension', {}))
 		endif
 	endfor
 
@@ -57,23 +61,30 @@ function! s:get_chain_filename(dicts)  "{{{
 		let rtn_str    = expand("%:h").'/'.tmps[0]
 
 		" 並び替え - 最後に開いたファイルを優先させる
-		let fname_next = substitute(expand(rtn_str), '\\', '\/', 'g')
+		let fname_next = expand(rtn_str)
 		let fname_tmp  = s:Common.get_fname_key(file_d, fname_next)
 		if exists('file_d[fname_tmp]') 
-			let tmps = s:Common.get_list(file_d[fname_tmp])
-			for num_ in range(len(tmps))
-				let tmp = tmps[num_]
-				" 移動させる
-				if  fname_full =~ substitute(tmp, '\.\.\/', '', '')
-					unlet tmps[num_]
-					call insert(tmps, tmp)
+			" 前回開いたファイルを保存する
+			for tmp in s:Common.get_len_sort(s:Common.get_list(file_d[fname_tmp]))
+				if  fname_full =~ substitute(tmp, '\.\.[\/\\]', '', '')
+					let s:cache_fname[fname_tmp] = tmp
 				endif
 			endfor
 		endif
 
 	elseif exists('extension_d[extension]')
+		let extension_next = s:Common.get_list(extension_d[extension])[0]
+
 		"対応する拡張子
-		let rtn_str = expand("%:r").".". extension_d[extension]
+		let rtn_str = expand("%:r").".".extension_next
+
+		if exists ('extension_d[extension_next]')
+			for tmp in s:Common.get_list(extension_d[extension_next])
+				if extension == tmp
+					let s:cache_extension[extension_next] = tmp
+				endif
+			endfor
+		endif
 	else
 	endif
 
@@ -104,3 +115,4 @@ endfunction
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
+nnoremap ;h<CR> :<C-u>ChainFile g:dict2 g:dict1<CR>
