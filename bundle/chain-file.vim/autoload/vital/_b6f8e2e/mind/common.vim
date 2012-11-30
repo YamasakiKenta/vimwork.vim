@@ -1,7 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! s:get_dict(tmp)
+function! s:get_list(tmp)
 	return (type(a:tmp) == type([])) ? a:tmp : [a:tmp]
 endfunction
 
