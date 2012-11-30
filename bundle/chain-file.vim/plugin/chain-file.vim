@@ -2,8 +2,8 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-"let s:Common = vital#of('chain-file.vim').import('Mind.Common')
-let s:Common = vital#of('vital').import('Mind.Common')
+let s:Common = vital#of('chain-file.vim').import('Mind.Common')
+"let s:Common = vital#of('vital').import('Mind.Common')
 let s:cache_fname     = {}
 let s:cache_extension = {}
 
@@ -94,7 +94,7 @@ endfunction
 
 command! -nargs=* ChainFile call s:chain_file(<f-args>)
 function! s:chain_file(...) "{{{
-	if len(a:1) > 0
+	if a:0 > 0
 		let dicts = []
 		for dict in a:000
 			if dict =~ '.'
@@ -102,10 +102,10 @@ function! s:chain_file(...) "{{{
 			endif
 		endfor
 	else
-		let dicts = [{
+		let dicts = get(g:, 'chain_dict', [{
 					\ '__file'      :  get(g:, 'chain_files', {}),
 					\ '__extension' :  get(g:, 'chain_extension', { 'c' : 'h', 'h' : 'c'}),
-					\ }]
+					\ }])
 	endif
 
 	exe 'edit' s:get_chain_filename(dicts)
@@ -115,4 +115,3 @@ endfunction
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-nnoremap ;h<CR> :<C-u>ChainFile g:dict2 g:dict1<CR>
