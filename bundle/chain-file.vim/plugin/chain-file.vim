@@ -1,7 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-let Common = vital#of('chain-file.vim').import('Mind.Common')
+let s:Common = vital#of('chain-file.vim').import('Mind.Common')
 
 let g:chain_files     = get(g:, 'chain_files', {})
 let g:chain_extension = get(g:, 'chain_extension', { 'c' : 'h', 'h' : 'c'})
@@ -13,7 +13,7 @@ let g:chain_files = {
 			\ }
 
 let s:chain_files_1 = {
-			\ 'ab.h' : 'b2/a.c',
+			\ 'ab.h' : '../bc2/a.c',
 			\ 'bc2/a.c' : '../include/ab.h',
 			\ }
 
@@ -31,10 +31,8 @@ function! s:get_key(file_d, fname_full) "{{{
 	let file_d    = a:file_d
 	let fname_tmp  = a:fname_full
 
-	echo file_d
 	while len(fname_tmp) && !exists('file_d[fname_tmp]')
 		let fname_tmp  = matchstr(fname_tmp, '.\{-}\/\zs.*')
-		echo fname_tmp
 	endwhile
 	return fname_tmp
 endfunction
@@ -67,25 +65,27 @@ function! s:get_chain_filename(...)  "{{{
 	let fname_tmp = s:get_key(file_d, fname_full)
 
 	if exists('file_d[fname_tmp]') 
-		" 対応するファイルが存在する 
-		let tmps       = (type(file_d[fname_tmp]) == type([]) ? file_d[fname_tmp] : [file_d[fname_tmp]])
-		let rtn_str    = expand("%:h").'/'.tmps
-		let fname_next = expand(rtn_str)
+		" 対応するファイル
+		let tmps = s:Common.get_list(file_d[fname_tmp])
+		let rtn_str    = expand("%:h").'/'.tmps[0]
 
 		" 並び替え - 最後に開いたファイルを優先させる
-		unlet tmps
-		let tmps = file_d[fname_next]
-		if type(tmps) == type([])
+		let fname_next = substitute(expand(rtn_str), '\\', '\/', 'g')
+		let fname_tmp  = s:get_key(file_d, fname_next)
+		if exists('file_d[fname_tmp]') 
+			let tmps = s:Common.get_list(file_d[fname_tmp])
 			for num_ in range(len(tmps))
 				let tmp = tmps[num_]
+				" 移動させる
 				if  fname_full =~ substitute(tmp, '\.\.\/', '', '')
 					unlet tmps[num_]
 					call insert(tmps, tmp)
 				endif
 			endfor
 		endif
+
 	elseif exists('extension_d[extension]')
-		"対応する拡張子が存在する 
+		"対応する拡張子
 		let rtn_str = expand("%:r").".". extension_d[extension]
 	else
 	endif

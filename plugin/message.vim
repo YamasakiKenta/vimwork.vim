@@ -1,3 +1,6 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
 function! s:get_message() "{{{
 	redir => mes_
 	silent! mes
@@ -9,10 +12,7 @@ endfunction "}}}
 "source - message
 let s:source = {
 			\ 'name'           : 'message',
-			\ 'description'    : '',let s:save_cpo = &cpo
-set cpo&vim
-
-
+			\ 'description'    : '',
 			\ 'default_action' : '',
 			\ }
 call unite#define_source(s:source)

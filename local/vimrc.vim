@@ -1,8 +1,8 @@
-" = rtp =
-set rtp+=~/Dropbox/vim/bundle/neobundle.vimlet s:save_cpo = &cpo
+let s:save_cpo = &cpo
 set cpo&vim
 
-
+" = rtp =
+set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 set rtp+=~/Dropbox/vim/mind/vital.vim
 set rtp+=~/Dropbox/vim/mind/sort-function.vim
 set rtp+=~/Dropbox/vim/mind/tab-diff.vim
@@ -10,7 +10,7 @@ set rtp+=~/Dropbox/vim/mind/unite-git.vim
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 set rtp+=~/Dropbox/vim/mind/vimwork.vim
-set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/chaine-file.vim
+set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/chain-file.vim
 
 " = vimwork = 
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork.vim')	

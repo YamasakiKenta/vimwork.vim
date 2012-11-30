@@ -1,3 +1,5 @@
+let s:save_cpo = &cpo
+set cpo&vim
 " ********************************************************************************
 " 使用しているスクリプト
 "  - unite_perforce
@@ -152,8 +154,7 @@ function! common#event_save_file_autocmd(func,args) "{{{
 		exe 'autocmd BufWriteCmd <buffer> nested call '.a:func.'('.string(a:args).')'
 	aug END
 
-endfunction "}}}let s:save_cpo = &cpo
-set cpo&vim
+endfunction "}}}
 
 function! common#change_unite() "{{{
 " ********************************************************************************

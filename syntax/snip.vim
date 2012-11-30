@@ -1,7 +1,3 @@
-let s:save_cpo = &cpo
-set cpo&vim
-
-"
 "=============================================================================
 " FILE: syntax/snippet.vim
 " AUTHOR: Shougo Matsushita <Shougo.Matsu@gmail.com>
@@ -76,9 +72,6 @@ hi def link SnippetAlias Identifier
 hi def link SnippetEscape Special
 
 let b:current_syntax = "snippet"
-
-let &cpo = s:save_cpo
-unlet s:save_cpo
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

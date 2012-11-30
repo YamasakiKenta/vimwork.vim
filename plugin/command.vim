@@ -1,3 +1,6 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
 " ‘OŒã‚Ì“ü‚ê‘Ö‚¦
 command! -range -nargs=? MySwap <line1>,<line2>call s:mySwap(<q-args>) "{{{
 function! s:mySwap(qarg)
@@ -17,8 +20,7 @@ function! s:mySwap(qarg)
 		" # todo : “K“–‚É“ü‘Ö‚¦
 		" # •¶š‚Ì‘€ì
 	endif
-endfunction "}}}let s:save_cpo = &cpo
-set cpo&vim
+endfunction "}}}
 
 
 

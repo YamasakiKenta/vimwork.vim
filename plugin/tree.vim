@@ -1,3 +1,6 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
 nnoremap <plug>(tree_syntax_force_reload) :<C-u>call s:force_reload()<CR>
 
 aug tree "{{{
@@ -19,8 +22,7 @@ function! s:init() "{{{
 	syn match Todo /|-.*=$/
 	syn match Todo /|-\ze.*-$/
 
-endfunction "}}}let s:save_cpo = &cpo
-set cpo&vim
+endfunction "}}}
 
 
 function! s:force_reload() "{{{

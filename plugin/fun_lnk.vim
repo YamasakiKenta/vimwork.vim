@@ -44,6 +44,7 @@ function! s:get_str_from_loop(arg) "{{{
 		endif
 	endfor
 endfunction
+"}}}
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

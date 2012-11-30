@@ -1,3 +1,6 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
 function! vimwork_neobundle#init() "{{{
 endfunction
 "}}}
@@ -16,8 +19,7 @@ NeoBundle 'git://github.com/sgur/unite-everything.git'
 NeoBundle 'git://github.com/sgur/unite-qf.git'
 NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-NeoBundle 'git://github.com/tsukkee/unite-tag.git'let s:save_cpo = &cpo
-set cpo&vim
+NeoBundle 'git://github.com/tsukkee/unite-tag.git'
 
 
 NeoBundle 'git://github.com/vim-scripts/Align.git'
