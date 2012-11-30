@@ -8,6 +8,7 @@ set rtp+=~/Dropbox/vim/mind/unite-perforce.vim
 set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 set rtp+=~/Dropbox/vim/mind/vimwork.vim
 set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/vital.vim
+set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/chaine-file.vim
 
 " = vimwork = 
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork.vim')	

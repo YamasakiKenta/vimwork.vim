@@ -80,7 +80,7 @@ nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
 " }}}
 " nnoremap - call "{{{
 "nnoremap ;h<CR> :<C-u>call common#change_extension(g:ext)<CR>|"
-nnoremap ;h<CR> :<C-u>ChaineFile <C-r>=expand("%:t")<CR><CR>
+nnoremap ;h<CR> :<C-u>ChainFile <C-r>=expand("%:t")<CR><CR>
 "}}}
 " nnoremap - other "{{{
 nnoremap <C-s> 	:<C-u>SetNum<CR>

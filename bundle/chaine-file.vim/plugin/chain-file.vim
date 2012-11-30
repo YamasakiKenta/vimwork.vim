@@ -1,6 +1,6 @@
 let s:save_cpo = &cpo | set cpo&vim
 
-let g:chain_files     = get(g:, 'hcaine_files', {})
+let g:chain_files     = get(g:, 'chain_files', {})
 let g:chain_extension = get(g:, 'chain_extension', {
 			\ 'c' : 'h',
 			\ 'h' : 'c',
@@ -19,10 +19,10 @@ function! s:get_chain_filename(str)  "{{{
 
 	let rtn_str = filename_
 
-	if exists('g:chain_files[a:str]')
+	if exists('g:chan_files[filename_]')
 		let rtn_str = g:chain_files[filename_]
 	elseif exists('g:chain_extension[extension]')
-		let rtn_str = g:chain_extension[extension]
+		let rtn_str = fnamemodify(filename_, ":r"). g:chain_extension[extension]
 	endif
 
 	return cd_.'/'.rtn_str
