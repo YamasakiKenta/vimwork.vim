@@ -2,6 +2,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 " = rtp =
+set rtp+=~/vimfiler-ver.3.1
 set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 set rtp+=~/Dropbox/vim/mind/vital.vim
 set rtp+=~/Dropbox/vim/mind/sort-function.vim
@@ -10,7 +11,7 @@ set rtp+=~/Dropbox/vim/mind/unite-git.vim
 set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
 set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 set rtp+=~/Dropbox/vim/mind/vimwork.vim
-set rtp+=~/Dropbox/vim/mind/vimwork.vim/bundle/chain-file.vim
+set rtp+=~/Dropbox/vim/mind/chain-file.vim
 
 " = vimwork = 
 let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork.vim')	
@@ -76,7 +77,7 @@ aug END
 "
 "
 " test
-nnoremap ;h<CR> :<C-u>ChainFile g:dict2 g:dict1<CR>
+nnoremap ;h<CR> :<C-u>ChainFile<CR>
 "
 "
 let &cpo = s:save_cpo
