@@ -2,7 +2,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 " = rtp =
-set rtp+=~/vimfiler-ver.3.1
+"set rtp+=~/vimfiler-ver.3.1
 set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 set rtp+=~/Dropbox/vim/mind/vital.vim
 set rtp+=~/Dropbox/vim/mind/sort-function.vim
@@ -74,10 +74,6 @@ au!
 au BufEnter *.snip setf snip
 aug END
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
-"
-"
-" test
-nnoremap ;h<CR> :<C-u>ChainFile<CR>
 "
 "
 let &cpo = s:save_cpo
