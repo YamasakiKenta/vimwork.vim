@@ -33,6 +33,15 @@ let $GITTMP = '~/vimtmp'
 nnoremap ;dv<CR>  :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
 nnoremap ;m<CR>   :lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <C-@>    :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+nnoremap <A-Space> :simalt ~<CR>|" " Window変更
+nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
+nnoremap ;bp<CR> :<C-u>call unite#start([['settings_ex', 'g:vimwork_d']])<CR>|"
+
+let s:file_ = '~/vimtmp/.vimwork_d'
+call unite_setting_ex#init('g:vimwork_d', s:file_)
+call unite_setting_ex#add('g:vimwork_d', 'g:test1', '', 'select', [[1], 'test', 'test2'])
+call unite_setting_ex#add('g:vimwork_d', 'g:test2', '', 'select', [[1], 'test', 'test2'])
+call unite_setting_ex#load('g:vimwork_d', s:file_)
 
 " = unite-perforce =
 let $PFTMP    = '~/vimtmp'
@@ -43,7 +52,6 @@ call perforce#init()
 
 "set fenc=utf-8
 "set enc=utf-8
-nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
 
 
 function! s:move_unite_tags(str) "{{{
@@ -58,7 +66,6 @@ function! s:move_unite_tags(str) "{{{
 endfunction "}}}
 
 " windows 
-nnoremap <A-Space> :simalt ~<CR>|" " # Window変更
 aug my_vimrc
 	au!
 	au BufRead *.h setf c

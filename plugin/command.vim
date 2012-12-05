@@ -118,7 +118,7 @@ endfunction
 "}}}
 "
 " ‘ÎÛ‚Ì•¶Œ¾‚ğ’Šo‚·‚é
-command! -narg=1 GetWord call s:get_word(<line1>, <line2>, <f-args>) "{{{
+command! -rang -narg=1 GetWord call s:get_word(<line1>, <line2>, <f-args>) "{{{
 function! s:get_word(lnum1, lnum2, word) 
 	let lnum1 = a:lnum1
 	let lnum2 = a:lnum2
@@ -126,8 +126,9 @@ function! s:get_word(lnum1, lnum2, word)
 	
 	" ‘ÎÛ•¶š—ñˆÈŠO‚Ìíœ
 	let cmd = '*s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
+	echo cmd
 	exe cmd
-	*sort u
+	exe lnum1.','.lnum2.'sort u'
 
 endfunction "}}}
 
