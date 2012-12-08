@@ -72,7 +72,7 @@ set smartcase                                                                   
 "}}}
 "@mapping
 "map - simple "{{{
-map + :<C-u>ASearch <C-r>=expand("<cword>")<CR><CR>|"
+map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
 "}}}
 " nmap - <Plug>"{{{
 nmap v/ 		<Plug>(select_search)

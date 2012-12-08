@@ -185,20 +185,6 @@ function! common#map_diff_tab() "{{{
 	"********************************************************************************
 	wincmd w
 endfunction "}}}
-function! common#tabcopy() "{{{
-	let bufnrs = []
-	windo let bufnrs += [bufnr("%")]
-
-	tabe
-	" Å‰‚Ì‰æ–Ê‚ÌXV
-	exe 'b' bufnrs[0]
-
-	" 2‰æ–Ê–Ú‚©‚ç‚ÍA•ªŠ„‚·‚é
-	for bufnr in bufnrs[1:]
-		exe 'sb' bufnr
-	endfor	
-	
-endfunction "}}}
 function! common#map_diff() "{{{
 	map <buffer> <A-up> [c
 	map <buffer> <A-down> ]c
