@@ -82,6 +82,9 @@ au BufEnter *.snip setf snip
 aug END
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 "
+let g:pf_clients_template = [
+			\ { 'clname' : 'yama_tmp_2' , 'cltmp' : 'temp_1' , 'ports' : ['localhost:1818']}
+			\ ]
 "
 let &cpo = s:save_cpo
 unlet s:save_cpo

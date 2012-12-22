@@ -222,7 +222,7 @@ let mygrepprg = 'grep'
 nnoremap <C-\>v :RGrep <C-R>=expand("<cword>")<CR> *.vim\ *.c\ *.h<CR>
 nnoremap ;ug<CR> :<C-u>call unite#start([['grep', '*', '--include="*.c" --include="*.h" --include="*.vim"', '<C-r>=expand('<cword>')<CR>']])<CR>
 "}}}
-"
+set stl=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 "
 let &cpo = s:save_cpo
 unlet s:save_cpo
