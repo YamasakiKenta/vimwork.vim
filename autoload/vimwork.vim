@@ -1,18 +1,14 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-
-function! vimwork#init() "{{{
-endfunction "}}}
-let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
-let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
-let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   ) 
-"@point of use
-"$VIMTMP "{{{
+"================================================================================
+" MEMO 
+"--------------------------------------------------------------------------------
+"$VIMTMP 
 " - backupdir
 " - howm
-" }}}
-" $LOCALWORK "{{{
+"
+" $LOCALWORK 
 "  - vimrc.vim
 "  |- ;v<CR>
 "  |- snippets
@@ -20,67 +16,105 @@ let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   )
 "  |- rtp
 "  - command.vim
 "  |- syntax
-"}}}
-" $VIMWORK "{{{
+"
+" $VIMWORK 
 "  - vimrc.vim
 "  |- rtp
+"
+"neocomplcache - caching 
+"\:NeoComplCacheCachingBuffer<CR>
+"\:NeoComplCacheCachingSyntax<CR>
+"\:NeoComplCacheCachingTags<CR>
+"\:NeoComplCacheCachingTags<CR>
+"\:NeoComplCacheCachingSnippets<CR>
+"
+"================================================================================
+function! s:sort_ng() "{{{
+	if !has('gui') 
+		set ruler           " # カーソルの位置の表示
+		set nocompatible    " # vimの機能が使える
+		syntax enable       " # 色を付け - 設定がリセットされる
+		filetype on
+		filetype indent on
+		filetype plugin on
+	endif
+
+	let g:toggle_pairs = {
+				\ 'and'   : 'or',
+				\ 'or'    : 'and',
+				\ 'if'    : 'elsif',
+				\ 'elsif' : 'else',
+				\ 'else'  : 'if'
+				\ }
+endfunction
 "}}}
-"rtp - bundle "{{{
-" vimwork に含まれるスクリプトの入力
+function! s:change_unite() "{{{
+	" ********************************************************************************
+	" ファイルの切り替え ( unite ) 
+	" ********************************************************************************
+	let root = substitute(expand("%:h"), '[\\/][^\\/]*$', '', '')
+	let file = expand("%:t")
+	let type = substitute(expand("%:h"), '.*[\\/]\ze.\{-}[\\/]', '', '')
+
+	echo type
+	if type =~ 'unite[\\/]kinds'
+		let file = substitute(file, 'k_', '', '')
+		exe 'e '.root.'/sources/'.file
+	elseif type =~ 'unite[\\/]sources'
+		exe 'e '.root.'/kinds/k_'.file
+	endif
+
+endfunction 
+"}}}
+"
+function! vimwork#init() "{{{
+endfunction 
+"}}}
+let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
+let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
+let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   ) 
+call s:sort_ng()
+
+" sort ok "{{{
+
+map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
+nmap ;sy<CR> 	<Plug>(edit_syntax_file)
+nmap ;uq<CR> 	<Plug>(uniq_line)
+nmap v/ 		<Plug>(select_search)
+set autoread                                            " # 自動更新
+set backupdir=$VIMTMP/backup                            " # Backupフォルダのパス
+set cursorline                                          " # カーソル行の強調
+set fdm=marker                                          " # 自動的に折りたたみ
+set fo+=ro                                              " # 自動でコメント挿入
+set guioptions-=T                                       " # メニューバーを削除
+set guioptions-=m                                       " # ツールバーを削除
+set hidden                                              " # ファイルを保存せず移動
+set hlsearch                                            " # 検索
+set ignorecase                                          " # 検索で大文字小文字を区別しない
+set incsearch
+set laststatus=2                                        " # ステータス行の表示
+set lcs=tab:`\                                          " # 記号の表示
+set list
+set modeline                                            " # 読み込み時の設定
+set noswapfile                                          " # SwapFile
+set nowrap                                              " # 折り返し
+set number                                              " # 番号入力
 set rtp+=$LOCALWORK
 set rtp+=$VIMWORK
-set rtp+=$VIMWORK/bundle/diff
 set rtp+=$VIMWORK/bundle/cells
+set rtp+=$VIMWORK/bundle/diff
 set rtp+=$VIMWORK/bundle/git
-"}}}
-"@setting
-if !has('gui') "{{{
-	set ruler                                                                                                " # カーソルの位置の表示
-	set nocompatible                                                                                         " # vimの機能が使える
-	syntax enable                                                                                            " # 色を付け - 設定がリセットされる
-	filetype on
-	filetype indent on
-	filetype plugin on
-endif
-"}}}
-"set - input "{{{
+set shiftwidth=4
+set smartcase
+set stl=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set tabstop=4                                           " # tabの設定
+set tw=0                                                " # 自動改行 OFF
 set ve=block
-set fdm=marker                                                                                           " # 自動的に折りたたみ
-set fo+=ro                                                                                               " # 自動でコメント挿入
-set guioptions-=T                                                                                        " # メニューバーを削除
-set guioptions-=m                                                                                        " # ツールバーを削除
-set laststatus=2                                                                                         " # ステータス行の表示
-set lcs=tab:`\                                                                                           " # 記号の表示
-set shiftwidth=4                                                                                         " # |
-set tabstop=4                                                                                            " # tabの設定
-set tw=0                                                                                                 " # 自動改行 OFF
-set backupdir=$VIMTMP/backup                                                                 " # Backupフォルダのパス
+
 "}}}
-"set - normal {{{
-set autoread                                                                                             " # 自動更新
-set cursorline                                                                                           " # カーソル行の強調
-set hidden                                                                                               " # ファイルを保存せず移動
-set hlsearch                                                                                             " # 検索
-set ignorecase                                                                                           " # 検索で大文字小文字を区別しない
-set incsearch                                                                                            " # |
-set list                                                                                                 " # |
-set modeline                                                                                             " # 読み込み時の設定
-set noswapfile                                                                                           " # SwapFile
-set nowrap                                                                                               " # 折り返し
-set number                                                                                               " # 番号入力
-set smartcase                                                                                            " # |
-"}}}
-"@mapping
-"map - simple "{{{
-map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-"}}}
-" nmap - <Plug>"{{{
-nmap v/ 		<Plug>(select_search)
-nmap ;uq<CR> 	<Plug>(uniq_line)
-nmap ;sy<CR> 	<Plug>(edit_syntax_file)
-" "}}}
+
 " nnoremap - c {{{
-nnoremap ;k<CR> :<C-u>call common#change_unite()<CR>|"
+nnoremap ;k<CR> :<C-u>call s:change_unite()<CR>|"
 " }}}
 " nnoremap - call "{{{
 nnoremap ;h<CR> :<C-u>ChainFile<CR>
@@ -132,17 +166,9 @@ vnoremap * "ty:let @/=@t<CR>N|"                                                "
 vnoremap < <gv|"                                                               " # カーソル移動
 vnoremap > >gv|"                                                               " # 再選択
 "}}}
-"@plugin
 "plugin - Other {{{
 so $VIMRUNTIME/macros/matchit.vim                                                                        " # matchit - マッチの強化
 let g:Align_xstrlen = 3                                                                                  " # Align - 縦に整形
-let g:toggle_pairs = {
-			\ 'and'   : 'or',
-			\ 'or'    : 'and',
-			\ 'if'    : 'elsif',
-			\ 'elsif' : 'else',
-			\ 'else'  : 'if'
-			\ }
 "}}}
 "plugin - QFixHowm{{{
 let howm_dir = $VIMTMP.'/howm'
@@ -177,26 +203,16 @@ let g:vimfiler_as_default_explorer = 1   " # 初期filer
 let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 "}}}
 "Shogo - neocomplcache{{{
-"neocomplcache - init {{{
 let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                       " # snippet ファイル作成場所
 let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
 let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
-"let g:neocomplcache_auto_completion_start_length = 3                                                    " # 自動補完開始長さ
-"}}}
-"neocomplcache - Mapping {{{
-nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>
+
+nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>|"
 imap <C-s>  <PLUG>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
 imap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
 smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # 同上
 "}}}
-"neocomplcache - caching "{{{
-"\:NeoComplCacheCachingBuffer<CR>
-"\:NeoComplCacheCachingSyntax<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingSnippets<CR>
-"}}}
-"}}}
+
 "@script
 " nnoremap - cscope "{{{
 set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
@@ -222,8 +238,7 @@ let mygrepprg = 'grep'
 nnoremap <C-\>v :RGrep <C-R>=expand("<cword>")<CR> *.vim\ *.c\ *.h<CR>
 nnoremap ;ug<CR> :<C-u>call unite#start([['grep', '*', '--include="*.c" --include="*.h" --include="*.vim"', '<C-r>=expand('<cword>')<CR>']])<CR>
 "}}}
-set stl=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-"
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
