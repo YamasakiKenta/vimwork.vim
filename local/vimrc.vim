@@ -1,58 +1,11 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-" = rtp =
-"set rtp+=~/vimfiler-ver.3.1
-set rtp+=~/Dropbox/vim/bundle/neobundle.vim
-set rtp+=~/Dropbox/vim/mind/vital.vim
-set rtp+=~/Dropbox/vim/mind/sort-function.vim
-set rtp+=~/Dropbox/vim/mind/tab-diff.vim
-set rtp+=~/Dropbox/vim/mind/unite-git.vim
-set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
-set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
-set rtp+=~/Dropbox/vim/mind/vimwork.vim
-set rtp+=~/Dropbox/vim/mind/chain-file.vim
-
-" = vimwork = 
-let $LOCALWORK = expand('~/Dropbox/vim/mind/vimwork.vim')	
-let $VIMWORK   = expand('~/Dropbox/vim/mind/vimwork.vim')
-let $VIMTMP    = expand('~/vimtmp')
-let g:atmark_jump_is_unite = 1
-
-call vimwork#init()
-
-" = neobundle.vim =
-call neobundle#rc('~/Dropbox/vim/bundle')
-call vimwork_neobundle#init()
-
-
-" = unite-git.vim = 
-let $GITTMP = '~/vimtmp'
-
-" = mapping = 
-nnoremap ;dv<CR>  :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;m<CR>   :lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap <C-@>    :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
-nnoremap <A-Space> :simalt ~<CR>|" " Window変更
-nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
-nnoremap ;bp<CR> :<C-u>call unite#start([['settings_ex', 'g:vimwork_d']])<CR>|"
-
-let s:file_ = '~/vimtmp/.vimwork_d'
-call unite_setting_ex#init('g:vimwork_d', s:file_)
-call unite_setting_ex#add('g:vimwork_d', 'g:test1', '', 'select', [[1], 'test', 'test2'])
-call unite_setting_ex#add('g:vimwork_d', 'g:test2', '', 'select', [[1], 'test', 'test2'])
-call unite_setting_ex#load('g:vimwork_d', s:file_)
-
-" = unite-perforce =
-let $PFTMP    = '~/vimtmp'
-let g:perforce_merge_tool         = 'winmergeu /r'
-let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
-call perforce#init()
-
-
-"set fenc=utf-8
-"set enc=utf-8
-
+"================================================================================ 
+" MEMO
+"--------------------------------------------------------------------------------
+"Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
+"================================================================================ 
 
 function! s:move_unite_tags(str) "{{{
 	let str = a:str
@@ -64,28 +17,82 @@ function! s:move_unite_tags(str) "{{{
 	echo str
 	exe 'ta' str
 endfunction "}}}
+function! s:set_auto_group() "{{{
+	aug local_vimrc
+		au!
+		au BufEnter *.snip setf snip
+	aug END
 
-" windows 
-aug my_vimrc
-	au!
-	au BufRead *.h setf c
-	au GUIEnter * simalt ~x        " # 最大化
-aug END
-let s:ext = {
-			\ 'c' : 'h',
-			\ 'h' : 'c',
-			\ }
+	aug my_vimrc
+		au!
+		au BufRead *.h setf c
+		au GUIEnter * simalt ~x        " # 最大化
+	aug END
+endfunction
+"}}}
+function! s:get_pf_let() "{{{
+	let g:pf_clients_template = [
+				\ { 'clname' : 'yama_tmp_2' , 'cltmp' : 'temp_1' , 'ports' : ['localhost:1818']}
+				\ ]
+	let s:ext = {
+				\ 'c' : 'h',
+				\ 'h' : 'c',
+				\ }
+endfunction 
+"}}}
+function! s:set_rtp() "{{{
+	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
+	set rtp+=~/Dropbox/vim/mind/chain-file.vim
+	set rtp+=~/Dropbox/vim/mind/sort-function.vim
+	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
+	set rtp+=~/Dropbox/vim/mind/unite-git.vim
+	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
+	set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
+	set rtp+=~/Dropbox/vim/mind/vimwork.vim
+	set rtp+=~/Dropbox/vim/mind/vital.vim
+endfunction
+"}}}
+function! s:set_header() "{{{
+	call s:set_rtp()
+	call neobundle#rc('~/Dropbox/vim/bundle')
+endfunction
+"}}}
+function! s:set_hutter() "{{{
+	call vimwork#init()
+	call perforce#init()
+endfunction
+"}}}
 
-aug local_vimrc
-au!
-au BufEnter *.snip setf snip
-aug END
-"Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
-"
-let g:pf_clients_template = [
-			\ { 'clname' : 'yama_tmp_2' , 'cltmp' : 'temp_1' , 'ports' : ['localhost:1818']}
-			\ ]
-"
+" sort NG
+call s:set_header()
+let s:file_ = '~/vimtmp/.vimwork_d'
+
+" sort OK
+call s:get_pf_let()
+call s:set_auto_group()
+call unite_setting_ex#add('g:vimwork_d', 'g:test1', '', 'select', [[1], 'test', 'test2'])
+call unite_setting_ex#add('g:vimwork_d', 'g:test2', '', 'select', [[1], 'test', 'test2'])
+call unite_setting_ex#init('g:vimwork_d', s:file_)
+call unite_setting_ex#load('g:vimwork_d', s:file_)
+call vimwork_neobundle#init()
+let $GITTMP                       = expand('~/vimtmp')
+let $LOCALWORK                    = expand('~/Dropbox/vim/mind/vimwork.vim')
+let $PFTMP                        = expand('~/vimtmp')
+let $VIMTMP                       = expand('~/vimtmp')
+let $VIMWORK                      = expand('~/Dropbox/vim/mind/vimwork.vim')
+let g:atmark_jump_is_unite        = 1
+let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
+let g:perforce_merge_tool         = 'winmergeu /r'
+nnoremap ;bp<CR> :<C-u>call unite#start([['settings_ex', 'g:vimwork_d']])<CR>|"
+nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
+nnoremap ;dv<CR>  :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+nnoremap ;m<CR>   :lcd ~/Dropbox/vim/mind<CR>|"
+nnoremap <A-Space> :simalt ~<CR>|" " Window変更
+nnoremap <C-@>    :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+
+" sort NG
+call s:set_hutter()
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
