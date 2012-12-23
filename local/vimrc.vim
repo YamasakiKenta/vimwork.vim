@@ -14,7 +14,6 @@ function! s:move_unite_tags(str) "{{{
 		let str = matchstr(str, 's:\zs.*')
 	endif
 
-	echo str
 	exe 'ta' str
 endfunction "}}}
 function! s:set_auto_group() "{{{
@@ -65,15 +64,15 @@ endfunction
 
 " sort NG
 call s:set_header()
-let s:file_ = expand('~/vimtmp/.vimwork_d')
+let s:file_ = expand('~/.vimwork_d')
+call unite_setting_ex#init('g:vimwork_d', s:file_)
+call unite_setting_ex#add('g:vimwork_d', 'g:test1', '', 'select', [[1], 'test', 'test2'])
+call unite_setting_ex#add('g:vimwork_d', 'g:test2', '', 'select', [[1], 'test', 'test2'])
+call unite_setting_ex#load('g:vimwork_d', s:file_)
 
 " sort OK
 call s:get_pf_let()
 call s:set_auto_group()
-call unite_setting_ex#add('g:vimwork_d', 'g:test1', '', 'select', [[1], 'test', 'test2'])
-call unite_setting_ex#add('g:vimwork_d', 'g:test2', '', 'select', [[1], 'test', 'test2'])
-call unite_setting_ex#init('g:vimwork_d', s:file_)
-call unite_setting_ex#load('g:vimwork_d', s:file_)
 call vimwork_neobundle#init()
 let $GITTMP                       = expand('~/vimtmp')
 let $LOCALWORK                    = expand('~/Dropbox/vim/mind/vimwork.vim')
