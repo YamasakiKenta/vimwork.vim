@@ -65,7 +65,7 @@ endfunction
 
 " sort NG
 call s:set_header()
-let s:file_ = '~/vimtmp/.vimwork_d'
+let s:file_ = expand('~/vimtmp/.vimwork_d')
 
 " sort OK
 call s:get_pf_let()
@@ -81,14 +81,14 @@ let $PFTMP                        = expand('~/vimtmp')
 let $VIMTMP                       = expand('~/vimtmp')
 let $VIMWORK                      = expand('~/Dropbox/vim/mind/vimwork.vim')
 let g:atmark_jump_is_unite        = 1
-let g:perforce_merge_default_path = 'C:/Users/yamasaki.mac/Dropbox/vim/'
+let g:perforce_merge_default_path = expand('~/Dropbox/vim/')
 let g:perforce_merge_tool         = 'winmergeu /r'
-nnoremap ;bp<CR> :<C-u>call unite#start([['settings_ex', 'g:vimwork_d']])<CR>|"
-nnoremap ;de<CR> :<C-u>lcd ~/Desktop<CR>|"
-nnoremap ;dv<CR>  :e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;m<CR>   :lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap <A-Space> :simalt ~<CR>|" " Window変更
-nnoremap <C-@>    :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>
+nnoremap ;bp<CR>   :<C-u>call unite#start([['settings_ex', 'g:vimwork_d']])<CR>|"
+nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
+nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
+nnoremap <A-Space> :<C-u>simalt ~<CR>|" " Window変更
+nnoremap <C-@>     :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>|"
 
 " sort NG
 call s:set_hutter()
