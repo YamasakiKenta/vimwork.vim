@@ -90,6 +90,11 @@ nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " Window変更
 nnoremap <C-@>     :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>|"
 
+let g:chain_files = {
+			\ 'vimrc.vim' : '../autoload/vimwork.vim',
+			\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
+			\ }
+
 " sort NG
 call s:set_hutter()
 
