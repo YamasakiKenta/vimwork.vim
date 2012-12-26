@@ -4,12 +4,48 @@ snippet action
 				\ 'is_selectable' : 1, 
 				\ 'description' : '${2}',
 				\ }
-	call unite#custom_action('${3:file}', '$1', s:action)
     function! s:action.func(candidates)
         for l:candidate in a:candidates
         endfor
     endfunction
-    unlet s:action
+	let s:action_$1 = deepcopy(s:action)
+	call unite#custom_action('${3:file}', '$1', s:action_$1) | unlet s:action_$1
+snippet source
+    "source - ${1}
+    let s:source = {
+                \ 'name'           : '$1',
+                \ 'description'    : '',
+                \ 'default_action' : '',
+                \ }
+    function! s:source.gather_candidates(args, context)
+        let datas = ${2}
+        let candidates = map( datas, "{
+                    \ 'word' : v:val,
+                    \ 'kind' : 'file',
+                    \ }")
+        return candidates
+    endfunction
+	let s:source_$1 = deepcopy(s:source)
+    call unite#define_source(s:source_$1) | unlet s:source_$1
+snippet kind
+    "kind - ${1}
+    let s:kind = {
+		\ 'name'           : '$1',
+		\ 'default_action' : '${2}',
+		\ 'action_table'   : {},
+		\ 'parents'        : [],
+        \ }
+		let s:kind_$1
+    let s:kind_$1 = deepcopy(s:kind)
+    call unite#define_kind(s:kind_$1) | unlet s:kind_$1
+snippet sources
+    function! unite#sources#${1}#define()
+        return s:source
+    endfunction
+snippet kinds
+    function! unite#kinds#${1}#define()
+        return s:kind
+    endfunction
 snippet actions
 	let s:kind.action_table.${1} = {
 		\ 'is_selectable' : 1,
@@ -19,41 +55,6 @@ snippet actions
 		for candidate in a:candidates
 		endfor
 	endfunction
-snippet source
-    "source - ${1}
-    let s:source = {
-                \ 'name'           : '$1',
-                \ 'description'    : '',
-                \ 'default_action' : '',
-                \ }
-    call unite#define_source(s:source)
-    function! s:source.gather_candidates(args, context)
-        let datas = ${2}
-        let candidates = map( datas, "{
-                    \ 'word' : v:val,
-                    \ 'kind' : 'file',
-                    \ }")
-        return candidates
-    endfunction
-    unlet s:source
-snippet kind
-    "kind - ${1}
-    let s:kind = {
-		\ 'name'           : '$1',
-		\ 'default_action' : '${2}',
-		\ 'action_table'   : {},
-		\ 'parents'        : [],
-        \ }
-    call unite#define_kind(s:kind) 
-    unlet s:kind 
-snippet sources
-    function! unite#sources#${1}#define()
-        return s:source
-    endfunction
-snippet kinds
-    function! unite#kinds#${1}#define()
-        return s:kind
-    endfunction
 snippet head
 	" ********************************************************************************
 	" @par       ${1}
