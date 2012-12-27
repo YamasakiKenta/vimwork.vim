@@ -106,7 +106,7 @@ set rtp+=$VIMWORK/bundle/diff
 set rtp+=$VIMWORK/bundle/git
 set shiftwidth=4
 set smartcase
-set stl=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set stl=[%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tabstop=4                                           " # tab‚ÌÝ’è
 set tw=0                                                " # Ž©“®‰üs OFF
 set ve=block
