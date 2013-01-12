@@ -110,6 +110,7 @@ set stl=[%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tabstop=4                                           " # tab‚Ìİ’è
 set tw=0                                                " # ©“®‰üs OFF
 set ve=block
+set dip=filler,icase,iwhite,vertical
 
 "}}}
 
