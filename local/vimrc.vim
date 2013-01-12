@@ -7,16 +7,33 @@ set cpo&vim
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 "================================================================================ 
 
-function! s:move_unite_tags(str) "{{{
-	let str = a:str
+function! s:set_header() "{{{
+	set rtp+=~/Dropbox/vim/mind/sort-function.vim
+	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
+	set rtp+=~/Dropbox/vim/mind/chain-file.vim
+	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
+	set rtp+=~/Dropbox/vim/mind/unite-git.vim
+	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
+	set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
+	set rtp+=~/Dropbox/vim/mind/vimwork.vim
+	set rtp+=~/Dropbox/vim/mind/vital.vim
 
-	if str =~ '^s:'
-		let str = matchstr(str, 's:\zs.*')
-	endif
+	call neobundle#rc('~/Dropbox/vim/bundle')
 
-	exe 'ta' str
-endfunction "}}}
-function! s:set_auto_group() "{{{
+	let s:file_ = expand('~/.vimwork_d')
+	call unite_setting_ex#init('g:vimwork_d', s:file_)
+	call unite_setting_ex#add('g:vimwork_d', 'g:test1', '', 'select', [[1], 'test', 'test2'])
+	call unite_setting_ex#add('g:vimwork_d', 'g:test2', '', 'select', [[1], 'test', 'test2'])
+	call unite_setting_ex#load('g:vimwork_d', s:file_)
+
+	let g:pf_clients_template = [
+				\ { 'clname' : 'yama_tmp_2' , 'cltmp' : 'temp_1' , 'ports' : ['localhost:1818']}
+				\ ]
+	let s:ext = {
+				\ 'c' : 'h',
+				\ 'h' : 'c',
+				\ }
+
 	aug local_vimrc
 		au!
 		au BufEnter *.snip setf snip
@@ -29,50 +46,18 @@ function! s:set_auto_group() "{{{
 	aug END
 endfunction
 "}}}
-function! s:get_pf_let() "{{{
-	let g:pf_clients_template = [
-				\ { 'clname' : 'yama_tmp_2' , 'cltmp' : 'temp_1' , 'ports' : ['localhost:1818']}
-				\ ]
-	let s:ext = {
-				\ 'c' : 'h',
-				\ 'h' : 'c',
-				\ }
-endfunction 
-"}}}
-function! s:set_rtp() "{{{
-	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
-	set rtp+=~/Dropbox/vim/mind/chain-file.vim
-	set rtp+=~/Dropbox/vim/mind/sort-function.vim
-	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
-	set rtp+=~/Dropbox/vim/mind/unite-git.vim
-	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
-	set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
-	set rtp+=~/Dropbox/vim/mind/vimwork.vim
-	set rtp+=~/Dropbox/vim/mind/vital.vim
-endfunction
-"}}}
-function! s:set_header() "{{{
-	call s:set_rtp()
-	call neobundle#rc('~/Dropbox/vim/bundle')
-endfunction
-"}}}
 function! s:set_hutter() "{{{
 	call vimwork#init()
 	call perforce#init()
+let g:chain_files = {
+			\ 'vimrc.vim' : '../autoload/vimwork.vim',
+			\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
+			\ }
 endfunction
 "}}}
 
-" sort NG
 call s:set_header()
-let s:file_ = expand('~/.vimwork_d')
-call unite_setting_ex#init('g:vimwork_d', s:file_)
-call unite_setting_ex#add('g:vimwork_d', 'g:test1', '', 'select', [[1], 'test', 'test2'])
-call unite_setting_ex#add('g:vimwork_d', 'g:test2', '', 'select', [[1], 'test', 'test2'])
-call unite_setting_ex#load('g:vimwork_d', s:file_)
 
-" sort OK
-call s:get_pf_let()
-call s:set_auto_group()
 call vimwork_neobundle#init()
 let $GITTMP                       = expand('~/vimtmp')
 let $LOCALWORK                    = expand('~/Dropbox/vim/mind/vimwork.vim')
@@ -89,12 +74,6 @@ nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " Window変更
 nnoremap <C-@>     :<C-u>call <SID>move_unite_tags("<C-r>=expand("<cword>")<CR>")<CR>|"
 
-let g:chain_files = {
-			\ 'vimrc.vim' : '../autoload/vimwork.vim',
-			\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
-			\ }
-
-" sort NG
 call s:set_hutter()
 
 let &cpo = s:save_cpo
