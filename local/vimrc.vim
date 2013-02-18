@@ -31,7 +31,7 @@ function! s:set_header() "{{{
 	call unite_setting_ex#add('g:vimwork_d' , 'g:test6' , '' , 'var'     , {'a': 'test' , 'b': 'test'} ) 
 	call unite_setting_ex#add('g:vimwork_d' , 'g:test7' , '' , 'list'    , {'a': 'test' , 'b': 'test'} ) 
 	call unite_setting_ex#add('g:vimwork_d' , 'g:test8' , '' , ''        , [[1]         , 'test'       , 'test2'] ) 
-	call unite_setting_ex#load('g:vimwork_d', s:file_)
+	call unite_setting_ex#load('g:vimwork_d')
 
 	let g:pf_clients_template = [
 				\ { 'clname' : 'yama_tmp_2' , 'cltmp' : 'temp_1' , 'ports' : ['localhost:1818']}

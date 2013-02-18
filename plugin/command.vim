@@ -118,7 +118,7 @@ endfunction
 "}}}
 "
 " ‘ÎÛ‚Ì•¶Œ¾‚ğ’Šo‚·‚é
-command! -rang -narg=1 GetWord call s:get_word(<line1>, <line2>, <f-args>) "{{{
+command! -range=% -narg=1 GetWord call s:get_word(<line1>, <line2>, <f-args>) "{{{
 function! s:get_word(lnum1, lnum2, word) 
 	let lnum1 = a:lnum1
 	let lnum2 = a:lnum2
