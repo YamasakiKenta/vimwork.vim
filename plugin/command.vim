@@ -118,17 +118,17 @@ endfunction
 "}}}
 "
 " ‘ÎÛ‚Ì•¶Œ¾‚ğ’Šo‚·‚é
-command! -range=% -narg=1 GetWord call s:get_word(<line1>, <line2>, <f-args>) "{{{
+command! -range -narg=1 GetWord call s:get_word(<line1>, <line2>, <f-args>) "{{{
 function! s:get_word(lnum1, lnum2, word) 
 	let lnum1 = a:lnum1
 	let lnum2 = a:lnum2
 	let word = a:word
 	
 	" ‘ÎÛ•¶š—ñˆÈŠO‚Ìíœ
-	let cmd = '*s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
-	echo cmd
-	exe cmd
-	exe lnum1.','.lnum2.'sort u'
+	silent exe lnum1.','.lnum2.'s/\(^\|'.word.'\)\zs.\{-}\ze\('.word.'\|$\)//g'
+
+	" š —ñ‚ª‘‚¦‚¢‚é‚½‚ßA”ÍˆÍ‚ª‚í‚©‚ç‚È‚¢
+	silent exe lnum1.','.lnum2.'sort u'
 
 endfunction "}}}
 
