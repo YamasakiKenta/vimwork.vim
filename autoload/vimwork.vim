@@ -70,6 +70,7 @@ endfunction
 function! vimwork#init() "{{{
 endfunction 
 "}}}
+
 let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
 let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
 let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   ) 
@@ -175,6 +176,30 @@ let g:Align_xstrlen = 3                                                         
 let howm_dir = $VIMTMP.'/howm'
 let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
 "}}}
+"map - perforce "{{{
+nmap ;cl<CR> <PLUG>(p4_echo_client_data)
+nmap ;cr<CR> <PLUG>(p4_cd_clentpath)
+nmap ;ff<CR> <PLUG>(p4_find)
+nmap ;pl<CR> <PLUG>(p4_filelog)
+nmap ;pd<CR> <PLUG>(p4_diff)
+nmap ;id<CR> <PLUG>(p4_get_depot)
+
+nnoremap ;pp<CR> :<c-u>PfSetting<CR>|"
+nnoremap ;pr<CR>  :<c-u>PfRevert<CR>|"
+nnoremap ;pe<CR>  :<c-u>PfEdit<CR>|"
+nnoremap ;pE<CR>  :<c-u>PfAdd<CR>|"
+nnoremap ;wd<CR>  :<c-u>PfDiff<CR>|"
+nnoremap ;pi<CR>  :<C-u>Unite p4_info<CR>|"
+nnoremap ;pt<CR>  :<C-u>Unite p4_clients<CR>|"
+nnoremap ;pc<CR>  :<C-u>Unite p4_changes_pending<CR>|"
+nnoremap ;ps<CR>  :<C-u>Unite p4_changes_submitted<CR>|"
+nnoremap ;po<CR>  :<C-u>Unite p4_opened<CR>|"
+nnoremap ;pj<CR>  :<C-u>Unite p4_jobs<CR>|"
+nnoremap ;ph<CR>  :<C-u>Unite p4_have<CR>|"
+nnoremap ;pa<CR>  :<C-u>Unite p4_annotate<CR>|"
+nnoremap ;pC<CR>  :<C-u>Unite p4_changes_pending_reopen<CR>|"
+nnoremap ;pte<CR> :<C-u>Unite p4_template<CR>|"
+"}}}
 "@plugin - Shogo
 "Shogo - unite{{{
 let g:unite_enable_start_insert = 0
@@ -213,7 +238,6 @@ imap <C-s>  <PLUG>(neocomplcache_start_unite_complete)|"                        
 imap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
 smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # 同上
 "}}}
-
 "@script
 " nnoremap - cscope "{{{
 set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-

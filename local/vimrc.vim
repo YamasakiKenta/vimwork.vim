@@ -33,8 +33,11 @@ function! s:set_header() "{{{
 	call unite_setting_ex#add('g:vimwork_d' , 'g:test8' , '' , ''        , [[1]         , 'test'       , 'test2'] ) 
 	call unite_setting_ex#load('g:vimwork_d')
 
+
+
 	let g:pf_clients_template = [
-				\ { 'clname' : 'yama_tmp_2' , 'cltmp' : 'temp_1' , 'ports' : ['localhost:1818']}
+				\ { 'clname' : 'temp_copy_1', 'cltmp' : 'temp_1', 'ports' : ['mac:1819', 'mac:2013']},
+				\ { 'clname' : 'temp_copy_2', 'cltmp' : 'temp_2', 'ports' : ['mac:1819', 'mac:2013']},
 				\ ]
 	let s:ext = {
 				\ 'c' : 'h',
@@ -55,7 +58,6 @@ endfunction
 "}}}
 function! s:set_hutter() "{{{
 	call vimwork#init()
-	call perforce#init()
 	let g:chain_files = {
 				\ 'vimrc.vim' : '../autoload/vimwork.vim',
 				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
