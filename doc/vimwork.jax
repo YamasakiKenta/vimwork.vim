@@ -1,40 +1,25 @@
 *vimwork.jax*
-
-vim 環境で個人的なファイルをまとめましたものになります。
-
 ==============================================================================
-使用しているプラグイン
-git://github.com/Shougo/unite.vim.git
-git://github.com/fuenor/qfixhowm.git
+COMMANDS *vimwork-commands*
 
-==============================================================================
-ファイル構成
- - neobundle.vim
+:SetNum *:SetNum*
+	前の行の番号の次の番号に変更します
 
-==============================================================================
-設定するもの
- $VIMTMP
- $LOCAKWORK
- $VIMWORK
+:GetWord {word}*:GetWord*
+	{word}を以外を削除します
 
+:CopyFileDir {file}, [{to}, {from}] *:CopyFileDir*
+	{file} を {to} フォルダに {from} フォルダからフォルダ階層毎コピーしま
+	す。
+	{to}がない場合は|g:copyFileDir_defaultRoot|から、 {from}がない場合は、
+	|g:copyFileDir_defaultFile2|からコピーします。
 
-==============================================================================
- 使い方
- 環境にあったlocal フォルダ内のファイルを読み込みます。
+	それらもない場合は、{from} = "c:" {to} = "c:\tmp" となる
 
-==============================================================================
-管理するもの
-snippets
-syntax 
+:QuickMemo {text} *:QuickMemo*
+	|qfixmemo|の日記に{text}を追加します
 
-==============================================================================
-一時ファイル
-plugin	 autoload					*vimwork-plugin* *vimwork-autoload*
-	よく使用する関数をまとめたもの
-	script を公開する場合は、各スクリプト内にautoload file として新たに定義する
-
-bundle							*vimwork-bundle*
-	独立していないプラグイン
-
+:AddSerach {word} *:AddSerach*
+	現在の検索変数に、{word}を追加します
 ------------------------------------------------------------------------------
  vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:
