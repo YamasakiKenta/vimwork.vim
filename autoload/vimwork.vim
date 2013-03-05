@@ -13,20 +13,11 @@ set cpo&vim
 "  |- ;v<CR>
 "  |- snippets
 "  |- howm
-"  |- rtp
 "  - command.vim
 "  |- syntax
 "
 " $VIMWORK 
 "  - vimrc.vim
-"  |- rtp
-"
-"neocomplcache - caching 
-"\:NeoComplCacheCachingBuffer<CR>
-"\:NeoComplCacheCachingSyntax<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingTags<CR>
-"\:NeoComplCacheCachingSnippets<CR>
 "
 "================================================================================
 function! s:sort_ng() "{{{
@@ -73,7 +64,7 @@ endfunction
 
 let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
 let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
-let $VIMTMP    = expand(exists('$LOCALWORK') ? $VIMTMP    : '~/vimtmp'   ) 
+let $VIMTMP    = expand(exists('$VIMTMP')    ? $VIMTMP    : '~/vimtmp'   ) 
 call s:sort_ng()
 
 " sort ok "{{{
@@ -100,11 +91,6 @@ set modeline                                            " # 読み込み時の設定
 set noswapfile                                          " # SwapFile
 set nowrap                                              " # 折り返し
 set number                                              " # 番号入力
-set rtp+=$LOCALWORK
-set rtp+=$VIMWORK
-set rtp+=$VIMWORK/bundle/cells
-set rtp+=$VIMWORK/bundle/diff
-set rtp+=$VIMWORK/bundle/git
 set shiftwidth=4
 set smartcase
 set stl=[%{&ff}][%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -116,7 +102,7 @@ set dip=filler,icase,iwhite,vertical
 "}}}
 
 " nnoremap - c {{{
-nnoremap ;k<CR> :<C-u>call s:change_unite()<CR>|"
+nnoremap ;k<CR> :<C-u>call <SID>change_unite()<CR>|"
 " }}}
 " nnoremap - call "{{{
 nnoremap ;h<CR> :<C-u>ChainFile<CR>
@@ -131,8 +117,8 @@ nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
 nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
 "}}}
 "nnoremap - lcd "{{{
-nnoremap ;l<CR>  :<C-u>lcd $LOCALWORK<CR>|"
-nnoremap ;v<CR>  :<C-u>lcd $VIMWORK<CR>|"
+nnoremap ;l<CR>  :<C-u>lcd <C-r>=expand($LOCALWORK)<CR><CR>|"
+nnoremap ;v<CR>  :<C-u>lcd <C-r>=expand($VIMWORK)<CR><CR>|"
 "}}}
 "nnoremap - normal "{{{
 nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
@@ -229,14 +215,11 @@ let g:vimfiler_as_default_explorer = 1   " # 初期filer
 let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 "}}}
 "Shogo - neocomplcache{{{
-let g:neocomplcache_snippets_dir = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                       " # snippet ファイル作成場所
+let g:neosnippet#snippets_directory = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                    " # snippet ファイル作成場所
 let g:neocomplcache_enable_at_startup = 1                                                                " # 起動
-let g:neocomplcache_disable_auto_complete = 1                                                            " # 自動補完無効
-
 nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>|"
-imap <C-s>  <PLUG>(neocomplcache_start_unite_complete)|"                                                 " # Uniteを使用する
-imap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # Snippetを使用する
-smap <C-Space> <PLUG>(neocomplcache_snippets_expand)|"                                                   " # 同上
+imap <C-s>     <PLUG>(neocomplcache_start_unite_complete)|"                                              " # Uniteを使用する
+imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"                                                       " # Snippetを使用する
 "}}}
 "@script
 " nnoremap - cscope "{{{

@@ -92,8 +92,8 @@ let g:test_test3 = [1, 2]
 let g:test_test4 = { 'a' : 1 , 'b' : 2 }
 let g:test_test5 = 314
 
-call unite_setting_ex#init2()
-call unite_setting_ex#add2('g:test_test1', 'g:test_test2')
+" call unite_setting_ex#init2()
+" call unite_setting_ex#add2('g:test_test1', 'g:test_test2')
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
