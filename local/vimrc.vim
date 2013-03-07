@@ -98,3 +98,19 @@ let g:test_test5 = 314
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
+command! MyVitalUpdate call s:my_vital_update()
+function! s:my_vital_update()
+	let paths = [
+				\ '~/Dropbox/vim/mind/cediter.vim',
+				\ '~/Dropbox/vim/mind/chain-file.vim',
+				\ '~/Dropbox/vim/mind/sort-function.vim',
+				\ '~/Dropbox/vim/mind/tab-diff.vim',
+				\ '~/Dropbox/vim/mind/unite-perforce.vim',
+				\ '~/Dropbox/vim/mind/unite-setting.vim',
+				\ '~/Dropbox/vim/mind/vimwork.vim',
+				\ ]
+
+	for path in paths
+		exe 'Vitalize' path
+	endfor
+endfunction

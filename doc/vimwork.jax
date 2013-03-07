@@ -21,5 +21,10 @@ COMMANDS *vimwork-commands*
 
 :AddSerach {word} *:AddSerach*
 	Œ»İ‚ÌŒŸõ•Ï”‚ÉA{word}‚ğ’Ç‰Á‚µ‚Ü‚·
+
+==============================================================================
+SOURCES *vimwork-unite-source*
+message 
+	|:message|‚ğ unite ‚Å•\¦‚µ‚Ü‚·
 ------------------------------------------------------------------------------
  vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:
