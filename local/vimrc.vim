@@ -36,8 +36,8 @@ function! s:set_header() "{{{
 
 
 	let g:pf_clients_template = [
-				\ { 'clname' : 'temp_copy_1', 'cltmp' : 'temp_1', 'ports' : ['mac:1819', 'mac:2013']},
-				\ { 'clname' : 'temp_copy_2', 'cltmp' : 'temp_2', 'ports' : ['mac:1819', 'mac:2013']},
+				\ { 'clname' : 'temp_copy_1', 'cltmp' : 'temp_1', 'ports' : ['mac:1819']},
+				\ { 'clname' : 'temp_copy_2', 'cltmp' : 'temp_2', 'ports' : ['mac:1819']},
 				\ ]
 	let s:ext = {
 				\ 'c' : 'h',
@@ -103,11 +103,9 @@ function! s:my_vital_update()
 	let paths = [
 				\ '~/Dropbox/vim/mind/cediter.vim',
 				\ '~/Dropbox/vim/mind/chain-file.vim',
-				\ '~/Dropbox/vim/mind/sort-function.vim',
 				\ '~/Dropbox/vim/mind/tab-diff.vim',
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
 				\ '~/Dropbox/vim/mind/unite-setting.vim',
-				\ '~/Dropbox/vim/mind/vimwork.vim',
 				\ ]
 
 	for path in paths
