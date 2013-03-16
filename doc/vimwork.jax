@@ -22,6 +22,9 @@ COMMANDS *vimwork-commands*
 :AddSerach {word} *:AddSerach*
 	現在の検索変数に、{word}を追加します
 
+:MySwap {word} *:MySwap*
+	現在の行を、{word}を中心に入れ替わる
+
 ==============================================================================
 SOURCES *vimwork-unite-source*
 message 
