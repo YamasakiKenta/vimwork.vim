@@ -74,22 +74,16 @@ function! vimwork#command#get_word(lnum1, lnum2, word) "{{{
 
 endfunction "}}}
 function! vimwork#command#mySwap(qarg) "{{{
-	let lineNum = line(".")
-	let line = getline(".") " # 文字の取得
 
 	"選択しているの編集
 	if strlen(a:qarg) > 0
-		"指定した文字で入替え
-		let hit  = match(line, a:qarg)         " # 中心開始位置
-		let hit2 = hit + strlen(a:qarg)        " # 中心終了位置
-		let str  = line[0: hit]                " # 左側
-		let str2 = strpart(line, hit2)         " # 右側
-		call setline(lineNum, str2.a:qarg.str)
-		"todo 正規表現で移動
+		let qarg = a:qarg
 	else 
-		" # todo : 適当に入替え
-		" # 文字の操作
+		let qarg = ','
 	endif
+
+	exe 's/\(.*\S\)\(\s*'.qarg.'\s*\)\(.*\)/\3\2\1'
+
 endfunction "}}}
 function! vimwork#command#quickMemo(...) "{{{
 
