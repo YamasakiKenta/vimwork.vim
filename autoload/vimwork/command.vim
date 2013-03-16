@@ -76,11 +76,7 @@ endfunction "}}}
 function! vimwork#command#mySwap(qarg) "{{{
 
 	"‘I‘ð‚µ‚Ä‚¢‚é‚Ì•ÒW
-	if strlen(a:qarg) > 0
-		let qarg = a:qarg
-	else 
-		let qarg = ','
-	endif
+	let qarg = strlen(a:qarg) > 0 ? a:qarg : ','
 
 	exe 's/\(.*\S\)\(\s*'.qarg.'\s*\)\(.*\)/\3\2\1'
 
