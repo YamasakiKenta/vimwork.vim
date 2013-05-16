@@ -9,7 +9,8 @@ function! vimwork#command#add_serach(...) "{{{
 	if a:0 > 0
 		let @/ = @/.'\|\<'.join(a:000,'\>\|\<').'\>'
 	endif
-endfunction "}}}
+endfunction
+"}}}
 function! vimwork#command#copyFileDir(file,...) "{{{
 	let g:copyFileDir_defaultRoot  = get(g:, 'copyFileDir_defaultRoot', 'c:')
 	let g:copyFileDir_defaultFile2 = get(g:, 'copyFileDir_defaultFile2', 'c:\tmp')
@@ -72,7 +73,8 @@ function! vimwork#command#get_word(lnum1, lnum2, word) "{{{
 	" ★ 列が増えいるため、範囲がわからない
 	silent exe lnum1.','.lnum2.'sort u'
 
-endfunction "}}}
+endfunction
+"}}}
 function! vimwork#command#mySwap(qarg) "{{{
 
 	"選択しているの編集
@@ -80,7 +82,8 @@ function! vimwork#command#mySwap(qarg) "{{{
 
 	exe 's/\(.*\S\)\(\s*'.qarg.'\s*\)\(.*\)/\3\2\1'
 
-endfunction "}}}
+endfunction
+"}}}
 function! vimwork#command#quickMemo(...) "{{{
 
 	"let str = input('comment: ',join(a:000))
@@ -104,7 +107,8 @@ function! vimwork#command#quickMemo(...) "{{{
 	" 編集中のファイルに戻す
 	exe bufnr 'buffer'
 
-endfunction "}}}
+endfunction
+"}}}
 function! vimwork#command#set_num() "{{{
 " ********************************************************************************
 " 連番の作成
@@ -161,7 +165,8 @@ function! vimwork#command#set_num() "{{{
 		call cursor(lnum, len(str[0].str[1]))
 	endif
 
-endfunction "}}}
+endfunction
+"}}}
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

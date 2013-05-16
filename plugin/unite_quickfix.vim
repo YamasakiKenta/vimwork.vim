@@ -27,7 +27,8 @@ function! action.func(candidates) "{{{
 		endif
 
 	endfor
-endfunction "}}}
+endfunction
+"}}}
 unlet action
 
 let &cpo = s:save_cpo

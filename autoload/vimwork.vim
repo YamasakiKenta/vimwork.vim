@@ -39,24 +39,6 @@ function! s:sort_ng() "{{{
 				\ }
 endfunction
 "}}}
-function! s:change_unite() "{{{
-	" ********************************************************************************
-	" ÉtÉ@ÉCÉãÇÃêÿÇËë÷Ç¶ ( unite ) 
-	" ********************************************************************************
-	let root = substitute(expand("%:h"), '[\\/][^\\/]*$', '', '')
-	let file = expand("%:t")
-	let type = substitute(expand("%:h"), '.*[\\/]\ze.\{-}[\\/]', '', '')
-
-	echo type
-	if type =~ 'unite[\\/]kinds'
-		let file = substitute(file, 'k_', '', '')
-		exe 'e '.root.'/sources/'.file
-	elseif type =~ 'unite[\\/]sources'
-		exe 'e '.root.'/kinds/k_'.file
-	endif
-
-endfunction 
-"}}}
 "
 function! vimwork#init() "{{{
 endfunction 
@@ -101,9 +83,6 @@ set dip=filler,icase,iwhite,vertical
 
 "}}}
 
-" nnoremap - c {{{
-nnoremap ;k<CR> :<C-u>call <SID>change_unite()<CR>|"
-" }}}
 " nnoremap - call "{{{
 nnoremap ;h<CR> :<C-u>ChainFile<CR>
 "}}}
@@ -170,7 +149,7 @@ nmap ;pl<CR> <PLUG>(p4_filelog)
 nmap ;pd<CR> <PLUG>(p4_diff)
 nmap ;id<CR> <PLUG>(p4_get_depot)
 
-nnoremap ;pp<CR> :<c-u>PfSetting<CR>|"
+nnoremap ;pp<CR>  :<c-u>PfSetting<CR>|"
 nnoremap ;pr<CR>  :<c-u>PfRevert<CR>|"
 nnoremap ;pe<CR>  :<c-u>PfEdit<CR>|"
 nnoremap ;pE<CR>  :<c-u>PfAdd<CR>|"
@@ -188,7 +167,7 @@ nnoremap ;pte<CR> :<C-u>Unite p4_template<CR>|"
 "}}}
 "@plugin - Shogo
 "Shogo - unite{{{
-let g:unite_enable_start_insert = 0
+let g:unite_enable_start_insert        = 0
 let g:unite_source_history_yank_enable = 0
 nnoremap ;ur<CR>  :<C-u>UniteResume<CR>
 nnoremap ;us<CR>  :<C-u>Unite source<CR>
@@ -211,7 +190,7 @@ nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>
 
 "}}}
 "Shogo - vimfiler{{{
-let g:vimfiler_as_default_explorer = 1   " # èâä˙filer
+let g:vimfiler_as_default_explorer  = 1  " # èâä˙filer
 let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 "}}}
 "Shogo - neocomplcache{{{

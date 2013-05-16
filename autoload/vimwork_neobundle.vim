@@ -24,6 +24,7 @@ NeoBundle 'git://github.com/tpope/vim-fugitive.git'
 NeoBundle 'git://github.com/tsukkee/unite-tag.git'
 NeoBundle 'git://github.com/vim-scripts/Align.git'
 NeoBundle 'git://github.com/vim-scripts/DirDiff.vim.git'
+NeoBundle 'git://github.com/mfumi/snake.vim.git'
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

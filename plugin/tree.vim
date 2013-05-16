@@ -22,7 +22,8 @@ function! s:init() "{{{
 	syn match Todo /|-.*=$/
 	syn match Todo /|-\ze.*-$/
 
-endfunction "}}}
+endfunction
+"}}}
 
 
 function! s:force_reload() "{{{
@@ -34,7 +35,8 @@ function! s:force_reload() "{{{
 	echo 'force_reload'
 
 	call s:reload(1)
-endfunction "}}}
+endfunction
+"}}}
 function! s:reload(...) "{{{
 	" çƒï`âÊ
 	let force_flg = 0
@@ -108,7 +110,8 @@ function! s:reload(...) "{{{
 
 	endwhile "}}}
 
-endfunction "}}}
+endfunction
+"}}}
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
