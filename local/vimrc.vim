@@ -6,8 +6,7 @@ set cpo&vim
 "--------------------------------------------------------------------------------
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 "================================================================================ 
-
-let $Dropbox  = expand("~/Dropbox/")
+let $Dropbox = substitute(expand('~/Dropbox'), '\\', '\/', 'g')
 
 function! s:set_header() "{{{
 	set rtp+=$Dropbox/vim/mind/sort-function.vim

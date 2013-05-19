@@ -6,24 +6,23 @@ snippet cpo
 	unlet s:save_cpo
 snippet action
 	"action - ${1}
-	let s:action = { 
+	let s:action_$1 = { 
 				\ 'is_selectable' : 1, 
 				\ 'description' : '${2}',
 				\ }
-    function! s:action.func(candidates)
+    function! s:action_$1.func(candidates)
         for l:candidate in a:candidates
         endfor
     endfunction
-	let s:action_$1 = deepcopy(s:action)
-	call unite#custom_action('${3:file}', '$1', s:action_$1) | unlet s:action_$1
+	call unite#custom_action('${3:file}', '$1', s:action_$1) 
 snippet source
     "source - ${1}
-    let s:source = {
+    let s:source_$1 = {
                 \ 'name'           : '$1',
                 \ 'description'    : '',
                 \ 'default_action' : '',
                 \ }
-    function! s:source.gather_candidates(args, context)
+    function! s:source_$1.gather_candidates(args, context)
         let datas = ${2}
         let candidates = map( datas, "{
                     \ 'word' : v:val,
@@ -31,19 +30,17 @@ snippet source
                     \ }")
         return candidates
     endfunction
-	let s:source_$1 = deepcopy(s:source)
-    call unite#define_source(s:source_$1) | unlet s:source_$1
+    call unite#define_source(s:source_$1) 
 snippet kind
     "kind - ${1}
-    let s:kind = {
+    let s:kind_$1 = {
 		\ 'name'           : '$1',
 		\ 'default_action' : '${2}',
 		\ 'action_table'   : {},
 		\ 'parents'        : [],
         \ }
 		let s:kind_$1
-    let s:kind_$1 = deepcopy(s:kind)
-    call unite#define_kind(s:kind_$1) | unlet s:kind_$1
+    call unite#define_kind(s:kind_$1)
 snippet sources
     function! unite#sources#${1}#define()
         return s:source
