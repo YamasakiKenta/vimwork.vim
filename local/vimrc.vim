@@ -128,5 +128,7 @@ endfunction
 nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>
 nnoremap ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>
 
+nnoremap ;ag<CR> :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
