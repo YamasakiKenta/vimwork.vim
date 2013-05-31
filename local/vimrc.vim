@@ -6,9 +6,10 @@ set cpo&vim
 "--------------------------------------------------------------------------------
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 "================================================================================ 
-let $Dropbox = substitute(expand('~/Dropbox'), '\\', '\/', 'g')
 
+call s:set_header()
 function! s:set_header() "{{{
+	let $Dropbox = substitute(expand('~/Dropbox'), '\\', '\/', 'g')
 	set rtp+=$Dropbox/vim/mind/sort-function.vim
 	set rtp+=$Dropbox/vim/bundle/neobundle.vim
 	set rtp+=$Dropbox/vim/mind/chain-file.vim
@@ -27,20 +28,12 @@ function! s:set_header() "{{{
 		au BufRead *.h setf c
 		au GUIEnter * simalt ~x        " # ç≈ëÂâª
 	aug END
-endfunction
-"}}}
-function! s:set_footer() "{{{
-	call vimwork#init()
-	let g:chain_files = {
-				\ 'vimrc.vim' : '../autoload/vimwork.vim',
-				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
-				\ }
+
+	call vimwork_neobundle#init()
+
 endfunction
 "}}}
 
-call s:set_header()
-
-call vimwork_neobundle#init()
 
 let $LOCALWORK                    = expand("$Dropbox/vim/mind/vimwork.vim")
 let $VIMTMP                       = expand("~/vimtmp")
@@ -53,8 +46,17 @@ nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e $Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
 nnoremap ;m<CR>    :<C-u>lcd $Dropbox/vim/mind<CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
+nnoremap ;a<CR>    :<C-u>ChainFile<CR>
 
 call s:set_footer()
+function! s:set_footer() "{{{
+	call vimwork#init()
+	let g:chain_files = {
+				\ 'vimrc.vim' : '../autoload/vimwork.vim',
+				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
+				\ }
+endfunction
+"}}}
 
 command! MyVitalUpdate call s:my_vital_update()
 function! s:my_vital_update() "{{{
@@ -82,7 +84,9 @@ function! s:my_git_update() "{{{
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
 				\ '~/Dropbox/vim/mind/unite-setting.vim',
 				\ '~/Dropbox/vim/mind/sort-function.vim',
+				\ '~/Dropbox/vim/mind/vimwork.vim',
 				\ ]
+
 
 	for path in paths
 		exe 'lcd '.path
@@ -107,7 +111,7 @@ command! -nargs=1 ConvDebugPrint call s:conv_debug_print(<q-args>)
 function! s:conv_debug_print(str) "{{{
 	let fname = s:get_vim_function_name()
 	let str   = 'echo "' . fname. ' : ".string(' . a:str . ')'
-	call append(line("."), [str])
+	call append(line(".")-1, [str])
 endfunction
 "}}}
 
@@ -125,9 +129,8 @@ function! s:get_vim_function_name() "{{{
 endfunction 
 "}}}
 
+noremap ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>
 nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>
-nnoremap ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>
-
 nnoremap ;ag<CR> :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>
 
 let &cpo = s:save_cpo

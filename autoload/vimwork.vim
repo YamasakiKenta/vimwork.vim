@@ -1,25 +1,13 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-"================================================================================
-" MEMO 
-"--------------------------------------------------------------------------------
-"$VIMTMP 
-" - backupdir
-" - howm
-"
-" $LOCALWORK 
-"  - vimrc.vim
-"  |- ;v<CR>
-"  |- snippets
-"  |- howm
-"  - command.vim
-"  |- syntax
-"
-" $VIMWORK 
-"  - vimrc.vim
-"
-"================================================================================
+function! vimwork#init()
+endfunction 
+
+let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
+let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
+let $VIMTMP    = expand(exists('$VIMTMP')    ? $VIMTMP    : '~/vimtmp'   ) 
+
 function! s:sort_ng() "{{{
 	if !has('gui') 
 		set ruler           " # カーソルの位置の表示
@@ -39,19 +27,12 @@ function! s:sort_ng() "{{{
 				\ }
 endfunction
 "}}}
-"
-function! vimwork#init() "{{{
-endfunction 
-"}}}
-
-let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  ) 
-let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork') 
-let $VIMTMP    = expand(exists('$VIMTMP')    ? $VIMTMP    : '~/vimtmp'   ) 
 call s:sort_ng()
 
 " sort ok "{{{
 
 map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
+map * *N
 nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 nmap ;uq<CR> 	<Plug>(uniq_line)
 nmap v/ 		<Plug>(select_search)
@@ -62,7 +43,7 @@ set fdm=marker                                          " # 自動的に折りたたみ
 set fo+=ro                                              " # 自動でコメント挿入
 set guioptions-=T                                       " # メニューバーを削除
 set guioptions-=m                                       " # ツールバーを削除
-set hidden                                              " # ファイルを保存せず移動
+""set hidden                                              " # ファイルを保存せず移動
 set hlsearch                                            " # 検索
 set ignorecase                                          " # 検索で大文字小文字を区別しない
 set incsearch
@@ -83,22 +64,17 @@ set dip=filler,icase,iwhite,vertical
 
 "}}}
 
+" nnoremap  - TabDiff "{{{
+nnoremap ;dy<CR> :<C-u>TabDiffStart<CR>
+nnoremap ;dn<CR> :<C-u>TabDiffEnd<CR>
+nnoremap ;do<CR> :<C-u>TabDiffOrig<CR>
+"}}}
 " nnoremap - call "{{{
 nnoremap ;h<CR> :<C-u>ChainFile<CR>
 "}}}
 " nnoremap - other "{{{
 nnoremap <C-s> 	:<C-u>SetNum<CR>
 " }}}
-"nnoremap - find {{{
-nnoremap ;tc<CR> :<C-u>ta <C-r>"<CR>
-nnoremap ;tv<CR> :<C-u>ta <C-r>+<CR>
-nnoremap ;tx<CR> :<C-u>ta <C-r>/<CR>
-nnoremap ;t/<CR> :<C-u>ta <C-r>/<CR>
-"}}}
-"nnoremap - lcd "{{{
-nnoremap ;l<CR>  :<C-u>lcd <C-r>=expand($LOCALWORK)<CR><CR>|"
-nnoremap ;v<CR>  :<C-u>lcd <C-r>=expand($VIMWORK)<CR><CR>|"
-"}}}
 "nnoremap - normal "{{{
 nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
@@ -106,10 +82,9 @@ nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
 nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
 "}}}
 "nnoremap - simple {{{
-nnoremap <C-j> j.|"                                                            " # 作業の繰り返し                     
-nnoremap <C-n> :<C-u>cn<CR>|"                                                  " # Grepに移動 ( 次 )
-nnoremap <C-p> :<C-u>cN<CR>|"                                                  " # Grepに移動 ( 前 )
-nnoremap v/ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a|"      " # 検索値の選択
+nnoremap <C-j> j.|"    
+nnoremap <C-n> :<C-u>cn<CR>|" 
+nnoremap <C-p> :<C-u>cN<CR>|" 
 nnoremap j gj|"                                                                " # カーソル移動
 nnoremap k gk|"                                                                " # カーソル移動
 nnoremap <C-]> <C-]>zz|"                                                       " # タグジャンプ
@@ -187,7 +162,7 @@ nnoremap ;et<CR>  :<C-u>Unite everything<CR>
 nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>
 nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>
 nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>
-
+nnoremap ;uom<CR> :<C-u>Unite output:message<CR>
 "}}}
 "Shogo - vimfiler{{{
 let g:vimfiler_as_default_explorer  = 1  " # 初期filer
@@ -200,30 +175,10 @@ nnoremap ;es<CR> :<C-u>NeoComplCacheEditSnippets<CR>|"
 imap <C-s>     <PLUG>(neocomplcache_start_unite_complete)|"                                              " # Uniteを使用する
 imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"                                                       " # Snippetを使用する
 "}}}
-"@script
-" nnoremap - cscope "{{{
+" cscope {{{
 set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R")<CR>:cs add cscope.out<CR>|"
-nnoremap <C-\>i :cs find i <C-R>=expand("%:p:t")<CR><CR>|"
-nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
-
-nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
-nnoremap <C-\>f :cs find f <C-R>=expand("%:p:t")<CR><CR>|"
-nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
-nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
-
-nnoremap ;cv<CR> :<C-u>cs f s <C-R>+<CR>|"
-nnoremap ;cc<CR> :<C-u>cs f s <C-R>"<CR>|"
-
 nnoremap <C-\>K :call system("ctags -R")<CR>|"
-" }}}
-" grep "{{{
-let mygrepprg = 'grep'
-nnoremap <C-\>v :RGrep <C-R>=expand("<cword>")<CR> *.vim\ *.c\ *.h<CR>
-nnoremap ;ug<CR> :<C-u>call unite#start([['grep', '*', '--include="*.c" --include="*.h" --include="*.vim"', '<C-r>=expand('<cword>')<CR>']])<CR>
 "}}}
 
 let &cpo = s:save_cpo
