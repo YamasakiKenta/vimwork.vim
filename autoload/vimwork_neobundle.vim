@@ -6,7 +6,6 @@ endfunction
 
 NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/gregsexton/gitv.git'
-NeoBundle 'git://github.com/vim-scripts/ag.vim.git'
 NeoBundle 'git://github.com/osyo-manga/unite-quickfix.git'
 NeoBundle 'git://github.com/tsukkee/unite-help.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'

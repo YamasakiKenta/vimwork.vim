@@ -22,7 +22,6 @@ function! action.func(candidates) "{{{
 			setl errorformat+=%f:%s:%m
 			let pattern = candidate.action__pattern
 			setl errorformat
-			call input("")
 			caddexpr file . ":" . pattern .  ":" . word
 		endif
 
