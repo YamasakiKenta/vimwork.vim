@@ -6,8 +6,6 @@ set cpo&vim
 "--------------------------------------------------------------------------------
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 "================================================================================ 
-
-call s:set_header()
 function! s:set_header() "{{{
 	let $Dropbox = substitute(expand('~/Dropbox'), '\\', '\/', 'g')
 	set rtp+=$Dropbox/vim/mind/sort-function.vim
@@ -31,16 +29,28 @@ function! s:set_header() "{{{
 
 	call vimwork_neobundle#init()
 
+	let $LOCALWORK                    = expand("$Dropbox/vim/mind/vimwork.vim")
+	let $VIMTMP                       = expand("~/vimtmp")
+	let $VIMWORK                      = expand("$Dropbox/vim/mind/vimwork.vim")
+	let g:perforce_merge_default_path = expand("$Dropbox/vim/")
+	let g:perforce_merge_tool         = "winmergeu /r"
+	let g:perforce_tmp_dir            = expand("~/vimtmp")
+
+	call vimwork#init()
+
+endfunction
+"}}}
+function! s:set_footer() "{{{
+	let g:chain_files = {
+				\ 'vimrc.vim' : '../autoload/vimwork.vim',
+				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
+				\ }
 endfunction
 "}}}
 
+call s:set_header()
 
-let $LOCALWORK                    = expand("$Dropbox/vim/mind/vimwork.vim")
-let $VIMTMP                       = expand("~/vimtmp")
-let $VIMWORK                      = expand("$Dropbox/vim/mind/vimwork.vim")
-let g:perforce_merge_default_path = expand("$Dropbox/vim/")
-let g:perforce_merge_tool         = "winmergeu /r"
-let g:perforce_tmp_dir            = expand("~/vimtmp")
+
 
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e $Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
@@ -49,14 +59,6 @@ nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
 nnoremap ;a<CR>    :<C-u>ChainFile<CR>
 
 call s:set_footer()
-function! s:set_footer() "{{{
-	call vimwork#init()
-	let g:chain_files = {
-				\ 'vimrc.vim' : '../autoload/vimwork.vim',
-				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
-				\ }
-endfunction
-"}}}
 
 command! MyVitalUpdate call s:my_vital_update()
 function! s:my_vital_update() "{{{
