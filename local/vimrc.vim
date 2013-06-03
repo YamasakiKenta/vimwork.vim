@@ -113,7 +113,7 @@ command! -nargs=1 ConvDebugPrint call s:conv_debug_print(<q-args>)
 function! s:conv_debug_print(str) "{{{
 	let fname = s:get_vim_function_name()
 	let str   = 'echo "' . fname. ' : ".string(' . a:str . ')'
-	call append(line(".")-1, [str])
+	call append(line("."), [str])
 endfunction
 "}}}
 

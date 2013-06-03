@@ -5,6 +5,7 @@ function! vimwork#ag#main(str)
 	let cmd = 'ag --nocolor --nogroup '.a:str
 	echo cmd
 	let outs = split(system(cmd), "\n")
+	let @/ = a:str
 	cexpr outs
 	cc
 endfunction
