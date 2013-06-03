@@ -17,7 +17,6 @@ function! s:set_header() "{{{
 	set rtp+=$Dropbox/vim/mind/unite-setting.vim 
 	set rtp+=$Dropbox/vim/mind/vimwork.vim
 	set rtp+=$Dropbox/vim/mind/vital.vim
-	set rtp+=$Dropbox/vim/mind/cediter.vim
 
 	call neobundle#rc("$Dropbox/vim/bundle")
 
@@ -63,7 +62,6 @@ call s:set_footer()
 command! MyVitalUpdate call s:my_vital_update()
 function! s:my_vital_update() "{{{
 	let paths = [
-				\ '~/Dropbox/vim/mind/cediter.vim',
 				\ '~/Dropbox/vim/mind/chain-file.vim',
 				\ '~/Dropbox/vim/mind/tab-diff.vim',
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
@@ -80,7 +78,6 @@ command! MyGitUpdate call s:my_git_update()
 function! s:my_git_update() "{{{
 
 	let paths = [
-				\ '~/Dropbox/vim/mind/cediter.vim',
 				\ '~/Dropbox/vim/mind/chain-file.vim',
 				\ '~/Dropbox/vim/mind/tab-diff.vim',
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
