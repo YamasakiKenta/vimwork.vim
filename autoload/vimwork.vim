@@ -157,7 +157,7 @@ nnoremap ;uj<CR>  :<C-u>Unite jump<CR>
 nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>
 nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>
 nnoremap ;cw<CR>  :<C-u>Unite qf<CR>
-nnoremap ;ue<CR>  :<C-u>Unite -immediately -input=<C-r>=expand("<cword>")<CR> outline<CR>
+nnoremap ;ue<CR>  :<C-u>Unite outline<CR>
 nnoremap ;et<CR>  :<C-u>Unite everything<CR>
 nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>
 nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>
