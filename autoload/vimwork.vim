@@ -95,6 +95,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nmap ;pd<CR> <PLUG>(p4_diff)
 	nmap ;id<CR> <PLUG>(p4_get_depot)
 
+	nnoremap ;pda<CR> :<c-u>Unite p4_diff<CR>|"
 	nnoremap ;pp<CR>  :<c-u>PfSetting<CR>|"
 	nnoremap ;pr<CR>  :<c-u>PfRevert<CR>|"
 	nnoremap ;pe<CR>  :<c-u>PfEdit<CR>|"
@@ -108,6 +109,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nnoremap ;pj<CR>  :<C-u>Unite p4_jobs<CR>|"
 	nnoremap ;ph<CR>  :<C-u>Unite p4_have<CR>|"
 	nnoremap ;pa<CR>  :<C-u>Unite p4_annotate<CR>|"
+	nnoremap ;pai<CR> :<C-u>Unite p4_annotate_ai<CR>|"
 	nnoremap ;pC<CR>  :<C-u>Unite p4_changes_pending_reopen<CR>|"
 	nnoremap ;pte<CR> :<C-u>Unite p4_template<CR>|"
 endfunction
