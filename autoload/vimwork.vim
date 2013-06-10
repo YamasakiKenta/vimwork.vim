@@ -112,6 +112,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nnoremap ;pai<CR> :<C-u>Unite p4_annotate_ai<CR>|"
 	nnoremap ;pC<CR>  :<C-u>Unite p4_changes_pending_reopen<CR>|"
 	nnoremap ;pte<CR> :<C-u>Unite p4_template<CR>|"
+	nnoremap ;pf<CR>  :<C-u>Unite p4_files<CR>|"
 endfunction
 "}}}
 function! vimwork#map_cscope() "{{{

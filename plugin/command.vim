@@ -7,9 +7,6 @@ command! -range -nargs=? MySwap <line1>,<line2>call vimwork#command#mySwap(<q-ar
 " 検索ワードの追加
 command! -narg=* AddSearch call vimwork#command#add_serach(<f-args>) 
 
-" howm に追加する
-command! -narg=* QuickMemo call vimwork#command#quickMemo(<f-args>) 
-
 " フォルダ構造のコピー
 command! -nargs=+ CopyFileDir call vimwork#command#copyFileDir(<f-args>) 
 "

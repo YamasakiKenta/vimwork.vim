@@ -84,31 +84,6 @@ function! vimwork#command#mySwap(qarg) "{{{
 
 endfunction
 "}}}
-function! vimwork#command#quickMemo(...) "{{{
-
-	"let str = input('comment: ',join(a:000))
-	if a:0 == 0 
-		let str = input('comment: ')
-	else
-		let str = join(a:000)
-	endif 
-
-	" 現在のファイルを保存
-	let bufnr = bufnr("%")
-
-	" howm ファイルを開く
-	exe 'edit' g:howm_dir.strftime("/%Y/%m/%Y-%m-%d-000000.txt")
-
-	" 保存する
-	call append(1, strftime("[%Y-%m-%d %H:%M]".str))
-
-	write
-
-	" 編集中のファイルに戻す
-	exe bufnr 'buffer'
-
-endfunction
-"}}}
 function! vimwork#command#set_num() "{{{
 " ********************************************************************************
 " 連番の作成
