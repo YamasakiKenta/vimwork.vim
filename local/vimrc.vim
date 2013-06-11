@@ -126,9 +126,10 @@ function! s:get_vim_function_name() "{{{
 endfunction 
 "}}}
 
-noremap ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>
-nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>
-nnoremap ;ag<CR> :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>
+noremap ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>|"
+nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>|"
+nnoremap ;ag<CR> :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>|"
+nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
