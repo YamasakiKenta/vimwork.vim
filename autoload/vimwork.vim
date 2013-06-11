@@ -23,7 +23,7 @@ nnoremap <C-s> 	:<C-u>SetNum<CR>|"
 so $VIMRUNTIME/macros/matchit.vim
 let g:Align_xstrlen = 3
 map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-map * *N
+map * *<C-o>
 nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 nmap ;uq<CR> 	<Plug>(uniq_line)
 nmap v/ 		<Plug>(select_search)
