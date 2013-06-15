@@ -72,8 +72,12 @@ function! s:my_vital_update() "{{{
 endfunction
 "}}}
 
-command! MyGitUpdate call s:my_git_update()
-function! s:my_git_update() "{{{
+command! -nargs=? Test call s:test(<q-args>)
+function! s:test(...)
+endfunction
+
+command! -nargs=? MyGitUpdate call s:my_git_update(<q-args>)
+function! s:my_git_update(str) "{{{
 
 	let paths = [
 				\ '~/Dropbox/vim/mind/chain-file.vim',
@@ -88,7 +92,7 @@ function! s:my_git_update() "{{{
 	for path in paths
 		exe 'lcd '.path
 		call system('git add -A')
-		call system('git commit -am "auto update"')
+		call system(printf('git commit -am "%s"', len(a:str) ? "auto update" : a:str))
 		call system('git push')
 	endfor
 
