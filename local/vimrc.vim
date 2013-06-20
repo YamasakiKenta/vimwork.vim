@@ -15,6 +15,7 @@ function! s:set_header() "{{{
 	set rtp+=$Dropbox/vim/mind/unite-git.vim
 	set rtp+=$Dropbox/vim/mind/unite-perforce.vim 
 	set rtp+=$Dropbox/vim/mind/unite-setting.vim 
+	set rtp+=$Dropbox/vim/mind/unite-setting-ex.vim 
 	set rtp+=$Dropbox/vim/mind/vimwork.vim
 	set rtp+=$Dropbox/vim/mind/vital.vim
 
@@ -64,6 +65,7 @@ function! s:my_vital_update() "{{{
 				\ '~/Dropbox/vim/mind/tab-diff.vim',
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
 				\ '~/Dropbox/vim/mind/unite-setting.vim',
+				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
 				\ ]
 
 	for path in paths
@@ -71,10 +73,6 @@ function! s:my_vital_update() "{{{
 	endfor
 endfunction
 "}}}
-
-command! -nargs=? Test call s:test(<q-args>)
-function! s:test(...)
-endfunction
 
 command! -nargs=? MyGitUpdate call s:my_git_update(<q-args>)
 function! s:my_git_update(str) "{{{
@@ -86,6 +84,7 @@ function! s:my_git_update(str) "{{{
 				\ '~/Dropbox/vim/mind/unite-setting.vim',
 				\ '~/Dropbox/vim/mind/sort-function.vim',
 				\ '~/Dropbox/vim/mind/vimwork.vim',
+				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
 				\ ]
 
 

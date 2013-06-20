@@ -112,7 +112,8 @@ function! vimwork#map_unite_perforce() "{{{
 	nnoremap ;pai<CR> :<C-u>Unite p4_annotate_ai<CR>|"
 	nnoremap ;pC<CR>  :<C-u>Unite p4_changes_pending_reopen<CR>|"
 	nnoremap ;pte<CR> :<C-u>Unite p4_template<CR>|"
-	nnoremap ;pf<CR>  :<C-u>Unite p4_files<CR>|"
+	nnoremap ;pf<CR>  :call unite#start([['p4_files', getcwd()]])<CR>|"
+	nnoremap ;pF<CR>  :call unite#start([['p4_files', expand("%:h")]])<CR>|"
 endfunction
 "}}}
 function! vimwork#map_cscope() "{{{
@@ -179,7 +180,9 @@ function! vimwork#map_neosnip() "{{{
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
 endfunction
 "}}}
-"
+
+call vimwork#map_unite_perforce() 
+
 function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_unite()

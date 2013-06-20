@@ -36,5 +36,12 @@ NeoBundle 'git://github.com/Shougo/vimproc.git', {
 			\ },
 			\ }
 
+NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
+NeoBundle 'git://github.com/skammer/vim-css-color.git'
+NeoBundle 'git://github.com/tomasr/molokai.git'
+NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
+NeoBundle 'git://github.com/flazz/vim-colorschemes.git'
+NeoBundle 'git://github.com/vim-scripts/chlordane.vim.git'
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
