@@ -181,8 +181,6 @@ function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 
-call vimwork#map_unite_perforce() 
-
 function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_unite()
