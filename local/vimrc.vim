@@ -52,7 +52,7 @@ call s:set_header()
 
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e $Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;m<CR>    :<C-u>lcd $Dropbox/vim/mind<CR>|"
+nnoremap ;m<CR>    :<C-u>lcd <C-r>=$Dropbox/vim/mind<CR><CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
 nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
 
