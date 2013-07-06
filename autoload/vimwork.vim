@@ -17,74 +17,76 @@ function! vimwork#set_gui() "{{{
 endfunction
 "}}}
 
-" sort ok "{{{
-nnoremap ;h<CR> :<C-u>ChainFile<CR>|"
-nnoremap <C-s> 	:<C-u>SetNum<CR>|"
-so $VIMRUNTIME/macros/matchit.vim
-let g:Align_xstrlen = 3
-map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-map * *<C-o>
-nmap ;sy<CR> 	<Plug>(edit_syntax_file)
-nmap ;uq<CR> 	<Plug>(uniq_line)
-nmap v/ 		<Plug>(select_search)
-set autoread                                            " # 自動更新
-set backupdir=$VIMTMP/backup                            " # Backupフォルダのパス
-set cursorline                                          " # カーソル行の強調
-set fdm=marker                                          " # 自動的に折りたたみ
-set fo+=ro                                              " # 自動でコメント挿入
-set guioptions-=T                                       " # メニューバーを削除
-set guioptions-=m                                       " # ツールバーを削除
-""set hidden                                              " # ファイルを保存せず移動
-set hlsearch                                            " # 検索
-set ignorecase                                          " # 検索で大文字小文字を区別しない
-set incsearch
-set laststatus=2                                        " # ステータス行の表示
-set lcs=tab:`\                                          " # 記号の表示
-set list
-set modeline                                            " # 読み込み時の設定
-set noswapfile                                          " # SwapFile
-set nowrap                                              " # 折り返し
-set number                                              " # 番号入力
-set shiftwidth=4
-set smartcase
-set stl=[%{&ff}][%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-set tabstop=4                                           " # tabの設定
-set tw=0                                                " # 自動改行 OFF
-set ve=block
-set dip=filler,icase,iwhite,vertical
+function! vimwork#map_misc()
+	" sort ok "{{{
+	nnoremap ;h<CR> :<C-u>ChainFile<CR>|"
+	nnoremap <C-s> 	:<C-u>SetNum<CR>|"
+	so $VIMRUNTIME/macros/matchit.vim
+	let g:Align_xstrlen = 3
+	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
+	map * *<C-o>
+	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
+	nmap ;uq<CR> 	<Plug>(uniq_line)
+	nmap v/ 		<Plug>(select_search)
+	set autoread                                            " # 自動更新
+	set backupdir=$VIMTMP/backup                            " # Backupフォルダのパス
+	set cursorline                                          " # カーソル行の強調
+	set fdm=marker                                          " # 自動的に折りたたみ
+	set fo+=ro                                              " # 自動でコメント挿入
+	set guioptions-=T                                       " # メニューバーを削除
+	set guioptions-=m                                       " # ツールバーを削除
+	""set hidden                                              " # ファイルを保存せず移動
+	set hlsearch                                            " # 検索
+	set ignorecase                                          " # 検索で大文字小文字を区別しない
+	set incsearch
+	set laststatus=2                                        " # ステータス行の表示
+	set lcs=tab:`\                                          " # 記号の表示
+	set list
+	set modeline                                            " # 読み込み時の設定
+	set noswapfile                                          " # SwapFile
+	set nowrap                                              " # 折り返し
+	set number                                              " # 番号入力
+	set shiftwidth=4
+	set smartcase
+	set stl=[%{&ff}][%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+	set tabstop=4                                           " # tabの設定
+	set tw=0                                                " # 自動改行 OFF
+	set ve=block
+	set dip=filler,icase,iwhite,vertical
 
-"}}}
-"nnoremap - normal "{{{
-nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
-nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
-nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
-nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
-"}}}
-"nnoremap - simple {{{
-nnoremap <C-j> j.|"
-nnoremap <C-n> :<C-u>cn<CR>|"
-nnoremap <C-p> :<C-u>cN<CR>|"
-nnoremap j gj|" 
-nnoremap k gk|"
-nnoremap <C-]> <C-]>zz|"    
-nnoremap <S-Space> za|"    
-nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
-nnoremap [[ [[zz|"
-nnoremap ]] ]]zz|"
-"}}}
-"nnoremap - typo {{{
-nnoremap <F1> <ESC>
-command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
-"}}}
-"vnoremap - simple "{{{
-vnoremap * "ty:let @/=@t<CR>N|"                                                " # 選択文字を検索
-vnoremap < <gv|"                                                               " # カーソル移動
-vnoremap > >gv|"                                                               " # 再選択
-"}}}
+	"}}}
+	"nnoremap - normal "{{{
+	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
+	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
+	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
+	nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
+	"}}}
+	"nnoremap - simple {{{
+	nnoremap <C-j> j.|"
+	nnoremap <C-n> :<C-u>cn<CR>|"
+	nnoremap <C-p> :<C-u>cN<CR>|"
+	nnoremap j gj|" 
+	nnoremap k gk|"
+	nnoremap <C-]> <C-]>zz|"    
+	nnoremap <S-Space> za|"    
+	nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
+	nnoremap [[ [[zz|"
+	nnoremap ]] ]]zz|"
+	"}}}
+	"nnoremap - typo {{{
+	nnoremap <F1> <ESC>
+	command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
+	"}}}
+	"vnoremap - simple "{{{
+	vnoremap * "ty:let @/=@t<CR>N|"                                                " # 選択文字を検索
+	vnoremap < <gv|"                                                               " # カーソル移動
+	vnoremap > >gv|"                                                               " # 再選択
+	"}}}
+endfunction
 
 function! vimwork#set_qfixhowm() "{{{
-let howm_dir = $VIMTMP.'/howm'
-let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
+	let howm_dir = $VIMTMP.'/howm'
+	let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
 endfunction
 "}}}
 function! vimwork#map_unite_perforce() "{{{
@@ -167,7 +169,6 @@ function! vimwork#set_vimwfiler() "{{{
 endfunction
 "}}}
 function! vimwork#set_necomplete() "{{{
-	let g:neosnippet#snippets_directory = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'                    " # snippet ファイル作成場所
 	let g:neocomplete#enable_at_startup = 1
 	nnoremap ;es<CR> :<C-u>NeoSnippetEdit<CR>|"
 	imap <C-s>     <PLUG>(neocomplcache_start_unite_complete)|"
@@ -191,6 +192,7 @@ function! vimwork#init()
 	call vimwork#map_unite_perforce()
 	call vimwork#map_tabdiff()
 	call vimwork#set_qfixhowm()
+	call vimwork#map_misc()
 endfunction
 
 let &cpo = s:save_cpo

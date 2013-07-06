@@ -134,5 +134,14 @@ nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>|"
 nnoremap ;ag<CR> :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>|"
 nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
 
+"“ú–{Œê
+function GvimrcInit()
+	set gfn=Terminal:h10:cSHIFTJIS
+	set guioptions-=Tm
+	" colo github
+	" colo chlordane
+	colo morning
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
