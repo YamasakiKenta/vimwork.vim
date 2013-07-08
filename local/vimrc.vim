@@ -52,7 +52,7 @@ call s:set_header()
 
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e $Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;m<CR>    :<C-u>lcd <C-r>=expand("$Dropbox/vim/mind")<CR><CR>|"
+nnoremap ;m<CR>    :<C-u>lcd <C-r>=expand("$Dropbox")<CR><CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
 nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
 
@@ -138,9 +138,8 @@ nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
 function! GvimrcInit()
 	set gfn=Terminal:h10:cSHIFTJIS
 	set guioptions-=Tm
-	" colo github
 	" colo chlordane
-	colo morning
+	color hybrid
 endfunction
 
 let &cpo = s:save_cpo

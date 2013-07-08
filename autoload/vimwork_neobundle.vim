@@ -4,30 +4,31 @@ set cpo&vim
 function! vimwork_neobundle#init() 
 endfunction
 
-NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
-NeoBundle 'git://github.com/gregsexton/gitv.git'
-NeoBundle 'git://github.com/osyo-manga/unite-quickfix.git'
-NeoBundle 'git://github.com/tsukkee/unite-help.git'
-NeoBundle 'git://github.com/Shougo/neocomplete.git'
-NeoBundle 'git://github.com/thinca/vim-quickrun.git'
-NeoBundle 'git://github.com/Shougo/neosnippet.git'
-NeoBundle 'git://github.com/Shougo/unite-outline.git'
-NeoBundle 'git://github.com/Shougo/unite.vim.git'  
-NeoBundle 'git://github.com/Shougo/vesting.git'
-NeoBundle 'git://github.com/Shougo/vimfiler'
-NeoBundle 'git://github.com/Shougo/vimshell.git'
-NeoBundle 'git://github.com/fuenor/qfixhowm.git'
-NeoBundle 'git://github.com/sgur/unite-everything.git'
-NeoBundle 'git://github.com/sgur/unite-qf.git'
-NeoBundle 'git://github.com/thinca/vim-partedit.git'
-NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
-NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-NeoBundle 'git://github.com/tsukkee/unite-tag.git'
-NeoBundle 'git://github.com/vim-scripts/Align.git'
-NeoBundle 'git://github.com/vim-scripts/DirDiff.vim.git'
-NeoBundle 'git://github.com/mfumi/snake.vim.git'
+NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
+NeoBundle 'https://github.com/ujihisa/unite-colorscheme.git'
+NeoBundle 'https://github.com/gregsexton/gitv.git'
+NeoBundle 'https://github.com/osyo-manga/unite-quickfix.git'
+NeoBundle 'https://github.com/tsukkee/unite-help.git'
+NeoBundle 'https://github.com/Shougo/neocomplete.git'
+NeoBundle 'https://github.com/thinca/vim-quickrun.git'
+NeoBundle 'https://github.com/Shougo/neosnippet.git'
+NeoBundle 'https://github.com/Shougo/unite-outline.git'
+NeoBundle 'https://github.com/Shougo/unite.vim.git'  
+NeoBundle 'https://github.com/Shougo/vesting.git'
+NeoBundle 'https://github.com/Shougo/vimfiler'
+NeoBundle 'https://github.com/Shougo/vimshell.git'
+NeoBundle 'https://github.com/fuenor/qfixhowm.git'
+NeoBundle 'https://github.com/sgur/unite-everything.git'
+NeoBundle 'https://github.com/sgur/unite-qf.git'
+NeoBundle 'https://github.com/thinca/vim-partedit.git'
+NeoBundle 'https://github.com/thinca/vim-qfreplace.git'
+NeoBundle 'https://github.com/tpope/vim-fugitive.git'
+NeoBundle 'https://github.com/tsukkee/unite-tag.git'
+NeoBundle 'https://github.com/vim-scripts/Align.git'
+NeoBundle 'https://github.com/vim-scripts/DirDiff.vim.git'
+NeoBundle 'https://github.com/mfumi/snake.vim.git'
 
-NeoBundle 'git://github.com/Shougo/vimproc.git', {
+NeoBundle 'https://github.com/Shougo/vimproc.git', {
 			\ 'build'   : {
 			\ 'windows' : 'make -f make_mingw64.mak',
 			\ 'cygwin'  : 'make -f make_cygwin.mak',
@@ -36,12 +37,13 @@ NeoBundle 'git://github.com/Shougo/vimproc.git', {
 			\ },
 			\ }
 
-NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
-NeoBundle 'git://github.com/skammer/vim-css-color.git'
-NeoBundle 'git://github.com/tomasr/molokai.git'
-NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
-NeoBundle 'git://github.com/flazz/vim-colorschemes.git'
-NeoBundle 'git://github.com/vim-scripts/chlordane.vim.git'
+NeoBundle 'https://github.com/altercation/vim-colors-solarized.git'
+" NeoBundle 'https://github.com/skammer/vim-css-color.git'
+NeoBundle 'https://github.com/tomasr/molokai.git'
+NeoBundle 'https://github.com/nanotech/jellybeans.vim.git'
+NeoBundle 'https://github.com/flazz/vim-colorschemes.git'
+NeoBundle 'https://github.com/vim-scripts/chlordane.vim.git'
+NeoBundle 'https://github.com/jelera/vim-javascript-syntax.git'
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

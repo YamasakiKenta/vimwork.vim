@@ -63,6 +63,7 @@ function! vimwork#map_misc()
 	"}}}
 	"nnoremap - simple {{{
 	nnoremap <C-j> j.|"
+	nnoremap <C-k> n.|"
 	nnoremap <C-n> :<C-u>cn<CR>|"
 	nnoremap <C-p> :<C-u>cN<CR>|"
 	nnoremap j gj|" 
@@ -144,7 +145,7 @@ function! vimwork#map_unite() "{{{
 	let g:unite_source_history_yank_enable = 0
 	nnoremap ;ur<CR>  :<C-u>UniteResume<CR>|"
 	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
-	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap ;um<CR>  :<C-u>Unite file_mru:all<CR>|"
 	nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>|"
 	nnoremap ;ut<CR>  :<C-u>Unite tag<CR>|"
 	nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>|"
