@@ -139,7 +139,7 @@ function! GvimrcInit()
 	set gfn=Terminal:h10:cSHIFTJIS
 	set guioptions-=Tm
 	" colo chlordane
-	color hybrid
+	colo anotherdark
 endfunction
 
 let &cpo = s:save_cpo
