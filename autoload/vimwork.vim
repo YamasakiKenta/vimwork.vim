@@ -28,6 +28,7 @@ function! vimwork#map_misc()
 	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 	nmap ;uq<CR> 	<Plug>(uniq_line)
 	nmap v/ 		<Plug>(select_search)
+	let g:mygrepprg = 'grep'
 	set autoread                                            " # 自動更新
 	set backupdir=$VIMTMP/backup                            " # Backupフォルダのパス
 	set cursorline                                          " # カーソル行の強調
@@ -145,7 +146,8 @@ function! vimwork#map_unite() "{{{
 	let g:unite_source_history_yank_enable = 0
 	nnoremap ;ur<CR>  :<C-u>UniteResume<CR>|"
 	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
-	nnoremap ;um<CR>  :<C-u>Unite file_mru:all<CR>|"
+	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap ;ud<CR>  :<C-u>Unite directory --default-action=<CR>|"
 	nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>|"
 	nnoremap ;ut<CR>  :<C-u>Unite tag<CR>|"
 	nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>|"

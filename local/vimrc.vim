@@ -6,20 +6,22 @@ set cpo&vim
 "--------------------------------------------------------------------------------
 "Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 "================================================================================ 
-function! s:set_header() "{{{
-	let $Dropbox = substitute(expand('~/Dropbox'), '\\', '\/', 'g')
-	set rtp+=$Dropbox/vim/mind/sort-function.vim
-	set rtp+=$Dropbox/vim/bundle/neobundle.vim
-	set rtp+=$Dropbox/vim/mind/chain-file.vim
-	set rtp+=$Dropbox/vim/mind/tab-diff.vim
-	set rtp+=$Dropbox/vim/mind/unite-git.vim
-	set rtp+=$Dropbox/vim/mind/unite-perforce.vim 
-	set rtp+=$Dropbox/vim/mind/unite-setting.vim 
-	set rtp+=$Dropbox/vim/mind/unite-setting-ex.vim 
-	set rtp+=$Dropbox/vim/mind/vimwork.vim
-	set rtp+=$Dropbox/vim/mind/vital.vim
+function! s:set_plugin() "{{{
+	set rtp+=~/Dropbox/vim/mind/sort-function.vim
+	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
+	set rtp+=~/Dropbox/vim/mind/chain-file.vim
+	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
+	set rtp+=~/Dropbox/vim/mind/unite-git.vim
+	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
+	set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
+	set rtp+=~/Dropbox/vim/mind/unite-setting-ex.vim 
+	set rtp+=~/Dropbox/vim/mind/vimwork.vim
+	set rtp+=~/Dropbox/vim/mind/vital.vim
 
-	call neobundle#rc("$Dropbox/vim/bundle")
+	call neobundle#rc("~/Dropbox/vim/bundle")
+endfunction 
+"}}}
+function! s:set_header() "{{{
 
 	aug my_vimrc
 		au!
@@ -29,10 +31,10 @@ function! s:set_header() "{{{
 
 	call vimwork_neobundle#init()
 
-	let $LOCALWORK                    = expand("$Dropbox/vim/mind/vimwork.vim")
+	let $LOCALWORK                    = expand("~/Dropbox/vim/mind/vimwork.vim")
 	let $VIMTMP                       = expand("~/vimtmp")
-	let $VIMWORK                      = expand("$Dropbox/vim/mind/vimwork.vim")
-	let g:perforce_merge_default_path = expand("$Dropbox/vim/")
+	let $VIMWORK                      = expand("~/Dropbox/vim/mind/vimwork.vim")
+	let g:perforce_merge_default_path = expand("~/Dropbox/vim/")
 	let g:perforce_merge_tool         = "winmergeu /r"
 	let g:perforce_tmp_dir            = expand("~/vimtmp")
 
@@ -51,8 +53,8 @@ endfunction
 call s:set_header()
 
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
-nnoremap ;dv<CR>   :<C-u>e $Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;m<CR>    :<C-u>lcd <C-r>=expand("$Dropbox")<CR><CR>|"
+nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+nnoremap ;m<CR>    :<C-u>lcd <C-r>=~/Dropbox<CR><CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
 nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
 
@@ -74,8 +76,9 @@ function! s:my_vital_update() "{{{
 endfunction
 "}}}
 
-command! -nargs=? MyGitUpdate call s:my_git_update(<q-args>)
+command! -nargs=? MyGitUpdate call s:my_git_update(<q-args>) 
 function! s:my_git_update(str) "{{{
+	" @param[in] a:str commit comment
 
 	let paths = [
 				\ '~/Dropbox/vim/mind/chain-file.vim',
@@ -138,8 +141,6 @@ nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
 function! GvimrcInit()
 	set gfn=Terminal:h10:cSHIFTJIS
 	set guioptions-=Tm
-	" colo chlordane
-	colo anotherdark
 endfunction
 
 let &cpo = s:save_cpo
