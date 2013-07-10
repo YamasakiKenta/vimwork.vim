@@ -19,27 +19,20 @@ function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/vital.vim
 
 	call neobundle#rc("~/Dropbox/vim/bundle")
+	call vimwork_neobundle#init()
 endfunction 
 "}}}
-function! s:set_header() "{{{
-
-	aug my_vimrc
-		au!
-		au BufRead *.h setf c
-		au GUIEnter * simalt ~x        " # ç≈ëÂâª
-	aug END
-
-	call vimwork_neobundle#init()
-
+function! s:set_vimwork_init() "{{{
 	let $LOCALWORK                    = expand("~/Dropbox/vim/mind/vimwork.vim")
-	let $VIMTMP                       = expand("~/vimtmp")
 	let $VIMWORK                      = expand("~/Dropbox/vim/mind/vimwork.vim")
-	let g:perforce_merge_default_path = expand("~/Dropbox/vim/")
-	let g:perforce_merge_tool         = "winmergeu /r"
-	let g:perforce_tmp_dir            = expand("~/vimtmp")
+	let $VIMTMP                       = expand("~/vimtmp")
 
 	call vimwork#init()
-
+endfunction
+"}}}
+function! s:set_header() "{{{
+	call s:set_plugin()
+	call s:set_vimwork_init()
 endfunction
 "}}}
 function! s:set_footer() "{{{
@@ -54,7 +47,7 @@ call s:set_header()
 
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;m<CR>    :<C-u>lcd <C-r>=~/Dropbox<CR><CR>|"
+nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox<CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
 nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
 
