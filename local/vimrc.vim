@@ -45,11 +45,15 @@ endfunction
 
 call s:set_header()
 
+nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
+nnoremap ;ag<CR>   :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>|"
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>|"
 nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox<CR>|"
+nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
-nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
+noremap  ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>|"
 
 call s:set_footer()
 
@@ -125,10 +129,6 @@ function! s:get_vim_function_name() "{{{
 endfunction 
 "}}}
 
-noremap ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>|"
-nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>|"
-nnoremap ;ag<CR> :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>|"
-nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
 
 "ì˙ñ{åÍ
 function! GvimrcInit()
