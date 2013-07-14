@@ -93,7 +93,7 @@ endfunction
 "}}}
 function! vimwork#map_unite_perforce() "{{{
 	nmap ;cl<CR> <PLUG>(p4_echo_client_data)
-	nmap ;cr<CR> <PLUG>(p4_cd_clentpath)
+	nmap ;cr<CR> <PLUG>(p4_lcd_clentpath)
 	nmap ;ff<CR> <PLUG>(p4_find)
 	nmap ;pl<CR> <PLUG>(p4_filelog)
 	nmap ;pd<CR> <PLUG>(p4_diff)
@@ -122,7 +122,7 @@ endfunction
 "}}}
 function! vimwork#map_cscope() "{{{
 	set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
-	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R")<CR>:cs add cscope.out<CR>|"
+	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R -q")<CR>:cs add cscope.out<CR>|"
 	nnoremap <C-\>K :call system("ctags -R")<CR>|"
 
 	nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
@@ -147,7 +147,7 @@ function! vimwork#map_unite() "{{{
 	nnoremap ;ur<CR>  :<C-u>UniteResume<CR>|"
 	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
 	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
-	nnoremap ;ud<CR>  :<C-u>Unite directory --default-action=<CR>|"
+	nnoremap ;ud<CR>  :<C-u>Unite directory --default-action=cd<CR>|"
 	nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>|"
 	nnoremap ;ut<CR>  :<C-u>Unite tag<CR>|"
 	nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>|"

@@ -33,9 +33,7 @@ endfunction
 function! s:set_header() "{{{
 	call s:set_plugin()
 	call s:set_vimwork_init()
-endfunction
-"}}}
-function! s:set_footer() "{{{
+
 	let g:chain_files = {
 				\ 'vimrc.vim' : '../autoload/vimwork.vim',
 				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
@@ -44,18 +42,15 @@ endfunction
 "}}}
 
 call s:set_header()
-
 nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
 nnoremap ;ag<CR>   :<C-u>Ag <C-r>=expand("<cword>")<CR><CR>|"
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;ig<CR> :<C-u>GetVimFunctionName<CR>|"
-nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox<CR>|"
-nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
+nnoremap ;ig<CR>   :<C-u>GetVimFunctionName<CR>|"
+nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
+nnoremap ;pan<CR>  :<C-u>PfAnnotate<CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
-noremap  ;di<CR> :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>|"
-
-call s:set_footer()
+noremap  ;di<CR>   :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>|"
 
 command! MyVitalUpdate call s:my_vital_update()
 function! s:my_vital_update() "{{{
@@ -129,6 +124,9 @@ function! s:get_vim_function_name() "{{{
 endfunction 
 "}}}
 
+set grepprg=grep\ -nH
+
+set tw=0
 
 "ì˙ñ{åÍ
 function! GvimrcInit()
