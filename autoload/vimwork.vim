@@ -111,7 +111,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nnoremap ;ps<CR>  :<C-u>Unite p4_changes_submitted<CR>|"
 	nnoremap ;po<CR>  :<C-u>Unite p4_opened<CR>|"
 	nnoremap ;pj<CR>  :<C-u>Unite p4_jobs<CR>|"
-	nnoremap ;ph<CR>  :<C-u>Unite p4_have<CR>|"
+	nnoremap ;ph<CR>  :<C-u>Unite p4_have_reset<CR>|"
 	nnoremap ;pa<CR>  :<C-u>Unite p4_annotate<CR>|"
 	nnoremap ;pai<CR> :<C-u>Unite p4_annotate_ai<CR>|"
 	nnoremap ;pC<CR>  :<C-u>Unite p4_changes_pending_reopen<CR>|"

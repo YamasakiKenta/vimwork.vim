@@ -83,10 +83,15 @@ function! s:my_git_update(str) "{{{
 				\ ]
 
 
+	let comment = len(a:str) ? a:str : "auto update"
+	echom comment
+
 	for path in paths
 		exe 'lcd '.path
 		call system('git add -A')
-		call system(printf('git commit -am "%s"', len(a:str) ? "auto update" : a:str))
+		let cmd = 'git commit -am "'.comment.'"'
+		echom cmd
+		call system(cmd)
 		call system('git push')
 	endfor
 
@@ -97,7 +102,7 @@ command! GetFunctionName call s:get_function_name()
 function! s:get_function_name() "{{{
 	let str = getline(search('\<function\>!', 'bcn'))
 	let fname = matchstr(str, 'function!\s*\zs[^(\s]*')
-	echo fname
+	echom fname
 	let @+ = fname
 endfunction
 "}}}
@@ -105,7 +110,7 @@ endfunction
 command! -nargs=1 ConvDebugPrint call s:conv_debug_print(<q-args>)
 function! s:conv_debug_print(str) "{{{
 	let fname = s:get_vim_function_name()
-	let str   = 'echo "' . fname. ' : ".string(' . a:str . ')'
+	let str   = 'echom "' . fname. ' : ".string(' . a:str . ')'
 	call append(line("."), [str])
 endfunction
 "}}}
@@ -116,7 +121,7 @@ function! s:get_vim_function_name() "{{{
 	let line  = getline(lnum)
 	let fname = matchstr(line, '\s\zs.*\ze(')
 
-	echo fname
+	echom fname
 	let @" = fname
 	let @+ = fname
 

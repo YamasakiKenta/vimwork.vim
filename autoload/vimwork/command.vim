@@ -57,8 +57,8 @@ function! vimwork#command#copyFileDir(file,...) "{{{
 	" ÉRÉsÅ[Ç∑ÇÈ
 	call system('copy "'.file1.'" "'.file2.'"')
 
-	echo 'mkdir "'.fnamemodify(file2,':h').'"'
-	echo 'copy "'.file1.'" "'.file2.'"'
+	echom 'mkdir "'.fnamemodify(file2,':h').'"'
+	echom 'copy "'.file1.'" "'.file2.'"'
 
 endfunction
 "}}}

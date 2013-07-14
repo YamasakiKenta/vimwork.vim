@@ -32,7 +32,7 @@ function! s:force_reload() "{{{
 	exe 'silent %s/'.subs_pattern.'//'
 	norm 
 
-	echo 'force_reload'
+	echom 'force_reload'
 
 	call s:reload(1)
 endfunction
@@ -104,7 +104,7 @@ function! s:reload(...) "{{{
 
 		" èIóπîªíË
 		if ( lnum < 0 || index.now < 0 || index.stop > index.now ) 
-			echo 'END : '.lnum.' , '.index.now
+			echom 'END : '.lnum.' , '.index.now
 			break
 		endif 
 
