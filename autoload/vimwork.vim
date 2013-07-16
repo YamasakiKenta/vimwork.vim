@@ -18,25 +18,31 @@ endfunction
 "}}}
 
 function! vimwork#map_misc()
-	" sort ok "{{{
-	nnoremap ;h<CR> :<C-u>ChainFile<CR>|"
-	nnoremap <C-s> 	:<C-u>SetNum<CR>|"
 	so $VIMRUNTIME/macros/matchit.vim
-	let g:Align_xstrlen = 3
+	" map {{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
 	map * *<C-o>
+	"}}}
+	" nmap {{{
 	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 	nmap ;uq<CR> 	<Plug>(uniq_line)
 	nmap v/ 		<Plug>(select_search)
+	"}}}
+	" let {{{
+	let g:Align_xstrlen = 3
 	let g:mygrepprg = 'grep'
+	"}}}
+	" set {{{
+	"set hidden                                              " # ファイルを保存せず移動
 	set autoread                                            " # 自動更新
 	set backupdir=$VIMTMP/backup                            " # Backupフォルダのパス
 	set cursorline                                          " # カーソル行の強調
+	set dip=filler,icase,iwhite,vertical
 	set fdm=marker                                          " # 自動的に折りたたみ
 	set fo+=ro                                              " # 自動でコメント挿入
+	set grepprg=grep\ -nH
 	set guioptions-=T                                       " # メニューバーを削除
 	set guioptions-=m                                       " # ツールバーを削除
-	""set hidden                                              " # ファイルを保存せず移動
 	set hlsearch                                            " # 検索
 	set ignorecase                                          " # 検索で大文字小文字を区別しない
 	set incsearch
@@ -53,10 +59,10 @@ function! vimwork#map_misc()
 	set tabstop=4                                           " # tabの設定
 	set tw=0                                                " # 自動改行 OFF
 	set ve=block
-	set dip=filler,icase,iwhite,vertical
-
 	"}}}
 	"nnoremap - normal "{{{
+	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
+	nnoremap ;h<CR>  :<C-u>ChainFile<CR>|"
 	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
 	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
@@ -123,16 +129,18 @@ endfunction
 function! vimwork#map_cscope() "{{{
 	set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R -q")<CR>:cs add cscope.out<CR>|"
+	nnoremap <C-\>L :cs kill -1<CR>:cs add cscope.out<CR>|"
 	nnoremap <C-\>K :call system("ctags -R")<CR>|"
 
-	nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 	nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 	nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 	nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-	nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+	nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nnoremap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+	nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+	nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+
 endfunction
 "}}}
 function! vimwork#map_tabdiff() "{{{
@@ -144,26 +152,30 @@ endfunction
 function! vimwork#map_unite() "{{{
 	let g:unite_enable_start_insert        = 0
 	let g:unite_source_history_yank_enable = 0
+
 	nnoremap ;ur<CR>  :<C-u>UniteResume<CR>|"
-	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
-	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
-	nnoremap ;ud<CR>  :<C-u>Unite directory --default-action=cd<CR>|"
-	nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>|"
-	nnoremap ;ut<CR>  :<C-u>Unite tag<CR>|"
+
+	nnoremap ;cw<CR>  :<C-u>Unite qf<CR>|"
+	nnoremap ;et<CR>  :<C-u>Unite everything<CR>|"
+	nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>|"
 	nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>|"
 	nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>|"
-	nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>|"
-	nnoremap ;ul<CR>  :<C-u>Unite line/fast<CR>|"
-	nnoremap ;uj<CR>  :<C-u>Unite jump<CR>|"
-	nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>|"
-	nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
-	nnoremap ;cw<CR>  :<C-u>Unite qf<CR>|"
+	nnoremap ;ud<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
 	nnoremap ;ue<CR>  :<C-u>Unite outline<CR>|"
-	nnoremap ;et<CR>  :<C-u>Unite everything<CR>|"
+	nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>|"
+	nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>|"
+	nnoremap ;uj<CR>  :<C-u>Unite jump<CR>|"
+	nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
+	nnoremap ;ul<CR>  :<C-u>Unite line/fast<CR>|"
+	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap ;uom<CR> :<C-u>Unite output:message<CR>|"
+	nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>|"
+	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
+	nnoremap ;ut<CR>  :<C-u>Unite tag<CR>|"
+
 	nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>|"
 	nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>|"
-	nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>|"
-	nnoremap ;uom<CR> :<C-u>Unite output:message<CR>|"
+
 endfunction
 "}}}
 function! vimwork#set_vimwfiler() "{{{
@@ -173,13 +185,12 @@ endfunction
 "}}}
 function! vimwork#set_necomplete() "{{{
 	let g:neocomplete#enable_at_startup = 1
-	nnoremap ;es<CR> :<C-u>NeoSnippetEdit<CR>|"
-	imap <C-s>     <PLUG>(neocomplcache_start_unite_complete)|"
-	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
+	imap <C-k>  <Plug>(neocomplete_start_unite_complete)|"
+	imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)|"
 endfunction
 "}}}
 function! vimwork#map_neosnip() "{{{
-	let g:neosnippet#snippets_directory = $VIMWORK.'/snippets'.','.$LOCALWORK.'/snippets'
+	let g:neosnippet#snippets_directory = join(map([$VIMWORK, $LOCALWORK], "v:val.'/snippets'"),',')
 	nnoremap ;es<CR> :<C-u>NeoSnippetEdit<CR>|"
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
 endfunction
