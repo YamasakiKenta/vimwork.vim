@@ -129,7 +129,7 @@ endfunction
 function! vimwork#map_cscope() "{{{
 	set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R -q")<CR>:cs add cscope.out<CR>|"
-	nnoremap <C-\>L :cs kill -1<CR>:cs add cscope.out<CR>|"
+	nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
 	nnoremap <C-\>K :call system("ctags -R")<CR>|"
 
 	nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
