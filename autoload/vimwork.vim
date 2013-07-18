@@ -105,6 +105,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nmap ;pd<CR> <PLUG>(p4_diff)
 	nmap ;id<CR> <PLUG>(p4_get_depot)
 
+	nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
 	nnoremap ;pda<CR> :<c-u>Unite p4_diff<CR>|"
 	nnoremap ;pp<CR>  :<c-u>PfSetting<CR>|"
 	nnoremap ;pr<CR>  :<c-u>PfRevert<CR>|"
@@ -131,6 +132,7 @@ function! vimwork#map_cscope() "{{{
 	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R -q")<CR>:cs add cscope.out<CR>|"
 	nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
 	nnoremap <C-\>K :call system("ctags -R")<CR>|"
+	nnoremap <C-\>G :call system('gtags -R")<CR>|"
 
 	nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 	nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
