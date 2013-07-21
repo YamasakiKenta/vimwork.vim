@@ -1,9 +1,17 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  )
-let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork')
-let $VIMTMP    = expand(exists('$VIMTMP')    ? $VIMTMP    : '~/vimtmp'   )
+
+function! s:init() "{{{
+	if !exists('s:cache_init')
+		return
+	endif
+	let s:cache_init = 1
+	let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  )
+	let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork')
+	let $VIMTMP    = expand(exists('$VIMTMP')    ? $VIMTMP    : '~/vimtmp'   )
+endif
+"}}}
 
 function! vimwork#set_gui() "{{{
 	if !has('gui')
@@ -18,7 +26,8 @@ endfunction
 "}}}
 
 function! vimwork#map_misc()
-	so $VIMRUNTIME/macros/matchit.vim
+	call s:init()
+	so $VIMRUNTIME/macros/matchit.vim " VIMRUNTIME is default var 
 	" map {{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
 	map * *<C-o>
@@ -93,6 +102,7 @@ function! vimwork#map_misc()
 endfunction
 
 function! vimwork#set_qfixhowm() "{{{
+	call s:init()
 	let howm_dir = $VIMTMP.'/howm'
 	let QFix_CloseOnJump = 1" # QFixHown - Çé©ìÆìIÇ…èIóπÇ∑ÇÈ
 endfunction
@@ -113,7 +123,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nnoremap ;pE<CR>  :<c-u>PfAdd<CR>|"
 	nnoremap ;wd<CR>  :<c-u>PfDiff<CR>|"
 	nnoremap ;pi<CR>  :<C-u>Unite p4_info<CR>|"
-	nnoremap ;pt<CR>  :<C-u>Unite p4_clients<CR>|"
+	nnoremap ;pt<CR>  :<C-u>Unite p4_clients -default-action=set<CR>|"
 	nnoremap ;pc<CR>  :<C-u>Unite p4_changes_pending<CR>|"
 	nnoremap ;ps<CR>  :<C-u>Unite p4_changes_submitted<CR>|"
 	nnoremap ;po<CR>  :<C-u>Unite p4_opened<CR>|"
@@ -131,8 +141,8 @@ function! vimwork#map_cscope() "{{{
 	set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R -q")<CR>:cs add cscope.out<CR>|"
 	nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
-	nnoremap <C-\>K :call system("ctags -R")<CR>|"
-	nnoremap <C-\>G :call system('gtags -R")<CR>|"
+	nnoremap <C-\>K :call system("ctags -R --excmd=number")<CR>|"
+	nnoremap <C-\>G :call system("gtags -v")<CR>|"
 
 	nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 	nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
@@ -192,9 +202,55 @@ function! vimwork#set_necomplete() "{{{
 endfunction
 "}}}
 function! vimwork#map_neosnip() "{{{
+	call s:init()
 	let g:neosnippet#snippets_directory = join(map([$VIMWORK, $LOCALWORK], "v:val.'/snippets'"),',')
 	nnoremap ;es<CR> :<C-u>NeoSnippetEdit<CR>|"
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
+endfunction
+"}}}
+function! vimwork#neobundle()  "{{{
+	" colos
+	NeoBundle 'https://github.com/altercation/vim-colors-solarized.git'
+	NeoBundle 'https://github.com/flazz/vim-colorschemes.git'
+	NeoBundle 'https://github.com/nanotech/jellybeans.vim.git'
+	NeoBundle 'https://github.com/tomasr/molokai.git'
+	NeoBundle 'https://github.com/vim-scripts/chlordane.vim.git'
+	NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
+
+	" Unite 
+	NeoBundle 'https://github.com/sgur/unite-qf.git'
+	NeoBundle 'https://github.com/Shougo/unite-outline.git'
+	NeoBundle 'https://github.com/Shougo/unite.vim.git'  
+	NeoBundle 'https://github.com/tsukkee/unite-help.git'
+	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
+	NeoBundle 'https://github.com/ujihisa/unite-colorscheme.git'
+
+	" Normal
+	NeoBundle 'https://github.com/Shougo/neocomplete.git'
+	NeoBundle 'https://github.com/Shougo/neosnippet.git'
+	NeoBundle 'https://github.com/Shougo/shougo-s-github.git'
+	NeoBundle 'https://github.com/Shougo/vimfiler'
+	NeoBundle 'https://github.com/Shougo/vimshell.git'
+	NeoBundle 'https://github.com/fuenor/qfixhowm.git'
+	NeoBundle 'https://github.com/jelera/vim-javascript-syntax.git'
+	NeoBundle 'https://github.com/kannokanno/previm.git'
+	NeoBundle 'https://github.com/thinca/vim-partedit.git'
+	NeoBundle 'https://github.com/thinca/vim-qfreplace.git'
+	NeoBundle 'https://github.com/thinca/vim-quickrun.git'
+	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
+	NeoBundle 'https://github.com/tyru/open-browser.vim.git'
+	NeoBundle 'https://github.com/vim-scripts/Align.git'
+	NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
+
+	" Setting
+	NeoBundle 'https://github.com/Shougo/vimproc.git', {
+				\ 'build'   : {
+				\ 'windows' : 'make -f make_mingw64.mak',
+				\ 'cygwin'  : 'make -f make_cygwin.mak',
+				\ 'mac'     : 'make -f make_mac.mak',
+				\ 'unix'    : 'make -f make_unix.mak',
+				\ },
+				\ }
 endfunction
 "}}}
 

@@ -19,7 +19,8 @@ function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/vital.vim
 
 	call neobundle#rc("~/Dropbox/vim/bundle")
-	call vimwork_neobundle#init()
+
+	call vimwork#neobundle()
 endfunction 
 "}}}
 function! s:set_vimwork_init() "{{{
@@ -37,7 +38,7 @@ function! s:set_header() "{{{
 	let g:chain_dict = { '__file' : {
 				\ 'vimrc.vim' : '../autoload/vimwork.vim',
 				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
-				\ }
+				\ }}
 endfunction
 "}}}
 

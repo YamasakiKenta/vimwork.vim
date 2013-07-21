@@ -1,9 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! vimwork_neobundle#init() 
-endfunction
-
+function! vimwork_neobundle#init()  "{{{
 " colos
 NeoBundle 'https://github.com/altercation/vim-colors-solarized.git'
 NeoBundle 'https://github.com/flazz/vim-colorschemes.git'
@@ -35,6 +33,7 @@ NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 NeoBundle 'https://github.com/tyru/open-browser.vim.git'
 NeoBundle 'https://github.com/vim-scripts/Align.git'
+NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
 
 " Setting
 NeoBundle 'https://github.com/Shougo/vimproc.git', {
@@ -45,6 +44,9 @@ NeoBundle 'https://github.com/Shougo/vimproc.git', {
 			\ 'unix'    : 'make -f make_unix.mak',
 			\ },
 			\ }
+endfunction
+"}}}
+
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
