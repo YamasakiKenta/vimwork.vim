@@ -10,7 +10,7 @@ function! s:init() "{{{
 	let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  )
 	let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork')
 	let $VIMTMP    = expand(exists('$VIMTMP')    ? $VIMTMP    : '~/vimtmp'   )
-endif
+endfunction
 "}}}
 
 function! vimwork#set_gui() "{{{
