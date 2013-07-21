@@ -123,7 +123,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nnoremap ;pE<CR>  :<c-u>PfAdd<CR>|"
 	nnoremap ;wd<CR>  :<c-u>PfDiff<CR>|"
 	nnoremap ;pi<CR>  :<C-u>Unite p4_info<CR>|"
-	nnoremap ;pt<CR>  :<C-u>Unite p4_clients -default-action=set<CR>|"
+	nnoremap ;pt<CR>  :<C-u>Unite p4_clients -default-action=a_p4_client_set<CR>|"
 	nnoremap ;pc<CR>  :<C-u>Unite p4_changes_pending<CR>|"
 	nnoremap ;ps<CR>  :<C-u>Unite p4_changes_submitted<CR>|"
 	nnoremap ;po<CR>  :<C-u>Unite p4_opened<CR>|"
@@ -240,6 +240,9 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/tyru/open-browser.vim.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
+	NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
+	NeoBundle 'https://github.com/othree/html5.vim.git'
+	NeoBundle 'https://github.com/thinca/vim-prettyprint.git'
 	NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
 
 	" Setting
