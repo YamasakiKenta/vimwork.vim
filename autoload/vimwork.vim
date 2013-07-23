@@ -30,7 +30,7 @@ function! vimwork#map_misc()
 	so $VIMRUNTIME/macros/matchit.vim " VIMRUNTIME is default var 
 	" map {{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-	map * *<C-o>
+	map * :<C-u>let @/ = expand("<cword>")<CR>|"
 	"}}}
 	" nmap {{{
 	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
@@ -71,7 +71,7 @@ function! vimwork#map_misc()
 	"}}}
 	"nnoremap - normal "{{{
 	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
-	nnoremap ;h<CR>  :<C-u>ChainFile<CR>|"
+	nnoremap ;a<CR>  :<C-u>ChainFile<CR>|"
 	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
 	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
@@ -95,9 +95,8 @@ function! vimwork#map_misc()
 	command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
 	"}}}
 	"vnoremap - simple "{{{
-	vnoremap * "ty:let @/=@t<CR>N|"                                                " # 選択文字を検索
-	vnoremap < <gv|"                                                               " # カーソル移動
-	vnoremap > >gv|"                                                               " # 再選択
+	vnoremap < <gv|"
+	vnoremap > >gv|
 	"}}}
 endfunction
 
