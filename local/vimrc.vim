@@ -18,15 +18,15 @@ function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/vimwork.vim
 	set rtp+=~/Dropbox/vim/mind/vital.vim
 
-	call neobundle#rc("~/Dropbox/vim/bundle")
 
+	call neobundle#rc("~/Dropbox/vim/bundle")
 	call vimwork#neobundle()
 endfunction 
 "}}}
 function! s:set_vimwork_init() "{{{
-	let $LOCALWORK                    = expand("~/Dropbox/vim/mind/vimwork.vim")
-	let $VIMWORK                      = expand("~/Dropbox/vim/mind/vimwork.vim")
-	let $VIMTMP                       = expand("~/vimtmp")
+	let $LOCALWORK = expand("~/Dropbox/vim/mind/vimwork.vim")
+	let $VIMWORK   = expand("~/Dropbox/vim/mind/vimwork.vim")
+	let $VIMTMP    = expand("~/vimtmp")
 
 	call vimwork#init()
 endfunction
@@ -43,16 +43,12 @@ endfunction
 "}}}
 
 call s:set_header()
-nnoremap ;a<CR>    :<C-u>ChainFile<CR>|"
 nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
 nnoremap ;ig<CR>   :<C-u>GetVimFunctionName<CR>|"
 nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
 nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowïœçX
 nnoremap ;dh<CR>   :<C-u>lcd ~/Dropbox/Public<CR>|"
-
-
-noremap  ;di<CR>   :<C-u>ConvDebugPrint <C-r>=expand('<cword>')<CR><CR>|"
 
 command! MyVitalUpdate call s:my_vital_update()
 function! s:my_vital_update() "{{{
@@ -100,23 +96,6 @@ function! s:my_git_update(str) "{{{
 endfunction
 "}}}
 
-command! GetFunctionName call s:get_function_name()
-function! s:get_function_name() "{{{
-	let str = getline(search('\<function\>!', 'bcn'))
-	let fname = matchstr(str, 'function!\s*\zs[^(\s]*')
-	echom fname
-	let @+ = fname
-endfunction
-"}}}
-
-command! -nargs=1 ConvDebugPrint call s:conv_debug_print(<q-args>)
-function! s:conv_debug_print(str) "{{{
-	let fname = s:get_vim_function_name()
-	let str   = 'echom "' . fname. ' : ".string(' . a:str . ')'
-	call append(line("."), [str])
-endfunction
-"}}}
-
 command! GetVimFunctionName call s:get_vim_function_name()
 function! s:get_vim_function_name() "{{{
 	let lnum  = searchpair('^\<function\>', '', '^\<endfunction\>', 'bn')
@@ -131,10 +110,16 @@ function! s:get_vim_function_name() "{{{
 endfunction 
 "}}}
 
-"ì˙ñ{åÍ
-function! GvimrcInit()
+" .gvimrc
+function! GvimrcInit() "{{{
 	set gfn=Terminal:h10:cSHIFTJIS
 	set guioptions-=Tm
+endfunction
+"}}}
+"
+command!  Test call s:test()
+function s:test()
+	echo expand("<sfile>")
 endfunction
 
 let &cpo = s:save_cpo

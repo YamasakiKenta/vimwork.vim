@@ -30,7 +30,7 @@ function! vimwork#map_misc()
 	so $VIMRUNTIME/macros/matchit.vim " VIMRUNTIME is default var 
 	" map {{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-	map * :<C-u>let @/ = expand("<cword>")<CR>|"
+	map * :<C-u>set hls<CR>:let @/ = expand("<cword>")<CR>|"
 	"}}}
 	" nmap {{{
 	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
@@ -49,7 +49,7 @@ function! vimwork#map_misc()
 	set dip=filler,icase,iwhite,vertical
 	set fdm=marker                                          " # 自動的に折りたたみ
 	set fo+=ro                                              " # 自動でコメント挿入
-	set grepprg=grep\ -nH
+	" set grepprg=grep\ -nH
 	set guioptions-=T                                       " # メニューバーを削除
 	set guioptions-=m                                       " # ツールバーを削除
 	set hlsearch                                            " # 検索
@@ -255,6 +255,8 @@ function! vimwork#neobundle()  "{{{
 				\ }
 endfunction
 "}}}
+function!  vimwork#unite_grep()
+endfunction
 
 function! vimwork#init()
 	call vimwork#set_gui()
@@ -267,6 +269,7 @@ function! vimwork#init()
 	call vimwork#map_tabdiff()
 	call vimwork#set_qfixhowm()
 	call vimwork#map_misc()
+	call vimwork#unite_grep()
 endfunction
 
 let &cpo = s:save_cpo
