@@ -17,6 +17,7 @@ function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/unite-setting-ex.vim 
 	set rtp+=~/Dropbox/vim/mind/vimwork.vim
 	set rtp+=~/Dropbox/vim/mind/vital.vim
+	set rtp+=~/Dropbox/vim/mind/unite-args.vim
 
 
 	call neobundle#rc("~/Dropbox/vim/bundle")
@@ -78,6 +79,7 @@ function! s:my_git_update(str) "{{{
 				\ '~/Dropbox/vim/mind/sort-function.vim',
 				\ '~/Dropbox/vim/mind/vimwork.vim',
 				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
+				\ '~/Dropbox/vim/mind/unite-args.vim',
 				\ ]
 
 

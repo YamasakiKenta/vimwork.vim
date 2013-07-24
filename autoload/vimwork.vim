@@ -255,8 +255,12 @@ function! vimwork#neobundle()  "{{{
 				\ }
 endfunction
 "}}}
-function!  vimwork#unite_grep()
+function!  vimwork#unite_grep() "{{{
+	let g:unite_source_grep_command = 'findstr'
+	let g:unite_source_grep_recursive_opt = '/S'
+	let g:unite_source_grep_default_opts = '/N'
 endfunction
+"}}}
 
 function! vimwork#init()
 	call vimwork#set_gui()
