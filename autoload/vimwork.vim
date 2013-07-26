@@ -30,7 +30,7 @@ function! vimwork#map_misc()
 	so $VIMRUNTIME/macros/matchit.vim " VIMRUNTIME is default var 
 	" map {{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-	map * :<C-u>set hls<CR>:let @/ = expand("<cword>")<CR>|"
+	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'.<CR>|"
 	"}}}
 	" nmap {{{
 	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
@@ -39,7 +39,7 @@ function! vimwork#map_misc()
 	"}}}
 	" let {{{
 	let g:Align_xstrlen = 3
-	let g:mygrepprg = 'grep'
+	let g:mygrepprg = 'findstr'
 	"}}}
 	" set {{{
 	"set hidden                                              " # ファイルを保存せず移動
@@ -49,6 +49,7 @@ function! vimwork#map_misc()
 	set dip=filler,icase,iwhite,vertical
 	set fdm=marker                                          " # 自動的に折りたたみ
 	set fo+=ro                                              " # 自動でコメント挿入
+	set grepprg=findstr\ /n
 	" set grepprg=grep\ -nH
 	set guioptions-=T                                       " # メニューバーを削除
 	set guioptions-=m                                       " # ツールバーを削除
@@ -171,7 +172,6 @@ function! vimwork#map_unite() "{{{
 	nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>|"
 	nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>|"
 	nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>|"
-	nnoremap ;ud<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
 	nnoremap ;ue<CR>  :<C-u>Unite outline<CR>|"
 	nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>|"
 	nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>|"
@@ -179,6 +179,7 @@ function! vimwork#map_unite() "{{{
 	nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
 	nnoremap ;ul<CR>  :<C-u>Unite line/fast<CR>|"
 	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap ;umd<CR> :<C-u>Unite directory_mru -default-action=cd<CR>|"
 	nnoremap ;uom<CR> :<C-u>Unite output:message<CR>|"
 	nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>|"
 	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
@@ -243,6 +244,8 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/othree/html5.vim.git'
 	NeoBundle 'https://github.com/thinca/vim-prettyprint.git'
 	NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
+	NeoBundle 'https://github.com/Shougo/vinarise.vim.git'
+	NeoBundle 'https://github.com/vim-scripts/CCTree.git'
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {
