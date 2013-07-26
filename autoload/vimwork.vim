@@ -282,6 +282,7 @@ function! vimwork#init()
 	call vimwork#set_qfixhowm()
 	call vimwork#map_misc()
 	call vimwork#unite_grep()
+	call vimwork#vimshell()
 endfunction
 
 let &cpo = s:save_cpo
