@@ -30,7 +30,7 @@ function! vimwork#map_misc()
 	so $VIMRUNTIME/macros/matchit.vim " VIMRUNTIME is default var 
 	" map {{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'.<CR>|"
+	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'<CR>|"
 	"}}}
 	" nmap {{{
 	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
