@@ -264,6 +264,11 @@ function!  vimwork#unite_grep() "{{{
 	let g:unite_source_grep_default_opts = '/N'
 endfunction
 "}}}
+function! vimwork#vimshell() "{{{
+	let g:vimshell_prompt_expr = 'getcwd()." > "'
+	let g:vimshell_prompt_pattern = '^\f\+ > '
+endfunction
+"}}}
 
 function! vimwork#init()
 	call vimwork#set_gui()
