@@ -4,7 +4,9 @@ set cpo&vim
 "================================================================================ 
 " MEMO
 "--------------------------------------------------------------------------------
-"Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
+" Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
+" QuickRun -hook/time/enable 1
+"
 "================================================================================ 
 function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
