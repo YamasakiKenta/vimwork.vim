@@ -164,6 +164,9 @@ endfunction
 function! vimwork#map_unite() "{{{
 	let g:unite_enable_start_insert        = 0
 	let g:unite_source_history_yank_enable = 0
+	let g:unite_source_history_yank_enable = 0
+	let g:unite_source_rec_max_cache_files = 3000
+
 
 	nnoremap ;ur<CR>  :<C-u>UniteResume<CR>|"
 
