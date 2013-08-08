@@ -9,7 +9,9 @@ set cpo&vim
 "
 "================================================================================ 
 function! s:set_plugin() "{{{
+
 	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
+	set rtp+=~/Dropbox/vim/mind/mitree.vim
 	set rtp+=~/Dropbox/vim/mind/sort-function.vim
 	set rtp+=~/Dropbox/vim/mind/chain-file.vim
 	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
@@ -61,6 +63,7 @@ function! s:my_vital_update() "{{{
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
 				\ '~/Dropbox/vim/mind/unite-setting.vim',
 				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
+				\ '~/Dropbox/vim/mind/mitree.vim',
 				\ ]
 
 	for path in paths
@@ -120,11 +123,9 @@ function! GvimrcInit() "{{{
 	set guioptions-=Tm
 endfunction
 "}}}
-"
-command!  Test call s:test()
-function s:test()
-	echo expand("<sfile>")
-endfunction
+
+" let g:mitest = 0
+let g:load_doxygen_syntax=1
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
