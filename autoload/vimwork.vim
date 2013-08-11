@@ -4,12 +4,13 @@ set cpo&vim
 
 function! s:init() "{{{
 	if !exists('s:cache_init')
-		return
+		return 1
 	endif
+
 	let s:cache_init = 1
 	let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  )
 	let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork')
-	let $VIMTMP    = expand(exists('$VIMTMP')    ? $VIMTMP    : '~/vimtmp'   )
+	return 0
 endfunction
 "}}}
 
@@ -42,9 +43,9 @@ function! vimwork#map_misc()
 	let g:mygrepprg = 'findstr'
 	"}}}
 	" set {{{
-	"set hidden                                              " # ファイルを保存せず移動
+	"set hidden                                             " # ファイルを保存せず移動
 	set autoread                                            " # 自動更新
-	set backupdir=$VIMTMP/backup                            " # Backupフォルダのパス
+	set backupdir=~/vimbackup                               " # Backupフォルダのパス
 	set cursorline                                          " # カーソル行の強調
 	set dip=filler,icase,iwhite,vertical
 	set fdm=marker                                          " # 自動的に折りたたみ
@@ -69,6 +70,10 @@ function! vimwork#map_misc()
 	set tabstop=4                                           " # tabの設定
 	set tw=0                                                " # 自動改行 OFF
 	set ve=block
+
+	if !isdirectory(expand(&backupdir))
+		call mkdir(expand(&backupdir))
+	endif
 	"}}}
 	"nnoremap - normal "{{{
 	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
@@ -102,8 +107,6 @@ function! vimwork#map_misc()
 endfunction
 
 function! vimwork#set_qfixhowm() "{{{
-	call s:init()
-	let howm_dir = $VIMTMP.'/howm'
 	let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
 endfunction
 "}}}
@@ -144,14 +147,17 @@ function! vimwork#map_cscope() "{{{
 	nnoremap <C-\>K :call system("ctags -R --excmd=number")<CR>|"
 	nnoremap <C-\>G :call system("gtags -v")<CR>|"
 
-	nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-	nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-	nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>|"
+	nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>|"
+	nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>|"
+	nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>|"
+	nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>|"
+	nnoremap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>|"
+	nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
+	nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
+
+	nnoremap <C-\>a :Ag <c-r>=expand("<cword>")<CR>|"
+	nnoremap <C-\>z :grep /s <c-r>=expand("<cword>")<CR>|"
 
 endfunction
 "}}}
@@ -169,6 +175,7 @@ function! vimwork#map_unite() "{{{
 
 
 	nnoremap ;ur<CR>  :<C-u>UniteResume<CR>|"
+	nnoremap ;uR<CR>  :<C-u>Unite resume<CR>|"
 
 	nnoremap ;cw<CR>  :<C-u>Unite qf<CR>|"
 	nnoremap ;et<CR>  :<C-u>Unite everything<CR>|"
@@ -182,11 +189,12 @@ function! vimwork#map_unite() "{{{
 	nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
 	nnoremap ;ul<CR>  :<C-u>Unite line/fast<CR>|"
 	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
-	nnoremap ;umd<CR> :<C-u>Unite directory_mru -default-action=cd<CR>|"
+	nnoremap ;uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
 	nnoremap ;uom<CR> :<C-u>Unite output:message<CR>|"
 	nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>|"
 	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
 	nnoremap ;ut<CR>  :<C-u>Unite tag<CR>|"
+	nnoremap ;ug<CR>  :<C-u>Unite grep<CR>|"
 
 	nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>|"
 	nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>|"
@@ -200,8 +208,9 @@ endfunction
 "}}}
 function! vimwork#set_necomplete() "{{{
 	let g:neocomplete#enable_at_startup = 1
-	imap <C-k>  <Plug>(neocomplete_start_unite_complete)|"
-	imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)|"
+	" imap <C-k>  <Plug>(neocomplete_start_unite_complete)|"
+	" imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)|"
+	inoremap <C-s> <c-o>:Unite neocomplete snippet<CR>|"
 endfunction
 "}}}
 function! vimwork#map_neosnip() "{{{
@@ -213,12 +222,12 @@ endfunction
 "}}}
 function! vimwork#neobundle()  "{{{
 	" colos
-	NeoBundle 'https://github.com/altercation/vim-colors-solarized.git'
-	NeoBundle 'https://github.com/flazz/vim-colorschemes.git'
-	NeoBundle 'https://github.com/nanotech/jellybeans.vim.git'
-	NeoBundle 'https://github.com/tomasr/molokai.git'
-	NeoBundle 'https://github.com/vim-scripts/chlordane.vim.git'
-	NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
+	" NeoBundle 'https://github.com/altercation/vim-colors-solarized.git'
+	" NeoBundle 'https://github.com/flazz/vim-colorschemes.git'
+	" NeoBundle 'https://github.com/nanotech/jellybeans.vim.git'
+	" NeoBundle 'https://github.com/tomasr/molokai.git'
+	" NeoBundle 'https://github.com/vim-scripts/chlordane.vim.git'
+	" NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
 
 	" Unite 
 	NeoBundle 'https://github.com/sgur/unite-qf.git'
@@ -234,7 +243,6 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/Shougo/shougo-s-github.git'
 	NeoBundle 'https://github.com/Shougo/vimfiler'
 	NeoBundle 'https://github.com/Shougo/vimshell.git'
-	NeoBundle 'https://github.com/fuenor/qfixhowm.git'
 	NeoBundle 'https://github.com/jelera/vim-javascript-syntax.git'
 	NeoBundle 'https://github.com/kannokanno/previm.git'
 	NeoBundle 'https://github.com/thinca/vim-partedit.git'
@@ -249,6 +257,8 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
 	NeoBundle 'https://github.com/Shougo/vinarise.vim.git'
 	NeoBundle 'https://github.com/vim-scripts/CCTree.git'
+	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
+	NeoBundle 'https://github.com/tpope/vim-git.git'
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {
@@ -261,10 +271,17 @@ function! vimwork#neobundle()  "{{{
 				\ }
 endfunction
 "}}}
-function!  vimwork#unite_grep() "{{{
-	let g:unite_source_grep_command = 'findstr'
-	let g:unite_source_grep_recursive_opt = '/S'
-	let g:unite_source_grep_default_opts = '/N'
+function! vimwork#unite_grep() "{{{
+	let mode = 'ag'
+	if mode == 'findstr'
+		let g:unite_source_grep_command       = 'findstr'
+		let g:unite_source_grep_default_opts  = '/n'
+		let g:unite_source_grep_recursive_opt = '/s'
+	elseif mode == 'ag'
+		let g:unite_source_grep_command       = 'Ag'
+		let g:unite_source_grep_default_opts  = '--nocolor --nogroup'
+		let g:unite_source_grep_recursive_opt = ''
+	endif
 endfunction
 "}}}
 function! vimwork#vimshell() "{{{
@@ -287,6 +304,8 @@ function! vimwork#init()
 	call vimwork#unite_grep()
 	call vimwork#vimshell()
 endfunction
+
+" call vimwork#init()
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

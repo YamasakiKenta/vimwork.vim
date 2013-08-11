@@ -31,7 +31,6 @@ endfunction
 function! s:set_vimwork_init() "{{{
 	let $LOCALWORK = expand("~/Dropbox/vim/mind/vimwork.vim")
 	let $VIMWORK   = expand("~/Dropbox/vim/mind/vimwork.vim")
-	let $VIMTMP    = expand("~/vimtmp")
 
 	call vimwork#init()
 endfunction
@@ -43,7 +42,12 @@ function! s:set_header() "{{{
 	let g:chain_dict = { '__file' : {
 				\ 'vimrc.vim' : '../autoload/vimwork.vim',
 				\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
-				\ }}
+				\ },
+				\ '__pattern' : [
+				\ { 'before' : 'autoload\(/.*\)\?/\(.*\.vim$\)' , 'after' : 'plugin/**/\2'},
+				\ { 'before' : 'plugin\(/.*\)\?/\(.*\.vim\)'   , 'after' : 'autoload/**/\2'},
+				\ ],
+				\ }
 endfunction
 "}}}
 
@@ -126,6 +130,8 @@ endfunction
 
 " let g:mitest = 0
 let g:load_doxygen_syntax=1
+
+set updatetime=500
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
