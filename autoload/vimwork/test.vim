@@ -6,9 +6,14 @@ function! s:func_test(func, in, out)
 	let out = call(a:func, a:in)
 	let rtn = ( a:out == out ) 
 	if rtn
-		echo "OK    :".string(out)
+		echo "OK    :"
+		PP out
 	else
-		echo "ERROR :".string(out).' -> '.string(a:out)
+		echo "ERROR :"
+		echo 'rtn :'
+		PP out
+		echo 'ans :'
+		PP a:out
 	endif
 	return rtn
 endfunction

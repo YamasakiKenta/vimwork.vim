@@ -89,6 +89,7 @@ function! s:my_git_update(str) "{{{
 				\ '~/Dropbox/vim/mind/vimwork.vim',
 				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
 				\ '~/Dropbox/vim/mind/unite-args.vim',
+				\ '~/Dropbox/vim/mind/mitree.vim',
 				\ ]
 
 
