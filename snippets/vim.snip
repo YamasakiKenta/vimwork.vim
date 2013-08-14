@@ -8,5 +8,7 @@ snippet cpo
     let s:save_cpo = &cpo
     set cpo&vim
 
-    let &cpo = s:save_cpo
-    unlet s:save_cpo
+	if exists('s:save_cpo')
+		let &cpo = s:save_cpo
+		unlet s:save_cpo
+	endif

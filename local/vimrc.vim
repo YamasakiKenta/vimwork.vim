@@ -20,8 +20,8 @@ function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
 	set rtp+=~/Dropbox/vim/mind/unite-setting-ex.vim 
 	set rtp+=~/Dropbox/vim/mind/vimwork.vim
-	set rtp+=~/Dropbox/vim/mind/vital.vim
 	set rtp+=~/Dropbox/vim/mind/unite-args.vim
+	set rtp+=~/Dropbox/vim/mind/vital.vim
 
 
 	call neobundle#rc("~/Dropbox/vim/bundle")
@@ -65,7 +65,6 @@ function! s:my_vital_update() "{{{
 				\ '~/Dropbox/vim/mind/chain-file.vim',
 				\ '~/Dropbox/vim/mind/tab-diff.vim',
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
-				\ '~/Dropbox/vim/mind/unite-setting.vim',
 				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
 				\ '~/Dropbox/vim/mind/mitree.vim',
 				\ ]
@@ -129,7 +128,7 @@ function! GvimrcInit() "{{{
 endfunction
 "}}}
 
-" let g:mitest = 0
+let g:yamaken_test = 1
 let g:load_doxygen_syntax=1
 
 set updatetime=500
