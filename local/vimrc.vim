@@ -11,7 +11,7 @@ set cpo&vim
 function! s:set_plugin() "{{{
 
 	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
-	set rtp+=~/Dropbox/vim/mind/mitree.vim
+	set rtp+=~/Dropbox/vim/mind/tree.vim
 	set rtp+=~/Dropbox/vim/mind/sort-function.vim
 	set rtp+=~/Dropbox/vim/mind/chain-file.vim
 	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
@@ -66,7 +66,7 @@ function! s:my_vital_update() "{{{
 				\ '~/Dropbox/vim/mind/tab-diff.vim',
 				\ '~/Dropbox/vim/mind/unite-perforce.vim',
 				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
-				\ '~/Dropbox/vim/mind/mitree.vim',
+				\ '~/Dropbox/vim/mind/tree.vim',
 				\ ]
 
 	for path in paths
@@ -88,7 +88,7 @@ function! s:my_git_update(str) "{{{
 				\ '~/Dropbox/vim/mind/vimwork.vim',
 				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
 				\ '~/Dropbox/vim/mind/unite-args.vim',
-				\ '~/Dropbox/vim/mind/mitree.vim',
+				\ '~/Dropbox/vim/mind/tree.vim',
 				\ ]
 
 
