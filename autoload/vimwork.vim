@@ -119,25 +119,24 @@ function! vimwork#map_unite_perforce() "{{{
 	nmap ;id<CR> <PLUG>(p4_get_depot)
 
 	nnoremap ;pan<CR> :<C-u>PfAnnotate<CR>|"
-	nnoremap ;pda<CR> :<c-u>Unite p4_diff<CR>|"
+	nnoremap ;pda<CR> :<c-u>Unite p4/diff<CR>|"
 	nnoremap ;pp<CR>  :<c-u>PfSetting<CR>|"
 	nnoremap ;pr<CR>  :<c-u>PfRevert<CR>|"
 	nnoremap ;pe<CR>  :<c-u>PfEdit<CR>|"
 	nnoremap ;pE<CR>  :<c-u>PfAdd<CR>|"
 	nnoremap ;wd<CR>  :<c-u>PfDiff<CR>|"
-	nnoremap ;pi<CR>  :<C-u>Unite p4_info<CR>|"
-	nnoremap ;pt<CR>  :<C-u>Unite p4_clients -default-action=a_p4_client_set<CR>|"
-	nnoremap ;pc<CR>  :<C-u>Unite p4_changes_pending<CR>|"
-	nnoremap ;ps<CR>  :<C-u>Unite p4_changes_submitted<CR>|"
-	nnoremap ;po<CR>  :<C-u>Unite p4_opened<CR>|"
-	nnoremap ;pj<CR>  :<C-u>Unite p4_jobs<CR>|"
-	nnoremap ;ph<CR>  :<C-u>Unite p4_have_reset<CR>|"
-	nnoremap ;pa<CR>  :<C-u>Unite p4_annotate<CR>|"
-	nnoremap ;pai<CR> :<C-u>Unite p4_annotate_ai<CR>|"
-	nnoremap ;pC<CR>  :<C-u>Unite p4_changes_pending_reopen<CR>|"
-	nnoremap ;pte<CR> :<C-u>Unite p4_template<CR>|"
-	nnoremap ;pf<CR>  :call unite#start([['p4_files', getcwd()]])<CR>|"
-	nnoremap ;pF<CR>  :call unite#start([['p4_files', expand("%:h")]])<CR>|"
+	nnoremap ;pi<CR>  :<C-u>Unite p4/info<CR>|"
+	nnoremap ;pt<CR>  :<C-u>Unite p4/clients -default-action=a_p4_client_set<CR>|"
+	nnoremap ;pc<CR>  :<C-u>Unite p4/changes_pending<CR>|"
+	nnoremap ;ps<CR>  :<C-u>Unite p4/changes_submitted<CR>|"
+	nnoremap ;po<CR>  :<C-u>Unite p4/opened<CR>|"
+	nnoremap ;pj<CR>  :<C-u>Unite p4/jobs<CR>|"
+	nnoremap ;ph<CR>  :<C-u>Unite p4/have_reset<CR>|"
+	nnoremap ;pa<CR>  :<C-u>Unite p4/annotate<CR>|"
+	nnoremap ;pC<CR>  :<C-u>Unite p4/changes_pending_reopen<CR>|"
+	nnoremap ;pte<CR> :<C-u>Unite p4/template<CR>|"
+	nnoremap ;pf<CR>  :call unite#start([['p4/files', getcwd()]])<CR>|"
+	nnoremap ;pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
 endfunction
 "}}}
 function! vimwork#map_cscope() "{{{
@@ -246,6 +245,7 @@ function! vimwork#neobundle()  "{{{
 	" NeoBundle 'https://github.com/tpope/vim-git.git'
 	" NeoBundle 'https://github.com/tyru/open-browser.vim.git'
 	" NeoBundle 'https://github.com/vim-scripts/CCTree.git'
+	" NeoBundle 'alpaca-tc/alpaca_powertabline'
 	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
 	NeoBundle 'https://github.com/Shougo/neocomplete.git'
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'

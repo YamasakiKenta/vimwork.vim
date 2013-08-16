@@ -128,7 +128,7 @@ function! GvimrcInit() "{{{
 endfunction
 "}}}
 
-let g:yamaken_test = 1
+" let g:yamaken_test = 1
 let g:load_doxygen_syntax=1
 
 set updatetime=500
