@@ -16,9 +16,9 @@ endfunction
 
 function! vimwork#set_gui() "{{{
 	if !has('gui')
-		set ruler           " # ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Ì•\¦
-		set nocompatible    " # vim‚Ì‹@”\‚ªg‚¦‚é
-		syntax enable       " # F‚ğ•t‚¯ - İ’è‚ªƒŠƒZƒbƒg‚³‚ê‚é
+		set ruler           " # ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã®è¡¨ç¤º
+		set nocompatible    " # vimã®æ©Ÿèƒ½ãŒä½¿ãˆã‚‹
+		syntax enable       " # è‰²ã‚’ä»˜ã‘ - è¨­å®šãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹
 		filetype on
 		filetype indent on
 		filetype plugin on
@@ -43,32 +43,32 @@ function! vimwork#map_misc()
 	let g:mygrepprg = 'findstr'
 	"}}}
 	" set {{{
-	"set hidden                                             " # ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚¹‚¸ˆÚ“®
-	set autoread                                            " # ©“®XV
-	set backupdir=~/vimbackup                               " # BackupƒtƒHƒ‹ƒ_‚ÌƒpƒX
-	set cursorline                                          " # ƒJ[ƒ\ƒ‹s‚Ì‹­’²
+	"set hidden                                             " # ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã›ãšç§»å‹•
+	set autoread                                            " # è‡ªå‹•æ›´æ–°
+	set backupdir=~/vimbackup                               " # Backupãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ‘ã‚¹
+	set cursorline                                          " # ã‚«ãƒ¼ã‚½ãƒ«è¡Œã®å¼·èª¿
 	set dip=filler,icase,iwhite,vertical
-	set fdm=marker                                          " # ©“®“I‚ÉÜ‚è‚½‚½‚İ
-	set fo+=ro                                              " # ©“®‚ÅƒRƒƒ“ƒg‘}“ü
+	set fdm=marker                                          " # è‡ªå‹•çš„ã«æŠ˜ã‚ŠãŸãŸã¿
+	set fo+=ro                                              " # è‡ªå‹•ã§ã‚³ãƒ¡ãƒ³ãƒˆæŒ¿å…¥
 	set grepprg=findstr\ /n
 	" set grepprg=grep\ -nH
-	set guioptions-=T                                       " # ƒƒjƒ…[ƒo[‚ğíœ
-	set guioptions-=m                                       " # ƒc[ƒ‹ƒo[‚ğíœ
-	set hlsearch                                            " # ŒŸõ
-	set ignorecase                                          " # ŒŸõ‚Å‘å•¶š¬•¶š‚ğ‹æ•Ê‚µ‚È‚¢
+	set guioptions-=T                                       " # ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’å‰Šé™¤
+	set guioptions-=m                                       " # ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’å‰Šé™¤
+	set hlsearch                                            " # æ¤œç´¢
+	set ignorecase                                          " # æ¤œç´¢ã§å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒºåˆ¥ã—ãªã„
 	set incsearch
-	set laststatus=2                                        " # ƒXƒe[ƒ^ƒXs‚Ì•\¦
-	set lcs=tab:`\                                          " # ‹L†‚Ì•\¦
+	set laststatus=2                                        " # ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡Œã®è¡¨ç¤º
+	set lcs=tab:`\                                          " # è¨˜å·ã®è¡¨ç¤º
 	set list
-	set modeline                                            " # “Ç‚İ‚İ‚Ìİ’è
+	set modeline                                            " # èª­ã¿è¾¼ã¿æ™‚ã®è¨­å®š
 	set noswapfile                                          " # SwapFile
-	set nowrap                                              " # Ü‚è•Ô‚µ
-	set number                                              " # ”Ô†“ü—Í
+	set nowrap                                              " # æŠ˜ã‚Šè¿”ã—
+	set number                                              " # ç•ªå·å…¥åŠ›
 	set shiftwidth=4
 	set smartcase
 	set stl=[%{&ff}][%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-	set tabstop=4                                           " # tab‚Ìİ’è
-	set tw=0                                                " # ©“®‰üs OFF
+	set tabstop=4                                           " # tabã®è¨­å®š
+	set tw=0                                                " # è‡ªå‹•æ”¹è¡Œ OFF
 	set ve=block
 
 	if !isdirectory(expand(&backupdir))
@@ -80,8 +80,8 @@ function! vimwork#map_misc()
 	nnoremap ;a<CR>  :<C-u>ChainFile<CR>|"
 	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
-	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
-	nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾ ( ƒtƒ‹ƒpƒX )
+	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—
+	nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾— ( ãƒ•ãƒ«ãƒ‘ã‚¹ )
 	"}}}
 	"nnoremap - simple {{{
 	nnoremap <C-j> j.|"
@@ -107,7 +107,7 @@ function! vimwork#map_misc()
 endfunction
 
 function! vimwork#set_qfixhowm() "{{{
-	let QFix_CloseOnJump = 1" # QFixHown - ‚ğ©“®“I‚ÉI—¹‚·‚é
+	let QFix_CloseOnJump = 1" # QFixHown - ã‚’è‡ªå‹•çš„ã«çµ‚äº†ã™ã‚‹
 endfunction
 "}}}
 function! vimwork#map_unite_perforce() "{{{
@@ -201,7 +201,7 @@ function! vimwork#map_unite() "{{{
 endfunction
 "}}}
 function! vimwork#set_vimwfiler() "{{{
-	let g:vimfiler_as_default_explorer  = 1  " # ‰Šúfiler
+	let g:vimfiler_as_default_explorer  = 1  " # åˆæœŸfiler
 	let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 endfunction
 "}}}
@@ -259,8 +259,8 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
-	" NeoBundle 'https://https://github.com/vim-jp/vital.vim.git' " ‚½‚Ü‚Éƒ}[
-	" ƒW‚·‚é
+	" NeoBundle 'https://https://github.com/vim-jp/vital.vim.git' " ãŸã¾ã«ãƒãƒ¼
+	" ã‚¸ã™ã‚‹
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {

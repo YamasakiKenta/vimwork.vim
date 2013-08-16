@@ -3,31 +3,31 @@
 COMMANDS *vimwork-commands*
 
 :SetNum *:SetNum*
-	�O�̍s�̔ԍ��̎��̔ԍ��ɕύX���܂�
+	前の行の番号の次の番号に変更します
 
 :GetWord {word}*:GetWord*
-	{word}���ȊO���폜���܂�
+	{word}を以外を削除します
 
 :CopyFileDir {file}, [{to}, {from}] *:CopyFileDir*
-	{file} �� {to} �t�H���_�� {from} �t�H���_����t�H���_�K�w���R�s�[����
-	���B
-	{to}���Ȃ��ꍇ��|g:copyFileDir_defaultRoot|����A {from}���Ȃ��ꍇ�́A
-	|g:copyFileDir_defaultFile2|����R�s�[���܂��B
+	{file} を {to} フォルダに {from} フォルダからフォルダ階層毎コピーしま
+	す。
+	{to}がない場合は|g:copyFileDir_defaultRoot|から、 {from}がない場合は、
+	|g:copyFileDir_defaultFile2|からコピーします。
 
-	�������Ȃ��ꍇ�́A{from} = "c:" {to} = "c:\tmp" �ƂȂ�
+	それらもない場合は、{from} = "c:" {to} = "c:\tmp" となる
 
 :QuickMemo {text} *:QuickMemo*
-	|qfixmemo|�̓��L��{text}��ǉ����܂�
+	|qfixmemo|の日記に{text}を追加します
 
 :AddSerach {word} *:AddSerach*
-	���݂̌����ϐ��ɁA{word}��ǉ����܂�
+	現在の検索変数に、{word}を追加します
 
 :MySwap {word} *:MySwap*
-	���݂̍s���A{word}�𒆐S�ɓ���ւ��
+	現在の行を、{word}を中心に入れ替わる
 
 ==============================================================================
 SOURCES *vimwork-unite-source*
 message 
-	|:message|�� unite �ŕ\�����܂�
+	|:message|を unite で表示します
 ------------------------------------------------------------------------------
  vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:

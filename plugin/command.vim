@@ -1,19 +1,19 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-" ‘OŒã‚Ì“ü‚ê‘Ö‚¦
+" å‰å¾Œã®å…¥ã‚Œæ›¿ãˆ
 command! -range -nargs=? MySwap <line1>,<line2>call vimwork#command#mySwap(<q-args>) 
 
-" ŒŸõƒ[ƒh‚Ì’Ç‰Á
+" æ¤œç´¢ãƒ¯ãƒ¼ãƒ‰ã®è¿½åŠ 
 command! -narg=* AddSearch call vimwork#command#add_serach(<f-args>) 
 
-" ƒtƒHƒ‹ƒ_\‘¢‚ÌƒRƒs[
+" ãƒ•ã‚©ãƒ«ãƒ€æ§‹é€ ã®ã‚³ãƒ”ãƒ¼
 command! -nargs=+ CopyFileDir call vimwork#command#copyFileDir(<f-args>) 
 "
-" ‘ÎÛ‚Ì•¶Œ¾‚ğ’Šo‚·‚é
+" å¯¾è±¡ã®æ–‡è¨€ã‚’æŠ½å‡ºã™ã‚‹
 command! -range -narg=1 GetWord call vimwork#command#get_word(<line1>, <line2>, <f-args>)
 
-" ˜A”Ô‚Ìì¬
+" é€£ç•ªã®ä½œæˆ
 command! -narg=0 SetNum call vimwork#command#set_num() 
 
 let &cpo = s:save_cpo

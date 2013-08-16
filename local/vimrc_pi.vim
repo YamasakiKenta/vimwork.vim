@@ -56,7 +56,7 @@ nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
 nnoremap ;ig<CR>   :<C-u>GetVimFunctionName<CR>|"
 nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap <A-Space> :<C-u>simalt ~<CR>|" " WindowÏX
+nnoremap <A-Space> :<C-u>simalt ~<CR>|" " Windowﾂ陛渉更
 nnoremap ;dh<CR>   :<C-u>lcd ~/Dropbox/Public<CR>|"
 
 command! MyVitalUpdate call s:my_vital_update()

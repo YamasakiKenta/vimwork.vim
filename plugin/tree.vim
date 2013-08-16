@@ -5,20 +5,20 @@ nnoremap <plug>(tree_syntax_force_reload) :<C-u>call s:force_reload()<CR>
 
 aug tree "{{{
 	au!
-	" ‰Šú‰»
+	" åˆæœŸåŒ–
 	au BufRead *.tree call s:init()
 	au BufRead *.tree setf tree
 aug END "}}}
 function! s:init() "{{{
 	aug tree_init
 		au!
-		" ˆÚ“®‚µ‚½ê‡
+		" ç§»å‹•ã—ãŸå ´åˆ
 		au CursorMoved <buffer> call s:reload()
 	aug END
 	setl ft=tree fdm=indent shiftwidth=1 tabstop=1 expandtab
 	nmap <buffer> <C-l> <plug>(tree_syntax_force_reload)
 
-	" ‹­’²
+	" å¼·èª¿
 	syn match Todo /|-.*=$/
 	syn match Todo /|-\ze.*-$/
 
@@ -38,55 +38,55 @@ function! s:force_reload() "{{{
 endfunction
 "}}}
 function! s:reload(...) "{{{
-	" Ä•`‰æ
+	" å†æç”»
 	let force_flg = 0
 	if a:0 > 0
 		let force_flg = a:1
 	endif
 
 
-	" ‰Šú‰»
+	" åˆæœŸåŒ–
 	let lnum         = line(".")
 	let tree_pattern = '|-'
 	let subs_pattern = '\s*\(\d\+\)\?[-= ]\?$'
 	let index        = {}
 
 	let str = getline(lnum)
-	" Œ»İˆÊ’u, 
+	" ç¾åœ¨ä½ç½®, 
 	let index.old   = match(str, tree_pattern)
 
-	" syntax •¶š‚ÌƒŠƒZƒbƒg
+	" syntax æ–‡å­—ã®ãƒªã‚»ãƒƒãƒˆ
 	let str = substitute(str, subs_pattern, ' '.index.old.' ','')
 	call setline(lnum, str)
 
-	" XVˆÊ’u‚Ìİ’è
+	" æ›´æ–°ä½ç½®ã®è¨­å®š
 	if ( force_flg == 0 ) 
-		" ˆês‰º
+		" ä¸€è¡Œä¸‹
 		let index.stop = match(getline(1+lnum), tree_pattern)
 
-		" Œ»İ‚ÌˆÊ’u‚©Aˆês‰º‚ÌˆÊ’u‚Æ“¯‚¶ˆÊ’u‚É—ˆ‚½ê‡AXVI—¹
+		" ç¾åœ¨ã®ä½ç½®ã‹ã€ä¸€è¡Œä¸‹ã®ä½ç½®ã¨åŒã˜ä½ç½®ã«æ¥ãŸå ´åˆã€æ›´æ–°çµ‚äº†
 		if index.stop < 0 || index.stop > index.old
 			let index.stop = index.old 
 		endif
 	else 
-		" ‚·‚×‚ÄXV
+		" ã™ã¹ã¦æ›´æ–°
 		let index.stop = -1
 	endif
 
 
 	while (1) "{{{
 		"--------------------------------------------------------------------------------
-		" index.now : Œ»İ‚ÌˆÊ’u
-		" index.old : ‘O‰ñ‚ÌˆÊ’u
-		" index.stop : XVˆÊ’u
+		" index.now : ç¾åœ¨ã®ä½ç½®
+		" index.old : å‰å›ã®ä½ç½®
+		" index.stop : æ›´æ–°ä½ç½®
 		"--------------------------------------------------------------------------------
 
-		" ’l‚ÌXV
+		" å€¤ã®æ›´æ–°
 		let lnum      = lnum - 1
 		let str       = getline(lnum)
 		let index.now = match(str, tree_pattern)
 
-		" syntax •¶š‚Ìİ’è
+		" syntax æ–‡å­—ã®è¨­å®š
 		if index.now < index.old
 			let subs_str = '='
 		elseif index.now == index.old
@@ -95,14 +95,14 @@ function! s:reload(...) "{{{
 			let subs_str = ' '
 		endif
 
-		" XV
+		" æ›´æ–°
 		let str = substitute(str, subs_pattern, ' '.index['old'].index['now'].subs_str,'')
 		call setline(lnum, str)
 
-		" ™X‚É¬‚³‚­‚·‚é
+		" å¾ã€…ã«å°ã•ãã™ã‚‹
 		let index.old = index.now < index.old ? index.now : index.old
 
-		" I—¹”»’è
+		" çµ‚äº†åˆ¤å®š
 		if ( lnum < 0 || index.now < 0 || index.stop > index.now ) 
 			echom 'END : '.lnum.' , '.index.now
 			break

@@ -2,14 +2,14 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 "
-"todo : Å‰‚Ì |‚æ‚è‘O‚Í‚»‚Ì‚Ü‚Ü
+"todo : æœ€åˆã® |ã‚ˆã‚Šå‰ã¯ãã®ã¾ã¾
 
 com! -range Cells call s:cells(<line1>,<line2>)
 
-"•‚ğ‡‚í‚¹‚é
+"å¹…ã‚’åˆã‚ã›ã‚‹
 function! g:set_lens(strs1, strs2) "{{{
 
-	" ”z—ñƒTƒCƒY‚ÌXV - maxs‚ÌŒã‚ë‚Ì’Ç‰Á‚·‚é
+	" é…åˆ—ã‚µã‚¤ã‚ºã®æ›´æ–° - maxsã®å¾Œã‚ã®è¿½åŠ ã™ã‚‹
 
 	let cnt = 0
 	if len(a:strs1) > len(a:strs2) 
@@ -30,21 +30,21 @@ function! g:set_lens(strs1, strs2) "{{{
 	
 endfunction
 "}}}
-"•¶š•‚Ìæ“¾
+"æ–‡å­—å¹…ã®å–å¾—
 function! s:get_maxs_from_str(str, maxs) "{{{
 	" ********************************************************************************
-	" Å‘å•‚Ìæ“¾ ( •¶š—ñ ) 
-	" @param[in]	str		İ’èXV‚·‚é•¶š—ñ
-	" @param[in]	maxs	•¶š—ñ‚ÌÅ‘å•
+	" æœ€å¤§å¹…ã®å–å¾— ( æ–‡å­—åˆ— ) 
+	" @param[in]	str		è¨­å®šæ›´æ–°ã™ã‚‹æ–‡å­—åˆ—
+	" @param[in]	maxs	æ–‡å­—åˆ—ã®æœ€å¤§å¹…
 	" ********************************************************************************
 
 	let str = a:str
 	let maxs = a:maxs
 
-	" XV‚·‚é•¶š—ñ‚Ì•¶š•‚Ìæ“¾
+	" æ›´æ–°ã™ã‚‹æ–‡å­—åˆ—ã®æ–‡å­—å¹…ã®å–å¾—
 	let tmp_maxs = map(split(str,"\[|+]"), "len(v:val)")
 
-	" ”z—ñƒTƒCƒY‚ÌXV - maxs‚ÌŒã‚ë‚Ì’Ç‰Á‚·‚é
+	" é…åˆ—ã‚µã‚¤ã‚ºã®æ›´æ–° - maxsã®å¾Œã‚ã®è¿½åŠ ã™ã‚‹
 	"let max = len(tmp_maxs) - len(maxs) 
 	"if max > 0
 		"let cnt = 0
@@ -61,10 +61,10 @@ function! s:get_maxs_from_str(str, maxs) "{{{
 		"endwhile
 	"endif
 
-	" ”z—ñ•‚ğ‡‚í‚¹
+	" é…åˆ—å¹…ã‚’åˆã‚ã›
 	call g:set_lens(tmp_maxs, maxs) 
 
-	" •¶š•‚Ìæ“¾
+	" æ–‡å­—å¹…ã®å–å¾—
 	let cnt = 0
 	for max in maxs
 		let tmp_max = tmp_maxs[cnt]
@@ -76,20 +76,20 @@ function! s:get_maxs_from_str(str, maxs) "{{{
 		let cnt += 1
 	endfor
 
-	" •¶š—ñ‚ÌÅ‘å•
+	" æ–‡å­—åˆ—ã®æœ€å¤§å¹…
 	return maxs
 
 endfunction
 "}}}
 function! s:get_maxs_from_strs(strs) "{{{
 	" ********************************************************************************
-	" Å‘å•‚Ìæ“¾ ( •¶š—ñ ) 
-	" @param[in]	strs	İ’è‚·‚é•¶š—ñ
-	" @param[out]	maxs	•¶š—ñ‚ÌÅ‘å•
+	" æœ€å¤§å¹…ã®å–å¾— ( æ–‡å­—åˆ— ) 
+	" @param[in]	strs	è¨­å®šã™ã‚‹æ–‡å­—åˆ—
+	" @param[out]	maxs	æ–‡å­—åˆ—ã®æœ€å¤§å¹…
 	" ********************************************************************************
 	let strs = a:strs
 
-	" •¶š—ñ‚ÌÅ‘å• ( ƒŠƒZƒbƒg ) 
+	" æ–‡å­—åˆ—ã®æœ€å¤§å¹… ( ãƒªã‚»ãƒƒãƒˆ ) 
 	"
 	let maxs = []
 	for str in strs
@@ -101,20 +101,20 @@ function! s:get_maxs_from_strs(strs) "{{{
 endfunction
 "}}}
 
-"•‚É‡‚í‚¹‚ÄA•¶š—ñ‚ÌXV
+"å¹…ã«åˆã‚ã›ã¦ã€æ–‡å­—åˆ—ã®æ›´æ–°
 function! s:is_line(str) "{{{
 " ********************************************************************************
-" s‚Ìü‚©’²‚×‚é
-" @param[in]	str		’²‚×‚é•¶š—ñ
+" è¡Œã®ç·šã‹èª¿ã¹ã‚‹
+" @param[in]	str		èª¿ã¹ã‚‹æ–‡å­—åˆ—
 " ********************************************************************************
 	let str = a:str
 
-	" •\ŠJn‚Ü‚Å‚ğíœ‚·‚é
+	" è¡¨é–‹å§‹ã¾ã§ã‚’å‰Šé™¤ã™ã‚‹
 	let str = substitute(str, " ?.\{-}\[|+]", "", "g")
 	
 	"if str =~ "\[^|+-]"
 	"
-	" - ‚ªŠÜ‚ñ‚Å‚¢‚é‚È‚çü‚É‚·‚é
+	" - ãŒå«ã‚“ã§ã„ã‚‹ãªã‚‰ç·šã«ã™ã‚‹
 	if str =~ "[-]"
 		let rtn = 1 
 	else
@@ -127,9 +127,9 @@ endfunction
 "}}}
 function! s:get_line(str, maxs) "{{{
 	" ********************************************************************************
-	" ü‚Ìs‚È‚çAü‚ğ•\¦‚·‚é
-	" @param[in]	str		ü‚Ìs‚©’²‚×‚és
-	" @param[in]	maxs	Še•‚Ìİ’è’l
+	" ç·šã®è¡Œãªã‚‰ã€ç·šã‚’è¡¨ç¤ºã™ã‚‹
+	" @param[in]	str		ç·šã®è¡Œã‹èª¿ã¹ã‚‹è¡Œ
+	" @param[in]	maxs	å„å¹…ã®è¨­å®šå€¤
 	" ********************************************************************************
 	"
 	let str = a:str
@@ -137,7 +137,7 @@ function! s:get_line(str, maxs) "{{{
 
 	if s:is_line(str)
 
-		" ˆê”ÔÅ‰‚ÍA•\¦‚µ‚È‚¢
+		" ä¸€ç•ªæœ€åˆã¯ã€è¡¨ç¤ºã—ãªã„
 		let strs = []
 
 		for max in a:maxs
@@ -156,7 +156,7 @@ endfunction
 
 function! g:add_list(name1, list1, name2, list2) "{{{
 
-	" ”z—ñ•‚ğ‡‚í‚¹‚é
+	" é…åˆ—å¹…ã‚’åˆã‚ã›ã‚‹
 	call g:set_lens(list1, list2) 
 
 	let cnt   = 0
@@ -174,22 +174,22 @@ function! s:get_str(str, maxs) "{{{
 	let while_max = len(maxs)
 	let strs      = split(a:str, "|")
 
-	" ”z—ñ”‚ğ‡‚í‚¹‚é
+	" é…åˆ—æ•°ã‚’åˆã‚ã›ã‚‹
 	call g:set_lens(strs, maxs) 
 
 	let cnt = 0
 	while ( cnt < while_max ) 
-		let max = maxs[cnt]      " Še—ñ•
-		let len = len(strs[cnt]) " •¶š—ñ•
+		let max = maxs[cnt]      " å„åˆ—å¹…
+		let len = len(strs[cnt]) " æ–‡å­—åˆ—å¹…
 		let sa  = max - len
 
-		" Å‘å•¶š”‚É‘«‚è‚È‚¢•ª‚ÍASPACE‚ğ‘}“ü
+		" æœ€å¤§æ–‡å­—æ•°ã«è¶³ã‚Šãªã„åˆ†ã¯ã€SPACEã‚’æŒ¿å…¥
 		let strs[cnt] .= repeat(' ',sa)
 
 		let cnt += 1
 	endwhile
 
-	" Œ‹‡
+	" çµåˆ
 	let rtn = join(strs,'|').'|'
 
 	return rtn
@@ -216,13 +216,13 @@ function! s:cells(line1,line2) "{{{
 	let line1 = a:line1
 	let line2 = a:line2
 
-	" •ÒWƒf[ƒ^‚Ìæ“¾
+	" ç·¨é›†ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	let strs = getline(line1,line2)
 
-	" | ‚ÌêŠ‚Ìæ“¾ ( Še—ñ‚Ì•‚Ìİ’è ) 
+	" | ã®å ´æ‰€ã®å–å¾— ( å„åˆ—ã®å¹…ã®è¨­å®š ) 
 	let maxs =  s:get_maxs_from_strs(strs)
 
-	" •‚Ìİ’è
+	" å¹…ã®è¨­å®š
 	let strs = s:get_strs(strs, maxs)
 
 	call setline(line1, strs)	

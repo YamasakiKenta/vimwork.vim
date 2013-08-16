@@ -43,7 +43,7 @@ function! s:receive_vimproc_result() "{{{
         echom v:throwpoint
     endtry
 
-    " I—¹‚ÉŒÄ‚Ô
+    " çµ‚äº†æ™‚ã«å‘¼ã¶
 	call call(s:func_end, [s:result])
     
     augroup vimproc-async-receive-test

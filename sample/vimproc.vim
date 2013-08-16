@@ -3,7 +3,7 @@ set updatetime=100
 augroup vimproc-async-receive-test
 augroup END
 
-" コマンド終了時に呼ばれる関数
+" 繧ｳ繝槭Φ繝臥ｵゆｺ�譎ゅ↓蜻ｼ縺ｰ繧後ｋ髢｢謨ｰ
 function! s:finish(result)
 	call input("END")
     echo a:result
@@ -33,7 +33,7 @@ function! s:receive_vimproc_result() "{{{
         echom v:throwpoint
     endtry
 
-    " 終了時に呼ぶ
+    " 邨ゆｺ�譎ゅ↓蜻ｼ縺ｶ
     call s:finish(s:result)
     
     augroup vimproc-async-receive-test
