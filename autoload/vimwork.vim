@@ -229,10 +229,10 @@ function! vimwork#neobundle()  "{{{
 	" NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
 
 	" Unite 
-	NeoBundle 'https://github.com/sgur/unite-qf.git'
+	" NeoBundle 'https://github.com/tsukkee/unite-help.git'
 	NeoBundle 'https://github.com/Shougo/unite-outline.git'
 	NeoBundle 'https://github.com/Shougo/unite.vim.git'  
-	" NeoBundle 'https://github.com/tsukkee/unite-help.git'
+	NeoBundle 'https://github.com/sgur/unite-qf.git'
 	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
 	NeoBundle 'https://github.com/ujihisa/unite-colorscheme.git'
 
@@ -259,8 +259,8 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
-	" NeoBundle 'https://https://github.com/vim-jp/vital.vim.git' " たまにマー
-	" ジする
+	NeoBundle 'osyo-manga/vim-anzu'
+	" NeoBundle 'https://https://github.com/vim-jp/vital.vim.git' " たまにマージする
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {

@@ -133,5 +133,8 @@ let g:load_doxygen_syntax=1
 
 set updatetime=500
 
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
