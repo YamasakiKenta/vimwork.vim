@@ -115,7 +115,7 @@ function! s:get_vim_function_name() "{{{
 
 	echom fname
 	let @" = fname
-	let @+ = fname
+	" let @+ = fname
 
 	return fname
 endfunction 
@@ -135,6 +135,8 @@ set updatetime=500
 
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
+
+let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

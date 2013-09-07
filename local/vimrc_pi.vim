@@ -115,7 +115,7 @@ function! s:get_vim_function_name() "{{{
 
 	echom fname
 	let @" = fname
-	let @+ = fname
+	" let @+ = fname
 
 	return fname
 endfunction 

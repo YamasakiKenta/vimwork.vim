@@ -260,6 +260,7 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
 	NeoBundle 'osyo-manga/vim-anzu'
+	NeoBundle 'https://github.com/thinca/vim-ref.git'
 	" NeoBundle 'https://https://github.com/vim-jp/vital.vim.git' " たまにマージする
 
 	" Setting
