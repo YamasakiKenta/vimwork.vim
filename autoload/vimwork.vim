@@ -10,6 +10,12 @@ function! s:init() "{{{
 	let s:cache_init = 1
 	let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  )
 	let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork')
+
+	set backupdir=~/vimbackup
+	if !isdirectory(expand(&backupdir))
+		call mkdir(expand(&backupdir))
+	endif
+
 	return 0
 endfunction
 "}}}
@@ -29,29 +35,20 @@ endfunction
 function! vimwork#map_misc()
 	call s:init()
 	so $VIMRUNTIME/macros/matchit.vim " VIMRUNTIME is default var 
-	" map {{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
 	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'<CR>|"
-	"}}}
-	" nmap {{{
 	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
 	nmap ;uq<CR> 	<Plug>(uniq_line)
 	nmap v/ 		<Plug>(select_search)
-	"}}}
-	" let {{{
 	let g:Align_xstrlen = 3
 	let g:mygrepprg = 'findstr'
-	"}}}
-	" set {{{
 	"set hidden                                             " # ファイルを保存せず移動
 	set autoread                                            " # 自動更新
-	set backupdir=~/vimbackup                               " # Backupフォルダのパス
 	set cursorline                                          " # カーソル行の強調
 	set dip=filler,icase,iwhite,vertical
 	set fdm=marker                                          " # 自動的に折りたたみ
 	set fo+=ro                                              " # 自動でコメント挿入
 	set grepprg=findstr\ /n
-	" set grepprg=grep\ -nH
 	set guioptions-=T                                       " # メニューバーを削除
 	set guioptions-=m                                       " # ツールバーを削除
 	set hlsearch                                            " # 検索
@@ -71,19 +68,12 @@ function! vimwork#map_misc()
 	set tw=0                                                " # 自動改行 OFF
 	set ve=block
 
-	if !isdirectory(expand(&backupdir))
-		call mkdir(expand(&backupdir))
-	endif
-	"}}}
-	"nnoremap - normal "{{{
 	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
 	nnoremap ;a<CR>  :<C-u>ChainFile<CR>|"
 	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
 	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
 	nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
-	"}}}
-	"nnoremap - simple {{{
 	nnoremap <C-j> j.|"
 	nnoremap <C-k> n.|"
 	nnoremap <C-n> :<C-u>cn<CR>|"
@@ -95,12 +85,8 @@ function! vimwork#map_misc()
 	nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
 	nnoremap [[ [[zz|"
 	nnoremap ]] ]]zz|"
-	"}}}
-	"nnoremap - typo {{{
 	nnoremap <F1> <ESC>
 	command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
-	"}}}
-	"vnoremap - simple "{{{
 	vnoremap < <gv|"
 	vnoremap > >gv|
 	"}}}
