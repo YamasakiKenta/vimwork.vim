@@ -279,7 +279,8 @@ function! vimwork#neobundle()  "{{{
 endfunction
 "}}}
 function! vimwork#unite_grep() "{{{
-	let mode = 'ag'
+	" let mode = 'ag'
+	let mode = ""
 	if mode == 'findstr'
 		let g:unite_source_grep_command       = 'findstr'
 		let g:unite_source_grep_default_opts  = '/n'
