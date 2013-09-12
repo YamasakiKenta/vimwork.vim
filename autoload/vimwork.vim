@@ -32,17 +32,7 @@ function! vimwork#set_gui() "{{{
 endfunction
 "}}}
 
-function! vimwork#map_misc()
-	call s:init()
-	so $VIMRUNTIME/macros/matchit.vim " VIMRUNTIME is default var 
-	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'<CR>|"
-	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
-	nmap ;uq<CR> 	<Plug>(uniq_line)
-	nmap v/ 		<Plug>(select_search)
-	let g:Align_xstrlen = 3
-	let g:mygrepprg = 'findstr'
-	"set hidden                                             " # ファイルを保存せず移動
+function! s:set() "{{{
 	set autoread                                            " # 自動更新
 	set cursorline                                          " # カーソル行の強調
 	set dip=filler,icase,iwhite,vertical
@@ -67,7 +57,8 @@ function! vimwork#map_misc()
 	set tabstop=4                                           " # tabの設定
 	set tw=0                                                " # 自動改行 OFF
 	set ve=block
-
+endfunction "}}}
+function! s:nnoremap() "{{{
 	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
 	nnoremap ;a<CR>  :<C-u>ChainFile<CR>|"
 	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
@@ -86,12 +77,39 @@ function! vimwork#map_misc()
 	nnoremap [[ [[zz|"
 	nnoremap ]] ]]zz|"
 	nnoremap <F1> <ESC>
+endfunction "}}}
+function! s:map() "{{{
+	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
+	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'<CR>|"
+endfunction"}}}
+function! s:let() "{{{
+	let g:Align_xstrlen = 3
+	let g:mygrepprg = 'findstr'
+endfunction "}}}
+function! s:nmap() "{{{
+	nmap ;sy<CR> 	<Plug>(edit_syntax_file)
+	nmap ;uq<CR> 	<Plug>(uniq_line)
+	nmap v/ 		<Plug>(select_search)
+endfunction"}}}
+function! s:typo() "{{{
 	command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
+endfunction"}}}
+function! s:vnoremap() "{{{
 	vnoremap < <gv|"
-	vnoremap > >gv|
-	"}}}
-endfunction
-
+	vnoremap > >gv|"
+endfunction"}}}
+function! vimwork#map_misc() "{{{
+	call s:init()
+	call s:set()
+	call s:nnoremap()
+	call s:map()
+	call s:let()
+	call s:nmap()
+	call s:typo()
+	call s:vnoremap()
+	" so $VIMRUNTIME/macros/matchit.vim
+	"set hidden
+endfunction "}}}
 function! vimwork#set_qfixhowm() "{{{
 	let QFix_CloseOnJump = 1" # QFixHown - を自動的に終了する
 endfunction
