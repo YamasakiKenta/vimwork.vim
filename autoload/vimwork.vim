@@ -292,6 +292,10 @@ function! vimwork#vimshell() "{{{
 	let g:vimshell_prompt_pattern = '^\f\+ > '
 endfunction
 "}}}
+function! vimwork#anzu() "{{{
+	nmap n <Plug>(anzu-n-with-echo)
+	nmap N <Plug>(anzu-N-with-echo)
+endfunction"}}}
 
 function! vimwork#init()
 	call vimwork#set_gui()
@@ -306,6 +310,7 @@ function! vimwork#init()
 	call vimwork#map_misc()
 	call vimwork#unite_grep()
 	call vimwork#vimshell()
+	call vimwork#anzu()
 endfunction
 
 " call vimwork#init()

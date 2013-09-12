@@ -133,9 +133,6 @@ let g:load_doxygen_syntax=1
 
 set updatetime=500
 
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-
 let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
 
 let &cpo = s:save_cpo
