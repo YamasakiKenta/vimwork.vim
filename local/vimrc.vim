@@ -22,7 +22,7 @@ function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/vimwork.vim
 	set rtp+=~/Dropbox/vim/mind/unite-args.vim
 	set rtp+=~/Dropbox/vim/mind/vital.vim
-
+	set rtp+=~/Dropbox/vim/mind/top.vim
 
 	call neobundle#rc("~/Dropbox/vim/bundle")
 	call vimwork#neobundle()
@@ -129,10 +129,10 @@ endfunction
 "}}}
 
 " let g:yamaken_test = 1
-let g:load_doxygen_syntax=1
 
-set updatetime=500
+" set updatetime=500
 
+let g:load_doxygen_syntax = 1
 let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
 
 let &cpo = s:save_cpo
