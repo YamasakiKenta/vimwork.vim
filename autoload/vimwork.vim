@@ -233,39 +233,42 @@ function! vimwork#neobundle()  "{{{
 	" NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
 
 	" Unite 
+	" NeoBundle 'https://github.com/sgur/unite-qf.git'
 	" NeoBundle 'https://github.com/tsukkee/unite-help.git'
+	" NeoBundle 'https://github.com/ujihisa/unite-colorscheme.git'
+	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
+
+	" Shougo
 	NeoBundle 'https://github.com/Shougo/unite-outline.git'
 	NeoBundle 'https://github.com/Shougo/unite.vim.git'  
-	NeoBundle 'https://github.com/sgur/unite-qf.git'
-	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
-	NeoBundle 'https://github.com/ujihisa/unite-colorscheme.git'
-
-	" Normal
-	" NeoBundle 'https://github.com/Shougo/shougo-s-github.git'
-	" NeoBundle 'https://github.com/Shougo/vinarise.vim.git'
-	" NeoBundle 'https://github.com/othree/html5.vim.git'
-	" NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
-	" NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
-	" NeoBundle 'https://github.com/tpope/vim-git.git'
-	" NeoBundle 'https://github.com/tyru/open-browser.vim.git'
-	" NeoBundle 'https://github.com/vim-scripts/CCTree.git'
-	" NeoBundle 'alpaca-tc/alpaca_powertabline'
-	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
 	NeoBundle 'https://github.com/Shougo/neocomplete.git'
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'
 	NeoBundle 'https://github.com/Shougo/vimfiler'
 	NeoBundle 'https://github.com/Shougo/vimshell.git'
-	NeoBundle 'https://github.com/jelera/vim-javascript-syntax.git'
-	NeoBundle 'https://github.com/kannokanno/previm.git'
+
+	" thinca
 	NeoBundle 'https://github.com/thinca/vim-partedit.git'
 	NeoBundle 'https://github.com/thinca/vim-prettyprint.git'
 	NeoBundle 'https://github.com/thinca/vim-qfreplace.git'
 	NeoBundle 'https://github.com/thinca/vim-quickrun.git'
+	NeoBundle 'https://github.com/thinca/vim-ref.git'
+
+	" Normal
+	" NeoBundle 'alpaca-tc/alpaca_powertabline'
+	" NeoBundle 'https://github.com/Shougo/shougo-s-github.git'
+	" NeoBundle 'https://github.com/Shougo/vinarise.vim.git'
+	" NeoBundle 'https://github.com/othree/html5.vim.git'
+	" NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
+	" NeoBundle 'https://github.com/tpope/vim-git.git'
+	" NeoBundle 'https://github.com/tyru/open-browser.vim.git'
+	" NeoBundle 'https://github.com/vim-scripts/CCTree.git'
+	" NeoBundle 'https://github.com/jelera/vim-javascript-syntax.git'
+	NeoBundle 'https://https://github.com/vim-jp/vital.vim.git'
+	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
+	NeoBundle 'https://github.com/kannokanno/previm.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
 	NeoBundle 'osyo-manga/vim-anzu'
-	NeoBundle 'https://github.com/thinca/vim-ref.git'
-	" NeoBundle 'https://https://github.com/vim-jp/vital.vim.git' " たまにマージする
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {
