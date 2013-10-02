@@ -224,27 +224,13 @@ function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 function! vimwork#neobundle()  "{{{
-	" colos
-	" NeoBundle 'https://github.com/altercation/vim-colors-solarized.git'
-	" NeoBundle 'https://github.com/flazz/vim-colorschemes.git'
-	" NeoBundle 'https://github.com/nanotech/jellybeans.vim.git'
-	" NeoBundle 'https://github.com/tomasr/molokai.git'
-	" NeoBundle 'https://github.com/vim-scripts/chlordane.vim.git'
-	" NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
-
-	" Unite 
-	" NeoBundle 'https://github.com/sgur/unite-qf.git'
-	" NeoBundle 'https://github.com/tsukkee/unite-help.git'
-	" NeoBundle 'https://github.com/ujihisa/unite-colorscheme.git'
 	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
 
 	" Shougo
 	NeoBundle 'https://github.com/Shougo/unite-outline.git'
 	NeoBundle 'https://github.com/Shougo/unite.vim.git'  
-	NeoBundle 'https://github.com/Shougo/neocomplete.git'
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'
 	NeoBundle 'https://github.com/Shougo/vimfiler'
-	NeoBundle 'https://github.com/Shougo/vimshell.git'
 
 	" thinca
 	NeoBundle 'https://github.com/thinca/vim-partedit.git'
@@ -254,18 +240,8 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/thinca/vim-ref.git'
 
 	" Normal
-	" NeoBundle 'alpaca-tc/alpaca_powertabline'
-	" NeoBundle 'https://github.com/Shougo/shougo-s-github.git'
-	" NeoBundle 'https://github.com/Shougo/vinarise.vim.git'
-	" NeoBundle 'https://github.com/othree/html5.vim.git'
-	" NeoBundle 'https://github.com/rbtnn/vimconsole.vim.git'
-	" NeoBundle 'https://github.com/tpope/vim-git.git'
-	" NeoBundle 'https://github.com/tyru/open-browser.vim.git'
-	" NeoBundle 'https://github.com/vim-scripts/CCTree.git'
-	" NeoBundle 'https://github.com/jelera/vim-javascript-syntax.git'
 	NeoBundle 'https://https://github.com/vim-jp/vital.vim.git'
 	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
-	NeoBundle 'https://github.com/kannokanno/previm.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
 	NeoBundle 'osyo-manga/vim-anzu'
@@ -295,15 +271,6 @@ function! vimwork#unite_grep() "{{{
 	endif
 endfunction
 "}}}
-function! vimwork#vimshell() "{{{
-	let g:vimshell_prompt_expr = 'getcwd()." > "'
-	let g:vimshell_prompt_pattern = '^\f\+ > '
-endfunction
-"}}}
-function! vimwork#anzu() "{{{
-	nmap n <Plug>(anzu-n-with-echo)
-	nmap N <Plug>(anzu-N-with-echo)
-endfunction"}}}
 
 function! vimwork#init()
 	call vimwork#set_gui()
@@ -317,8 +284,6 @@ function! vimwork#init()
 	call vimwork#set_qfixhowm()
 	call vimwork#map_misc()
 	call vimwork#unite_grep()
-	call vimwork#vimshell()
-	call vimwork#anzu()
 endfunction
 
 " call vimwork#init()
