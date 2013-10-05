@@ -1,6 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:fname = substitute(expand("<sfile>"), '\\', '\/', 'g')
 
 function! s:init() "{{{
 	if !exists('s:cache_init')
@@ -8,9 +9,6 @@ function! s:init() "{{{
 	endif
 
 	let s:cache_init = 1
-	let $VIMWORK   = expand(exists('$VIMWORK'  ) ? $VIMWORK   : '~/vimwork'  )
-	let $LOCALWORK = expand(exists('$LOCALWORK') ? $LOCALWORK : '~/localwork')
-
 	set backupdir=~/vimbackup
 	if !isdirectory(expand(&backupdir))
 		call mkdir(expand(&backupdir))
@@ -76,6 +74,7 @@ function! s:nnoremap() "{{{
 	nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
 	nnoremap [[ [[zz|"
 	nnoremap ]] ]]zz|"
+	nnoremap <c-]> g<c-]>|"
 	nnoremap <F1> <ESC>
 endfunction "}}}
 function! s:map() "{{{
@@ -218,7 +217,6 @@ endfunction
 "}}}
 function! vimwork#map_neosnip() "{{{
 	call s:init()
-	let g:neosnippet#snippets_directory = join(map([$VIMWORK, $LOCALWORK], "v:val.'/snippets'"),',')
 	nnoremap ;es<CR> :<C-u>NeoSnippetEdit<CR>|"
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
 endfunction
@@ -244,7 +242,6 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
-	NeoBundle 'osyo-manga/vim-anzu'
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {
@@ -271,6 +268,11 @@ function! vimwork#unite_grep() "{{{
 	endif
 endfunction
 "}}}
+function! vimwork#set_dir(local_path)
+	let path       = substitute(s:fname, '\\', '\/', 'g')
+	let local_path = substitute(a:local_path, '\\', '\/', 'g')
+	let g:neosnippet#snippets_directory = join(map([path, local_path], "v:val.'/snippets'"),',')
+endfunction
 
 function! vimwork#init()
 	call vimwork#set_gui()
@@ -287,6 +289,7 @@ function! vimwork#init()
 endfunction
 
 " call vimwork#init()
+
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

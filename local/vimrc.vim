@@ -28,16 +28,10 @@ function! s:set_plugin() "{{{
 	call vimwork#neobundle()
 endfunction 
 "}}}
-function! s:set_vimwork_init() "{{{
-	let $LOCALWORK = expand("~/Dropbox/vim/mind/vimwork.vim")
-	let $VIMWORK   = expand("~/Dropbox/vim/mind/vimwork.vim")
-
-	call vimwork#init()
-endfunction
-"}}}
 function! s:set_header() "{{{
 	call s:set_plugin()
-	call s:set_vimwork_init()
+	call vimwork#init()
+	call vimwork#set_dir(expand('~/Dropbox/vim/mind/vimwork.vim'))
 
 	let g:chain_dict = { '__file' : {
 				\ 'vimrc.vim' : '../autoload/vimwork.vim',
@@ -134,6 +128,10 @@ endfunction
 
 let g:load_doxygen_syntax = 1
 let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
+set backupdir=~/vimbackup
+if !isdirectory(expand(&backupdir))
+	call mkdir(expand(&backupdir))
+endif
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
