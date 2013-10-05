@@ -210,8 +210,6 @@ endfunction
 "}}}
 function! vimwork#set_necomplete() "{{{
 	let g:neocomplete#enable_at_startup = 1
-	" imap <C-k>  <Plug>(neocomplete_start_unite_complete)|"
-	" imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)|"
 	inoremap <C-s> <c-o>:Unite neocomplete snippet<CR>|"
 endfunction
 "}}}
@@ -268,16 +266,16 @@ function! vimwork#unite_grep() "{{{
 	endif
 endfunction
 "}}}
-function! vimwork#set_dir(local_path)
+function! vimwork#set_dir(local_path) "{{{
 	let path       = substitute(s:fname, '\\', '\/', 'g')
 	let local_path = substitute(a:local_path, '\\', '\/', 'g')
 	let g:neosnippet#snippets_directory = join(map([path, local_path], "v:val.'/snippets'"),',')
-endfunction
+endfunction "}}}
 
 function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_unite()
-	call vimwork#set_necomplete()
+	" call vimwork#set_necomplete()
 	call vimwork#map_neosnip()
 	call vimwork#map_cscope()
 	call vimwork#set_vimwfiler()
@@ -287,9 +285,6 @@ function! vimwork#init()
 	call vimwork#map_misc()
 	call vimwork#unite_grep()
 endfunction
-
-" call vimwork#init()
-
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
