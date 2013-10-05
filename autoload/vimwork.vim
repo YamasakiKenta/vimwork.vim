@@ -57,25 +57,25 @@ function! s:set() "{{{
 	set ve=block
 endfunction "}}}
 function! s:nnoremap() "{{{
-	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
 	nnoremap ;a<CR>  :<C-u>ChainFile<CR>|"
-	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
-	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
 	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名の取得
 	nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名の取得 ( フルパス )
+	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
+	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
+	nnoremap <C-]> <C-]>zz|"    
 	nnoremap <C-j> j.|"
 	nnoremap <C-k> n.|"
 	nnoremap <C-n> :<C-u>cn<CR>|"
 	nnoremap <C-p> :<C-u>cN<CR>|"
-	nnoremap j gj|" 
-	nnoremap k gk|"
-	nnoremap <C-]> <C-]>zz|"    
-	nnoremap <S-Space> za|"    
+	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
 	nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
+	nnoremap <F1> <ESC>
+	nnoremap <S-Space> za|"    
+	nnoremap <c-]> g<c-]>|"
 	nnoremap [[ [[zz|"
 	nnoremap ]] ]]zz|"
-	nnoremap <c-]> g<c-]>|"
-	nnoremap <F1> <ESC>
+	nnoremap j gj|" 
+	nnoremap k gk|"
 endfunction "}}}
 function! s:map() "{{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
@@ -275,7 +275,6 @@ endfunction "}}}
 function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_unite()
-	" call vimwork#set_necomplete()
 	call vimwork#map_neosnip()
 	call vimwork#map_cscope()
 	call vimwork#set_vimwfiler()
