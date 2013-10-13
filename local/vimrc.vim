@@ -22,7 +22,6 @@ function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/vimwork.vim
 	set rtp+=~/Dropbox/vim/mind/unite-args.vim
 	set rtp+=~/Dropbox/vim/mind/vital.vim
-	set rtp+=~/Dropbox/vim/mind/top.vim
 
 	call neobundle#rc("~/Dropbox/vim/bundle")
 	call vimwork#neobundle()
@@ -44,15 +43,24 @@ function! s:set_header() "{{{
 				\ }
 endfunction
 "}}}
+function s:init() "{{{
+	call s:set_header()
+	nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
+	nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+	nnoremap ;ig<CR>   :<C-u>GetVimFunctionName<CR>|"
+	nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
+	nnoremap <A-Space> :<C-u>simalt ~<CR>|" " Window変更
+	set ff=unix
+	set fenc=utf-8
 
-call s:set_header()
-nnoremap ;de<CR>   :<C-u>lcd ~/Desktop<CR>|"
-nnoremap ;dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap ;ig<CR>   :<C-u>GetVimFunctionName<CR>|"
-nnoremap ;m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap <A-Space> :<C-u>simalt ~<CR>|" " Window変更
-nnoremap ;dh<CR>   :<C-u>lcd ~/Dropbox/Public<CR>|"
-
+	let g:load_doxygen_syntax = 1
+	let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
+	set backupdir=~/vimbackup
+	if !isdirectory(expand(&backupdir))
+		call mkdir(expand(&backupdir))
+	endif
+endfunction "}}}
+call s:init()
 command! MyVitalUpdate call s:my_vital_update()
 function! s:my_vital_update() "{{{
 	let paths = [
@@ -115,23 +123,12 @@ function! s:get_vim_function_name() "{{{
 endfunction 
 "}}}
 
-" .gvimrc
 function! GvimrcInit() "{{{
 	set gfn=Terminal:h10:cSHIFTJIS
 	set guioptions-=Tm
 endfunction
 "}}}
 
-" let g:yamaken_test = 1
-
-" set updatetime=500
-
-let g:load_doxygen_syntax = 1
-let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
-set backupdir=~/vimbackup
-if !isdirectory(expand(&backupdir))
-	call mkdir(expand(&backupdir))
-endif
-
 let &cpo = s:save_cpo
 unlet s:save_cpo
+
