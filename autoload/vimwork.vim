@@ -267,7 +267,7 @@ function! vimwork#unite_grep() "{{{
 endfunction
 "}}}
 function! vimwork#set_dir(local_path) "{{{
-	let path       = substitute(s:fname, '\\', '\/', 'g')
+	let path       = substitute(substitute(s:fname, '\\', '\/', 'g'), 'autoload[\\\/].*', '', '')
 	let local_path = substitute(a:local_path, '\\', '\/', 'g')
 	let g:neosnippet#snippets_directory = join(map([path, local_path], "v:val.'/snippets'"),',')
 endfunction "}}}
