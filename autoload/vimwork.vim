@@ -106,7 +106,7 @@ function! vimwork#map_misc() "{{{
 	call s:nmap()
 	call s:typo()
 	call s:vnoremap()
-	" so $VIMRUNTIME/macros/matchit.vim
+	so $VIMRUNTIME/macros/matchit.vim
 	"set hidden
 endfunction "}}}
 function! vimwork#set_qfixhowm() "{{{
@@ -275,7 +275,7 @@ endfunction "}}}
 function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_unite()
-q	" call vimwork#set_necomplete()
+	" call vimwork#set_necomplete()
 	call vimwork#map_neosnip()
 	call vimwork#map_cscope()
 	call vimwork#set_vimwfiler()
