@@ -12,8 +12,8 @@ function! s:set_plugin() "{{{
 
 	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
 	set rtp+=~/Dropbox/vim/mind/tree.vim
-	set rtp+=~/Dropbox/vim/mind/sort-function.vim
-	set rtp+=~/Dropbox/vim/mind/chain-file.vim
+	" set rtp+=~/Dropbox/vim/mind/sort-function.vim
+	" set rtp+=~/Dropbox/vim/mind/chain-file.vim
 	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
 	set rtp+=~/Dropbox/vim/mind/unite-git.vim
 	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 

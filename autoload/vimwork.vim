@@ -220,13 +220,18 @@ function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 function! vimwork#neobundle()  "{{{
-	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
+	" mind
+	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git'
+	NeoBundle 'https://github.com/YamasakiKenta/unite-perforce.vim.git'
+	NeoBundle 'https://github.com/YamasakiKenta/tree.vim.git'
+	NeoBundle 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git'
 
 	" Shougo
 	NeoBundle 'https://github.com/Shougo/unite-outline.git'
 	NeoBundle 'https://github.com/Shougo/unite.vim.git'  
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'
 	NeoBundle 'https://github.com/Shougo/vimfiler'
+	NeoBundle 'https://github.com/Shougo/neocomplete.git'
 
 	" thinca
 	NeoBundle 'https://github.com/thinca/vim-partedit.git'
@@ -236,10 +241,12 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/thinca/vim-ref.git'
 
 	" Normal
-	NeoBundle 'https://https://github.com/vim-jp/vital.vim.git'
 	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
+	NeoBundle 'https://github.com/rbtnn/puyo.vim.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
+	NeoBundle 'https://github.com/vim-jp/vital.vim.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
+	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {
@@ -275,7 +282,7 @@ endfunction "}}}
 function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_unite()
-	" call vimwork#set_necomplete()
+	call vimwork#set_necomplete()
 	call vimwork#map_neosnip()
 	call vimwork#map_cscope()
 	call vimwork#set_vimwfiler()
