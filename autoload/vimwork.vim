@@ -58,8 +58,8 @@ function! s:set() "{{{
 endfunction "}}}
 function! s:nnoremap() "{{{
 	nnoremap ;a<CR>  :<C-u>ChainFile<CR>|"
-	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"    " # ファイル名�取�
-	nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"    " # ファイル名�取�( フルパス )
+	nnoremap ;fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"
+	nnoremap ;ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"
 	nnoremap ;rn<CR> :<C-u>windo set noscrollbind<CR>|"
 	nnoremap ;ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap <C-]> <C-]>zz|"    
@@ -179,24 +179,23 @@ function! vimwork#map_unite() "{{{
 	nnoremap ;ur<CR>  :<C-u>UniteResume<CR>|"
 	nnoremap ;uR<CR>  :<C-u>Unite resume<CR>|"
 
-	nnoremap ;cw<CR>  :<C-u>Unite qf<CR>|"
-	nnoremap ;et<CR>  :<C-u>Unite everything<CR>|"
-	nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>|"
-	nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>|"
+	" nnoremap ;uK<CR>  :<C-u>Unite bookmark<CR>|"
+	" nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
+	" nnoremap ;uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
+	" nnoremap ;ub<CR>  :<C-u>Unite buffer<CR>|"
 	nnoremap ;ubt<CR> :<C-u>Unite buffer_tags<CR>|"
 	nnoremap ;ue<CR>  :<C-u>Unite outline<CR>|"
 	nnoremap ;uf<CR>  :<C-u>Unite file_rec<CR>|"
+	nnoremap ;ug<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
+	nnoremap ;uG<CR>  :<C-u>UniteResume grep<CR>|"
 	nnoremap ;uh<CR>  :<C-u>Unite history/yank<CR>|"
 	nnoremap ;uj<CR>  :<C-u>Unite jump<CR>|"
-	nnoremap ;uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
 	nnoremap ;ul<CR>  :<C-u>Unite line/fast<CR>|"
 	nnoremap ;um<CR>  :<C-u>Unite file_mru<CR>|"
-	nnoremap ;uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
 	nnoremap ;uom<CR> :<C-u>Unite output:message<CR>|"
 	nnoremap ;upt<CR> :<C-u>Unite settings_ex<CR>|"
 	nnoremap ;us<CR>  :<C-u>Unite source<CR>|"
 	nnoremap ;ut<CR>  :<C-u>Unite tag<CR>|"
-	nnoremap ;ug<CR>  :<C-u>Unite grep<CR>|"
 
 	nnoremap ;up<CR>  :<C-u>Unite settings_var<CR>|"
 	nnoremap ;upa<CR> :<C-u>Unite settings_var_all<CR>|"
@@ -225,6 +224,8 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/YamasakiKenta/unite-perforce.vim.git'
 	NeoBundle 'https://github.com/YamasakiKenta/tree.vim.git'
 	NeoBundle 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git'
+	NeoBundle 'https://github.com/YamasakiKenta/unite-setting.vim.git'
+	NeoBundle 'https://github.com/YamasakiKenta/tab-diff.vim.git'
 
 	" Shougo
 	NeoBundle 'https://github.com/Shougo/unite-outline.git'
@@ -246,7 +247,10 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-jp/vital.vim.git'
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
+
+	" Unite 
 	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
+	NeoBundle 'https://github.com/sgur/unite-qf.git'
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {
@@ -260,16 +264,18 @@ function! vimwork#neobundle()  "{{{
 endfunction
 "}}}
 function! vimwork#unite_grep() "{{{
-	" let mode = 'ag'
+	let mode = 'ag'
 	let mode = ""
 	if mode == 'findstr'
 		let g:unite_source_grep_command       = 'findstr'
 		let g:unite_source_grep_default_opts  = '/n'
 		let g:unite_source_grep_recursive_opt = '/s'
 	elseif mode == 'ag'
-		let g:unite_source_grep_command       = 'Ag'
-		let g:unite_source_grep_default_opts  = '--nocolor --nogroup'
-		let g:unite_source_grep_recursive_opt = ''
+		if executable('ag')
+			let g:unite_source_grep_command = 'ag'
+			let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+			let g:unite_source_grep_recursive_opt = ''
+		endif
 	endif
 endfunction
 "}}}

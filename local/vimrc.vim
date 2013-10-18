@@ -11,17 +11,15 @@ set cpo&vim
 function! s:set_plugin() "{{{
 
 	set rtp+=~/Dropbox/vim/bundle/neobundle.vim
-	set rtp+=~/Dropbox/vim/mind/tree.vim
+	set rtp+=~/Dropbox/vim/mind/vimwork.vim
+	" set rtp+=~/Dropbox/vim/mind/vital.vim
+	" set rtp+=~/Dropbox/vim/mind/tree.vim
 	" set rtp+=~/Dropbox/vim/mind/sort-function.vim
 	" set rtp+=~/Dropbox/vim/mind/chain-file.vim
-	set rtp+=~/Dropbox/vim/mind/tab-diff.vim
-	set rtp+=~/Dropbox/vim/mind/unite-git.vim
-	set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
-	set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
-	set rtp+=~/Dropbox/vim/mind/unite-setting-ex.vim 
-	set rtp+=~/Dropbox/vim/mind/vimwork.vim
-	set rtp+=~/Dropbox/vim/mind/unite-args.vim
-	set rtp+=~/Dropbox/vim/mind/vital.vim
+	" set rtp+=~/Dropbox/vim/mind/tab-diff.vim
+	" set rtp+=~/Dropbox/vim/mind/unite-perforce.vim 
+	" set rtp+=~/Dropbox/vim/mind/unite-setting.vim 
+	" set rtp+=~/Dropbox/vim/mind/unite-setting-ex.vim 
 
 	call neobundle#rc("~/Dropbox/vim/bundle")
 	call vimwork#neobundle()
@@ -66,9 +64,6 @@ function! s:my_vital_update() "{{{
 	let paths = [
 				\ '~/Dropbox/vim/mind/chain-file.vim',
 				\ '~/Dropbox/vim/mind/tab-diff.vim',
-				\ '~/Dropbox/vim/mind/unite-perforce.vim',
-				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
-				\ '~/Dropbox/vim/mind/tree.vim',
 				\ ]
 
 	for path in paths
@@ -82,15 +77,15 @@ function! s:my_git_update(str) "{{{
 	" @param[in] a:str commit comment
 
 	let paths = [
-				\ '~/Dropbox/vim/mind/chain-file.vim',
-				\ '~/Dropbox/vim/mind/tab-diff.vim',
-				\ '~/Dropbox/vim/mind/unite-perforce.vim',
-				\ '~/Dropbox/vim/mind/unite-setting.vim',
-				\ '~/Dropbox/vim/mind/sort-function.vim',
+				\ '~/Dropbox/vim/bundle/chain-file.vim',
+				\ '~/Dropbox/vim/bundle/sort-function.vim',
+				\ '~/Dropbox/vim/bundle/tab-diff.vim',
+				\ '~/Dropbox/vim/bundle/tree.vim',
+				\ '~/Dropbox/vim/bundle/unite-args.vim',
+				\ '~/Dropbox/vim/bundle/unite-perforce.vim',
+				\ '~/Dropbox/vim/bundle/unite-setting-ex.vim',
+				\ '~/Dropbox/vim/bundle/unite-setting.vim',
 				\ '~/Dropbox/vim/mind/vimwork.vim',
-				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
-				\ '~/Dropbox/vim/mind/unite-args.vim',
-				\ '~/Dropbox/vim/mind/tree.vim',
 				\ ]
 
 
