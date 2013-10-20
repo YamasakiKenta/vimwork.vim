@@ -209,14 +209,9 @@ function! vimwork#set_vimwfiler() "{{{
 endfunction
 "}}}
 function! vimwork#set_necomplete() "{{{
-	let g:neocomplete#enable_at_startup = 1
-	inoremap <C-s> <c-o>:Unite neocomplete snippet<CR>|"
 endfunction
 "}}}
 function! vimwork#map_neosnip() "{{{
-	call s:init()
-	nnoremap ,es<CR> :<C-u>NeoSnippetEdit<CR>|"
-	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
 endfunction
 "}}}
 function! vimwork#neobundle()  "{{{
@@ -229,6 +224,8 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/YamasakiKenta/tab-diff.vim.git'
 
 	" Shougo
+	NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
+	NeoBundleFetch 'https://github.com/Shougo/shougo-s-github.git'
 	NeoBundle 'https://github.com/Shougo/unite-outline.git'
 	NeoBundle 'https://github.com/Shougo/unite.vim.git'  
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'
@@ -290,7 +287,6 @@ function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_unite()
 	call vimwork#set_necomplete()
-	call vimwork#map_neosnip()
 	call vimwork#map_cscope()
 	call vimwork#set_vimwfiler()
 	call vimwork#map_unite_perforce()
