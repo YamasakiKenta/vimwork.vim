@@ -141,7 +141,7 @@ function! s:my_git_update(str) "{{{
 	let comment = len(a:str) ? a:str : "auto update"
 	echom comment
 
-	for path in filter(split(glob("~/Dropbox/vim/mind/*"), "\n"), "v:val !~ 'vital'")
+	for path in filter(split(glob("~/Dropbox/vim/mind/*"), "\n"), "v:val !~ 'vital\\|tags'")
 		exe 'lcd '.path
 		call system('git add -A')
 		let cmd = 'git commit -am "'.comment.'"'
