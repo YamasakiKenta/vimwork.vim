@@ -57,11 +57,11 @@ function! s:set() "{{{
 	set ve=block
 endfunction "}}}
 function! s:nnoremap() "{{{
-	nnoremap ,a<CR>  :<C-u>ChainFile<CR>|"
-	nnoremap ,fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"
-	nnoremap ,ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"
-	nnoremap ,rn<CR> :<C-u>windo set noscrollbind<CR>|"
-	nnoremap ,ry<CR> :<C-u>windo set scrollbind<CR>|"
+	nnoremap <leader>a<CR>  :<C-u>ChainFile<CR>|"
+	nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"
+	nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"
+	nnoremap <leader>rn<CR> :<C-u>windo set noscrollbind<CR>|"
+	nnoremap <leader>ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap <C-]> <C-]>zz|"    
 	nnoremap <C-j> j.|"
 	nnoremap <C-k> n.|"
@@ -86,8 +86,8 @@ function! s:let() "{{{
 	let g:mygrepprg = 'findstr'
 endfunction "}}}
 function! s:nmap() "{{{
-	nmap ,sy<CR> 	<Plug>(edit_syntax_file)
-	nmap ,uq<CR> 	<Plug>(uniq_line)
+	nmap <leader>sy<CR> 	<Plug>(edit_syntax_file)
+	nmap <leader>uq<CR> 	<Plug>(uniq_line)
 	nmap v/ 		<Plug>(select_search)
 endfunction"}}}
 function! s:typo() "{{{
@@ -114,32 +114,32 @@ function! vimwork#set_qfixhowm() "{{{
 endfunction
 "}}}
 function! vimwork#map_unite_perforce() "{{{
-	nmap ,cl<CR> <PLUG>(p4_echo_client_data)
-	nmap ,cr<CR> <PLUG>(p4_lcd_clentpath)
-	nmap ,ff<CR> <PLUG>(p4_find)
-	nmap ,pl<CR> <PLUG>(p4_filelog)
-	nmap ,pd<CR> <PLUG>(p4_diff)
-	nmap ,id<CR> <PLUG>(p4_get_depot)
+	nmap <leader>cl<CR> <PLUG>(p4_echo_client_data)
+	nmap <leader>cr<CR> <PLUG>(p4_lcd_clentpath)
+	nmap <leader>ff<CR> <PLUG>(p4_find)
+	nmap <leader>pl<CR> <PLUG>(p4_filelog)
+	nmap <leader>pd<CR> <PLUG>(p4_diff)
+	nmap <leader>id<CR> <PLUG>(p4_get_depot)
 
-	nnoremap ,pan<CR> :<C-u>PfAnnotate<CR>|"
-	nnoremap ,pda<CR> :<c-u>Unite p4/diff<CR>|"
-	nnoremap ,pp<CR>  :<c-u>PfSetting<CR>|"
-	nnoremap ,pr<CR>  :<c-u>PfRevert<CR>|"
-	nnoremap ,pe<CR>  :<c-u>PfEdit<CR>|"
-	nnoremap ,pE<CR>  :<c-u>PfAdd<CR>|"
-	nnoremap ,wd<CR>  :<c-u>PfDiff<CR>|"
-	nnoremap ,pi<CR>  :<C-u>Unite p4/info<CR>|"
-	nnoremap ,pt<CR>  :<C-u>Unite p4/clients -default-action=a_p4_client_set<CR>|"
-	nnoremap ,pc<CR>  :<C-u>Unite p4/changes_pending<CR>|"
-	nnoremap ,ps<CR>  :<C-u>Unite p4/changes_submitted<CR>|"
-	nnoremap ,po<CR>  :<C-u>Unite p4/opened<CR>|"
-	nnoremap ,pj<CR>  :<C-u>Unite p4/jobs<CR>|"
-	nnoremap ,ph<CR>  :<C-u>Unite p4/have_reset<CR>|"
-	nnoremap ,pa<CR>  :<C-u>Unite p4/annotate<CR>|"
-	nnoremap ,pC<CR>  :<C-u>Unite p4/changes_pending_reopen<CR>|"
-	nnoremap ,pte<CR> :<C-u>Unite p4/template<CR>|"
-	nnoremap ,pf<CR>  :call unite#start([['p4/files', getcwd()]])<CR>|"
-	nnoremap ,pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
+	nnoremap <leader>pan<CR> :<C-u>PfAnnotate<CR>|"
+	nnoremap <leader>pda<CR> :<c-u>Unite p4/diff<CR>|"
+	nnoremap <leader>pp<CR>  :<c-u>PfSetting<CR>|"
+	nnoremap <leader>pr<CR>  :<c-u>PfRevert<CR>|"
+	nnoremap <leader>pe<CR>  :<c-u>PfEdit<CR>|"
+	nnoremap <leader>pE<CR>  :<c-u>PfAdd<CR>|"
+	nnoremap <leader>wd<CR>  :<c-u>PfDiff<CR>|"
+	nnoremap <leader>pi<CR>  :<C-u>Unite p4/info<CR>|"
+	nnoremap <leader>pt<CR>  :<C-u>Unite p4/clients -default-action=a_p4_client_set<CR>|"
+	nnoremap <leader>pc<CR>  :<C-u>Unite p4/changes_pending<CR>|"
+	nnoremap <leader>ps<CR>  :<C-u>Unite p4/changes_submitted<CR>|"
+	nnoremap <leader>po<CR>  :<C-u>Unite p4/opened<CR>|"
+	nnoremap <leader>pj<CR>  :<C-u>Unite p4/jobs<CR>|"
+	nnoremap <leader>ph<CR>  :<C-u>Unite p4/have_reset<CR>|"
+	nnoremap <leader>pa<CR>  :<C-u>Unite p4/annotate<CR>|"
+	nnoremap <leader>pC<CR>  :<C-u>Unite p4/changes_pending_reopen<CR>|"
+	nnoremap <leader>pte<CR> :<C-u>Unite p4/template<CR>|"
+	nnoremap <leader>pf<CR>  :call unite#start([['p4/files', getcwd()]])<CR>|"
+	nnoremap <leader>pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
 endfunction
 "}}}
 function! vimwork#map_cscope() "{{{
@@ -164,9 +164,9 @@ function! vimwork#map_cscope() "{{{
 endfunction
 "}}}
 function! vimwork#map_tabdiff() "{{{
-	nnoremap ,dy<CR> :<C-u>TabDiffStart<CR>
-	nnoremap ,dn<CR> :<C-u>TabDiffEnd<CR>
-	nnoremap ,do<CR> :<C-u>TabDiffOrig<CR>
+	nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
+	nnoremap <leader>dn<CR> :<C-u>TabDiffEnd<CR>
+	nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
 endfunction
 "}}}
 function! vimwork#map_unite() "{{{
@@ -176,30 +176,30 @@ function! vimwork#map_unite() "{{{
 	let g:unite_source_rec_max_cache_files = 3000
 
 
-	nnoremap ,ur<CR>  :<C-u>UniteResume<CR>|"
-	nnoremap ,uR<CR>  :<C-u>Unite resume<CR>|"
+	nnoremap <leader>ur<CR>  :<C-u>UniteResume<CR>|"
+	nnoremap <leader>uR<CR>  :<C-u>Unite resume<CR>|"
 
-	" nnoremap ,uK<CR>  :<C-u>Unite bookmark<CR>|"
-	" nnoremap ,uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
-	" nnoremap ,uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
-	" nnoremap ,ub<CR>  :<C-u>Unite buffer<CR>|"
-	nnoremap ,ubt<CR> :<C-u>Unite buffer_tags<CR>|"
-	nnoremap ,ue<CR>  :<C-u>Unite outline<CR>|"
-	nnoremap ,uf<CR>  :<C-u>Unite file_rec<CR>|"
-	nnoremap ,ug<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
-	nnoremap ,uG<CR>  :<C-u>UniteResume grep<CR>|"
-	nnoremap ,uh<CR>  :<C-u>Unite history/yank<CR>|"
-	nnoremap ,uj<CR>  :<C-u>Unite jump<CR>|"
-	nnoremap ,ul<CR>  :<C-u>Unite line/fast<CR>|"
-	nnoremap ,um<CR>  :<C-u>Unite file_mru<CR>|"
-	nnoremap ,uom<CR> :<C-u>Unite output:message<CR>|"
-	nnoremap ,upt<CR> :<C-u>Unite settings_ex<CR>|"
-	nnoremap ,us<CR>  :<C-u>Unite source<CR>|"
-	nnoremap ,ut<CR>  :<C-u>Unite tag<CR>|"
-	nnoremap ,qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
+	" nnoremap <leader>uK<CR>  :<C-u>Unite bookmark<CR>|"
+	" nnoremap <leader>uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
+	" nnoremap <leader>uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
+	" nnoremap <leader>ub<CR>  :<C-u>Unite buffer<CR>|"
+	nnoremap <leader>ubt<CR> :<C-u>Unite buffer_tags<CR>|"
+	nnoremap <leader>ue<CR>  :<C-u>Unite outline<CR>|"
+	nnoremap <leader>uf<CR>  :<C-u>Unite file_rec<CR>|"
+	nnoremap <leader>ug<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
+	nnoremap <leader>uG<CR>  :<C-u>UniteResume grep<CR>|"
+	nnoremap <leader>uh<CR>  :<C-u>Unite history/yank<CR>|"
+	nnoremap <leader>uj<CR>  :<C-u>Unite jump<CR>|"
+	nnoremap <leader>ul<CR>  :<C-u>Unite line/fast<CR>|"
+	nnoremap <leader>um<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap <leader>uom<CR> :<C-u>Unite output:message<CR>|"
+	nnoremap <leader>upt<CR> :<C-u>Unite settings_ex<CR>|"
+	nnoremap <leader>us<CR>  :<C-u>Unite source<CR>|"
+	nnoremap <leader>ut<CR>  :<C-u>Unite tag<CR>|"
+	nnoremap <leader>qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
 
-	nnoremap ,up<CR>  :<C-u>Unite settings_var<CR>|"
-	nnoremap ,upa<CR> :<C-u>Unite settings_var_all<CR>|"
+	nnoremap <leader>up<CR>  :<C-u>Unite settings_var<CR>|"
+	nnoremap <leader>upa<CR> :<C-u>Unite settings_var_all<CR>|"
 
 endfunction
 "}}}
@@ -214,15 +214,21 @@ endfunction
 function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
-function! vimwork#neobundle()  "{{{
-	" mind
-	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git'
-	NeoBundle 'https://github.com/YamasakiKenta/unite-perforce.vim.git'
-	NeoBundle 'https://github.com/YamasakiKenta/tree.vim.git'
-	NeoBundle 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git'
-	NeoBundle 'https://github.com/YamasakiKenta/unite-setting.vim.git'
-	NeoBundle 'https://github.com/YamasakiKenta/tab-diff.vim.git'
 
+function! vimwork#my_neobundle(root)
+	let paths = [
+				\ 'https://github.com/YamasakiKenta/chain-file.vim.git',
+				\ 'https://github.com/YamasakiKenta/unite-perforce.vim.git',
+				\ 'https://github.com/YamasakiKenta/tree.vim.git',
+				\ 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git',
+				\ 'https://github.com/YamasakiKenta/unite-setting.vim.git',
+				\ 'https://github.com/YamasakiKenta/tab-diff.vim.git',
+				\ ]
+	for path in paths
+		exe 'NeoBundle "'.path.'", { "base" : "' .a:root. '", "type" : "nosync" }'
+	endfor
+endfunction
+function! vimwork#neobundle()  "{{{
 	" Shougo
 	NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
 	NeoBundleFetch 'https://github.com/Shougo/shougo-s-github.git'

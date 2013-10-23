@@ -8,11 +8,6 @@ set cpo&vim
 " QuickRun -hook/time/enable 1
 "
 "================================================================================ 
-function! GvimrcInit() "{{{
-	set gfn=Terminal:h10:cSHIFTJIS
-	set guioptions-=Tm
-endfunction
-"}}}
 
 function! s:set_neobundle() "{{{
 	set nocompatible
@@ -22,6 +17,7 @@ function! s:set_neobundle() "{{{
 	call neobundle#rc(expand("~/Dropbox/vim/bundle"))
 	filetype plugin indent on
 	call vimwork#neobundle()
+	call vimwork#my_neobundle(substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g'))
 endfunction 
 "}}}
 function! s:set_plugin() "{{{
@@ -106,10 +102,10 @@ function! s:map() "{{{
 endfunction "}}}
 function! s:init() "{{{
 	call s:set_header()
-	nnoremap ,de<CR>   :<C-u>lcd ~/Desktop<CR>|"
-	nnoremap ,dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-	nnoremap ,ig<CR>   :<C-u>GetVimFunctionName<CR>|"
-	nnoremap ,m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
+	nnoremap <leader>de<CR>   :<C-u>lcd ~/Desktop<CR>|"
+	nnoremap <leader>dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+	nnoremap <leader>ig<CR>   :<C-u>GetVimFunctionName<CR>|"
+	nnoremap <leader>m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
 	nnoremap <A-Space> :<C-u>simalt ~<CR>|" " Window変更
 	set dict+=~/Dropbox/vim/mind/vimwork.vim/dict
 	" call s:map()
@@ -143,14 +139,14 @@ function! s:my_git_update(str) "{{{
 	" @param[in] a:str commit comment
 
 	let paths = [
-				\ '~/Dropbox/vim/bundle/chain-file.vim',
-				\ '~/Dropbox/vim/bundle/sort-function.vim',
-				\ '~/Dropbox/vim/bundle/tab-diff.vim',
-				\ '~/Dropbox/vim/bundle/tree.vim',
-				\ '~/Dropbox/vim/bundle/unite-args.vim',
-				\ '~/Dropbox/vim/bundle/unite-perforce.vim',
-				\ '~/Dropbox/vim/bundle/unite-setting-ex.vim',
-				\ '~/Dropbox/vim/bundle/unite-setting.vim',
+				\ '~/Dropbox/vim/mind/chain-file.vim',
+				\ '~/Dropbox/vim/mind/sort-function.vim',
+				\ '~/Dropbox/vim/mind/tab-diff.vim',
+				\ '~/Dropbox/vim/mind/tree.vim',
+				\ '~/Dropbox/vim/mind/unite-args.vim',
+				\ '~/Dropbox/vim/mind/unite-perforce.vim',
+				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
+				\ '~/Dropbox/vim/mind/unite-setting.vim',
 				\ '~/Dropbox/vim/mind/vimwork.vim',
 				\ ]
 
@@ -176,7 +172,7 @@ function! s:get_vim_function_name() "{{{
 	let line  = getline(lnum)
 	let fname = matchstr(line, '\s\zs.*\ze(')
 
-	echom fname
+	" echom fname
 	let @" = fname
 	" let @+ = fname
 
@@ -678,21 +674,19 @@ endif
 function! s:set_necomplete() "{{{
 	call s:init()
 	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#max_list = 4
+	let g:neocomplete#max_list = 20
 
-	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
 
 	" inoremap <C-s>       <c-o>:Unite -start-insert neocomplete snippet<CR>|"
-	inoremap <expr><C-k> pumvisible() ?  neocomplete#cancel_popup() : neocomplete#start_manual_complete()
+	" inoremap <expr><C-k> pumvisible() ?  neocomplete#cancel_popup() : neocomplete#start_manual_complete()
 
-	imap <C-k>  <Plug>(neocomplete_start_unite_complete)
-
-	nnoremap ,es<CR> :<C-u>NeoSnippetEdit<CR>|"
+	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
+	imap <C-s>  <Plug>(neocomplete_start_unite_complete)
 
 endfunction
 "}}}
 "
-"call s:set_necomplete()
+call s:set_necomplete()
 "call s:shougo()
 
 let &cpo = s:save_cpo
