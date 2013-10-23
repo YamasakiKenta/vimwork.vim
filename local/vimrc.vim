@@ -138,26 +138,14 @@ command! -nargs=? MyGitUpdate call s:my_git_update(<q-args>)
 function! s:my_git_update(str) "{{{
 	" @param[in] a:str commit comment
 
-	let paths = [
-				\ '~/Dropbox/vim/mind/chain-file.vim',
-				\ '~/Dropbox/vim/mind/sort-function.vim',
-				\ '~/Dropbox/vim/mind/tab-diff.vim',
-				\ '~/Dropbox/vim/mind/tree.vim',
-				\ '~/Dropbox/vim/mind/unite-args.vim',
-				\ '~/Dropbox/vim/mind/unite-perforce.vim',
-				\ '~/Dropbox/vim/mind/unite-setting-ex.vim',
-				\ '~/Dropbox/vim/mind/unite-setting.vim',
-				\ '~/Dropbox/vim/mind/vimwork.vim',
-				\ ]
-
-
 	let comment = len(a:str) ? a:str : "auto update"
 	echom comment
 
-	for path in paths
+	for path in filter(split(glob("~/Dropbox/vim/mind/*"), "\n"), "v:val !~ 'vital'")
 		exe 'lcd '.path
 		call system('git add -A')
 		let cmd = 'git commit -am "'.comment.'"'
+		echom getcwd()
 		echom cmd
 		call system(cmd)
 		call system('git push')
