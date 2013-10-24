@@ -185,7 +185,7 @@ function! vimwork#map_unite() "{{{
 	" nnoremap <leader>ub<CR>  :<C-u>Unite buffer<CR>|"
 	nnoremap <leader>ubt<CR> :<C-u>Unite buffer_tags<CR>|"
 	nnoremap <leader>ue<CR>  :<C-u>Unite outline<CR>|"
-	nnoremap <leader>uf<CR>  :<C-u>Unite file_rec<CR>|"
+	nnoremap <leader>uf<CR>  :<C-u>Unite file_rec -input=<C-r>=substitute(getcwd(), "\\", "\/", 'g').'/**/'<CR><CR>|"
 	nnoremap <leader>ug<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
 	nnoremap <leader>uG<CR>  :<C-u>UniteResume grep<CR>|"
 	nnoremap <leader>uh<CR>  :<C-u>Unite history/yank<CR>|"

@@ -17,7 +17,9 @@ function! s:set_neobundle() "{{{
 	call neobundle#rc(expand("~/Dropbox/vim/bundle"))
 	filetype plugin indent on
 	call vimwork#neobundle()
-	call vimwork#my_neobundle(substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g'))
+
+	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
+	call vimwork#my_neobundle(path)
 endfunction 
 "}}}
 function! s:set_plugin() "{{{
@@ -141,7 +143,10 @@ function! s:my_git_update(str) "{{{
 	let comment = len(a:str) ? a:str : "auto update"
 	echom comment
 
-	for path in filter(split(glob("~/Dropbox/vim/mind/*"), "\n"), "v:val !~ 'vital\\|tags'")
+	let paths = split(glob("~/Dropbox/vim/mind/*"), "\n")
+	let paths = filetr(paths, "v:val !~ 'vital\\|tags'")
+
+	for path in paths
 		exe 'lcd '.path
 		call system('git add -A')
 		let cmd = 'git commit -am "'.comment.'"'
@@ -170,8 +175,8 @@ endfunction
 
 " NOT YET
 if 0
-function! s:shougo()"{{{
-" neocomplete.vim"{{{
+function! s:shougo() "{{{
+" neocomplete.vim "{{{
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 
@@ -300,8 +305,7 @@ function! bundle.hooks.on_source(bundle)
 endfunction
 "}}}
 
-" neosnippet.vim"{{{
-let bundle = neobundle#get('neosnippet')
+" neosnippet.vim"{{{ let bundle = neobundle#get('neosnippet')
 function! bundle.hooks.on_source(bundle)
   imap <silent>L     <Plug>(neosnippet_jump_or_expand)
   smap <silent>L     <Plug>(neosnippet_jump_or_expand)
@@ -657,7 +661,7 @@ endfunction
 
 unlet bundle
 "}}}
-endfunction"}}}
+endfunction "}}}
 endif
 function! s:set_necomplete() "{{{
 	call s:init()
