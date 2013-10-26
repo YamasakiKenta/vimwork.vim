@@ -5,7 +5,7 @@ let s:fname = substitute(expand("<sfile>"), '\\', '\/', 'g')
 
 function! s:init() "{{{
 	if !exists('s:cache_init')
-		return 1
+		return
 	endif
 
 	let s:cache_init = 1
@@ -13,16 +13,14 @@ function! s:init() "{{{
 	if !isdirectory(expand(&backupdir))
 		call mkdir(expand(&backupdir))
 	endif
-
-	return 0
 endfunction
 "}}}
 
 function! vimwork#set_gui() "{{{
 	if !has('gui')
 		set ruler           " # カーソルの位置の表示
-		set nocompatible    " # vimの機�が使える
-		syntax enable       " # 色を付け - 設定がリセッ�され�
+		set nocompatible    " # vimの機?が使える
+		syntax enable       " # 色を付け - 設定がリセッ?され??
 		filetype on
 		filetype indent on
 		filetype plugin on
@@ -32,28 +30,28 @@ endfunction
 
 function! s:set() "{{{
 	set autoread                                            " # 自動更新
-	set cursorline                                          " # カーソル行�強調
+	set cursorline                                          " # カーソル行?強調
 	set dip=filler,icase,iwhite,vertical
 	set fdm=marker                                          " # 自動的に折りたたみ
 	set fo+=ro                                              " # 自動でコメント挿入
 	set grepprg=findstr\ /n
-	set guioptions-=T                                       " # メニューバ�を削除
-	set guioptions-=m                                       " # �ルバ�を削除
+	set guioptions-=T                                       " # メニューバ?を削除
+	set guioptions-=m                                       " # ??ルバ?を削除
 	set hlsearch                                            " # 検索
-	set ignorecase                                          " # 検索で大断�小文字を区別しな�
+	set ignorecase                                          " # 検索で大断?小文字を区別しな??
 	set incsearch
-	set laststatus=2                                        " # ス�タス行�表示
+	set laststatus=2                                        " # ス??タス行?表示
 	set lcs=tab:`\                                          " # 記号の表示
 	set list
-	set modeline                                            " # 読み込み時�設�
+	set modeline                                            " # 読み込み時?設??
 	set noswapfile                                          " # SwapFile
 	set nowrap                                              " # 折り返し
-	set number                                              " # 番号入�
+	set number                                              " # 番号入??
 	set shiftwidth=4
 	set smartcase
 	set stl=[%{&ff}][%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-	set tabstop=4                                           " # tabの設�
-	set tw=0                                                " # 自動改�OFF
+	set tabstop=4                                           " # tabの設??
+	set tw=0                                                " # 自動改??OFF
 	set ve=block
 endfunction "}}}
 function! s:nnoremap() "{{{
