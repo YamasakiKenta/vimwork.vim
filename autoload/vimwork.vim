@@ -168,7 +168,7 @@ function! vimwork#map_tabdiff(...) "{{{
 	nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
 endfunction
 "}}}
-function! vimwork#map_unite(...) "{{{
+function! vimwork#map_unite() "{{{
 	let g:unite_enable_start_insert        = 0
 	let g:unite_source_history_yank_enable = 0
 	let g:unite_source_history_yank_enable = 0
@@ -216,7 +216,7 @@ endfunction
 
 function! vimwork#my_neobundle(root) "{{{
 	let g:vimwork#my_neobundle_root = a:root
-				
+
 	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git', {
 				\ 'base' : g:vimwork#my_neobundle_root,
 				\ 'type' : 'nosync', 
@@ -244,10 +244,10 @@ function! vimwork#my_neobundle(root) "{{{
 				\ }
 
 	" NeoBundle 'https://github.com/YamasakiKenta/unite-perforce.vim.git', {
-				" \ 'base' : g:vimwork#my_neobundle_root,
-				" \ 'type' : 'nosync', 
-				" \ 'hooks' : { 'on_source' : function('vimwork#map_unite_perforce') },
-				" \ }
+	" \ 'base' : g:vimwork#my_neobundle_root,
+	" \ 'type' : 'nosync', 
+	" \ 'hooks' : { 'on_source' : function('vimwork#map_unite_perforce') },
+	" \ }
 
 endfunction "}}}
 function! vimwork#neobundle()  "{{{
@@ -260,15 +260,18 @@ function! vimwork#neobundle()  "{{{
 				\ }
 
 	NeoBundle 'https://github.com/Shougo/unite.vim.git' , {
-				\ 'hooks' : { 'on_source' : function('vimwork#map_unite') },
+				\ 'hooks' : { 'on_source' : function('vimwork#set_unite') },
 				\ }
 
 	NeoBundle 'https://github.com/Shougo/neocomplete.git' , {
 				\ 'hooks' : { 'on_source' : function('vimwork#set_necomplete') },
 				\ }
 
+	NeoBundleLazy 'https://github.com/Shougo/unite-outline.git', { 'autoload' : {
+				\ 'unite_sources' : 'outline',
+				\ }}
+
 	NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
-	NeoBundle 'https://github.com/Shougo/unite-outline.git'
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'
 	NeoBundle 'https://github.com/Shougo/neobundle-vim-recipes.git'
 
@@ -290,17 +293,22 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/vim-scripts/Align.git'
 
 	" Unite 
-	NeoBundle 'https://github.com/tsukkee/unite-tag.git'
-	NeoBundle 'https://github.com/osyo-manga/unite-quickfix.git'
+	NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
+				\ 'unite_sources' : 'tag'
+				\ }}
+
+	NeoBundleLazy 'osyo-manga/unite-quickfix', { 'autoload' : {
+				\ 'unite_sources' : 'quickfix',
+				\ }}
 
 	" Setting
 	NeoBundle 'https://github.com/Shougo/vimproc.git', {
 				\ 'build'   : {
-				\ 'windows' : 'make -f make_mingw64.mak',
-				\ 'cygwin'  : 'make -f make_cygwin.mak',
-				\ 'mac'     : 'make -f make_mac.mak',
-				\ 'unix'    : 'make -f make_unix.mak',
-				\ },
+				\   'windows' : 'make -f make_mingw64.mak',
+				\   'cygwin'  : 'make -f make_cygwin.mak',
+				\   'mac'     : 'make -f make_mac.mak',
+				\   'unix'    : 'make -f make_unix.mak',
+				\   },
 				\ }
 endfunction
 "}}}
@@ -325,12 +333,15 @@ function! vimwork#set_dir(local_path) "{{{
 	let local_path = substitute(a:local_path, '\\', '\/', 'g')
 	let g:neosnippet#snippets_directory = join(map([path, local_path], "v:val.'/snippets'"),',')
 endfunction "}}}
+function! vimwork#set_unite(...)
+	call vimwork#unite_grep()
+	call vimwork#map_unite()
+endfunction
 
 function! vimwork#init()
 	call vimwork#set_gui()
 	call vimwork#map_grep()
 	call vimwork#map_misc()
-	call vimwork#unite_grep()
 endfunction
 
 let &cpo = s:save_cpo
