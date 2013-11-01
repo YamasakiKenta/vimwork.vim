@@ -13,13 +13,15 @@ function! s:set_neobundle() "{{{
 	set nocompatible
 	if has("vim_starting")
 		set rtp+=~/Dropbox/vim/bundle/neobundle.vim
+		set rtp+=~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim
 	endif
 	call neobundle#rc(expand("~/Dropbox/vim/bundle"))
-	filetype plugin indent on
 	call vimwork#neobundle()
 
 	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
 	call vimwork#my_neobundle(path)
+
+	filetype plugin indent on
 endfunction 
 "}}}
 function! s:set_plugin() "{{{
@@ -172,6 +174,25 @@ function! s:get_vim_function_name() "{{{
 	return fname
 endfunction 
 "}}}
+
+command! ChangeRoot call s:change_root()
+function! s:change_root() "{{{
+	let root = expand("%:h")
+	let datas = {
+				\ '.*\ze/plugin',
+				\ '.*\ze/autoload',
+				\ }
+
+	for data in datas
+		if root =~ data
+			let next_root = matchstr(root, data)
+			if isdirectory(next_root)
+				exe 'cd' next_root
+			endif
+		endif
+	endfor
+
+endfunction "}}}
 
 " NOT YET
 if 0

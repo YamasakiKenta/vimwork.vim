@@ -55,11 +55,9 @@ function! s:set() "{{{
 	set ve=block
 endfunction "}}}
 function! s:nnoremap() "{{{
-	nnoremap <leader>a<CR>  :<C-u>ChainFile<CR>|"
-	nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"
-	nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"
-	nnoremap <leader>rn<CR> :<C-u>windo set noscrollbind<CR>|"
-	nnoremap <leader>ry<CR> :<C-u>windo set scrollbind<CR>|"
+	" nnoremap j gj|" 
+	" nnoremap k gk|"
+	nnoremap <S-Space> za|"    
 	nnoremap <C-]> <C-]>zz|"    
 	nnoremap <C-j> j.|"
 	nnoremap <C-k> n.|"
@@ -68,12 +66,15 @@ function! s:nnoremap() "{{{
 	nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
 	nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
 	nnoremap <F1> <ESC>
-	nnoremap <S-Space> za|"    
 	nnoremap <c-]> g<c-]>|"
+	nnoremap <leader>a<CR>  :<C-u>ChainFile<CR>|"
+	nnoremap <leader>fh<CR> :<C-u>let @+ = expand("%:p:h")<CR>|"
+	nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"
+	nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"
+	nnoremap <leader>rn<CR> :<C-u>windo set noscrollbind<CR>|"
+	nnoremap <leader>ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap [[ [[zz|"
 	nnoremap ]] ]]zz|"
-	nnoremap j gj|" 
-	nnoremap k gk|"
 endfunction "}}}
 function! s:map() "{{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
@@ -107,11 +108,11 @@ function! vimwork#map_misc() "{{{
 	so $VIMRUNTIME/macros/matchit.vim
 	"set hidden
 endfunction "}}}
-function! vimwork#set_qfixhowm() "{{{
+function! vimwork#set_qfixgrep(...) "{{{
 	let QFix_CloseOnJump = 1
 endfunction
 "}}}
-function! vimwork#map_unite_perforce() "{{{
+function! vimwork#map_unite_perforce(...) "{{{
 	nmap <leader>cl<CR> <PLUG>(p4_echo_client_data)
 	nmap <leader>cr<CR> <PLUG>(p4_lcd_clentpath)
 	nmap <leader>ff<CR> <PLUG>(p4_find)
@@ -140,7 +141,7 @@ function! vimwork#map_unite_perforce() "{{{
 	nnoremap <leader>pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
 endfunction
 "}}}
-function! vimwork#map_cscope() "{{{
+function! vimwork#map_grep() "{{{
 	set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R -q")<CR>:cs add cscope.out<CR>|"
 	nnoremap <C-\>l :cs kill -1<CR>:cs add cscope.out<CR>|"
@@ -161,13 +162,13 @@ function! vimwork#map_cscope() "{{{
 
 endfunction
 "}}}
-function! vimwork#map_tabdiff() "{{{
+function! vimwork#map_tabdiff(...) "{{{
 	nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
 	nnoremap <leader>dn<CR> :<C-u>TabDiffEnd<CR>
 	nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
 endfunction
 "}}}
-function! vimwork#map_unite() "{{{
+function! vimwork#map_unite(...) "{{{
 	let g:unite_enable_start_insert        = 0
 	let g:unite_source_history_yank_enable = 0
 	let g:unite_source_history_yank_enable = 0
@@ -201,40 +202,75 @@ function! vimwork#map_unite() "{{{
 
 endfunction
 "}}}
-function! vimwork#set_vimwfiler() "{{{
+function! vimwork#set_vimfiler(...) "{{{
 	let g:vimfiler_as_default_explorer  = 1  " # 初期filer
 	let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 endfunction
 "}}}
-function! vimwork#set_necomplete() "{{{
+function! vimwork#set_necomplete(...) "{{{
 endfunction
 "}}}
 function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 
-function! vimwork#my_neobundle(root)
-	let paths = [
-				\ 'https://github.com/YamasakiKenta/chain-file.vim.git',
-				\ 'https://github.com/YamasakiKenta/unite-perforce.vim.git',
-				\ 'https://github.com/YamasakiKenta/tree.vim.git',
-				\ 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git',
-				\ 'https://github.com/YamasakiKenta/unite-setting.vim.git',
-				\ 'https://github.com/YamasakiKenta/tab-diff.vim.git',
-				\ ]
-	for path in paths
-		exe 'NeoBundle "'.path.'", { "base" : "' .a:root. '", "type" : "nosync" }'
-	endfor
-endfunction
+function! vimwork#my_neobundle(root) "{{{
+	let g:vimwork#my_neobundle_root = a:root
+				
+	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git', {
+				\ 'base' : g:vimwork#my_neobundle_root,
+				\ 'type' : 'nosync', 
+				\ }
+
+	NeoBundle 'https://github.com/YamasakiKenta/tree.vim.git', {
+				\ 'base' : g:vimwork#my_neobundle_root,
+				\ 'type' : 'nosync', 
+				\ }
+
+	NeoBundle 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git', {
+				\ 'base' : g:vimwork#my_neobundle_root,
+				\ 'type' : 'nosync', 
+				\ }
+
+	NeoBundle 'https://github.com/YamasakiKenta/unite-setting.vim.git', {
+				\ 'base' : g:vimwork#my_neobundle_root,
+				\ 'type' : 'nosync', 
+				\ }
+
+	NeoBundle 'https://github.com/YamasakiKenta/tab-diff.vim.git', {
+				\ 'base' : g:vimwork#my_neobundle_root,
+				\ 'type' : 'nosync', 
+				\ 'hooks' : { 'on_source' : function('vimwork#map_tabdiff') },
+				\ }
+
+	" NeoBundle 'https://github.com/YamasakiKenta/unite-perforce.vim.git', {
+				" \ 'base' : g:vimwork#my_neobundle_root,
+				" \ 'type' : 'nosync', 
+				" \ 'hooks' : { 'on_source' : function('vimwork#map_unite_perforce') },
+				" \ }
+
+endfunction "}}}
 function! vimwork#neobundle()  "{{{
 	" Shougo
-	NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
 	NeoBundleFetch 'https://github.com/Shougo/shougo-s-github.git'
+
+	NeoBundle 'https://github.com/Shougo/vimfiler', {
+				\ 'depends' : 'https://github.com/Shougo/unite.vim.git' ,
+				\ 'hooks' : { 'on_source' : function('vimwork#set_vimfiler') },
+				\ }
+
+	NeoBundle 'https://github.com/Shougo/unite.vim.git' , {
+				\ 'hooks' : { 'on_source' : function('vimwork#map_unite') },
+				\ }
+
+	NeoBundle 'https://github.com/Shougo/neocomplete.git' , {
+				\ 'hooks' : { 'on_source' : function('vimwork#set_necomplete') },
+				\ }
+
+	NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
 	NeoBundle 'https://github.com/Shougo/unite-outline.git'
-	NeoBundle 'https://github.com/Shougo/unite.vim.git'  
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'
-	NeoBundle 'https://github.com/Shougo/vimfiler'
-	NeoBundle 'https://github.com/Shougo/neocomplete.git'
+	NeoBundle 'https://github.com/Shougo/neobundle-vim-recipes.git'
 
 	" thinca
 	NeoBundle 'https://github.com/thinca/vim-partedit.git'
@@ -244,7 +280,10 @@ function! vimwork#neobundle()  "{{{
 	NeoBundle 'https://github.com/thinca/vim-ref.git'
 
 	" Normal
-	NeoBundle 'https://github.com/fuenor/qfixgrep.git'
+	NeoBundle 'https://github.com/fuenor/qfixgrep.git', {
+				\ 'hooks' : { 'on_source' : function('vimwork#set_qfixgrep') },
+				\ }
+
 	NeoBundle 'https://github.com/rbtnn/puyo.vim.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-jp/vital.vim.git'
@@ -289,13 +328,7 @@ endfunction "}}}
 
 function! vimwork#init()
 	call vimwork#set_gui()
-	call vimwork#map_unite()
-	call vimwork#set_necomplete()
-	call vimwork#map_cscope()
-	call vimwork#set_vimwfiler()
-	call vimwork#map_unite_perforce()
-	call vimwork#map_tabdiff()
-	call vimwork#set_qfixhowm()
+	call vimwork#map_grep()
 	call vimwork#map_misc()
 	call vimwork#unite_grep()
 endfunction

@@ -54,7 +54,7 @@ function! s:sub_check_start(line, data) "{{{
 endfunction
 "}}}
 
-function! sort_function#sort_function(line1, line2, sort_str) "{{{
+function! sort_function#sort_function(line1, line2) "{{{
 	" èâä˙ê›íË
 	let data = {
 				\ 'starts'            : keys(g:sort_function_words_d),
@@ -107,7 +107,6 @@ function! sort_function#sort_function(line1, line2, sort_str) "{{{
 	for key in keys(table_d)
 		let val = key
 		let val = matchstr(val, '.*\ze_')
-		let val = matchstr(val, a:sort_str.'\zs.*')
 
 		let sort_keys[val.'_'.cnt] = key
 					
