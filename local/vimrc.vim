@@ -12,21 +12,24 @@ set cpo&vim
 function! s:set_neobundle() "{{{
 	set nocompatible
 	if has("vim_starting")
-		set rtp+=~/Dropbox/vim/bundle/neobundle.vim
-		set rtp+=~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim
+		set rtp+=~/.vim/bundle/neobundle.vim
 	endif
-	call neobundle#rc(expand("~/Dropbox/vim/bundle"))
-	call vimwork#neobundle()
 
-	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
-	call vimwork#my_neobundle(path)
+	call neobundle#rc()
+	call vimwork#neobundle()
 
 	filetype plugin indent on
 endfunction 
 "}}}
+function! s:set_neobundle_mind() "{{{
+	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
+	call vimwork#neobundle_mind(path)
+endfunction
+"}}}
 function! s:set_plugin() "{{{
 	set rtp+=~/Dropbox/vim/mind/vimwork.vim
 	call s:set_neobundle()
+	call s:set_neobundle_mind()
 endfunction 
 "}}}
 function! s:set_header() "{{{
@@ -687,13 +690,8 @@ endif
 function! s:set_necomplete() "{{{
 	call s:init()
 	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#max_list = 20
 
-
-	" inoremap <C-s>       <c-o>:Unite -start-insert neocomplete snippet<CR>|"
-	" inoremap <expr><C-k> pumvisible() ?  neocomplete#cancel_popup() : neocomplete#start_manual_complete()
-
-	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)|"
+	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
 	imap <C-s>  <Plug>(neocomplete_start_unite_complete)
 
 endfunction

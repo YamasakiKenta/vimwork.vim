@@ -214,7 +214,7 @@ function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 
-function! vimwork#my_neobundle(root) "{{{
+function! vimwork#neobundle_mind(root) "{{{
 	let g:vimwork#my_neobundle_root = a:root
 
 	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git', {
