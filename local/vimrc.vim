@@ -15,7 +15,7 @@ endfunction
 
 function! s:set_neobundle_mind() 
 	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
-	call vimwork_2#neobundle_mind(path)
+	call vimwork_2#neobundle_mind(path, 1)
 endfunction
 
 function! s:set_plugin() 

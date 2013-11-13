@@ -2,13 +2,13 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! vimwork_2#neobundle_startup() "{{{
-	set nocompatible
+	"gget nocompatible
 	if has("vim_starting")
 		set rtp+=~/.vim/bundle/neobundle.vim
 	endif
 
 	call neobundle#rc()
-	call vimwork#neobundle()
+	call vimwork_2#neobundle()
 
 	filetype plugin indent on
 endfunction
@@ -75,39 +75,30 @@ function! vimwork_2#neobundle() "{{{
 				\ }
 endfunction
 "}}}
-function! vimwork_2#neobundle_mind(root) "{{{
+function! vimwork_2#neobundle_mind(root, sync) "{{{
 
-	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git', {
+	let g:data = {
 				\ 'base' : a:root,
 				\ 'type' : 'nosync', 
 				\ }
+	if a:sync == 0 
+		unlet data.type
+	endif
 
-	NeoBundle 'https://github.com/YamasakiKenta/tree.vim.git', {
-				\ 'base' : a:root,
-				\ 'type' : 'nosync', 
-				\ }
+	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git', 
+	NeoBundle 'https://github.com/YamasakiKenta/tree.vim.git', g:data
+	NeoBundle 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git', g:data
+	NeoBundle 'https://github.com/YamasakiKenta/unite-setting.vim.git', g:data
 
-	NeoBundle 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git', {
-				\ 'base' : a:root,
-				\ 'type' : 'nosync', 
-				\ }
-
-	NeoBundle 'https://github.com/YamasakiKenta/unite-setting.vim.git', {
-				\ 'base' : a:root,
-				\ 'type' : 'nosync', 
-				\ }
-
-	NeoBundle 'https://github.com/YamasakiKenta/tab-diff.vim.git', {
-				\ 'base' : a:root,
-				\ 'type' : 'nosync', 
+	NeoBundle 'https://github.com/YamasakiKenta/tab-diff.vim.git', extend(g:data, {
 				\ 'hooks' : { 'on_source' : function('vimwork#map_tabdiff') },
-				\ }
+				\ })
 
-	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-perforce.vim.git', {
-				\ 'base' : a:root,
-				\ 'type' : 'nosync', 
+	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-perforce.vim.git', extend(g:data, {
 				\ 'hooks' : { 'on_source' : function('vimwork#map_unite_perforce') },
-				\ }
+				\ })
+
+	unlet g:data
 
 endfunction "}}}
 
@@ -115,5 +106,4 @@ if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
 endif
-function
 

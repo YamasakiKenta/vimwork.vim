@@ -49,7 +49,7 @@ function! s:set() "{{{
 	set number                                              " # 番号入??
 	set shiftwidth=4
 	set smartcase
-	set stl=%n\ >\ %{fugitive#statusline()}\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ %t\ %q%h%m%r%=%-14.(%l/%L%)
+	set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ %t\ %q%h%m%r%=%-14.(%l/%L%)
 	set tabstop=4                                           " # tabの設??
 	set tw=0                                                " # 自動改??OFF
 	set ve=block
@@ -169,11 +169,9 @@ function! vimwork#map_tabdiff(...) "{{{
 endfunction
 "}}}
 function! vimwork#map_unite() "{{{
-	let g:unite_enable_start_insert        = 1
-	let g:unite_source_history_yank_enable = 0
-	let g:unite_source_history_yank_enable = 0
-	let g:unite_source_rec_max_cache_files = 3000
-
+	let g:unite_enable_start_insert        = 0
+	let g:unite_source_history_yank_enable = 1
+	let g:unite_source_rec_max_cache_files = 100
 
 	nnoremap <leader>ur<CR>  :<C-u>UniteResume<CR>|"
 	nnoremap <leader>uR<CR>  :<C-u>Unite resume<CR>|"
@@ -241,7 +239,7 @@ function! vimwork#set_dir(local_path) "{{{
 	let g:neosnippet#snippets_directory = join(map([path, local_path], "v:val.'/snippets'"),',')
 endfunction "}}}
 function! vimwork#set_unite(...)
-	call vimwork#unite_grep()
+	" call vimwork#unite_grep()
 	call vimwork#map_unite()
 endfunction
 
