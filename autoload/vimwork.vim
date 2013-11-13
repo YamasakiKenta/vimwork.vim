@@ -49,7 +49,7 @@ function! s:set() "{{{
 	set number                                              " # 番号入??
 	set shiftwidth=4
 	set smartcase
-	set stl=[%{&ff}][%n]%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+	set stl=%n\ >\ %{fugitive#statusline()}\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ %t\ %q%h%m%r%=%-14.(%l/%L%)
 	set tabstop=4                                           " # tabの設??
 	set tw=0                                                " # 自動改??OFF
 	set ve=block
@@ -169,7 +169,7 @@ function! vimwork#map_tabdiff(...) "{{{
 endfunction
 "}}}
 function! vimwork#map_unite() "{{{
-	let g:unite_enable_start_insert        = 0
+	let g:unite_enable_start_insert        = 1
 	let g:unite_source_history_yank_enable = 0
 	let g:unite_source_history_yank_enable = 0
 	let g:unite_source_rec_max_cache_files = 3000
@@ -214,104 +214,11 @@ function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 
-function! vimwork#neobundle_mind(root) "{{{
-	let g:vimwork#my_neobundle_root = a:root
 
-	NeoBundle 'https://github.com/YamasakiKenta/chain-file.vim.git', {
-				\ 'base' : g:vimwork#my_neobundle_root,
-				\ 'type' : 'nosync', 
-				\ }
-
-	NeoBundle 'https://github.com/YamasakiKenta/tree.vim.git', {
-				\ 'base' : g:vimwork#my_neobundle_root,
-				\ 'type' : 'nosync', 
-				\ }
-
-	NeoBundle 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git', {
-				\ 'base' : g:vimwork#my_neobundle_root,
-				\ 'type' : 'nosync', 
-				\ }
-
-	NeoBundle 'https://github.com/YamasakiKenta/unite-setting.vim.git', {
-				\ 'base' : g:vimwork#my_neobundle_root,
-				\ 'type' : 'nosync', 
-				\ }
-
-	NeoBundle 'https://github.com/YamasakiKenta/tab-diff.vim.git', {
-				\ 'base' : g:vimwork#my_neobundle_root,
-				\ 'type' : 'nosync', 
-				\ 'hooks' : { 'on_source' : function('vimwork#map_tabdiff') },
-				\ }
-
-	" NeoBundle 'https://github.com/YamasakiKenta/unite-perforce.vim.git', {
-	" \ 'base' : g:vimwork#my_neobundle_root,
-	" \ 'type' : 'nosync', 
-	" \ 'hooks' : { 'on_source' : function('vimwork#map_unite_perforce') },
-	" \ }
-
-endfunction "}}}
-function! vimwork#neobundle()  "{{{
-	" Shougo
-	NeoBundleFetch 'https://github.com/Shougo/shougo-s-github.git'
-
-	NeoBundle 'https://github.com/Shougo/vimfiler', {
-				\ 'depends' : 'https://github.com/Shougo/unite.vim.git' ,
-				\ 'hooks' : { 'on_source' : function('vimwork#set_vimfiler') },
-				\ }
-
-	NeoBundle 'https://github.com/Shougo/unite.vim.git' , {
-				\ 'hooks' : { 'on_source' : function('vimwork#set_unite') },
-				\ }
-
-	NeoBundle 'https://github.com/Shougo/neocomplete.git' , {
-				\ 'hooks' : { 'on_source' : function('vimwork#set_necomplete') },
-				\ }
-
-	NeoBundleLazy 'https://github.com/Shougo/unite-outline.git', { 'autoload' : {
-				\ 'unite_sources' : 'outline',
-				\ }}
-
-	NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
-	NeoBundle 'https://github.com/Shougo/neosnippet.git'
-	NeoBundle 'https://github.com/Shougo/neobundle-vim-recipes.git'
-
-	" thinca
-	NeoBundle 'https://github.com/thinca/vim-partedit.git'
-	NeoBundle 'https://github.com/thinca/vim-prettyprint.git'
-	NeoBundle 'https://github.com/thinca/vim-qfreplace.git'
-	NeoBundle 'https://github.com/thinca/vim-quickrun.git'
-	NeoBundle 'https://github.com/thinca/vim-ref.git'
-
-	" Normal
-	NeoBundle 'https://github.com/fuenor/qfixgrep.git', {
-				\ 'hooks' : { 'on_source' : function('vimwork#set_qfixgrep') },
-				\ }
-
-	NeoBundle 'https://github.com/rbtnn/puyo.vim.git'
-	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
-	NeoBundle 'https://github.com/vim-jp/vital.vim.git'
-	NeoBundle 'https://github.com/vim-scripts/Align.git'
-
-	" Unite 
-	NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
-				\ 'unite_sources' : 'tag'
-				\ }}
-
-	NeoBundleLazy 'osyo-manga/unite-quickfix', { 'autoload' : {
-				\ 'unite_sources' : 'quickfix',
-				\ }}
-
-	" Setting
-	NeoBundle 'https://github.com/Shougo/vimproc.git', {
-				\ 'build'   : {
-				\   'windows' : 'make -f make_mingw64.mak',
-				\   'cygwin'  : 'make -f make_cygwin.mak',
-				\   'mac'     : 'make -f make_mac.mak',
-				\   'unix'    : 'make -f make_unix.mak',
-				\   },
-				\ }
+function! vimwork#neobundle(...)
+	return call('vimwork_2#neobundle', a:000)
 endfunction
-"}}}
+
 function! vimwork#unite_grep() "{{{
 	let mode = 'ag'
 	let mode = ""
