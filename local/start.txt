@@ -1,0 +1,8 @@
+1. 
+md ~/.vim/bundle/neobundle.vim
+git clone 'https://github.com/Shougo/neobundle.vim.git'
+
+2.
+NeoBundle 'https://github.com/YamasakiKenta/vimwork.vim.git'
+
+3.
