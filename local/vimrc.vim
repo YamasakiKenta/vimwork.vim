@@ -9,20 +9,13 @@ set cpo&vim
 "
 "================================================================================ 
 
-function! s:set_neobundle()
-	call vimwork_2#neobundle_startup()
-endfunction 
-
-function! s:set_neobundle_mind() 
-	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
-	call vimwork_2#neobundle_mind(path, 1)
-endfunction
-
 function! s:set_plugin() 
 	set rtp+=~/Dropbox/vim/mind/vimwork.vim
-	call s:set_neobundle()
-	call s:set_neobundle_mind()
-endfunction 
+	call vimwork#neobundle#init()
+
+	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
+	call vimwork#neobundle#mind(path, 1)
+endfunction
 
 function! s:set_header() "{{{
 	call s:set_plugin()

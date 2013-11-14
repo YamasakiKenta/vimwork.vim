@@ -49,7 +49,7 @@ function! s:set() "{{{
 	set number                                              " # 番号入??
 	set shiftwidth=4
 	set smartcase
-	set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ %t\ %q%h%m%r%=%-14.(%l/%L%)
+	set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %{vimwork#pwd()}\ >\ %t\ %q%h%m%r%=%-14.(%l/%L%)
 	set tabstop=4                                           " # tabの設??
 	set tw=0                                                " # 自動改??OFF
 	set ve=block
@@ -190,7 +190,7 @@ function! vimwork#map_unite() "{{{
 	nnoremap <leader>ul<CR>  :<C-u>Unite line/fast<CR>|"
 	nnoremap <leader>um<CR>  :<C-u>Unite file_mru<CR>|"
 	nnoremap <leader>uom<CR> :<C-u>Unite output:message<CR>|"
-	nnoremap <leader>upt<CR> :<C-u>Unite settings_ex<CR>|"
+	nnoremap <leader>upt<CR> :<C-u>Unite settings/ex<CR>|"
 	nnoremap <leader>us<CR>  :<C-u>Unite source<CR>|"
 	nnoremap <leader>ut<CR>  :<C-u>Unite tag<CR>|"
 	nnoremap <leader>qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
@@ -212,9 +212,8 @@ function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 
-
-function! vimwork#neobundle(...)
-	return call('vimwork_2#neobundle', a:000)
+function! vimwork#pwd() 
+	return substitute(pathshorten(getcwd()),"\\\\","\\/","g")
 endfunction
 
 function! vimwork#unite_grep() "{{{
