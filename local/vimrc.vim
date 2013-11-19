@@ -51,7 +51,6 @@ function! s:init() "{{{
 		call mkdir(expand(&backupdir))
 	endif
 endfunction "}}}
-call s:init()
 
 command! MyVitalUpdate call s:my_vital_update()
 function! s:my_vital_update() "{{{
@@ -125,16 +124,18 @@ endfunction "}}}
 " NOT YET
 function! s:set_necomplete() "{{{
 	call s:init()
-	let g:neocomplete#enable_at_startup = 1
+	" let g:neocomplete#enable_at_startup = 1
 
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
-	imap <C-s>  <Plug>(neocomplete_start_unite_complete)
+	imap <C-s>     <Plug>(neocomplete_start_unite_complete)
 
 endfunction
 "}}}
 "
 call s:set_necomplete()
 "call s:shougo()
+"
+call s:init()
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

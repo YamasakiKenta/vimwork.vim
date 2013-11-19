@@ -1,17 +1,6 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! vimwork#neobundle#init() "{{{
-	if has("vim_starting")
-		set rtp+=~/.vim/bundle/neobundle.vim
-	endif
-
-	call neobundle#rc()
-	call s:neobundle()
-
-	filetype plugin indent on
-endfunction
-"}}}
 function! s:neobundle() "{{{
 	" Shougo
 	NeoBundleFetch 'https://github.com/Shougo/shougo-s-github.git'
@@ -75,38 +64,51 @@ function! s:neobundle() "{{{
 	" mind
 endfunction
 "}}}
-function! vimwork#neobundle#mind(root, sync) "{{{
+
+function! vimwork#neobundle#init() "{{{
+	if has("vim_starting")
+		set rtp+=~/.vim/bundle/neobundle.vim
+	endif
+
+	call neobundle#rc()
+	call s:neobundle()
+
+	filetype plugin indent on
+endfunction
+"}}}
+function! vimwork#neobundle#mind(root) "{{{
 
 	let g:data = {
 				\ 'base' : a:root,
 				\ 'type' : 'nosync', 
 				\ }
-	if a:sync == 0 
+
+	if get('g:', 'vimwork#neobundle#mine_sync', 0) 
 		unlet data.type
 	endif
 
-	NeoBundleLazy 'https://github.com/YamasakiKenta/chain-file.vim.git', extend(g:data, {
+	NeoBundleLazy 'https://github.com/YamasakiKenta/chain-file.vim.git', extend(copy(g:data), {
 				\ 'autoload' : { 'commands' : 'ChaineFile' }
 				\ })
 
-	NeoBundleLazy 'https://github.com/YamasakiKenta/tree.vim.git', g:data
-	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git', extend(g:data, {
+	NeoBundleLazy 'https://github.com/YamasakiKenta/tree.vim.git', copy(g:data)
+	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git', extend(copy(g:data), {
 				\ 'autoload' : { 'unite_sources' : 'settings/ex' }
 				\ })
-	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-setting.vim.git', extend(g:data, {
+	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-setting.vim.git', extend(copy(g:data), {
 				\ 'autoload' : { 'unite_sources' : 'settings' }
 				\ })
 
-	NeoBundleLazy 'https://github.com/YamasakiKenta/tab-diff.vim.git', extend(g:data, {
+	NeoBundleLazy 'https://github.com/YamasakiKenta/tab-diff.vim.git', extend(copy(g:data), {
 				\ 'hooks' : { 'on_source' : function('vimwork#map_tabdiff') },
 				\ 'autoload' : { 'commands' : ['TabDiffStart', 'TabDiffEnd', 'TabDiffOrig'] },
 				\ })
 
-	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-perforce.vim.git', extend(g:data, {
+	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-perforce.vim.git', extend(copy(g:data), {
 				\ 'hooks' : { 'on_source' : function('vimwork#map_unite_perforce') },
 				\ })
 	
-	NeoBundleLazy 'https://github.com/YamasakiKenta/vimwork.vim.git', g:data
+	NeoBundleLazy 'https://github.com/YamasakiKenta/vimwork.vim.git', copy(g:data)
 
 	unlet g:data
 
