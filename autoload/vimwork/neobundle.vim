@@ -83,12 +83,12 @@ function! vimwork#neobundle#mind(root) "{{{
 				\ 'type' : 'nosync', 
 				\ }
 
-	if get('g:', 'vimwork#neobundle#mine_sync', 0) 
+	if get(g:, 'vimwork#neobundle#mine_sync', 0) 
 		unlet data.type
 	endif
 
 	NeoBundleLazy 'https://github.com/YamasakiKenta/chain-file.vim.git', extend(copy(g:data), {
-				\ 'autoload' : { 'commands' : 'ChaineFile' }
+				\ 'autoload' : { 'commands' : 'ChainFile' }
 				\ })
 
 	NeoBundleLazy 'https://github.com/YamasakiKenta/tree.vim.git', copy(g:data)

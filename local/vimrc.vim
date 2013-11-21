@@ -14,10 +14,10 @@ function! s:set_plugin()
 	call vimwork#neobundle#init()
 
 	let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
-	call vimwork#neobundle#mind(path, 1)
+	call vimwork#neobundle#mind(path)
 endfunction
 
-function! s:set_header() "{{{
+function! s:set_header()
 	call s:set_plugin()
 	call vimwork#init()
 	call vimwork#set_dir(expand('~/Dropbox/vim/mind/vimwork.vim'))
@@ -32,8 +32,8 @@ function! s:set_header() "{{{
 				\ ],
 				\ }
 endfunction
-"}}}
-function! s:init() "{{{
+
+function! s:init() 
 	call s:set_header()
 	nnoremap <leader>de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 	nnoremap <leader>dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
@@ -50,30 +50,15 @@ function! s:init() "{{{
 	if !isdirectory(expand(&backupdir))
 		call mkdir(expand(&backupdir))
 	endif
-endfunction "}}}
-
-command! MyVitalUpdate call s:my_vital_update()
-function! s:my_vital_update() "{{{
-	let paths = [
-				\ '~/Dropbox/vim/mind/chain-file.vim',
-				\ '~/Dropbox/vim/mind/tab-diff.vim',
-				\ ]
-
-	for path in paths
-		exe 'Vitalize' path
-	endfor
-endfunction
-"}}}
+endfunction 
 
 command! -nargs=? MyGitUpdate call s:my_git_update(<q-args>) 
 function! s:my_git_update(str) "{{{
-	" @param[in] a:str commit comment
-
 	let comment = len(a:str) ? a:str : "auto update"
 	echom comment
 
 	let paths = split(glob("~/Dropbox/vim/mind/*"), "\n")
-	let paths = filetr(paths, "v:val !~ 'vital\\|tags'")
+	let paths = filter(paths, "v:val !~ 'vital\\|tags'")
 
 	for path in paths
 		exe 'lcd '.path

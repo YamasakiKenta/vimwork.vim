@@ -1,62 +1,78 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-augroup vimproc-async-receive-test
-augroup END
+let s:cache = {}
 
-function! vimwork#async#system(cmd, func_async, func_end) "{{{
-    let vimproc = vimproc#plineopen2(a:cmd)
-    
-    let s:vimproc = vimproc
-    let s:result = ""
+let data = {}
+function data.update(...)
+	echo a:000
+endfunction
+function data.complete(...)
+	echo a:000
+endfunction
+call vimwork#async#system('ls', data )
 
-	let s:func_end   = a:func_end
-	let s:func_async = a:func_async
+function! vimwork#async#system(cmd, data) "{{{
+	let s:cache[a:cmd] = {
+				\ 'vimproc' : vimproc#plineopen2(a:cmd),
+				\ 'data'    : deepcopy(a:data),
+				\ 'result'  : '',
+				\ }
 
-    augroup vimproc-async-receive-test
-        autocmd! CursorHold,CursorHoldI * call s:receive_vimproc_result()
+    exe 'augroup vimproc-async-receive-test-'.a:cmd
+        autocmd! CursorHold,CursorHoldI * call s:receive_vimproc_result(a:cmd)
     augroup END
 endfunction
 "}}}
-function! s:receive_vimproc_result() "{{{
-    if !has_key(s:, "vimproc")
+function! s:receive_vimproc_result(cmd) "{{{
+	if !has_key(s:cache, a:cmd)
+		return 
+	endif
+
+	let cache = s:cache[a:cmd]
+
+    if !has_key(cache, "vimproc")
         return
     endif
 
-    let vimproc = s:vimproc
+    let vimproc = cache.vimproc
 
-    try
-        if !vimproc.stdout.eof
-            let s:result .= vimproc.stdout.read()
-        endif
+	try
+		let result = cache.result
 
-        if !vimproc.stderr.eof
-            let s:result .= vimproc.stderr.read()
-        endif
+		if !vimproc.stdout.eof
+			let result .= vimproc.stdout.read()
+		endif
 
-		" let s:result = call(s:async_func, [s:result])
+		if !vimproc.stderr.eof
+			let result .= vimproc.stderr.read()
+		endif
 
-        if !(vimproc.stdout.eof && vimproc.stderr.eof)
-            return 0
-        endif
-    catch
-        echom v:throwpoint
-    endtry
+		let result = call(get(cache, 'update', ''), [result])
+
+		 let cache.result = result
+
+		if !(vimproc.stdout.eof && vimproc.stderr.eof)
+			return 0
+		endif
+	catch
+		echom v:throwpoint
+	endtry
 
     " 終了時に呼ぶ
-	call call(s:func_end, [s:result])
+	let result = call(get(cache, 'complete', ''), [result])
     
-    augroup vimproc-async-receive-test
+    exe 'augroup vimproc-async-receive-test-'.a:cmd
         autocmd!
     augroup END
 
     call vimproc.stdout.close()
     call vimproc.stderr.close()
     call vimproc.waitpid()
-    unlet s:vimproc
-    unlet s:result
 endfunction
 "}}}
 
-let &cpo = s:save_cpo
-unlet s:save_cpo
+if exists('s:save_cpo')
+	let &cpo = s:save_cpo
+	unlet s:save_cpo
+endif

@@ -49,7 +49,7 @@ function! s:set() "{{{
 	set number                                              " # 番号入??
 	set shiftwidth=4
 	set smartcase
-	set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %{vimwork#pwd()}\ >\ %t\ %q%h%m%r%=%-14.(%l/%L%)
+	set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %{vimwork#path()}\ %q%h%m%r%=%-14.(%l/%L%)
 	set tabstop=4                                           " # tabの設??
 	set tw=0                                                " # 自動改??OFF
 	set ve=block
@@ -157,7 +157,6 @@ function! vimwork#map_grep() "{{{
 	nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
 	nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
 
-	nnoremap <C-\>a :Ag <c-r>=expand("<cword>")<CR>|"
 	nnoremap <C-\>z :grep /s <c-r>=expand("<cword>")<CR>|"
 
 endfunction
@@ -212,8 +211,9 @@ function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
 
-function! vimwork#pwd() 
-	return substitute(pathshorten(getcwd()),"\\\\","\\/","g")
+function! vimwork#path() 
+	" return substitute(pathshorten(expand("%")),"\\\\","\\/","g")
+	return substitute(expand("%"),"\\\\","\\/","g")
 endfunction
 
 function! vimwork#unite_grep() "{{{
