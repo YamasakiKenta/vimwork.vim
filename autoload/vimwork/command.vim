@@ -142,6 +142,42 @@ function! vimwork#command#set_num() "{{{
 
 endfunction
 "}}}
+function! vimwork#command#my_git_update(str) "{{{
+	let comment = len(a:str) ? a:str : "auto update"
+	echom comment
+
+	let paths = split(glob("~/Dropbox/vim/mind/*"), "\n")
+	let paths = filter(paths, "v:val !~ 'vital\\|tags'")
+
+	for path in paths
+		exe 'lcd '.path
+		call system('git add -A')
+		let cmd = 'git commit -am "'.comment.'"'
+		echom getcwd()
+		echom cmd
+		call system(cmd)
+		call system('git push')
+	endfor
+
+endfunction
+"}}}
+function! vimwork#comman#change_root() "{{{
+	let root = expand("%:h")
+	let datas = [
+				\ '.*\ze/plugin',
+				\ '.*\ze/autoload',
+				\ ]
+
+	for data in datas
+		if root =~ data
+			let next_root = matchstr(root, data)
+			if isdirectory(next_root)
+				exe 'lcd' next_root
+			endif
+		endif
+	endfor
+
+endfunction "}}}
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

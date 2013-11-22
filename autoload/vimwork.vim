@@ -49,7 +49,7 @@ function! s:set() "{{{
 	set number                                              " # 番号入??
 	set shiftwidth=4
 	set smartcase
-	set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %{vimwork#path()}\ %q%h%m%r%=%-14.(%l/%L%)
+	set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %f\ %q%h%m%r%=%-14.(%l/%L%)
 	set tabstop=4                                           " # tabの設??
 	set tw=0                                                " # 自動改??OFF
 	set ve=block
@@ -68,17 +68,16 @@ function! s:nnoremap() "{{{
 	nnoremap <F1> <ESC>
 	nnoremap <c-]> g<c-]>|"
 	nnoremap <leader>a<CR>  :<C-u>ChainFile<CR>|"
-	nnoremap <leader>fh<CR> :<C-u>let @+ = expand("%:p:h")<CR>|"
-	nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")<CR>|"
-	nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")<CR>|"
+	nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")\|echo @+<CR>|"
+	nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")\|echo @+<CR>|"
 	nnoremap <leader>rn<CR> :<C-u>windo set noscrollbind<CR>|"
 	nnoremap <leader>ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap [[ [[zz|"
 	nnoremap ]] ]]zz|"
 endfunction "}}}
 function! s:map() "{{{
-	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>|"
-	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'<CR>|"
+	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>:echo @/<CR>|"
+	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'\|echo @/<CR>|"
 endfunction"}}}
 function! s:let() "{{{
 	let g:Align_xstrlen = 3
@@ -181,7 +180,7 @@ function! vimwork#map_unite() "{{{
 	" nnoremap <leader>ub<CR>  :<C-u>Unite buffer<CR>|"
 	nnoremap <leader>ubt<CR> :<C-u>Unite buffer_tags<CR>|"
 	nnoremap <leader>ue<CR>  :<C-u>Unite outline<CR>|"
-	nnoremap <leader>uf<CR>  :<C-u>Unite file_rec -input=<C-r>=substitute(getcwd(), "\\", "\/", 'g').'/**/'<CR><CR>|"
+	nnoremap <leader>uf<CR>  :<C-u>Unite file_rec<CR>|"
 	nnoremap <leader>ug<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
 	nnoremap <leader>uG<CR>  :<C-u>UniteResume grep<CR>|"
 	nnoremap <leader>uh<CR>  :<C-u>Unite history/yank<CR>|"
@@ -210,11 +209,6 @@ endfunction
 function! vimwork#map_neosnip() "{{{
 endfunction
 "}}}
-
-function! vimwork#path() 
-	" return substitute(pathshorten(expand("%")),"\\\\","\\/","g")
-	return substitute(expand("%"),"\\\\","\\/","g")
-endfunction
 
 function! vimwork#unite_grep() "{{{
 	let mode = 'ag'
