@@ -4,7 +4,6 @@ set cpo&vim
 "================================================================================ 
 " MEMO
 "--------------------------------------------------------------------------------
-" Vitalize . --name=unite-perforce.vim Mind.Common Mind.Debug
 " QuickRun -hook/time/enable 1
 "
 "================================================================================ 
@@ -54,18 +53,13 @@ function! s:init()  "{{{
 	endif
 endfunction 
 "}}} 
+call s:init()
 
-" NOT YET
 function! s:set_necomplete() "{{{
 	" let g:neocomplete#enable_at_startup = 1
-
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
-	imap <C-s>     <Plug>(neocomplete_start_unite_complete)
-
 endfunction
 "}}}
-
-call s:init()
 call s:set_necomplete()
 
 let &cpo = s:save_cpo

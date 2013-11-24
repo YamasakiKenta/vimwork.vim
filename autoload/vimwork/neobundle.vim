@@ -18,17 +18,17 @@ function! s:neobundle() "{{{
 				\ 'hooks' : { 'on_source' : function('vimwork#set_necomplete') },
 				\ }
 
+	NeoBundle 'https://github.com/Shougo/neosnippet.git'
+
 	NeoBundleLazy 'https://github.com/Shougo/unite-outline.git', { 
 				\ 'autoload' : {'unite_sources' : 'outline' }
 				\ }
 
 	NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
-	NeoBundle 'https://github.com/Shougo/neosnippet.git'
-	NeoBundle 'https://github.com/Shougo/neobundle-vim-recipes.git'
 
 	" thinca
 	NeoBundle 'https://github.com/thinca/vim-partedit.git'
-	NeoBundle 'https://github.com/thinca/vim-prettyprint.git'
+	" NeoBundle 'https://github.com/thinca/vim-prettyprint.git'
 	NeoBundle 'https://github.com/thinca/vim-qfreplace.git'
 	NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 	NeoBundle 'https://github.com/thinca/vim-ref.git'

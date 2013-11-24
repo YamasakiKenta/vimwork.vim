@@ -161,7 +161,7 @@ function! vimwork#command#my_git_update(str) "{{{
 
 endfunction
 "}}}
-function! vimwork#comman#change_root() "{{{
+function! vimwork#command#change_root() "{{{
 	let root = expand("%:h")
 	let datas = [
 				\ '.*\ze/plugin',
