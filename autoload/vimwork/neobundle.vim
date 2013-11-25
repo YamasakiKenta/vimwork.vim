@@ -84,7 +84,7 @@ function! vimwork#neobundle#mind(root) "{{{
 				\ }
 
 	if get(g:, 'vimwork#neobundle#mine_sync', 0) 
-		unlet data.type
+		unlet g:data.type
 	endif
 
 	NeoBundleLazy 'https://github.com/YamasakiKenta/chain-file.vim.git', extend(copy(g:data), {
