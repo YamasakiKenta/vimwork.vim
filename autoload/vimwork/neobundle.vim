@@ -7,15 +7,15 @@ function! s:neobundle() "{{{
 
 	NeoBundle 'https://github.com/Shougo/vimfiler', {
 				\ 'depends' : 'https://github.com/Shougo/unite.vim.git' ,
-				\ 'hooks' : { 'on_source' : function('vimwork#set_vimfiler') },
+				\ 'hooks' : { 'on_source' : function('vimwork#neobundle#set_vimfiler') },
 				\ }
 
 	NeoBundle 'https://github.com/Shougo/unite.vim.git' , {
-				\ 'hooks' : { 'on_source' : function('vimwork#set_unite') },
+				\ 'hooks' : { 'on_source' : function('vimwork#neobundle#set_unite') },
 				\ }
 
 	NeoBundle 'https://github.com/Shougo/neocomplete.git' , {
-				\ 'hooks' : { 'on_source' : function('vimwork#set_necomplete') },
+				\ 'hooks' : { 'on_source' : function('vimwork#neobundle#set_necomplete') },
 				\ }
 
 	NeoBundle 'https://github.com/Shougo/neosnippet.git'
@@ -35,13 +35,18 @@ function! s:neobundle() "{{{
 
 	" Normal
 	NeoBundle 'https://github.com/fuenor/qfixgrep.git', {
-				\ 'hooks' : { 'on_source' : function('vimwork#set_qfixgrep') },
+				\ 'hooks' : { 'on_source' : function('vimwork#neobundle#set_qfixgrep') },
 				\ }
 
 	NeoBundle 'https://github.com/rbtnn/puyo.vim.git'
 	NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 	NeoBundle 'https://github.com/vim-jp/vital.vim.git'
-	NeoBundle 'https://github.com/vim-scripts/Align.git'
+	NeoBundle 'https://github.com/vim-scripts/Align.git', {
+				\ 'hooks': {'on_source' : function('vimwork#neobundle#set_align') },
+				\ 'autoload': {
+				\	'functions': 'Align#Align',
+				\	'commands': ['ALign', 'Align'],
+				\ }}
 
 	" Unite 
 	NeoBundleLazy 'tsukkee/unite-tag', { 
@@ -100,18 +105,123 @@ function! vimwork#neobundle#mind(root) "{{{
 				\ })
 
 	NeoBundleLazy 'https://github.com/YamasakiKenta/tab-diff.vim.git', extend(copy(g:data), {
-				\ 'hooks' : { 'on_source' : function('vimwork#map_tabdiff') },
+				\ 'hooks' : { 'on_source' : function('vimwork#neobundle#set_tabdiff') },
 				\ 'autoload' : { 'commands' : ['TabDiffStart', 'TabDiffEnd', 'TabDiffOrig'] },
 				\ })
 
 	NeoBundleLazy 'https://github.com/YamasakiKenta/unite-perforce.vim.git', extend(copy(g:data), {
-				\ 'hooks' : { 'on_source' : function('vimwork#map_unite_perforce') },
+				\ 'hooks' : { 'on_source' : function('vimwork#neobundle#set_unite_perforce') },
 				\ })
 	
 	NeoBundleLazy 'https://github.com/YamasakiKenta/vimwork.vim.git', copy(g:data)
 
 	unlet g:data
 
+endfunction "}}}
+" setting
+function! s:unite_grep() "{{{
+	let mode = 'ag'
+	let mode = ""
+	if mode == 'findstr'
+		let g:unite_source_grep_command       = 'findstr'
+		let g:unite_source_grep_default_opts  = '/n'
+		let g:unite_source_grep_recursive_opt = '/s'
+	elseif mode == 'ag'
+		if executable('ag')
+			let g:unite_source_grep_command = 'ag'
+			let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+			let g:unite_source_grep_recursive_opt = ''
+		endif
+	endif
+endfunction
+"}}}
+function! s:map_unite() "{{{
+	let g:unite_enable_start_insert        = 0
+	let g:unite_source_history_yank_enable = 1
+	let g:unite_source_rec_max_cache_files = 100
+
+	nnoremap <leader>ur<CR>  :<C-u>UniteResume<CR>|"
+	nnoremap <leader>uR<CR>  :<C-u>Unite resume<CR>|"
+
+	" nnoremap <leader>uK<CR>  :<C-u>Unite bookmark<CR>|"
+	" nnoremap <leader>uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
+	" nnoremap <leader>uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
+	" nnoremap <leader>ub<CR>  :<C-u>Unite buffer<CR>|"
+	nnoremap <leader>ubt<CR> :<C-u>Unite buffer_tags<CR>|"
+	nnoremap <leader>ue<CR>  :<C-u>Unite outline<CR>|"
+	nnoremap <leader>uf<CR>  :<C-u>Unite file_rec<CR>|"
+	nnoremap <leader>ug<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
+	nnoremap <leader>uG<CR>  :<C-u>UniteResume grep<CR>|"
+	nnoremap <leader>uh<CR>  :<C-u>Unite history/yank<CR>|"
+	nnoremap <leader>uj<CR>  :<C-u>Unite jump<CR>|"
+	nnoremap <leader>ul<CR>  :<C-u>Unite line/fast<CR>|"
+	nnoremap <leader>um<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap <leader>uom<CR> :<C-u>Unite output:message<CR>|"
+	nnoremap <leader>upt<CR> :<C-u>Unite settings/ex<CR>|"
+	nnoremap <leader>us<CR>  :<C-u>Unite source<CR>|"
+	nnoremap <leader>ut<CR>  :<C-u>Unite tag<CR>|"
+	nnoremap <leader>qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
+
+	nnoremap <leader>up<CR>  :<C-u>Unite settings_var<CR>|"
+	nnoremap <leader>upa<CR> :<C-u>Unite settings_var_all<CR>|"
+
+endfunction
+"}}}
+function! vimwork#neobundle#set_unite(...) "{{{
+	" call s:unite_grep()
+	call s:map_unite()
+endfunction
+"}}}
+function! vimwork#neobundle#set_unite_perforce(...) "{{{
+	nmap <leader>cl<CR> <PLUG>(p4_echo_client_data)
+	nmap <leader>cr<CR> <PLUG>(p4_lcd_clentpath)
+	nmap <leader>ff<CR> <PLUG>(p4_find)
+	nmap <leader>pl<CR> <PLUG>(p4_filelog)
+	nmap <leader>pd<CR> <PLUG>(p4_diff)
+	nmap <leader>id<CR> <PLUG>(p4_get_depot)
+
+	nnoremap <leader>pan<CR> :<C-u>PfAnnotate<CR>|"
+	nnoremap <leader>pda<CR> :<c-u>Unite p4/diff<CR>|"
+	nnoremap <leader>pp<CR>  :<c-u>PfSetting<CR>|"
+	nnoremap <leader>pr<CR>  :<c-u>PfRevert<CR>|"
+	nnoremap <leader>pe<CR>  :<c-u>PfEdit<CR>|"
+	nnoremap <leader>pE<CR>  :<c-u>PfAdd<CR>|"
+	nnoremap <leader>wd<CR>  :<c-u>PfDiff<CR>|"
+	nnoremap <leader>pi<CR>  :<C-u>Unite p4/info<CR>|"
+	nnoremap <leader>pt<CR>  :<C-u>Unite p4/clients -default-action=a_p4_client_set<CR>|"
+	nnoremap <leader>pc<CR>  :<C-u>Unite p4/changes_pending<CR>|"
+	nnoremap <leader>ps<CR>  :<C-u>Unite p4/changes_submitted<CR>|"
+	nnoremap <leader>po<CR>  :<C-u>Unite p4/opened<CR>|"
+	nnoremap <leader>pj<CR>  :<C-u>Unite p4/jobs<CR>|"
+	nnoremap <leader>ph<CR>  :<C-u>Unite p4/have_reset<CR>|"
+	nnoremap <leader>pa<CR>  :<C-u>Unite p4/annotate<CR>|"
+	nnoremap <leader>pC<CR>  :<C-u>Unite p4/changes_pending_reopen<CR>|"
+	nnoremap <leader>pte<CR> :<C-u>Unite p4/template<CR>|"
+	nnoremap <leader>pf<CR>  :call unite#start([['p4/files', getcwd()]])<CR>|"
+	nnoremap <leader>pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
+endfunction
+"}}}
+function! vimwork#neobundle#set_necomplete(...) "{{{
+endfunction
+"}}}
+function! vimwork#neobundle#set_vimfiler(...) "{{{
+	let g:vimfiler_as_default_explorer  = 1  " # èâä˙filer
+	let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
+endfunction
+"}}}
+function! vimwork#neobundle#set_tabdiff(...) "{{{
+	nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
+	nnoremap <leader>dn<CR> :<C-u>TabDiffEnd<CR>
+	nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
+endfunction
+"}}}
+function! vimwork#neobundle#set_qfixgrep(...) "{{{
+	let QFix_CloseOnJump = 1
+endfunction
+"}}}
+function! vimwork#neobundle#set_align(...) "{{{
+	let g:Align_xstrlen = 3
+	command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
 endfunction "}}}
 
 if exists('s:save_cpo')
