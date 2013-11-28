@@ -23,7 +23,7 @@ function! s:set() "{{{
 	set ignorecase
 	set incsearch
 	set laststatus=2
-	set lcs=tab:`\
+	set lcs=tab:`\ |"
 	set list
 	set modeline
 	set noswapfile
