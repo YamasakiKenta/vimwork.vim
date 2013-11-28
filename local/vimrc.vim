@@ -5,16 +5,17 @@ set cpo&vim
 " QuickRun -hook/time/enable 1
 " }}}
 
-" plugin {{{
 set rtp+=~/Dropbox/vim/mind/vimwork.vim
 call vimwork#neobundle#init()
 
 let path = substitute(expand('~/dropbox/vim/mind'), '\\', '\/', 'g')
 call vimwork#neobundle#mind(path)
-" }}}
 
-call vimwork#init()
-call vimwork#set_dir(expand('~/Dropbox/vim/mind/vimwork.vim'))
+call vimwork#main()
+
+call vimwork#set_gui()
+call vimwork#set_ctags()
+call vimwork#set_cscope()
 
 let g:chain_dict = { '__file' : {
 			\ 'vimrc.vim' : '../autoload/vimwork.vim',
@@ -26,27 +27,18 @@ let g:chain_dict = { '__file' : {
 			\ ],
 			\ }
 
-nnoremap <leader>de<CR>   :<C-u>lcd ~/Desktop<CR>|"
-nnoremap <leader>dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
-nnoremap <leader>ig<CR>   :<C-u>GetVimFunctionName<CR>|"
-nnoremap <leader>m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
-nnoremap <A-Space>        :<C-u>simalt ~<CR>|" " Window変更
-set dict+=~/Dropbox/vim/mind/vimwork.vim/dict
-set ff=unix
-set fenc=utf-8
-
-let g:load_doxygen_syntax = 1
-let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
-set backupdir=~/vimbackup
-if !isdirectory(expand(&backupdir))
-	call mkdir(expand(&backupdir))
-endif
-
 function! s:set_necomplete() 
 	" let g:neocomplete#enable_at_startup = 1
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
 endfunction
 call s:set_necomplete()
+
+" 環境で変更する
+nnoremap <leader>dv<CR>   :<C-u>e ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim<CR>|"
+nnoremap <leader>de<CR>   :<C-u>lcd ~/Desktop<CR>|"
+nnoremap <leader>m<CR>    :<C-u>lcd ~/Dropbox/vim/mind<CR>|"
+" let g:neosnippet#snippets_directory = s:fname.'/snippets'
+
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

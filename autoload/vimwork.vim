@@ -5,12 +5,13 @@ set cpo&vim
 let s:fname = substitute(expand("<sfile>"), '\\', '\/', 'g')
 
 " init
-set backupdir=~/vimbackup
+set backupdir=~/.vim/bak
 if !isdirectory(expand(&backupdir))
 	call mkdir(expand(&backupdir))
 endif
 
-function! s:set() "{{{
+function! vimwork#main()
+	" set {{{
 	set autoread
 	set cursorline
 	set dip=filler,icase,iwhite,vertical
@@ -35,8 +36,10 @@ function! s:set() "{{{
 	set tabstop=4
 	set tw=0
 	set ve=block
-endfunction "}}}
-function! s:nnoremap() "{{{
+	set ff=unix
+	set fenc=utf-8
+	" }}}
+	" map {{{
 	nnoremap <S-Space> za|"    
 	nnoremap <C-]> <C-]>zz|"    
 	nnoremap <C-j> j.|"
@@ -54,43 +57,35 @@ function! s:nnoremap() "{{{
 	nnoremap <leader>ry<CR> :<C-u>windo set scrollbind<CR>|"
 	nnoremap [[ [[zz|"
 	nnoremap ]] ]]zz|"
-endfunction "}}}
-function! s:map() "{{{
 	map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>:echo @/<CR>|"
 	map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'\|echo @/<CR>|"
-endfunction"}}}
-function! s:nmap() "{{{
 	nmap <leader>sy<CR> 	<Plug>(edit_syntax_file)
 	nmap <leader>uq<CR> 	<Plug>(uniq_line)
 	nmap v/ 		<Plug>(select_search)
-endfunction"}}}
-function! s:vnoremap() "{{{
 	vnoremap < <gv|"
 	vnoremap > >gv|"
-endfunction"}}}
-
+	" }}}
+	let g:neosnippet#snippets_directory = s:fname.'/snippets'
+	let g:vimwork#syntax_directory = s:fname
+	let g:load_doxygen_syntax = 1
+	let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
+	exe 'set dict+='.s:fname.'/dict'
+	"so $VIMRUNTIME/macros/matchit.vim
+endfunction 
 function! vimwork#set_gui() "{{{
 	if !has('gui')
-		set ruler           " # カーソルの位置の表示
-		set nocompatible    " # vimの機?が使える
-		syntax enable       " # 色を付け - 設定がリセッ?され??
+		set ruler      
+		set nocompatible
+		syntax enable 
 		filetype on
 		filetype indent on
 		filetype plugin on
+		nnoremap <A-Space> :<C-u>simalt ~<CR>|" 
 	endif
 endfunction
 "}}}
-function! vimwork#map_misc() "{{{
-	call s:set()
-	call s:nnoremap()
-	call s:map()
-	call s:nmap()
-	call s:vnoremap()
-	"so $VIMRUNTIME/macros/matchit.vim
-	"set hidden
-endfunction "}}}
 function! vimwork#set_ctags() "{{{
-	nnoremap <C-\>z :Grep /s <c-r>=expand("<cword>") *.vim *.php *.js<CR>|"
+	nnoremap <C-\>z :Grep /s <c-r>=expand("<cword>")<CR> *.vim *.php *.js|"
 	nnoremap <C-\>K :call system("ctags -R --excmd=number")<CR>|"
 endfunction 
 "}}}
@@ -108,20 +103,6 @@ function! vimwork#set_cscope() "{{{
 	nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
 endfunction
 "}}}
-" plugin
-function! vimwork#set_dir(local_path) "{{{
-	let path       = substitute(substitute(s:fname, '\\', '\/', 'g'), 'autoload[\\\/].*', '', '')
-	let local_path = substitute(a:local_path, '\\', '\/', 'g')
-	let g:neosnippet#snippets_directory = join(map([path, local_path], "v:val.'/snippets'"),',')
-	let g:vimwork#syntax_directory = path
-endfunction "}}}
-
-function! vimwork#init()
-	call vimwork#set_gui()
-	call vimwork#map_misc()
-	call vimwork#set_ctags()
-	call vimwork#set_cscope()
-endfunction
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
