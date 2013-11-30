@@ -73,7 +73,7 @@ function! vimwork#main()
 	"so $VIMRUNTIME/macros/matchit.vim
 endfunction 
 function! vimwork#set_gui() "{{{
-	if !has('gui')
+	if has('gui')
 		set ruler      
 		set nocompatible
 		syntax enable 
