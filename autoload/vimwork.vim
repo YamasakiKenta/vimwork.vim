@@ -3,6 +3,7 @@ set cpo&vim
 
 " fname
 let s:fname = substitute(expand("<sfile>"), '\\', '\/', 'g')
+let s:dir   = simplify(s:fname.'/../..')
 
 " init
 set backupdir=~/.vim/bak
@@ -65,11 +66,11 @@ function! vimwork#main()
 	vnoremap < <gv|"
 	vnoremap > >gv|"
 	" }}}
-	let g:neosnippet#snippets_directory = s:fname.'/snippets'
-	let g:vimwork#syntax_directory = s:fname
+	let g:neosnippet#snippets_directory = s:dir.'/snippets'
+	let g:vimwork#syntax_directory = s:dir
 	let g:load_doxygen_syntax = 1
 	let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
-	exe 'set dict+='.s:fname.'/dict'
+	exe 'set dict+='.s:dir.'/dict'
 	"so $VIMRUNTIME/macros/matchit.vim
 endfunction 
 function! vimwork#set_gui() "{{{
