@@ -2,18 +2,17 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! vimwork#neobundle#init()
+endfunction
 
 if has("vim_starting")
 	set rtp+=~/.vim/bundle/neobundle.vim
 endif
-
 call neobundle#rc()
 
 " Shougo
-NeoBundleFetch 'https://github.com/Shougo/shougo-s-github.git'
-
-NeoBundle 'https://github.com/Shougo/vimfiler', {
-			\ 'depends' : 'https://github.com/Shougo/unite.vim.git' ,
+NeoBundleFetch 'Shougo/shougo-s-github'
+NeoBundle 'Shougo/vimfiler', {
+			\ 'depends' : 'Shougo/unite.vim' ,
 			\ }
 let bundle = neobundle#get('vimfiler')
 function! bundle.hooks.on_source(bundle) "{{{
@@ -22,8 +21,7 @@ function! bundle.hooks.on_source(bundle) "{{{
 endfunction
 unlet bundle
 "}}}
-
-NeoBundle 'https://github.com/Shougo/unite.vim.git'
+NeoBundle 'Shougo/unite.vim'
 let bundle = neobundle#get('unite.vim')
 function! bundle.hooks.on_source(bundle) "{{{
 	let g:unite_enable_start_insert        = 1
@@ -72,40 +70,40 @@ function! bundle.hooks.on_post_source(bundle) "{{{
 endfunction "}}}
 unlet bundle
 
-NeoBundle 'https://github.com/Shougo/neocomplete.git'
+NeoBundle 'Shougo/neocomplete'
 
-NeoBundle 'https://github.com/Shougo/neosnippet.git'
+NeoBundle 'Shougo/neosnippet'
 let bundle = neobundle#get('neosnippet')
 function! bundle.hooks.on_source(bundle)
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
 endfunction
 unlet bundle
 
-NeoBundleLazy 'https://github.com/Shougo/unite-outline.git', { 
+NeoBundleLazy 'Shougo/unite-outline', { 
 			\ 'autoload' : {'unite_sources' : 'outline' }
 			\ }
 
-NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
+NeoBundle 'Shougo/neobundle.vim'
 
 " thinca
-NeoBundle 'https://github.com/thinca/vim-partedit.git'
-" NeoBundle 'https://github.com/thinca/vim-prettyprint.git'
-NeoBundle 'https://github.com/thinca/vim-qfreplace.git'
-NeoBundle 'https://github.com/thinca/vim-quickrun.git'
-NeoBundle 'https://github.com/thinca/vim-ref.git'
+NeoBundle 'thinca/vim-partedit'
+" NeoBundle 'thinca/vim-prettyprint'
+NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
 
 " Normal
-NeoBundle 'https://github.com/fuenor/qfixgrep.git'
+NeoBundle 'fuenor/qfixgrep'
 let bundle = neobundle#get('qfixgrep')
 function! bundle.hooks.on_source(bundle) "{{{
 	let QFix_CloseOnJump = 1
 endfunction "}}}
 unlet bundle
 
-NeoBundle 'https://github.com/rbtnn/puyo.vim.git'
-NeoBundle 'https://github.com/tpope/vim-fugitive.git'
-NeoBundle 'https://github.com/vim-jp/vital.vim.git'
-NeoBundle 'https://github.com/vim-scripts/Align.git', {
+NeoBundle 'rbtnn/puyo.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'vim-jp/vital.vim'
+NeoBundle 'vim-scripts/Align', {
 			\ 'autoload': {
 			\	'functions': 'Align#Align',
 			\	'commands': ['ALign', 'Align'],
@@ -127,7 +125,7 @@ NeoBundleLazy 'osyo-manga/unite-quickfix', {
 			\ }
 
 " Setting
-NeoBundle 'https://github.com/Shougo/vimproc.git', {
+NeoBundle 'Shougo/vimproc', {
 			\ 'build'   : {
 			\   'windows' : 'make -f make_mingw32.mak',
 			\   'cygwin'  : 'make -f make_cygwin.mak',
@@ -136,18 +134,18 @@ NeoBundle 'https://github.com/Shougo/vimproc.git', {
 			\   },
 			\ }
 " mind
-NeoBundleLazy 'https://github.com/YamasakiKenta/chain-file.vim.git', {
+NeoBundleLazy 'YamasakiKenta/chain-file.vim', {
 			\ 'autoload' : { 'commands' : 'ChainFile' }
 			\ }
-NeoBundleLazy 'https://github.com/YamasakiKenta/tree.vim.git'
-NeoBundleLazy 'https://github.com/YamasakiKenta/unite-setting-ex.vim.git', {
+NeoBundleLazy 'YamasakiKenta/tree.vim'
+NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim', {
 			\ 'autoload' : { 'unite_sources' : 'settings/ex' }
 			\ }
-NeoBundleLazy 'https://github.com/YamasakiKenta/unite-setting.vim.git', {
+NeoBundleLazy 'YamasakiKenta/unite-setting.vim', {
 			\ 'autoload' : { 'unite_sources' : 'settings' }
 			\ }
 
-NeoBundleLazy 'https://github.com/YamasakiKenta/tab-diff.vim.git', {
+NeoBundleLazy 'YamasakiKenta/tab-diff.vim', {
 			\ 'autoload' : { 'commands' : ['TabDiffStart', 'TabDiffEnd', 'TabDiffOrig'] },
 			\ }
 let bundle = neobundle#get('tab-diff.vim')
@@ -158,7 +156,7 @@ function! bundle.hooks.on_source(bundle) "{{{
 endfunction "}}}
 unlet bundle
 
-NeoBundleLazy 'https://github.com/YamasakiKenta/unite-perforce.vim.git'
+NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 let bundle = neobundle#get('unite-perforce.vim')
 function bundle.hooks.on_source(bundle) "{{{
 	nmap <leader>cl<CR> <PLUG>(p4_echo_client_data)
@@ -190,12 +188,9 @@ function bundle.hooks.on_source(bundle) "{{{
 endfunction "}}}
 unlet bundle
 
-NeoBundleLazy 'https://github.com/YamasakiKenta/vimwork.vim.git'
+NeoBundleLazy 'YamasakiKenta/vimwork.vim'
 
 filetype plugin indent on
-
-echo 'load neobundle'
-endfunction
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
