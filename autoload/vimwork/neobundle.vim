@@ -9,26 +9,64 @@ if has("vim_starting")
 endif
 call neobundle#rc()
 
-" Fetch
+" NeoBundleFetch
+NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
-" Shougo
-NeoBundleFetch 'Shougo/shougo-s-github'
-NeoBundle 'Shougo/vimfiler', {
-			\ 'depends' : 'Shougo/unite.vim' ,
+" NeoBundle
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/vimfiler', { 'depends' : 'Shougo/unite.vim' }
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'thinca/vim-partedit'
+NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'fuenor/qfixgrep'
+NeoBundle 'rbtnn/puyo.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'vim-jp/vital.vim'
+NeoBundle 'Shougo/vimproc'
+
+" NeoBundleLazy
+NeoBundleLazy 'Shougo/unite-outline', { 
+			\ 'autoload' : {'unite_sources' : 'outline' }
 			\ }
-let bundle = neobundle#get('vimfiler')
-function! bundle.hooks.on_source(bundle) "{{{
+NeoBundleLazy 'vim-scripts/Align', {
+			\ 'autoload': {
+			\	'functions': 'Align#Align',
+			\	'commands': ['ALign', 'Align'],
+			\ }}
+NeoBundleLazy 'tsukkee/unite-tag', { 
+			\ 'autoload' : { 'unite_sources' : 'tag'}
+			\ }
+NeoBundleLazy 'osyo-manga/unite-quickfix', { 
+			\ 'autoload' : {'unite_sources' : 'quickfix'}
+			\ }
+NeoBundleLazy 'YamasakiKenta/chain-file.vim', {
+			\ 'autoload' : { 'commands' : 'ChainFile' }
+			\ }
+NeoBundleLazy 'YamasakiKenta/tree.vim'
+NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim', {
+			\ 'autoload' : { 'unite_sources' : 'settings/ex' }
+			\ }
+NeoBundleLazy 'YamasakiKenta/unite-setting.vim', {
+			\ 'autoload' : { 'unite_sources' : 'settings' }
+			\ }
+NeoBundleLazy 'YamasakiKenta/tab-diff.vim', {
+			\ 'autoload' : { 'commands' : ['TabDiffStart', 'TabDiffEnd', 'TabDiffOrig'] },
+			\ }
+NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
+
+" on_hooks
+let bundle = neobundle#get('vimfiler') "{{{
+function! bundle.hooks.on_source(bundle) 
 	let g:vimfiler_as_default_explorer  = 1  " # 初期filer
 	let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
-endfunction
-unlet bundle
+endfunction 
 "}}}
-"
-NeoBundle 'Shougo/unite.vim'
-let bundle = neobundle#get('unite.vim')
-function! bundle.hooks.on_source(bundle) "{{{
+let bundle = neobundle#get('unite.vim') "{{{
+function! bundle.hooks.on_source(bundle) 
 	let g:unite_enable_start_insert        = 1
 	let g:unite_source_history_yank_enable = 1
 	let g:unite_source_rec_max_cache_files = 100
@@ -56,7 +94,6 @@ function! bundle.hooks.on_source(bundle) "{{{
 	nnoremap <leader>us<CR>  :<C-u>Unite source<CR>|"
 	nnoremap <leader>ut<CR>  :<C-u>Unite tag<CR>|"
 
-	let mode = 'ag'
 	let mode = ""
 	if mode == 'findstr'
 		let g:unite_source_grep_command       = 'findstr'
@@ -69,98 +106,45 @@ function! bundle.hooks.on_source(bundle) "{{{
 			let g:unite_source_grep_recursive_opt = ''
 		endif
 	endif
-endfunction "}}}
-function! bundle.hooks.on_post_source(bundle) "{{{
+endfunction 
+function! bundle.hooks.on_post_source(bundle) 
 	call vimwork#unite#init()
-endfunction "}}}
+endfunction 
 
-NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 let bundle = neobundle#get('neosnippet')
 function! bundle.hooks.on_source(bundle)
 	imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
 endfunction
-unlet bundle
-
-NeoBundleLazy 'Shougo/unite-outline', { 
-			\ 'autoload' : {'unite_sources' : 'outline' }
-			\ }
-
-
-" thinca
-NeoBundle 'thinca/vim-partedit'
-" NeoBundle 'thinca/vim-prettyprint'
-NeoBundle 'thinca/vim-qfreplace'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
-
-" Normal
-NeoBundle 'fuenor/qfixgrep'
-let bundle = neobundle#get('qfixgrep')
-function! bundle.hooks.on_source(bundle) "{{{
+"}}}
+let bundle = neobundle#get('qfixgrep') "{{{
+function! bundle.hooks.on_source(bundle) 
 	let QFix_CloseOnJump = 1
-endfunction "}}}
-unlet bundle
-
-NeoBundle 'rbtnn/puyo.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'vim-jp/vital.vim'
-NeoBundle 'vim-scripts/Align', {
-			\ 'autoload': {
-			\	'functions': 'Align#Align',
-			\	'commands': ['ALign', 'Align'],
-			\ }}
-let bundle = neobundle#get('Align')
-function! bundle.hooks.on_source(bundle) "{{{
+endfunction 
+"}}}
+let bundle = neobundle#get('Align') "{{{
+function! bundle.hooks.on_source(bundle) 
 	let g:Align_xstrlen = 3
 	command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
-endfunction "}}}
-unlet bundle
-
-" Unite 
-NeoBundleLazy 'tsukkee/unite-tag', { 
-			\ 'autoload' : { 'unite_sources' : 'tag'}
+endfunction 
+"}}}
+let bundle = neobundle#get('vimproc') "{{{
+let bundle.build = {
+			\ 'windows' : 'make -f make_mingw32.mak',
+			\ 'cygwin'  : 'make -f make_cygwin.mak',
+			\ 'mac'     : 'make -f make_mac.mak',
+			\ 'unix'    : 'make -f make_unix.mak',
 			\ }
-
-NeoBundleLazy 'osyo-manga/unite-quickfix', { 
-			\ 'autoload' : {'unite_sources' : 'quickfix'}
-			\ }
-
-" Setting
-NeoBundle 'Shougo/vimproc', {
-			\ 'build'   : {
-			\   'windows' : 'make -f make_mingw32.mak',
-			\   'cygwin'  : 'make -f make_cygwin.mak',
-			\   'mac'     : 'make -f make_mac.mak',
-			\   'unix'    : 'make -f make_unix.mak',
-			\   },
-			\ }
-" mind
-NeoBundleLazy 'YamasakiKenta/chain-file.vim', {
-			\ 'autoload' : { 'commands' : 'ChainFile' }
-			\ }
-NeoBundleLazy 'YamasakiKenta/tree.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim', {
-			\ 'autoload' : { 'unite_sources' : 'settings/ex' }
-			\ }
-NeoBundleLazy 'YamasakiKenta/unite-setting.vim', {
-			\ 'autoload' : { 'unite_sources' : 'settings' }
-			\ }
-
-NeoBundleLazy 'YamasakiKenta/tab-diff.vim', {
-			\ 'autoload' : { 'commands' : ['TabDiffStart', 'TabDiffEnd', 'TabDiffOrig'] },
-			\ }
-let bundle = neobundle#get('tab-diff.vim')
-function! bundle.hooks.on_source(bundle) "{{{
+"}}}
+let bundle = neobundle#get('tab-diff.vim') "{{{
+function! bundle.hooks.on_source(bundle) 
 	nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
 	nnoremap <leader>dn<CR> :<C-u>TabDiffEnd<CR>
 	nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
-endfunction "}}}
-unlet bundle
-
-NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
-let bundle = neobundle#get('unite-perforce.vim')
-function bundle.hooks.on_source(bundle) "{{{
+endfunction 
+"}}}
+let bundle = neobundle#get('unite-perforce.vim') "{{{
+function bundle.hooks.on_source(bundle) 
 	nmap <leader>cl<CR> <PLUG>(p4_echo_client_data)
 	nmap <leader>cr<CR> <PLUG>(p4_lcd_clentpath)
 	nmap <leader>ff<CR> <PLUG>(p4_find)
@@ -187,8 +171,8 @@ function bundle.hooks.on_source(bundle) "{{{
 	nnoremap <leader>pte<CR> :<C-u>Unite p4/template<CR>|"
 	nnoremap <leader>pf<CR>  :call unite#start([['p4/files', getcwd()]])<CR>|"
 	nnoremap <leader>pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
-endfunction "}}}
-
+endfunction 
+"}}}
 unlet bundle
 
 filetype plugin indent on
