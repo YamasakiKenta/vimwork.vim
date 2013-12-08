@@ -15,18 +15,17 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
 " NeoBundle
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/vimfiler', { 'depends' : 'Shougo/unite.vim' }
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'fuenor/qfixgrep'
+NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'thinca/vim-partedit'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
-NeoBundle 'fuenor/qfixgrep'
-NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-jp/vital.vim'
-NeoBundle 'Shougo/vimproc'
 
 " NeoBundleLazy
 NeoBundleLazy 'Shougo/unite-outline', { 
@@ -54,9 +53,23 @@ NeoBundleLazy 'YamasakiKenta/unite-setting.vim', {
 			\ 'autoload' : { 'unite_sources' : 'settings' }
 			\ }
 NeoBundleLazy 'YamasakiKenta/tab-diff.vim', {
-			\ 'autoload' : { 'commands' : ['TabDiffStart', 'TabDiffEnd', 'TabDiffOrig'] },
+			\ 'autoload' : { 
+			\ 'commands' : ['TabDiffStart', 'TabDiffEnd', 'TabDiffOrig'] },
+			\ 'mappings' : ',dy<CR>',
 			\ }
 NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
+NeoBundleLazy 'Shougo/vimfiler', {
+			\ 'depends' : 'Shougo/unite.vim',
+			\ 'autoload' : {
+			\ 'commands' : [
+			\ {'name' : 'VimFiler'         , 'complete' : 'customlist , vimfiler#complete'} , 
+			\ {'name' : 'VimFilerExplorer' , 'complete' : 'customlist , vimfiler#complete'} , 
+			\ {'name' : 'Edit'             , 'complete' : 'customlist , vimfiler#complete'} , 
+			\ {'name' : 'Write'            , 'complete' : 'customlist , vimfiler#complete'} , 
+			\ 'Read', 'Source'],
+			\ 'mappings' : '<Plug>(vimfiler_',
+			\ 'explorer' : 1,
+			\ }}
 
 " on_hooks
 let bundle = neobundle#get('vimfiler') "{{{
@@ -75,24 +88,25 @@ function! bundle.hooks.on_source(bundle)
 	" nnoremap <leader>uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
 	" nnoremap <leader>ub<CR>  :<C-u>Unite buffer<CR>|"
 	" nnoremap <leader>uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
-	nnoremap <leader>qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
-	nnoremap <leader>uG<CR>  :<C-u>UniteResume grep<CR>|"
-	nnoremap <leader>uR<CR>  :<C-u>Unite resume<CR>|"
-	nnoremap <leader>ubt<CR> :<C-u>Unite buffer_tags<CR>|"
-	nnoremap <leader>ue<CR>  :<C-u>Unite outline<CR>|"
-	nnoremap <leader>uf<CR>  :<C-u>Unite file_rec<CR>|"
-	nnoremap <leader>ug<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
-	nnoremap <leader>uh<CR>  :<C-u>Unite history/yank<CR>|"
-	nnoremap <leader>uj<CR>  :<C-u>Unite jump<CR>|"
-	nnoremap <leader>ul<CR>  :<C-u>Unite line/fast<CR>|"
-	nnoremap <leader>um<CR>  :<C-u>Unite file_mru<CR>|"
-	nnoremap <leader>uom<CR> :<C-u>Unite output:message<CR>|"
-	nnoremap <leader>up<CR>  :<C-u>Unite settings_var<CR>|"
-	nnoremap <leader>upa<CR> :<C-u>Unite settings_var_all<CR>|"
-	nnoremap <leader>upt<CR> :<C-u>Unite settings/ex<CR>|"
-	nnoremap <leader>ur<CR>  :<C-u>UniteResume<CR>|"
-	nnoremap <leader>us<CR>  :<C-u>Unite source<CR>|"
-	nnoremap <leader>ut<CR>  :<C-u>Unite tag<CR>|"
+	nmap <leader>u [unite]
+	nnoremap [unite]qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
+	nnoremap [unite]G<CR>  :<C-u>UniteResume grep<CR>|"
+	nnoremap [unite]R<CR>  :<C-u>Unite resume<CR>|"
+	nnoremap [unite]bt<CR> :<C-u>Unite buffer_tags<CR>|"
+	nnoremap [unite]e<CR>  :<C-u>Unite outline<CR>|"
+	nnoremap [unite]f<CR>  :<C-u>Unite file_rec<CR>|"
+	nnoremap [unite]g<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
+	nnoremap [unite]h<CR>  :<C-u>Unite history/yank<CR>|"
+	nnoremap [unite]j<CR>  :<C-u>Unite jump<CR>|"
+	nnoremap [unite]l<CR>  :<C-u>Unite line/fast<CR>|"
+	nnoremap [unite]m<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap [unite]om<CR> :<C-u>Unite output:message<CR>|"
+	nnoremap [unite]p<CR>  :<C-u>Unite settings_var<CR>|"
+	nnoremap [unite]pa<CR> :<C-u>Unite settings_var_all<CR>|"
+	nnoremap [unite]pt<CR> :<C-u>Unite settings/ex<CR>|"
+	nnoremap [unite]r<CR>  :<C-u>UniteResume<CR>|"
+	nnoremap [unite]s<CR>  :<C-u>Unite source<CR>|"
+	nnoremap [unite]t<CR>  :<C-u>Unite tag<CR>|"
 
 	let mode = ""
 	if mode == 'findstr'
@@ -173,7 +187,9 @@ function bundle.hooks.on_source(bundle)
 	nnoremap <leader>pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
 endfunction 
 "}}}
+
 unlet bundle
+call neobundle#call_hook('on_source')
 
 filetype plugin indent on
 
