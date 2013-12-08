@@ -1,6 +1,8 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+function! vimwork#unite#init()
+endfunction
 
 let action = {
 			\ 'is_selectable' : 1, 
