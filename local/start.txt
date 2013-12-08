@@ -1,6 +1,0 @@
-1. 
-git clone 'https://github.com/Shougo/neobundle.vim.git' ~/.vim/bundle/neobundle.vim
-git clone 'https://github.com/Shougo/neobundle.vim.git' ~/dropbox/vim/mind/vimwork.vim
-
-2.
-source ~/Dropbox/vim/mind/vimwork.vim/local/vimrc.vim

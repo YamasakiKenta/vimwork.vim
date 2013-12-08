@@ -63,7 +63,7 @@ let s:dir = simplify(substitute(expand("<sfile>"), '\\', '\/', 'g').'/../..')
 let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
-let g:ref_phpmanual_path = 'C:/Users/kenta/lnk/ref/php-chunked-xhtml'
+let g:ref_phpmanual_path = '~/lnk/ref/php-chunked-xhtml'
 exe 'set dict+='.s:dir.'/dict'
 " }}}
 

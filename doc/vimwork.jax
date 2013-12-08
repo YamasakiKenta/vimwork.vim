@@ -16,14 +16,8 @@ COMMANDS *vimwork-commands*
 
 	それらもない場合は、{from} = "c:" {to} = "c:\tmp" となる
 
-:QuickMemo {text} *:QuickMemo*
-	|qfixmemo|の日記に{text}を追加します
-
 :AddSerach {word} *:AddSerach*
 	現在の検索変数に、{word}を追加します
-
-:MySwap {word} *:MySwap*
-	現在の行を、{word}を中心に入れ替わる
 
 ==============================================================================
 SOURCES *vimwork-unite-source*

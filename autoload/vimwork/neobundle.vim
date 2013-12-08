@@ -9,6 +9,10 @@ if has("vim_starting")
 endif
 call neobundle#rc()
 
+" Fetch
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'YamasakiKenta/vimwork.vim'
+
 " Shougo
 NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundle 'Shougo/vimfiler', {
@@ -21,6 +25,7 @@ function! bundle.hooks.on_source(bundle) "{{{
 endfunction
 unlet bundle
 "}}}
+"
 NeoBundle 'Shougo/unite.vim'
 let bundle = neobundle#get('unite.vim')
 function! bundle.hooks.on_source(bundle) "{{{
@@ -68,10 +73,8 @@ endfunction "}}}
 function! bundle.hooks.on_post_source(bundle) "{{{
 	call vimwork#unite#init()
 endfunction "}}}
-unlet bundle
 
 NeoBundle 'Shougo/neocomplete'
-
 NeoBundle 'Shougo/neosnippet'
 let bundle = neobundle#get('neosnippet')
 function! bundle.hooks.on_source(bundle)
@@ -83,7 +86,6 @@ NeoBundleLazy 'Shougo/unite-outline', {
 			\ 'autoload' : {'unite_sources' : 'outline' }
 			\ }
 
-NeoBundle 'Shougo/neobundle.vim'
 
 " thinca
 NeoBundle 'thinca/vim-partedit'
@@ -186,9 +188,8 @@ function bundle.hooks.on_source(bundle) "{{{
 	nnoremap <leader>pf<CR>  :call unite#start([['p4/files', getcwd()]])<CR>|"
 	nnoremap <leader>pF<CR>  :call unite#start([['p4/files', expand("%:h")]])<CR>|"
 endfunction "}}}
-unlet bundle
 
-NeoBundleLazy 'YamasakiKenta/vimwork.vim'
+unlet bundle
 
 filetype plugin indent on
 

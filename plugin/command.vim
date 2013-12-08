@@ -1,9 +1,6 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-" 前後の入れ替え
-command! -range -nargs=? MySwap <line1>,<line2>call vimwork#command#mySwap(<q-args>) 
-
 " 検索ワードの追加
 command! -narg=* AddSearch call vimwork#command#add_serach(<f-args>) 
 
@@ -19,6 +16,9 @@ command! -narg=0 SetNum call vimwork#command#set_num()
 " 管理
 command! -nargs=? MyGitUpdate call vimwork#command#my_git_update(<q-args>) 
 command! ChangeRoot call vomwork#command#change_root()
+
+" 初期設定 , 対応するファイル
+command! -narg=* -range SortFunction call sort_function#sort_function(<line1>, <line2>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
