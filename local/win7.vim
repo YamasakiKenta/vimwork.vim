@@ -7,8 +7,8 @@ call vimwork#set_ctags()
 call vimwork#set_cscope()
 
 let g:chain_dict = { '__file' : {
-			\ 'vimrc.vim' : '../autoload/vimwork.vim',
-			\ 'autoload/vimwork.vim' : '../local/vimrc.vim',
+			\ 'win7.vim' : '../autoload/vimwork.vim',
+			\ 'autoload/vimwork.vim' : '../local/win7.vim',
 			\ },
 			\ '__pattern' : [
 			\ { 'before' : 'autoload\(/.*\)\?/\(.*\.vim$\)' , 'after' : 'plugin/**/\2'},

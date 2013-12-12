@@ -45,10 +45,10 @@ NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 NeoBundleLazy 'Shougo/vimfiler'
 
 if neobundle#tap('unite.vim') "{{{unite.vim
-    call neobundle#config({'autoload':{'commands':['Unite']}})
+	call neobundle#config({'autoload':{'commands':['Unite']}})
 endif "}}}unite.vim
 if neobundle#tap('unite-setting.vim') "{{{unite-setting.vim
-    call neobundle#config({'autoload':{'unite_sources': 'setting'}})
+	call neobundle#config({'autoload':{'unite_sources': 'setting'}})
 endif "}}}unite-setting.vim
 if neobundle#tap('unite-setting-ex.vim') "{{{unite-setting-ex.vim
 	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
@@ -90,34 +90,34 @@ if neobundle#tap('vimfiler') "{{{vimfiler
 	endfunction 
 endif "}}}vimfiler
 if neobundle#tap('unite.vim') "{{{unite.vim
+	nmap <leader>u [unite]
+	" nnoremap [unite]uK<CR>  :<C-u>Unite bookmark<CR>|"
+	" nnoremap [unite]uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
+	" nnoremap [unite]ub<CR>  :<C-u>Unite buffer<CR>|"
+	" nnoremap [unite]uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
+	nnoremap [unite]qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
+	nnoremap [unite]G<CR>  :<C-u>UniteResume grep<CR>|"
+	nnoremap [unite]R<CR>  :<C-u>Unite resume<CR>|"
+	nnoremap [unite]bt<CR> :<C-u>Unite buffer_tags<CR>|"
+	nnoremap [unite]e<CR>  :<C-u>Unite outline<CR>|"
+	nnoremap [unite]f<CR>  :<C-u>Unite file_rec<CR>|"
+	nnoremap [unite]g<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
+	nnoremap [unite]h<CR>  :<C-u>Unite history/yank<CR>|"
+	nnoremap [unite]j<CR>  :<C-u>Unite jump<CR>|"
+	nnoremap [unite]l<CR>  :<C-u>Unite line/fast<CR>|"
+	nnoremap [unite]m<CR>  :<C-u>Unite file_mru<CR>|"
+	nnoremap [unite]om<CR> :<C-u>Unite output:message<CR>|"
+	nnoremap [unite]p<CR>  :<C-u>Unite settings_var<CR>|"
+	nnoremap [unite]pa<CR> :<C-u>Unite settings_var_all<CR>|"
+	nnoremap [unite]pt<CR> :<C-u>Unite settings/ex<CR>|"
+	nnoremap [unite]r<CR>  :<C-u>UniteResume<CR>|"
+	nnoremap [unite]s<CR>  :<C-u>Unite source<CR>|"
+	nnoremap [unite]t<CR>  :<C-u>Unite tag<CR>|"
+
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:unite_enable_start_insert        = 1
 		let g:unite_source_history_yank_enable = 1
 		let g:unite_source_rec_max_cache_files = 100
-
-		" nnoremap <leader>uK<CR>  :<C-u>Unite bookmark<CR>|"
-		" nnoremap <leader>uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
-		" nnoremap <leader>ub<CR>  :<C-u>Unite buffer<CR>|"
-		" nnoremap <leader>uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
-		nmap <leader>u [unite]
-		nnoremap [unite]qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
-		nnoremap [unite]G<CR>  :<C-u>UniteResume grep<CR>|"
-		nnoremap [unite]R<CR>  :<C-u>Unite resume<CR>|"
-		nnoremap [unite]bt<CR> :<C-u>Unite buffer_tags<CR>|"
-		nnoremap [unite]e<CR>  :<C-u>Unite outline<CR>|"
-		nnoremap [unite]f<CR>  :<C-u>Unite file_rec<CR>|"
-		nnoremap [unite]g<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
-		nnoremap [unite]h<CR>  :<C-u>Unite history/yank<CR>|"
-		nnoremap [unite]j<CR>  :<C-u>Unite jump<CR>|"
-		nnoremap [unite]l<CR>  :<C-u>Unite line/fast<CR>|"
-		nnoremap [unite]m<CR>  :<C-u>Unite file_mru<CR>|"
-		nnoremap [unite]om<CR> :<C-u>Unite output:message<CR>|"
-		nnoremap [unite]p<CR>  :<C-u>Unite settings_var<CR>|"
-		nnoremap [unite]pa<CR> :<C-u>Unite settings_var_all<CR>|"
-		nnoremap [unite]pt<CR> :<C-u>Unite settings/ex<CR>|"
-		nnoremap [unite]r<CR>  :<C-u>UniteResume<CR>|"
-		nnoremap [unite]s<CR>  :<C-u>Unite source<CR>|"
-		nnoremap [unite]t<CR>  :<C-u>Unite tag<CR>|"
 
 		let mode = ""
 		if mode == 'findstr'
@@ -199,12 +199,12 @@ if neobundle#tap('unite-perforce.vim') "{{{unite-perforce.vim
 				\ }})
 endif "}}}unite-perforce.vim
 if neobundle#tap('neocomplete.vim') "{{{neocomplete.vim
-    function! neobundle#tapped.hooks.on_source(bundle) 
+	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:neocomplete#auto_completion_start_length = 4
 	endfunction
 endif "}}}neocomplete.vim
 if neobundle#tap('vim-fugitive') "{{{vim-fugitive
-    call neobundle#config({'autoload': {'functions': ['fugitive#statusline']}})
+	call neobundle#config({'autoload': {'functions': ['fugitive#statusline']}})
 endif "}}}vim-fugitive
 
 call neobundle#call_hook('on_source')
