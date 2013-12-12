@@ -17,8 +17,11 @@ let g:chain_dict = { '__file' : {
 			\ }
 
 " 環境で変更する
-nnoremap <leader>dv<CR>   :<C-u>e ~/.vim/bundle/vimwork.vim/local/vimrc.vim<CR>|"
+nnoremap <leader>dv<CR>   :<C-u>e ~/.vim/bundle/vimwork.vim/local/win7.vim<CR>|"
 nnoremap <leader>de<CR>   :<C-u>lcd ~/Desktop<CR>|"
+
+
+cd ~
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

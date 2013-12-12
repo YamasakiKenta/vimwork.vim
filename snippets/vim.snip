@@ -1,9 +1,3 @@
-snippet head
-	" ********************************************************************************
-	" @param[in]     
-    " @return       
-	" ********************************************************************************
-
 snippet cpo
     let s:save_cpo = &cpo
     set cpo&vim
@@ -12,3 +6,23 @@ snippet cpo
 		let &cpo = s:save_cpo
 		unlet s:save_cpo
 	endif
+
+snippet nb
+abbr        neobundle setting
+options     head
+    NeoBundle '${1}'
+    if neobundle#tap('$1') "{{{$1
+	call neobundle#config(${2})
+	function! neobundle#tapped.hooks.on_source(bundle) 
+        ${3}
+    endfunction
+    endif "}}}$1
+snippet neobundle#tap
+alias tap
+    if neobundle#tap('${1}') "{{{$1
+	    call neobundle#config({${2:'autoload'}})
+	    function! neobundle#tapped.hooks.on_source(bundle) 
+            ${3}
+        endfunction
+    endif "}}}$1
+
