@@ -14,6 +14,10 @@ NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
+NeoBundle 'Shougo/neosnippet'
+
+NeoBundle 'jdonaldson/vaxe'
+
 " NeoBundleLazy
 NeoBundleLazy 'Shougo/neocomplete.vim'
 NeoBundleLazy 'Shougo/unite.vim'
@@ -27,10 +31,6 @@ NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'tpope/vim-fugitive'
 NeoBundleLazy 'vim-jp/vital.vim'
 NeoBundleLazy 'kchmck/vim-coffee-script'
-NeoBundleLazy 'Shougo/neosnippet'
-NeoBundleLazy 'jdonaldson/vaxe'
-
-" NeoBundleLazy
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'vim-scripts/Align'
@@ -147,6 +147,7 @@ if neobundle#tap('qfixgrep') "{{{qfixgrep
 	endfunction
 endif "}}}qfixgrep
 if neobundle#tap('Align') "{{{Align
+	call neobundle#config({'autoload': {'commands': 'Align', 'mappings': '\tsp'}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:Align_xstrlen = 3
 		command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
@@ -206,6 +207,12 @@ endif "}}}neocomplete.vim
 if neobundle#tap('vim-fugitive') "{{{vim-fugitive
 	call neobundle#config({'autoload': {'functions': ['fugitive#statusline']}})
 endif "}}}vim-fugitive
+if neobundle#tap('vaxe') "{{{vaxe
+    call neobundle#config({'autoload': {'filetypes': 'haxe'}})
+endif "}}}vaxe
+if neobundle#tap('vim-coffee-script') "{{{vim-coffee-script
+    call neobundle#config({'autoload':{'filetypes': 'coffee'}})
+endif "}}}vim-coffee-script
 
 call neobundle#call_hook('on_source')
 
