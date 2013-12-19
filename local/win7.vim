@@ -10,9 +10,11 @@ let g:chain_dict = { '__file' : {
 			\ 'win7.vim' : '../autoload/vimwork.vim',
 			\ 'autoload/vimwork.vim' : '../local/win7.vim',
 			\ },
-			\ '__pattern' : [
-			\ { 'before' : 'autoload\(/.*\)\?/\(.*\.vim$\)' , 'after' : 'plugin/**/\2'},
-			\ { 'before' : 'plugin\(/.*\)\?/\(.*\.vim\)'   , 'after' : 'autoload/**/\2'},
+			\ '__pattern': [
+			\ { 'before': 'autoload\(/.*\)\?/\(.*\.vim$\)', 'after': 'plugin/**/\2'},
+			\ { 'before': 'plugin\(/.*\)\?/\(.*\.vim\)',    'after': 'autoload/**/\2'},
+			\ { 'before': '/cf/\(.*\)\.coffee$',            'after': '/*js/\1.js'},
+			\ { 'before': '/[^/]*js/\(.*\)\.js$', 'after': '/cf/\1.coffee'},
 			\ ],
 			\ }
 
