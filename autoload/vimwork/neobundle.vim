@@ -142,11 +142,13 @@ if neobundle#tap('neosnippet') "{{{neosnippet
 	endfunction
 endif "}}}Shougo/neosnippet
 if neobundle#tap('qfixgrep') "{{{qfixgrep
+	call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let QFix_CloseOnJump = 1
 	endfunction
 endif "}}}qfixgrep
 if neobundle#tap('Align') "{{{Align
+	nnoremap <C-\>z :Grep /s "<c-r>=expand("<cword>")<CR>" *.vim\ *.php\ *.js|"
 	call neobundle#config({'autoload': {'commands': 'Align', 'mappings': '\tsp'}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:Align_xstrlen = 3

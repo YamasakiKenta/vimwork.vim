@@ -2,7 +2,6 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! vimwork#set_ctags() 
-	nnoremap <C-\>z :Grep /s <c-r>=expand("<cword>")<CR> *.vim *.php *.js|"
 	nnoremap <C-\>K :call system("ctags -R --excmd=number")<CR>|"
 endfunction 
 function! vimwork#set_cscope() 
