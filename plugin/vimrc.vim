@@ -25,7 +25,7 @@ set nowrap
 set number
 set shiftwidth=4
 set smartcase
-set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %f\ %q%h%m%r%=%-14.(%l/%L%)
+set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %f\ %h%m%r%=%-14.(%l/%L%)
 set tabstop=4
 set tw=0
 set ve=block

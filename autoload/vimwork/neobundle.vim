@@ -13,12 +13,13 @@ call neobundle#rc()
 NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
+NeoBundleFetch 'jdonaldson/vaxe'
 
+NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
 
-NeoBundle 'jdonaldson/vaxe'
-
 " NeoBundleLazy
+NeoBundleLazy 'Shougo/vinarise.vim'
 NeoBundleLazy 'Shougo/neocomplete.vim'
 NeoBundleLazy 'Shougo/unite.vim'
 NeoBundleLazy 'Shougo/vimproc'
@@ -26,10 +27,8 @@ NeoBundleLazy 'fuenor/qfixgrep'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-qfreplace'
-NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'tpope/vim-fugitive'
-NeoBundleLazy 'vim-jp/vital.vim'
 NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'Shougo/unite-outline'
@@ -44,9 +43,9 @@ NeoBundleLazy 'YamasakiKenta/tab-diff.vim'
 NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 NeoBundleLazy 'Shougo/vimfiler'
 
-if neobundle#tap('unite.vim') "{{{unite.vim
-	call neobundle#config({'autoload':{'commands':['Unite']}})
-endif "}}}unite.vim
+if neobundle#tap('vinarise.vim') "{{{vinarise.vim
+	call neobundle#config({'autoload':{'commands': 'Vinarise '}})
+endif "}}}unite-setting.vim
 if neobundle#tap('unite-setting.vim') "{{{unite-setting.vim
 	call neobundle#config({'autoload':{'unite_sources': 'setting'}})
 endif "}}}unite-setting.vim
@@ -113,7 +112,7 @@ if neobundle#tap('unite.vim') "{{{unite.vim
 	nnoremap [unite]r<CR>  :<C-u>UniteResume<CR>|"
 	nnoremap [unite]s<CR>  :<C-u>Unite source<CR>|"
 	nnoremap [unite]t<CR>  :<C-u>Unite tag<CR>|"
-
+	call neobundle#config({'autoload': {'commands': 'Unite'}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:unite_enable_start_insert        = 1
 		let g:unite_source_history_yank_enable = 1
@@ -131,8 +130,6 @@ if neobundle#tap('unite.vim') "{{{unite.vim
 				let g:unite_source_grep_recursive_opt = ''
 			endif
 		endif
-	endfunction
-	function! neobundle#tapped.hooks.on_source(bundle) 
 		call vimwork#unite#init()
 	endfunction 
 endif "}}}unite.vim
@@ -215,6 +212,9 @@ endif "}}}vaxe
 if neobundle#tap('vim-coffee-script') "{{{vim-coffee-script
     call neobundle#config({'autoload':{'filetypes': 'coffee'}})
 endif "}}}vim-coffee-script
+if neobundle#tap('vim-quickrun') "{{{unite-quickfix
+	call neobundle#config({'autoload': {'commands': 'QuickRun'}})
+endif "}}}unite-quickfix
 
 call neobundle#call_hook('on_source')
 
