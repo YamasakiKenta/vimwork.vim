@@ -59,7 +59,10 @@ vnoremap < <gv|"
 vnoremap > >gv|"
 " }}}
 " dir "{{{
-let s:dir = simplify(substitute(expand("<sfile>"), '\\', '\/', 'g').'/../..')
+" let s:dir = simplify(substitute(expand("<sfile>"), '\\', '\/', 'g').'/../..')
+let s:dir = substitute(expand("<sfile>"), '\\', '\/', 'g')
+let s:dir = substitute(s:dir, '/plugin/vimrc.vim$', '', '')
+echo s:dir
 let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1

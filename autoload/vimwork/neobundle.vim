@@ -19,6 +19,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
 
 " NeoBundleLazy
+NeoBundleLazy 'Shougo/vimshell.vim'
 NeoBundleLazy 'Shougo/vinarise.vim'
 NeoBundleLazy 'Shougo/neocomplete.vim'
 NeoBundleLazy 'Shougo/unite.vim'
@@ -214,6 +215,9 @@ if neobundle#tap('vim-coffee-script') "{{{vim-coffee-script
 endif "}}}vim-coffee-script
 if neobundle#tap('vim-quickrun') "{{{unite-quickfix
 	call neobundle#config({'autoload': {'commands': 'QuickRun'}})
+endif "}}}unite-quickfix
+if neobundle#tap('vimshell.vim') "{{{unite-quickfix
+	call neobundle#config({'autoload': {'commands': 'VimShell'}})
 endif "}}}unite-quickfix
 
 call neobundle#call_hook('on_source')
