@@ -17,13 +17,14 @@ NeoBundleFetch 'jdonaldson/vaxe'
 
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
-
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'CCTree'
 " NeoBundleLazy
 NeoBundleLazy 'Shougo/vimshell.vim'
 NeoBundleLazy 'Shougo/vinarise.vim'
 NeoBundleLazy 'Shougo/neocomplete.vim'
 NeoBundleLazy 'Shougo/unite.vim'
-NeoBundleLazy 'Shougo/vimproc'
+" NeoBundleLazy 'Shougo/vimproc'
 NeoBundleLazy 'fuenor/qfixgrep'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-partedit'

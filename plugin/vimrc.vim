@@ -87,3 +87,8 @@ if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
 endif
+
+aug vimwork_vimrc
+	au!
+	au BufRead,BufNewFile *.pc set filetype=c
+aug END
