@@ -17,6 +17,7 @@ NeoBundleFetch 'jdonaldson/vaxe'
 
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'CCTree'
 " NeoBundleLazy
