@@ -15,16 +15,19 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 NeoBundleFetch 'jdonaldson/vaxe'
 
+" NeoBundle
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets.git'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'CCTree'
+NeoBundle 'fuenor/qfixgrep'
 
 " NeoBundleLazy
 NeoBundleLazy 'Shougo/vimshell.vim'
 NeoBundleLazy 'Shougo/vinarise.vim'
 NeoBundleLazy 'Shougo/neocomplete.vim'
 NeoBundleLazy 'Shougo/unite.vim'
-NeoBundleLazy 'Shougo/vimproc'
-NeoBundleLazy 'fuenor/qfixgrep'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-qfreplace'
@@ -48,7 +51,7 @@ if neobundle#tap('vinarise.vim') "{{{vinarise.vim
 	call neobundle#config({'autoload':{'commands': 'Vinarise'}})
 endif "}}}unite-setting.vim
 if neobundle#tap('unite-setting.vim') "{{{unite-setting.vim
-	call neobundle#config({'autoload':{'unite_sources': 'setting'}})
+	call neobundle#config({'autoload': {'unite_sources': 'setting'}})
 endif "}}}unite-setting.vim
 if neobundle#tap('unite-setting-ex.vim') "{{{unite-setting-ex.vim
 	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
@@ -141,9 +144,9 @@ if neobundle#tap('neosnippet') "{{{neosnippet
 endif "}}}Shougo/neosnippet
 if neobundle#tap('qfixgrep') "{{{qfixgrep
 	call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
-	function! neobundle#tapped.hooks.on_source(bundle) 
-		let QFix_CloseOnJump = 1
-	endfunction
+	let QFix_CloseOnJump = 1
+	let QFixWin_EnableMode = 1
+	let mygrepprg = 'grep'
 endif "}}}qfixgrep
 if neobundle#tap('Align') "{{{Align
 	nnoremap <C-\>z :Grep /s "<c-r>=expand("<cword>")<CR>" *.vim\ *.php\ *.js|"
