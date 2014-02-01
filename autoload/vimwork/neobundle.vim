@@ -45,7 +45,7 @@ NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 NeoBundleLazy 'Shougo/vimfiler'
 
 if neobundle#tap('vinarise.vim') "{{{vinarise.vim
-	call neobundle#config({'autoload':{'commands': 'Vinarise '}})
+	call neobundle#config({'autoload':{'commands': 'Vinarise'}})
 endif "}}}unite-setting.vim
 if neobundle#tap('unite-setting.vim') "{{{unite-setting.vim
 	call neobundle#config({'autoload':{'unite_sources': 'setting'}})
