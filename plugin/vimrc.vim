@@ -1,18 +1,20 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+" MEMO 
+" set grepprg=findstr\ /n
+" set grepprg=grep\ -inH
+
 so $VIMRUNTIME/macros/matchit.vim
 
-" set {{{
+" set 
 set backupdir=~/.vim/bak
 set autoread
 set cursorline
 set dip=filler,icase,iwhite,vertical
 set fdm=marker
 set fo+=ro
-set grepprg=findstr\ /n
-set guioptions-=m
-set guioptions-=T
+set grepprg=ag\ --nogroup\ --nocolor\ --column
 set hlsearch
 set ignorecase
 set incsearch
@@ -25,14 +27,13 @@ set nowrap
 set number
 set shiftwidth=4
 set smartcase
-set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %f\ %h%m%r%=%-14.(%l/%L%)
+set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %f\ %h%m%r%=%-14.(%c\ %l/%L%)
 set tabstop=4
 set tw=0
 set ve=block
 set ff=unix
 set fenc=utf-8
-" }}}
-" map {{{
+" map 
 nnoremap <S-Space> za|"    
 nnoremap <C-]> <C-]>zz|"    
 nnoremap <C-j> j.|"
@@ -57,9 +58,7 @@ nmap <leader>uq<CR> 	<Plug>(uniq_line)
 nmap v/ 		<Plug>(select_search)
 vnoremap < <gv|"
 vnoremap > >gv|"
-" }}}
-" dir "{{{
-" let s:dir = simplify(substitute(expand("<sfile>"), '\\', '\/', 'g').'/../..')
+" dir 
 let s:dir = substitute(expand("<sfile>"), '\\', '\/', 'g')
 let s:dir = substitute(s:dir, '/plugin/vimrc.vim$', '', '')
 let g:neosnippet#snippets_directory = s:dir.'/snippets'
@@ -67,7 +66,6 @@ let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
 let g:ref_phpmanual_path = '~/lnk/ref/php-chunked-xhtml'
 exe 'set dict+='.s:dir.'/dict'
-" }}}
 
 if !isdirectory(expand(&backupdir))
 	call mkdir(expand(&backupdir))

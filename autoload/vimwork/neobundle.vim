@@ -16,21 +16,22 @@ NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 NeoBundleFetch 'jdonaldson/vaxe'
 
 " NeoBundle
-NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'CCTree'
+" NeoBundle 'Shougo/unite-outline'
 NeoBundle 'fuenor/qfixgrep'
+NeoBundle 'skammer/vim-css-color.git'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'thinca/vim-qfreplace'
 
 " NeoBundleLazy
+NeoBundleLazy 'CCTree'
 NeoBundleLazy 'Shougo/vimshell.vim'
+NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'Shougo/vinarise.vim'
-NeoBundleLazy 'Shougo/neocomplete.vim'
 NeoBundleLazy 'Shougo/unite.vim'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-partedit'
-NeoBundleLazy 'thinca/vim-qfreplace'
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'tpope/vim-fugitive'
 NeoBundleLazy 'kchmck/vim-coffee-script'
@@ -46,6 +47,7 @@ NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 NeoBundleLazy 'YamasakiKenta/tab-diff.vim'
 NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 NeoBundleLazy 'Shougo/vimfiler'
+NeoBundleLazy 'ujihisa/unite-colorscheme'
 
 if neobundle#tap('vinarise.vim') "{{{vinarise.vim
 	call neobundle#config({'autoload':{'commands': 'Vinarise'}})
@@ -122,7 +124,7 @@ if neobundle#tap('unite.vim') "{{{unite.vim
 		let g:unite_source_history_yank_enable = 1
 		let g:unite_source_rec_max_cache_files = 100
 
-		let mode = ""
+		let mode = "ag"
 		if mode == 'findstr'
 			let g:unite_source_grep_command       = 'findstr'
 			let g:unite_source_grep_default_opts  = '/n'
@@ -150,7 +152,7 @@ if neobundle#tap('qfixgrep') "{{{qfixgrep
 endif "}}}qfixgrep
 if neobundle#tap('Align') "{{{Align
 	nnoremap <C-\>z :Grep /s "<c-r>=expand("<cword>")<CR>" *.vim\ *.php\ *.js|"
-	call neobundle#config({'autoload': {'commands': 'Align', 'mappings': '\tsp'}})
+	call neobundle#config({'autoload': {'commands': ['Align', 'ALign'], 'mappings': '\tsp'}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:Align_xstrlen = 3
 		command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
@@ -214,14 +216,24 @@ if neobundle#tap('vaxe') "{{{vaxe
     call neobundle#config({'autoload': {'filetypes': 'haxe'}})
 endif "}}}vaxe
 if neobundle#tap('vim-coffee-script') "{{{vim-coffee-script
+	aug _vim_coffee_script
+		au!
+		au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+	aug END
     call neobundle#config({'autoload':{'filetypes': 'coffee'}})
 endif "}}}vim-coffee-script
 if neobundle#tap('vim-quickrun') "{{{unite-quickfix
 	call neobundle#config({'autoload': {'commands': 'QuickRun'}})
 endif "}}}unite-quickfix
-if neobundle#tap('vimshell.vim') "{{{unite-quickfix
+if neobundle#tap('vimshell.vim') "{{{vimshell.vim
 	call neobundle#config({'autoload': {'commands': 'VimShell'}})
 endif "}}}unite-quickfix
+if neobundle#tap('ujihisa/unite-colorscheme') "{{{ ujihisa/unite-colorscheme
+	call neobundle#config({'autoload': {'unite_sources': 'colorscheme'}})
+endif "}}} ujihisa/unite-colorscheme
+if neobundle#tap('CCTree') "{{{ CCTree
+    call neobundle#config({'autoload': {'filetypes': 'c'}})
+endif "}}} CCTree
 
 call neobundle#call_hook('on_source')
 
