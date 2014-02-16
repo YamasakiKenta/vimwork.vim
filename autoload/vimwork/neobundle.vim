@@ -1,6 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+
 function! vimwork#neobundle#init()
 endfunction
 
@@ -13,16 +14,24 @@ call neobundle#rc()
 NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
-NeoBundleFetch 'jdonaldson/vaxe'
+" NeoBundleFetch 'jdonaldson/vaxe'
 
 " NeoBundle
+" NeoBundle 'haya14busa/vim-migemo'
+NeoBundle 'koron/cmigemo'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
-" NeoBundle 'Shougo/unite-outline'
 NeoBundle 'fuenor/qfixgrep'
-NeoBundle 'skammer/vim-css-color.git'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'pasela/unite-webcolorname'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'sgur/vim-gitgutter'
+" NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-funeobugitive'
+NeoBundle 'altercation/vim-colors-solarized'
 
 " NeoBundleLazy
 NeoBundleLazy 'CCTree'
@@ -33,7 +42,7 @@ NeoBundleLazy 'Shougo/unite.vim'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-ref'
-NeoBundleLazy 'tpope/vim-fugitive'
+" NeoBundleLazy 'tpope/vim-fu" gitive'
 NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'Shougo/unite-outline'
