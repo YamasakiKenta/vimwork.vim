@@ -33,20 +33,6 @@ set encoding=utf-8
 set fileencodings=utf-8,sjis,euc-jp
 set fileformats=dos,unix,mac
 
-" execute pathogen#infect()
-" syntax on
-" filetype plugin indent on
-
-" let g:lightline = {
-      " \ 'colorscheme': 'wombat',
-      " \ 'component': {
-      " \   'readonly': '%{&readonly?"\u2b64":""}',
-      " \ },
-      " \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-      " \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
-      " \ }
-
-
 " vim-gitgutter
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '-'
@@ -54,7 +40,7 @@ let g:gitgutter_sign_removed = 'x'
 
 " lightline.vim
 let g:lightline = {
-        \ 'colorscheme': 'landscape',
+        \ 'colorscheme': 'solarized',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [

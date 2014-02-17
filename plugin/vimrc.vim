@@ -29,8 +29,12 @@ set smartcase
 set tabstop=4
 set tw=0
 set ve=block
-set ff=unix
+set ff=dos
 set fenc=utf-8
+set ambiwidth=single
+set list lcs=tab:»\ ,eol:←,trail:.
+set guifont=Consolas:h10
+set guifontwide=MS_Gothic:h10
 " map 
 nnoremap <S-Space> za|"    
 nnoremap <C-]> <C-]>zz|"    
