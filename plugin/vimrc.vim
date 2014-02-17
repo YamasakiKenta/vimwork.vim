@@ -30,14 +30,15 @@ set tabstop=4
 set tw=0
 set ve=block
 set ff=dos
+set enc=utf-8
 set fenc=utf-8
-set ambiwidth=single
-set list lcs=tab:»\ ,eol:←,trail:.
-set guifont=Consolas:h10
-set guifontwide=MS_Gothic:h10
+set list lcs=tab:»\ ,eol:←
+set visualbell
+" set guifont=Consolas:h10
+" set guifontwide=MS_Gothic:h10
 " map 
-nnoremap <S-Space> za|"    
-nnoremap <C-]> <C-]>zz|"    
+nnoremap <S-Space> za|"
+nnoremap <C-]> <C-]>zz|"
 nnoremap <C-j> j.|"
 nnoremap <C-k> n.|"
 nnoremap <C-n> :<C-u>cn<CR>|"
@@ -66,7 +67,6 @@ let s:dir = substitute(s:dir, '/plugin/vimrc.vim$', '', '')
 let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
-let g:ref_phpmanual_path = '~/lnk/ref/php-chunked-xhtml'
 exe 'set dict+='.s:dir.'/dict'
 
 if !isdirectory(expand(&backupdir))

@@ -266,6 +266,28 @@ if neobundle#tap('rainbow_parentheses.vim') " {{{
 		au Syntax * RainbowParenthesesLoadSquare
 		au Syntax * RainbowParenthesesLoadBraces
 	aug END
+	let g:rbpt_colorpairs = [
+				\ ['brown',       'RoyalBlue3'],
+				\ ['Darkblue',    'SeaGreen3'],
+				\ ['darkgray',    'DarkOrchid3'],
+				\ ['darkgreen',   'firebrick3'],
+				\ ['darkcyan',    'RoyalBlue3'],
+				\ ['darkred',     'SeaGreen3'],
+				\ ['darkmagenta', 'DarkOrchid3'],
+				\ ['brown',       'firebrick3'],
+				\ ['gray',        'RoyalBlue3'],
+				\ ['black',       'SeaGreen3'],
+				\ ['darkmagenta', 'DarkOrchid3'],
+				\ ['Darkblue',    'firebrick3'],
+				\ ['darkgreen',   'RoyalBlue3'],
+				\ ['darkcyan',    'SeaGreen3'],
+				\ ['darkred',     'DarkOrchid3'],
+				\ ['red',         'firebrick3'],
+				\ ]
+
+endif "}}}
+if neobundle#tap('lightline.vim') "{{{
+	call vimwork#lightline#init()
 endif "}}}
 
 call neobundle#call_hook('on_source')
