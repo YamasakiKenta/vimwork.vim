@@ -14,12 +14,11 @@ set cursorline
 set dip=filler,icase,iwhite,vertical
 set fdm=marker
 set fo+=ro
-set grepprg=ag\ --nogroup\ --nocolor\ --column
+set grepprg=ag\ --nogroup\ --nocolor\ --column\ --smart-case
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set lcs=tab:\|\ |"
 set list
 set modeline
 set noswapfile
@@ -27,7 +26,6 @@ set nowrap
 set number
 set shiftwidth=4
 set smartcase
-" set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %f\ %h%m%r%=%-14.(%c\ %l/%L%)
 set tabstop=4
 set tw=0
 set ve=block
