@@ -10,15 +10,28 @@ if has("vim_starting")
 endif
 call neobundle#rc()
 
+" test
+NeoBundle 'ujihisa/vimshell-ssh'
+
+" color
+NeoBundle 'vim-scripts/chlordane.vim'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'vim-scripts/twilight'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vim-scripts/Wombat'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'vim-scripts/rdark'
+NeoBundle 'cocopon/colorswatch.vim'
+
 " NeoBundleFetch
 NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
-" NeoBundleFetch 'jdonaldson/vaxe'
 
 " NeoBundle
-" NeoBundle 'haya14busa/vim-migemo'
-NeoBundle 'koron/cmigemo'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
@@ -29,9 +42,9 @@ NeoBundle 'pasela/unite-webcolorname'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'sgur/vim-gitgutter'
-" NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-funeobugitive'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'sgur/unite-everything'
 
 " NeoBundleLazy
 NeoBundleLazy 'CCTree'
@@ -42,7 +55,6 @@ NeoBundleLazy 'Shougo/unite.vim'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-ref'
-" NeoBundleLazy 'tpope/vim-fu" gitive'
 NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'Shougo/unite-outline'
@@ -243,6 +255,9 @@ endif "}}} ujihisa/unite-colorscheme
 if neobundle#tap('CCTree') "{{{ CCTree
     call neobundle#config({'autoload': {'filetypes': 'c'}})
 endif "}}} CCTree
+if neobundle#tap('unite-everything') "{{{ unite-everything
+	call neobundle#config({'autoload': {'unite_sources': 'everything'}})
+endif "}}} unite-everything
 
 call neobundle#call_hook('on_source')
 
