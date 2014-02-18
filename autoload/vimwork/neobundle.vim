@@ -25,6 +25,7 @@ NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'vim-scripts/rdark'
 NeoBundle 'cocopon/colorswatch.vim'
+NeoBundle 'Shougo/neomru.vim'
 
 " NeoBundleFetch
 NeoBundleFetch 'Shougo/shougo-s-github'
@@ -47,6 +48,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'sgur/unite-everything'
 
 " NeoBundleLazy
+NeoBundleLazy 'Shougo/neomru.vim'
 NeoBundleLazy 'CCTree'
 NeoBundleLazy 'Shougo/vimshell.vim'
 NeoBundleLazy 'thinca/vim-quickrun'
@@ -70,6 +72,9 @@ NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 NeoBundleLazy 'Shougo/vimfiler'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 
+if neobundle#tap('neomru.vim') "{{{
+	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
+endif "}}}
 if neobundle#tap('vinarise.vim') "{{{
 	call neobundle#config({'autoload':{'commands': 'Vinarise'}})
 endif "}}}
