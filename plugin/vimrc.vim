@@ -29,10 +29,9 @@ set smartcase
 set tabstop=4
 set tw=0
 set ve=block
-set ff=dos
+" set ff=dos
 set enc=utf-8
 set fenc=utf-8
-set list lcs=tab:»\ ,eol:←
 set visualbell
 " set guifont=Consolas:h10
 " set guifontwide=MS_Gothic:h10
@@ -81,9 +80,12 @@ if has('gui')
 	filetype indent on
 	filetype plugin on
 	nnoremap <A-Space> :<C-u>simalt ~<CR>|" 
+	set ambiwidth=single
+	set list lcs=tab:»\ ,eol:←
 else
 	let &t_SI="\e[5 q"
 	let &t_EI="\e[1 q"
+	set list lcs=tab:`\ ,
 endif
 
 if exists('s:save_cpo')
