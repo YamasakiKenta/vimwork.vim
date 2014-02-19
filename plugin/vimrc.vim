@@ -81,6 +81,9 @@ if has('gui')
 	filetype indent on
 	filetype plugin on
 	nnoremap <A-Space> :<C-u>simalt ~<CR>|" 
+else
+	let &t_SI="\e[5 q"
+	let &t_EI="\e[1 q"
 endif
 
 if exists('s:save_cpo')
