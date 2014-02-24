@@ -33,6 +33,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
 " NeoBundle
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'

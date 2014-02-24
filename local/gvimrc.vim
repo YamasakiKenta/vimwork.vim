@@ -1,7 +1,7 @@
 set go-=T
 set go-=m
 
-set background=dark
+" set background=dark
 colo solarized
 
 set ambiwidth=single
