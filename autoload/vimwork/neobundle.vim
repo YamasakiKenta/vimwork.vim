@@ -87,6 +87,17 @@ if neobundle#tap('unite-setting-ex.vim') "{{{
 endif "}}}
 if neobundle#tap('chain-file.vim') "{{{
 	call neobundle#config({'autoload': {'commands': 'ChainFile'}})
+	let g:chain_dict = { '__file' : {
+				\ 'win7.vim' : '../autoload/vimwork.vim',
+				\ 'autoload/vimwork.vim' : '../local/win7.vim',
+				\ },
+				\ '__pattern': [
+				\ { 'before': 'autoload\(/.*\)\?/\(.*\.vim$\)' , 'after': 'plugin/**/\2'}, 
+				\ { 'before': 'plugin\(/.*\)\?/\(.*\.vim\)'    , 'after': 'autoload/**/\2'}, 
+				\ { 'before': '/coffee/\(.*\)\.coffee$'        , 'after': '/*/\1.js'}, 
+				\ { 'before': '/coffee2js/\(.*\)\.js$'         , 'after': '/coffee/\1.coffee'}, 
+				\ ],
+				\ }
 endif "}}}
 if neobundle#tap('unite-quickfix') "{{{
 	call neobundle#config({'autoload': {'commands': 'quickfix'}})

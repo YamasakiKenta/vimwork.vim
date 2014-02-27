@@ -24,6 +24,13 @@ nnoremap <leader>de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 let g:neocomplete#enable_at_startup = 1
 inoremap jk <esc>
 
+" idea 
+" <tab>で色々できるようにする
+" - emmet
+" - タグ移動
+" - 検索
+"  > 作業Windowを表示する
+"
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
