@@ -160,7 +160,7 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap [unite]r<CR>  :<C-u>UniteResume<CR>|"
 	nnoremap [unite]s<CR>  :<C-u>Unite source<CR>|"
 	nnoremap [unite]t<CR>  :<C-u>Unite tag<CR>|"
-	call neobundle#config({'autoload': {'commands': 'Unite'}})
+	call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:unite_enable_start_insert        = 1
 		let g:unite_source_history_yank_enable = 1
