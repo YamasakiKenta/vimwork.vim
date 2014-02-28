@@ -33,8 +33,6 @@ set ve=block
 set enc=utf-8
 set fenc=utf-8
 set visualbell
-" set guifont=Consolas:h10
-" set guifontwide=MS_Gothic:h10
 " map 
 nnoremap <S-Space> za|"
 nnoremap <C-]> <C-]>zz|"
