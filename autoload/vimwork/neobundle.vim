@@ -42,14 +42,14 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'pasela/unite-webcolorname'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundle 'sgur/vim-gitgutter'
 NeoBundle 'tpope/vim-funeobugitive'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'sgur/unite-everything'
 
 " NeoBundleLazy
+NeoBundleLazy 'itchyny/lightline.vim'
 NeoBundleLazy 'Shougo/neomru.vim'
 NeoBundleLazy 'CCTree'
 NeoBundleLazy 'Shougo/vimshell.vim'
@@ -74,6 +74,9 @@ NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 NeoBundleLazy 'Shougo/vimfiler'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 
+function! s:is_win()
+	return has('win32') || has('win64')
+endfunction
 if neobundle#tap('neomru.vim') "{{{
 	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
 endif "}}}
@@ -278,35 +281,39 @@ if neobundle#tap('unite-everything') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'everything'}})
 endif "}}}
 if neobundle#tap('rainbow_parentheses.vim') " {{{
-	aug _rainbow_parentheses
-		au!
-		au VimEnter * RainbowParenthesesToggle
-		au Syntax * RainbowParenthesesLoadRound
-		au Syntax * RainbowParenthesesLoadSquare
-		au Syntax * RainbowParenthesesLoadBraces
-	aug END
-	let g:rbpt_colorpairs = [
-				\ ['brown',       'RoyalBlue3'],
-				\ ['Darkblue',    'SeaGreen3'],
-				\ ['darkgray',    'DarkOrchid3'],
-				\ ['darkgreen',   'firebrick3'],
-				\ ['darkcyan',    'RoyalBlue3'],
-				\ ['darkred',     'SeaGreen3'],
-				\ ['darkmagenta', 'DarkOrchid3'],
-				\ ['brown',       'firebrick3'],
-				\ ['gray',        'RoyalBlue3'],
-				\ ['black',       'SeaGreen3'],
-				\ ['darkmagenta', 'DarkOrchid3'],
-				\ ['Darkblue',    'firebrick3'],
-				\ ['darkgreen',   'RoyalBlue3'],
-				\ ['darkcyan',    'SeaGreen3'],
-				\ ['darkred',     'DarkOrchid3'],
-				\ ['red',         'firebrick3'],
-				\ ]
+	if s:is_win()
+		neobundle#call({'Lazy':0})
+		aug _rainbow_parentheses
+			au!
+			au VimEnter * RainbowParenthesesToggle
+			au Syntax * RainbowParenthesesLoadRound
+			au Syntax * RainbowParenthesesLoadSquare
+			au Syntax * RainbowParenthesesLoadBraces
+		aug END
+		let g:rbpt_colorpairs = [
+					\ ['brown',       'RoyalBlue3'],
+					\ ['Darkblue',    'SeaGreen3'],
+					\ ['darkgray',    'DarkOrchid3'],
+					\ ['darkgreen',   'firebrick3'],
+					\ ['darkcyan',    'RoyalBlue3'],
+					\ ['darkred',     'SeaGreen3'],
+					\ ['darkmagenta', 'DarkOrchid3'],
+					\ ['brown',       'firebrick3'],
+					\ ['gray',        'RoyalBlue3'],
+					\ ['black',       'SeaGreen3'],
+					\ ['darkmagenta', 'DarkOrchid3'],
+					\ ['Darkblue',    'firebrick3'],
+					\ ['darkgreen',   'RoyalBlue3'],
+					\ ['darkcyan',    'SeaGreen3'],
+					\ ['darkred',     'DarkOrchid3'],
+					\ ['red',         'firebrick3'],
+					\ ]
+	endif
 
 endif "}}}
 if neobundle#tap('lightline.vim') "{{{
-	if has('win64') || has('win32')
+	if s:is_win()
+		call neobundle#config({'lazy': 0})
 		call vimwork#lightline#init()
 	endif 
 endif "}}}
