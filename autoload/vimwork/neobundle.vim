@@ -292,7 +292,9 @@ if neobundle#tap('rainbow_parentheses.vim') " {{{
 
 endif "}}}
 if neobundle#tap('lightline.vim') "{{{
-	call vimwork#lightline#init()
+	if has('win64') || has('win32')
+		call vimwork#lightline#init()
+	endif 
 endif "}}}
 
 call neobundle#call_hook('on_source')
