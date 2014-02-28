@@ -26,6 +26,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'vim-scripts/rdark'
 NeoBundle 'cocopon/colorswatch.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
 
 " NeoBundleFetch
 NeoBundleFetch 'Shougo/shougo-s-github'

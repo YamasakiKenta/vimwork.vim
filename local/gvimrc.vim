@@ -2,7 +2,10 @@ set go-=T
 set go-=m
 
 " set background=dark
-colo solarized
+" colorscheme solarized
+" colorscheme darkblue
+" colorscheme radicalgoodspeed
+" colorscheme chlordane
 
 set ambiwidth=single
 set guifont=Consolas:h10

@@ -107,8 +107,8 @@ function! MyCharCode()
   return "'". char ."' ". nr
 endfunction
 
+" 'colorscheme': 'solarized',
 let g:lightline = {
-			\ 'colorscheme': 'solarized',
 			\ 'mode_map': {'c': 'NORMAL'},
 			\ 'active': {
 			\   'left': [
