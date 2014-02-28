@@ -19,6 +19,9 @@ inoremap jk <esc>
 " - 検索
 "  > 作業Windowを表示する
 "
+imap <expr> <c-q>  pumvisible() ?
+	\ "\<Plug>(neocomplete_start_unite_quick_match)" : '-'
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
