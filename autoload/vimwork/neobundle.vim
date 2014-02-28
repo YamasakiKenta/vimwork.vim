@@ -282,7 +282,7 @@ if neobundle#tap('unite-everything') "{{{
 endif "}}}
 if neobundle#tap('rainbow_parentheses.vim') " {{{
 	if s:is_win()
-		neobundle#call({'Lazy':0})
+		call neobundle#config({'lazy':0})
 		aug _rainbow_parentheses
 			au!
 			au VimEnter * RainbowParenthesesToggle
