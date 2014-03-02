@@ -14,12 +14,11 @@ set cursorline
 set dip=filler,icase,iwhite,vertical
 set fdm=marker
 set fo+=ro
-set grepprg=ag\ --nogroup\ --nocolor\ --column
+set grepprg=ag\ --nogroup\ --nocolor\ --column\ --smart-case
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set lcs=tab:\|\ |"
 set list
 set modeline
 set noswapfile
@@ -27,15 +26,16 @@ set nowrap
 set number
 set shiftwidth=4
 set smartcase
-" set stl=%{fugitive#statusline()}\ %n\ >\ %{&ff}\ >\ %{&enc}\ >\ %{&fenc}\ >\ %Y\ >\ \ %f\ %h%m%r%=%-14.(%c\ %l/%L%)
 set tabstop=4
 set tw=0
 set ve=block
-set ff=unix
+" set ff=dos
+set enc=utf-8
 set fenc=utf-8
+set visualbell
 " map 
-nnoremap <S-Space> za|"    
-nnoremap <C-]> <C-]>zz|"    
+nnoremap <S-Space> za|"
+nnoremap <C-]> <C-]>zz|"
 nnoremap <C-j> j.|"
 nnoremap <C-k> n.|"
 nnoremap <C-n> :<C-u>cn<CR>|"
@@ -64,7 +64,6 @@ let s:dir = substitute(s:dir, '/plugin/vimrc.vim$', '', '')
 let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
-let g:ref_phpmanual_path = '~/lnk/ref/php-chunked-xhtml'
 exe 'set dict+='.s:dir.'/dict'
 
 if !isdirectory(expand(&backupdir))
@@ -79,6 +78,18 @@ if has('gui')
 	filetype indent on
 	filetype plugin on
 	nnoremap <A-Space> :<C-u>simalt ~<CR>|" 
+	set ambiwidth=single
+	set list lcs=tab:»\ ,eol:←
+else
+	" カーソルの形
+	" let &t_SI="\e[5 q"
+	" let &t_EI="\e[1 q"
+	" IME制御
+	" let &t_SI .= "\e[<r"
+	" let &t_EI .= "\e[<s\e[<0t"
+	" let &t_te .= "\e[<0t\e[<s"
+	set list lcs=tab:`\ ,
+	set timeoutlen=100
 endif
 
 if exists('s:save_cpo')
