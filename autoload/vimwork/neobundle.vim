@@ -18,7 +18,7 @@ NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
 " NeoBundle
 " NeoBundle 'haya14busa/vim-migemo'
-NeoBundle 'koron/cmigemo'
+" NeoBundle 'koron/cmigemo'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
