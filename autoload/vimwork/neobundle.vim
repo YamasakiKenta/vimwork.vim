@@ -113,7 +113,7 @@ if neobundle#tap('unite-outline') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'outline'}})
 endif "}}}
 if neobundle#tap('emmet-vim') "{{{
-	call neobundle#config({'autoload': { 'filetypes': 'html'}})
+	call neobundle#config({'autoload': { 'filetypes': ['html','css','php']}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:user_emmet_leader_key = '<c-\>'
 	endfunction
@@ -193,7 +193,6 @@ if neobundle#tap('qfixgrep') "{{{
 	let mygrepprg = 'grep'
 endif "}}}
 if neobundle#tap('Align') "{{{
-	nnoremap <C-\>z :Grep /s "<c-r>=expand("<cword>")<CR>" *.vim\ *.php\ *.js|"
 	call neobundle#config({'autoload': {'commands': ['Align', 'ALign'], 'mappings': '\tsp'}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:Align_xstrlen = 3
