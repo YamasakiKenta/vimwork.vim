@@ -3,7 +3,8 @@ set cpo&vim
 
 set syntax=on
 syntax enable
-colo peachpuff                                                                                                                                                                       
+" colo peachpuff                                                                                                                                                                       
+colo darkblue                                                                                                                                                                                                                     
 " 
 set lcs&
 set timeoutlen=100

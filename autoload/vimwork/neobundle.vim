@@ -42,13 +42,14 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'pasela/unite-webcolorname'
-NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundle 'sgur/vim-gitgutter'
 NeoBundle 'tpope/vim-funeobugitive'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'sgur/unite-everything'
 
 " NeoBundleLazy
+NeoBundleLazy 'kien/rainbow_parentheses.vim'
+NeoBundleLazy 'Shougo/vimproc.vim'
 NeoBundleLazy 'itchyny/lightline.vim'
 NeoBundleLazy 'Shougo/neomru.vim'
 NeoBundleLazy 'CCTree'
@@ -199,13 +200,15 @@ if neobundle#tap('Align') "{{{
 		command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
 	endfunction
 endif "}}}
-if neobundle#tap('vimproc') "{{{
-	call neobundle#config({'build': {
-				\ 'windows' : 'make -f make_mingw32.mak',
-				\ 'cygwin'  : 'make -f make_cygwin.mak',
-				\ 'mac'     : 'make -f make_mac.mak',
-				\ 'unix'    : 'make -f make_unix.mak',
-				\ }})
+if neobundle#tap('vimproc.vim') "{{{
+	if !s:is_win()
+		call neobundle#config({'build': {
+					\ 'windows' : 'make -f make_mingw32.mak',
+					\ 'cygwin'  : 'make -f make_cygwin.mak',
+					\ 'mac'     : 'make -f make_mac.mak',
+					\ 'unix'    : 'make -f make_unix.mak',
+					\ }})
+	endif
 endif "}}}
 if neobundle#tap('tab-diff.vim') "{{{
 	nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
