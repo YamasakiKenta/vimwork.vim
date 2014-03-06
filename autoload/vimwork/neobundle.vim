@@ -102,6 +102,7 @@ if neobundle#tap('chain-file.vim') "{{{
 				\ { 'before': '/coffee/\(.*\)\.coffee$'        , 'after': '/*/\1.js'}, 
 				\ { 'before': '/coffee2js/\(.*\)\.js$'         , 'after': '/coffee/\1.coffee'}, 
 				\ ],
+				\ '__extension' : { 'sql': 'xml', 'xml': 'sql' },
 				\ }
 endif "}}}
 if neobundle#tap('unite-quickfix') "{{{
