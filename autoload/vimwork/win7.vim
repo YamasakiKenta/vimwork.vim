@@ -1,6 +1,9 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+function! vimwork#win7#init()
+endfunction
+
 " memo
 " QuickRun -hook/time/enable 1
 
