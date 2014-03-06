@@ -76,7 +76,7 @@ NeoBundleLazy 'Shougo/vimfiler'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 
 function! s:is_win()
-	return has('win32') || has('win64')
+	return has('GUI') && ( has('win32') || has('win64') )
 endfunction
 if neobundle#tap('neomru.vim') "{{{
 	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
