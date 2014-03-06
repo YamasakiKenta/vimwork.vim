@@ -65,6 +65,9 @@ let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
 exe 'set dict+='.s:dir.'/dict'
 
+" CUI
+call vimwork#cui#init()
+
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
