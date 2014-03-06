@@ -1,3 +1,9 @@
+"=============================================================================
+" FILE: args.vim
+" AUTHOR:  Yamasaki Kenta
+" Last Modified: 2014/03/06 10:50:12
+"============================================================================="
+
 let s:save_cpo = &cpo
 set cpo&vim
 
@@ -14,11 +20,14 @@ function! s:source.gather_candidates(args, context)
 	redir => output
 	silent! execute 'args'
 	redir END
+
+	let output = substitute(output, "\n", "", "")
 	let result = split(output, '[^\\]\zs ')
 
+	call map(result, 'matchstr(v:val, ''^[\?\zs.\{-}\ze\]\?$'')')
 	return map(result, "{
 				\ 'word' : v:val,
-				\ 'action__path' : v:val,
+				\ 'action__path' : fnamemodify(v:val, 'p'),
 				\ }")
 endfunction
 

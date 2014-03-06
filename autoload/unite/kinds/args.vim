@@ -8,7 +8,7 @@ endfunction
 let s:kind = {
 			\ 'name' : 'args',
 			\ 'parents' : ['file'],
-			\ 'defoult_action': 'open',
+			\ 'default_action': 'open',
 			\ 'action_table' : {},
 			\ }
 let s:kind.action_table.delete = {
