@@ -12,7 +12,7 @@ nnoremap <leader>de<CR>   :<C-u>lcd ~/Desktop<CR>|"
 
 inoremap jk <esc>
 
-" idea 
+" IDEA: 
 " <tab>で色々できるようにする
 " - emmet
 " - タグ移動
