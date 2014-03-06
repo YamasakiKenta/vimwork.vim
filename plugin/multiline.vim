@@ -23,7 +23,6 @@ else
 	set timeoutlen=100
 endif
 
-
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
