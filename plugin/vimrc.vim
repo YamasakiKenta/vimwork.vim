@@ -8,7 +8,6 @@ set cpo&vim
 so $VIMRUNTIME/macros/matchit.vim
 
 " set 
-set backupdir=~/.vim/bak
 set autoread
 set cursorline
 set dip=filler,icase,iwhite,vertical

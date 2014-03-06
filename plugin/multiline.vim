@@ -6,6 +6,7 @@ aug vimwork_vimrc
 	au BufRead,BufNewFile *.pc set filetype=c
 aug END
 
+set backupdir=~/.vim/bak
 if !isdirectory(expand(&backupdir))
 	call mkdir(expand(&backupdir))
 endif
