@@ -115,7 +115,7 @@ if neobundle#tap('unite-outline') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'outline'}})
 endif "}}}
 if neobundle#tap('emmet-vim') "{{{
-	call neobundle#config({'autoload': { 'filetypes': ['html','css','php']}})
+	call neobundle#config({'autoload': { 'filetypes': ['html','css','php','ctp']}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:user_emmet_leader_key = '<c-\>'
 	endfunction
