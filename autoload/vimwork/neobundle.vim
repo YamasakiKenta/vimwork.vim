@@ -325,6 +325,11 @@ call neobundle#call_hook('on_source')
 
 filetype plugin indent on
 
+" 複合の場合はどうしよう
+imap <expr> <c-space> neosnippet#expandable_or_jumpable()
+			\ ? "\<Plug>(neosnippet_expand_or_jump)"
+			\ : "<plug>(emmmet-expand-abbr)"
+
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
