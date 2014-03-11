@@ -78,6 +78,9 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
 endfunction
+if neobundle#tap('puyo.vim') "{{{
+	call neobundle#config({'autoload':{'commands': 'Puyo'}})
+endif "}}}
 if neobundle#tap('neomru.vim') "{{{
 	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
 endif "}}}
@@ -95,14 +98,15 @@ if neobundle#tap('chain-file.vim') "{{{
 	let g:chain_dict = { '__file' : {
 				\ 'win7.vim' : '../autoload/vimwork.vim',
 				\ 'autoload/vimwork.vim' : '../local/win7.vim',
-				\ },
-				\ '__pattern': [
+				\ },'__pattern': [
 				\ { 'before': 'autoload\(/.*\)\?/\(.*\.vim$\)' , 'after': 'plugin/**/\2'}, 
 				\ { 'before': 'plugin\(/.*\)\?/\(.*\.vim\)'    , 'after': 'autoload/**/\2'}, 
 				\ { 'before': '/coffee/\(.*\)\.coffee$'        , 'after': '/*/\1.js'}, 
 				\ { 'before': '/coffee2js/\(.*\)\.js$'         , 'after': '/coffee/\1.coffee'}, 
-				\ ],
-				\ '__extension' : { 'sql': 'xml', 'xml': 'sql' },
+				\ ],'__extension' : { 
+				\ 'sql': 'xml',
+				\ 'xml': 'sql' 
+				\ },
 				\ }
 endif "}}}
 if neobundle#tap('unite-quickfix') "{{{
@@ -320,9 +324,7 @@ if neobundle#tap('lightline.vim') "{{{
 		call vimwork#lightline#init()
 	endif 
 endif "}}}
-
 call neobundle#call_hook('on_source')
-
 filetype plugin indent on
 
 " 複合の場合はどうしよう
