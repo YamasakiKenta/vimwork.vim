@@ -99,10 +99,12 @@ if neobundle#tap('chain-file.vim') "{{{
 				\ 'win7.vim' : '../autoload/vimwork.vim',
 				\ 'autoload/vimwork.vim' : '../local/win7.vim',
 				\ },'__pattern': [
-				\ { 'before': 'autoload\(/.*\)\?/\(.*\.vim$\)' , 'after': 'plugin/**/\2'}, 
-				\ { 'before': 'plugin\(/.*\)\?/\(.*\.vim\)'    , 'after': 'autoload/**/\2'}, 
-				\ { 'before': '/coffee/\(.*\)\.coffee$'        , 'after': '/*/\1.js'}, 
-				\ { 'before': '/coffee2js/\(.*\)\.js$'         , 'after': '/coffee/\1.coffee'}, 
+				\ { 'before': 'autoload\(/.*\)\?/\(.*\.vim$\)'         , 'after': 'plugin/**/\2'}                   , 
+				\ { 'before': 'plugin\(/.*\)\?/\(.*\.vim\)'            , 'after': 'autoload/**/\2'}                 , 
+				\ { 'before': '/coffee/\(.*\)\.coffee$'                , 'after': '/*/\1.js'}                       , 
+				\ { 'before': '/coffee2js/\(.*\)\.js$'                 , 'after': '/coffee/\1.coffee'}              , 
+				\ { 'before': '/View/\(.*\)/.*.ctp$'                   , 'after': '/Controller/\l\1Controller.php'} , 
+				\ { 'before': '/Controller/\(.*\)Controller.php$'      , 'after': '/View/\1/index.ctp'}             , 
 				\ ],'__extension' : { 
 				\ 'sql': 'xml',
 				\ 'xml': 'sql' 
