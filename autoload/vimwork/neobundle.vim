@@ -43,7 +43,6 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'pasela/unite-webcolorname'
 NeoBundle 'sgur/vim-gitgutter'
-NeoBundle 'tpope/vim-funeobugitive'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'sgur/unite-everything'
 
@@ -121,7 +120,13 @@ if neobundle#tap('unite-outline') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'outline'}})
 endif "}}}
 if neobundle#tap('emmet-vim') "{{{
-	call neobundle#config({'autoload': { 'filetypes': ['html','css','php','ctp']}})
+	call neobundle#config({'autoload': { 
+				\ 'filetypes': ['html','css','php']},
+				\ 'mappings' : [
+				\ '<Plug>(emmet-',
+				\ '<Plug>(emmmet-',
+				\ ],
+				\ })
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:user_emmet_leader_key = '<c-\>'
 	endfunction
@@ -331,8 +336,8 @@ filetype plugin indent on
 
 " 複合の場合はどうしよう
 imap <expr> <c-space> neosnippet#expandable_or_jumpable()
-			\ ? "\<Plug>(neosnippet_expand_or_jump)"
-			\ : "<plug>(emmmet-expand-abbr)"
+			\ ? "<Plug>(neosnippet_expand_or_jump)"
+			\ : "<C-o><Plug>(emmmet-expand-abbr)"
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
