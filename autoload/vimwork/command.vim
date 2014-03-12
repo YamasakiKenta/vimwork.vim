@@ -169,6 +169,11 @@ function! vimwork#command#change_root() "{{{
 	endfor
 
 endfunction "}}}
+function! vimwork#command#winmerge()
+	let fname = [
+		expand("")
+	]
+endfunction
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

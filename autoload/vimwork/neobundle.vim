@@ -102,13 +102,15 @@ if neobundle#tap('chain-file.vim') "{{{
 				\ { 'before': 'plugin\(/.*\)\?/\(.*\.vim\)'            , 'after': 'autoload/**/\2'}                 , 
 				\ { 'before': '/coffee/\(.*\)\.coffee$'                , 'after': '/*/\1.js'}                       , 
 				\ { 'before': '/coffee2js/\(.*\)\.js$'                 , 'after': '/coffee/\1.coffee'}              , 
-				\ { 'before': '/View/\(.*\)/.*.ctp$'                   , 'after': '/Controller/\l\1Controller.php'} , 
+				\ { 'before': '/View/\(.*\)s/\(.*\).ctp$'              , 'after': '/Model/\1.php'}                  , 
+				\ { 'before': '/Model/\(.*\).php$'                     , 'after': '/Controller/\1sController.php'}  , 
 				\ { 'before': '/Controller/\(.*\)Controller.php$'      , 'after': '/View/\1/index.ctp'}             , 
 				\ ],'__extension' : { 
 				\ 'sql': 'xml',
 				\ 'xml': 'sql' 
 				\ },
 				\ }
+	"C:\xampp\htdocs\yamasaki\cake\app\Model\MySampleData.php
 endif "}}}
 if neobundle#tap('unite-quickfix') "{{{
 	call neobundle#config({'autoload': {'commands': 'quickfix'}})
@@ -121,14 +123,14 @@ if neobundle#tap('unite-outline') "{{{
 endif "}}}
 if neobundle#tap('emmet-vim') "{{{
 	call neobundle#config({'autoload': { 
-				\ 'filetypes': ['html','css','php']},
+				\ 'filetypes': ['html','css','php'],
 				\ 'mappings' : [
 				\ '<Plug>(emmet-',
 				\ '<Plug>(emmmet-',
 				\ ],
-				\ })
+				\ }})
 	function! neobundle#tapped.hooks.on_source(bundle) 
-		let g:user_emmet_leader_key = '<c-\>'
+		" let g:user_emmet_leader_key = '<c-\>'
 	endfunction
 endif "}}}
 if neobundle#tap('vimfiler') "{{{
@@ -163,7 +165,7 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap [unite]f<CR>  :<C-u>Unite file_rec<CR>|"
 	nnoremap [unite]g<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
 	nnoremap [unite]h<CR>  :<C-u>Unite history/yank<CR>|"
-	nnoremap [unite]j<CR>  :<C-u>Unite jump<CR>|"
+	nnoremap [unite]j<CR>  :<C-u>Unite jump<CR>|	
 	nnoremap [unite]l<CR>  :<C-u>Unite line/fast<CR>|"
 	nnoremap [unite]m<CR>  :<C-u>Unite file_mru<CR>|"
 	nnoremap [unite]om<CR> :<C-u>Unite output:message<CR>|"
@@ -334,10 +336,63 @@ endif "}}}
 call neobundle#call_hook('on_source')
 filetype plugin indent on
 
+function! s:all_key()
+	return ["1","2","3","4","5","6","7","8","9","0","a","b","c","d","e","f","g","h","i","p","q","r","s","t","u","v","w","x","z",'<cr>']
+endfunction
+function! vimwork#neobundle#is_pairs()
+	return 0
+endfunction
+function! vimwork#neobundle#pairs()
+endfunction
+function! vimwork#neobundle#is_emmet()
+	if match(getline(".")[col(".")-2], '\s') != -1
+		return 0
+	endif
+
+	" reset
+	for key in s:all_key()
+		exe 'cnoremap <buffer> '.key.' '.key.'<cr>'
+	endfor
+
+	" 設定
+	let str = "134vjtpiuj43kj"
+	cnoremap <buffer> <expr> [check] str.'<cr>'
+	cmap <buffer> q [check]
+
+	let in = input("emmet?")
+	" reset
+	for key in s:all_key()
+		exe 'cmap <buffer> '.key.' '.key
+		" TODO: 挿入
+	endfor
+
+	let rtn = (str==in)? 1 : 0
+
+	return rtn
+endfunction
+
+" 文法確認
+" function! vimwork#neobundle#is_comment(line, col)
+    " echo synIDattr(synIDtrans(synID(a:line, a:col, 1)), 'name')
+" endfunction
+" call vimwork#neobundle#is_comment(line("."), col("."))
+
 " 複合の場合はどうしよう
-imap <expr> <c-space> neosnippet#expandable_or_jumpable()
+imap <expr> <tab> 
+			\ neosnippet#expandable_or_jumpable()
 			\ ? "<Plug>(neosnippet_expand_or_jump)"
-			\ : "<C-o><Plug>(emmmet-expand-abbr)"
+			\ : vimwork#neobundle#is_emmet()
+			\ ? "<C-o><Plug>(emmmet-expand-abbr)"
+			\ : "<tab>"
+
+nmap <expr> <tab>
+			\ neosnippet#expandable_or_jumpable()
+			\ ? "<Plug>(neosnippet_expand_or_jump)"
+			\ : vimwork#neobundle#is_emmet()
+			\ ? vimwork#neobundle#is_pairs()
+			\ : vimwork#neobundle#pairs()
+			\ ? "<Plug>(emmmet-expand-abbr)"
+			\ : "<tab>"
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo

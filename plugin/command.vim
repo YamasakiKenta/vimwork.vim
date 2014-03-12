@@ -20,6 +20,8 @@ command! ChangeRoot call vomwork#command#change_root()
 " 初期設定 , 対応するファイル
 command! -narg=* -range SortFunction call sort_function#sort_function(<line1>, <line2>)
 
+command! Winmerge call vimwork#command#winmerge()
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
