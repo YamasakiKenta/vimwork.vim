@@ -48,7 +48,7 @@ NeoBundle 'sgur/unite-everything'
 
 " NeoBundleLazy
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
-NeoBundleLazy 'Shougo/vimproc.vim'
+" NeoBundleLazy 'Shougo/vimproc.vim'
 NeoBundleLazy 'itchyny/lightline.vim'
 NeoBundleLazy 'Shougo/neomru.vim'
 NeoBundleLazy 'CCTree'
@@ -339,43 +339,45 @@ filetype plugin indent on
 function! s:all_key()
 	return ["1","2","3","4","5","6","7","8","9","0","a","b","c","d","e","f","g","h","i","p","q","r","s","t","u","v","w","x","z",'<cr>','<tab>']
 endfunction
-function! vimwork#neobundle#is_emmet()
-	if match(getline(".")[col(".")-2], '\s') != -1
-		return 0
+function! vimwork#neobundle#is_brank()
+	let rtn = 0
+	if col(".") == 1
+		let rtn = 1
+	elseif match(getline(".")[col(".")-2], '\s') != -1
+		let rtn = 1
 	endif
+	return rtn
+endfunction
+function! vimwork#neobundle#select_command(contents)
+	let str = "'".join(keys(a:contents), "', '")."'"
+	let key = input(str." ?")
 
-	" reset
-	for key in s:all_key()
-		exe 'cnoremap <buffer> '.key.' '.key.'<cr>'
-	endfor
-
-	" 設定
-	let str = "134vjtpiuj43kj"
-	cnoremap <buffer> <expr> [check] str.'<cr>'
-	cmap <buffer> e [check]
-
-	let in = input("[e]emmet?")
-	" reset
-	for key in s:all_key()
-		exe 'cmap <buffer> '.key.' '.key
-		" TODO: 挿入
-	endfor
-	return (str==in)? 1 : 0
+	let command_ = ""
+	if exists('a:contents[key]')
+		let command_ = a:contents[key]
+	endif
+	return command_
 endfunction
 
 " 文法確認
 " function! vimwork#neobundle#is_comment(line, col)
     " echo synIDattr(synIDtrans(synID(a:line, a:col, 1)), 'name')
 " endfunction
+if exists('s:save_cpo')
+	let &cpo = s:save_cpo
+	unlet s:save_cpo
+endif
 " call vimwork#neobundle#is_comment(line("."), col("."))
-
+			
 imap <expr> <tab>
 			\ neosnippet#expandable_or_jumpable()
 			\ ? "<Plug>(neosnippet_expand_or_jump)"
-			\ : vimwork#neobundle#is_emmet()
-			\ ? "<C-o><Plug>(emmet-expand-abbr)"
-			\ : "<tab>"
-
+			\ : vimwork#neobundle#is_brank()
+			\ ? '<tab>'
+			\ : vimwork#neobundle#select_command({
+			\ 'e': "<C-o><Plug>(emmet-expand-abbr)",
+			\ '	': "<tab>",
+			\ })
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
