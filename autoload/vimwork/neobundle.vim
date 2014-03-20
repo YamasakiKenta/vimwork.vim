@@ -337,12 +337,7 @@ call neobundle#call_hook('on_source')
 filetype plugin indent on
 
 function! s:all_key()
-	return ["1","2","3","4","5","6","7","8","9","0","a","b","c","d","e","f","g","h","i","p","q","r","s","t","u","v","w","x","z",'<cr>']
-endfunction
-function! vimwork#neobundle#is_pairs()
-	return 0
-endfunction
-function! vimwork#neobundle#pairs()
+	return ["1","2","3","4","5","6","7","8","9","0","a","b","c","d","e","f","g","h","i","p","q","r","s","t","u","v","w","x","z",'<cr>','<tab>']
 endfunction
 function! vimwork#neobundle#is_emmet()
 	if match(getline(".")[col(".")-2], '\s') != -1
@@ -357,18 +352,15 @@ function! vimwork#neobundle#is_emmet()
 	" 設定
 	let str = "134vjtpiuj43kj"
 	cnoremap <buffer> <expr> [check] str.'<cr>'
-	cmap <buffer> q [check]
+	cmap <buffer> e [check]
 
-	let in = input("emmet?")
+	let in = input("[e]emmet?")
 	" reset
 	for key in s:all_key()
 		exe 'cmap <buffer> '.key.' '.key
 		" TODO: 挿入
 	endfor
-
-	let rtn = (str==in)? 1 : 0
-
-	return rtn
+	return (str==in)? 1 : 0
 endfunction
 
 " 文法確認
@@ -377,21 +369,11 @@ endfunction
 " endfunction
 " call vimwork#neobundle#is_comment(line("."), col("."))
 
-" 複合の場合はどうしよう
-imap <expr> <tab> 
+imap <expr> <tab>
 			\ neosnippet#expandable_or_jumpable()
 			\ ? "<Plug>(neosnippet_expand_or_jump)"
 			\ : vimwork#neobundle#is_emmet()
-			\ ? "<C-o><Plug>(emmmet-expand-abbr)"
-			\ : "<tab>"
-
-nmap <expr> <tab>
-			\ neosnippet#expandable_or_jumpable()
-			\ ? "<Plug>(neosnippet_expand_or_jump)"
-			\ : vimwork#neobundle#is_emmet()
-			\ ? vimwork#neobundle#is_pairs()
-			\ : vimwork#neobundle#pairs()
-			\ ? "<Plug>(emmmet-expand-abbr)"
+			\ ? "<C-o><Plug>(emmet-expand-abbr)"
 			\ : "<tab>"
 
 if exists('s:save_cpo')
