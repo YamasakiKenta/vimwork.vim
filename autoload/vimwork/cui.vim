@@ -14,8 +14,8 @@ if ( has('win32') || has('win64') )
 endif
 
 " カーソルの形
-let &t_SI="\e[5 q"
- let &t_EI="\e[1 q"
+" let &t_SI="\e[5 q"
+" let &t_EI="\e[1 q"
 "
 " IME制御
 " let &t_SI .= "\e[<r"
