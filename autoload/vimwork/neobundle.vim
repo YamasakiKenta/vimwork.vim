@@ -34,6 +34,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
 " NeoBundle
+NeoBundle 'violetyk/cake.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
@@ -157,24 +158,25 @@ if neobundle#tap('unite.vim') "{{{
 	" nnoremap [unite]uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
 	" nnoremap [unite]ub<CR>  :<C-u>Unite buffer<CR>|"
 	" nnoremap [unite]uk<CR>  :<C-u>Unite bookmark -default-action=vimfiler<CR>|"
-	nnoremap [unite]qf<CR>  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4<CR>|"
-	nnoremap [unite]G<CR>  :<C-u>UniteResume grep<CR>|"
-	nnoremap [unite]R<CR>  :<C-u>Unite resume<CR>|"
-	nnoremap [unite]bt<CR> :<C-u>Unite buffer_tags<CR>|"
-	nnoremap [unite]e<CR>  :<C-u>Unite outline<CR>|"
-	nnoremap [unite]f<CR>  :<C-u>Unite file_rec<CR>|"
-	nnoremap [unite]g<CR>  :<C-u>Unite -buffer-name=grep grep<CR>|"
-	nnoremap [unite]h<CR>  :<C-u>Unite history/yank<CR>|"
-	nnoremap [unite]j<CR>  :<C-u>Unite jump<CR>|	
-	nnoremap [unite]l<CR>  :<C-u>Unite line/fast<CR>|"
-	nnoremap [unite]m<CR>  :<C-u>Unite file_mru<CR>|"
-	nnoremap [unite]om<CR> :<C-u>Unite output:message<CR>|"
-	nnoremap [unite]p<CR>  :<C-u>Unite settings_var<CR>|"
-	nnoremap [unite]pa<CR> :<C-u>Unite settings_var_all<CR>|"
-	nnoremap [unite]pt<CR> :<C-u>Unite settings/ex<CR>|"
-	nnoremap [unite]r<CR>  :<C-u>UniteResume<CR>|"
-	nnoremap [unite]s<CR>  :<C-u>Unite source<CR>|"
-	nnoremap [unite]t<CR>  :<C-u>Unite tag<CR>|"
+	nnoremap [unite]qf  :<C-u>Unite quickfix quickfix:1 quickfix:2 quickfix:3 quickfix:4|"
+	nnoremap [unite]G  :<C-u>UniteResume grep|"
+	nnoremap [unite]R  :<C-u>Unite resume|"
+	nnoremap [unite]bt :<C-u>Unite buffer_tags|"
+	nnoremap [unite]e  :<C-u>Unite outline|"
+	nnoremap [unite]f  :<C-u>Unite file_rec|"
+	nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep|"
+	nnoremap [unite]h  :<C-u>Unite history/yank|"
+	nnoremap [unite]j  :<C-u>Unite jump|	
+	nnoremap [unite]l  :<C-u>Unite line/fast|"
+	nnoremap [unite]m  :<C-u>Unite file_mru|"
+	nnoremap [unite]om :<C-u>Unite output:message|"
+	nnoremap [unite]p  :<C-u>Unite settings_var|"
+	nnoremap [unite]pa :<C-u>Unite settings_var_all|"
+	nnoremap [unite]pt :<C-u>Unite settings/ex|"
+	nnoremap [unite]r  :<C-u>UniteResume|"
+	nnoremap [unite]s  :<C-u>Unite source|"
+	nnoremap [unite]t  :<C-u>Unite tag|"
+	nnoremap [unite]c  :<C-u>Unite cake_behavior cake_component cake_config cake_controller cake_core cake_fixture cake_helper cake_lib cake_model cake_shell cake_task cake_view
 	call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:unite_enable_start_insert        = 1
@@ -329,7 +331,8 @@ if neobundle#tap('rainbow_parentheses.vim') " {{{
 endif "}}}
 if neobundle#tap('lightline.vim') "{{{
 	if s:is_win()
-		call neobundle#config({'lazy': 0})
+		" とりあえずOFFにする
+		" call neobundle#config({'lazy': 0})
 		call vimwork#lightline#init()
 	endif 
 endif "}}}

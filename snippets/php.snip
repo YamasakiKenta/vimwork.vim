@@ -7,3 +7,16 @@ snippet "
     "${1}"
 snippet {}
     {${1}}
+
+snippet head
+	// =============================================================================
+	//  FILE: `expand("%:t")`
+	//  Last Modified: `strftime("%c")`
+	// =============================================================================
+
+snippet render
+    $this->autoRender=false;
+snippet sql
+    $this->${1:Model}->create();
+    $this->$1->save(${2:});
+    $this->$1->find(${2:});

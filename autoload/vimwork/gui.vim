@@ -11,15 +11,18 @@ filetype on
 filetype indent on
 filetype plugin on
 nnoremap <A-Space> :<C-u>simalt ~<CR>|"
-set ambiwidth=single
-set list lcs=tab:»\ ,eol:←
+" おしゃれだが、標準文字が面倒
+if 0
+	set ambiwidth=single
+	set list lcs=tab:»\ ,eol:←
+else 
+	set list lcs=tab:.\ 
+endif
 
 set go-=T
 set go-=m
-set ambiwidth=single
 set guifont=Consolas:h10
 set guifontwide=MS_Gothic:h10
-set list lcs=tab:»\ ,eol:←
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
