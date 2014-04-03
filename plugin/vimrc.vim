@@ -57,6 +57,8 @@ nmap <leader>uq<CR> 	<Plug>(uniq_line)
 nmap v/ 		<Plug>(select_search)
 vnoremap < <gv|"
 vnoremap > >gv|"
+highlight CursorIM guibg=Magenta guifg=NONE
+
 " dir 
 let s:dir = substitute(expand("<sfile>"), '\\', '\/', 'g')
 let s:dir = substitute(s:dir, '/plugin/vimrc.vim$', '', '')
@@ -66,7 +68,7 @@ let g:load_doxygen_syntax = 1
 exe 'set dict+='.s:dir.'/dict'
 
 " CUI
-call vimwork#cui#init()
+" call vimwork#cui#init()
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo

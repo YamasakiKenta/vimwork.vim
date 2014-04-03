@@ -34,7 +34,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
 " NeoBundle
-NeoBundle 'violetyk/cake.vim'
+" NeoBundle 'violetyk/cake.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
