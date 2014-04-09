@@ -43,7 +43,7 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'pasela/unite-webcolorname'
-NeoBundle 'sgur/vim-gitgutter'
+" NeoBundle 'sgur/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'sgur/unite-everything'
 

@@ -24,6 +24,8 @@ set go-=m
 set guifont=Consolas:h10
 set guifontwide=MS_Gothic:h10
 
+highlight CursorIM guibg=Magenta guifg=NONE
+
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
