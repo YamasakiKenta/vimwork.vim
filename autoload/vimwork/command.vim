@@ -169,11 +169,20 @@ function! vimwork#command#change_root() "{{{
 	endfor
 
 endfunction "}}}
-function! vimwork#command#winmerge()
+function! vimwork#command#winmerge() "{{{
 	let fname = [
 		expand("")
 	]
 endfunction
-
+"}}}
+function! vimwork#command#update_time() "{{{
+	let l = search('Last Modified', 'bnW')
+	if l > 0
+		let str = getline(l)
+		let str = substitute(str, ':.*', ': '.strftime("%c"), '')
+		call setline(l, str)
+	endif
+endfunction
+"}}}
 let &cpo = s:save_cpo
 unlet s:save_cpo

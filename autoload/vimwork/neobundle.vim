@@ -10,89 +10,76 @@ if has("vim_starting")
 endif
 call neobundle#rc()
 
-" test
-NeoBundle 'ujihisa/vimshell-ssh'
+" Test
 
 " color
-NeoBundle 'vim-scripts/chlordane.vim'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'vim-scripts/twilight'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'vim-scripts/Wombat'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'vim-scripts/rdark'
-NeoBundle 'cocopon/colorswatch.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
+" NeoBundle 'vim-scripts/chlordane.vim'
+" NeoBundle 'nanotech/jellybeans.vim'
+" NeoBundle 'w0ng/vim-hybrid'
+" NeoBundle 'vim-scripts/twilight'
+" NeoBundle 'jonathanfilip/vim-lucius'
+" NeoBundle 'jpo/vim-railscasts-theme'
+" NeoBundle 'altercation/vim-colors-solarized'
+" NeoBundle 'vim-scripts/Wombat'
+" NeoBundle 'tomasr/molokai'
+" NeoBundle 'vim-scripts/rdark'
+" NeoBundle 'cocopon/colorswatch.vim'
+" NeoBundle 'Shougo/neomru.vim'
+" NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
+" NeoBundle 'altercation/vim-colors-solarized'
 
 " NeoBundleFetch
-NeoBundleFetch 'Shougo/shougo-s-github'
+" NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 
 " NeoBundle
 " NeoBundle 'violetyk/cake.vim'
+" NeoBundle 'sgur/vim-gitgutter'
+" NeoBundle 'lilydjwg/colorizer' " CSS PREVIEW
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
-NeoBundle 'lilydjwg/colorizer'
-NeoBundle 'pasela/unite-webcolorname'
-" NeoBundle 'sgur/vim-gitgutter'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'sgur/unite-everything'
+
+" Unite 
+NeoBundleLazy 'Shougo/unite.vim'
+NeoBundleLazy 'pasela/unite-webcolorname'
+NeoBundleLazy 'sgur/unite-everything'
+NeoBundleLazy 'Shougo/unite-outline'
+NeoBundleLazy 'tsukkee/unite-tag'
+NeoBundleLazy 'osyo-manga/unite-quickfix'
+NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
+NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
+NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
+NeoBundleLazy 'ujihisa/unite-colorscheme'
+NeoBundleLazy 'Shougo/neomru.vim'
 
 " NeoBundleLazy
+" NeoBundleLazy 'Shougo/vimproc.vim' " gvimでは、初期のやつを使用する
+" NeoBundleLazy 'Shougo/vinarise.vim'
+" NeoBundleLazy 'rbtnn/puyo.vim'
+" NeoBundleLazy 'thinca/vim-ref'
+" NeoBundleLazy 'kchmck/vim-coffee-script'
+NeoBundle 'thinca/vim-partedit'
+NeoBundleLazy 'rbtnn/vbnet_indent.vim'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
-" NeoBundleLazy 'Shougo/vimproc.vim'
 NeoBundleLazy 'itchyny/lightline.vim'
-NeoBundleLazy 'Shougo/neomru.vim'
 NeoBundleLazy 'CCTree'
 NeoBundleLazy 'Shougo/vimshell.vim'
 NeoBundleLazy 'thinca/vim-quickrun'
-NeoBundleLazy 'Shougo/vinarise.vim'
-NeoBundleLazy 'Shougo/unite.vim'
-NeoBundleLazy 'rbtnn/puyo.vim'
-NeoBundleLazy 'thinca/vim-partedit'
-NeoBundleLazy 'thinca/vim-ref'
-NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundleLazy 'mattn/emmet-vim'
-NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'vim-scripts/Align'
-NeoBundleLazy 'tsukkee/unite-tag'
-NeoBundleLazy 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'YamasakiKenta/chain-file.vim'
 NeoBundleLazy 'YamasakiKenta/tree.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 NeoBundleLazy 'YamasakiKenta/tab-diff.vim'
-NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 NeoBundleLazy 'Shougo/vimfiler'
-NeoBundleLazy 'ujihisa/unite-colorscheme'
 
 function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
 endfunction
-if neobundle#tap('puyo.vim') "{{{
-	call neobundle#config({'autoload':{'commands': 'Puyo'}})
-endif "}}}
-if neobundle#tap('neomru.vim') "{{{
-	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
-endif "}}}
-if neobundle#tap('vinarise.vim') "{{{
-	call neobundle#config({'autoload':{'commands': 'Vinarise'}})
-endif "}}}
-if neobundle#tap('unite-setting.vim') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'setting'}})
-endif "}}}
-if neobundle#tap('unite-setting-ex.vim') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
-endif "}}}
 if neobundle#tap('chain-file.vim') "{{{
 	call neobundle#config({'autoload': {'commands': 'ChainFile'}})
 	let g:chain_dict = { '__file' : {
@@ -112,15 +99,6 @@ if neobundle#tap('chain-file.vim') "{{{
 				\ },
 				\ }
 	"C:\xampp\htdocs\yamasaki\cake\app\Model\MySampleData.php
-endif "}}}
-if neobundle#tap('unite-quickfix') "{{{
-	call neobundle#config({'autoload': {'commands': 'quickfix'}})
-endif "}}}
-if neobundle#tap('unite-tag') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'tag'}})
-endif "}}}
-if neobundle#tap('unite-outline') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'outline'}})
 endif "}}}
 if neobundle#tap('emmet-vim') "{{{
 	call neobundle#config({'autoload': { 
@@ -152,6 +130,118 @@ if neobundle#tap('vimfiler') "{{{
 		let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 	endfunction 
 endif "}}}
+if neobundle#tap('neosnippet') "{{{
+	function! neobundle#tapped.hooks.on_source(bundle) 
+		imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
+	endfunction
+endif "}}}
+if neobundle#tap('qfixgrep') "{{{
+	call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
+	let QFix_CloseOnJump = 1
+	let QFixWin_EnableMode = 1
+	let mygrepprg = 'grep'
+endif "}}}
+if neobundle#tap('Align') "{{{
+	call neobundle#config({'autoload': {'commands': ['Align', 'ALign'], 'mappings': '\tsp'}})
+	function! neobundle#tapped.hooks.on_source(bundle) 
+		let g:Align_xstrlen = 3
+		command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
+	endfunction
+endif "}}}
+if neobundle#tap('vimproc.vim') "{{{
+	if !s:is_win()
+		call neobundle#config({'build': {
+					\ 'windows' : 'make -f make_mingw32.mak',
+					\ 'cygwin'  : 'make -f make_cygwin.mak',
+					\ 'mac'     : 'make -f make_mac.mak',
+					\ 'unix'    : 'make -f make_unix.mak',
+					\ }})
+	endif
+endif "}}}
+if neobundle#tap('tab-diff.vim') "{{{
+	nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
+	nnoremap <leader>dn<CR> :<C-u>TabDiffEnd<CR>
+	nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
+	call neobundle#config({'autoload': {'commands' : ['TabDiffStart','TabDiffEnd','TabDiffOrig']}})
+endif "}}}
+if neobundle#tap('neocomplete.vim') "{{{
+	function! neobundle#tapped.hooks.on_source(bundle) 
+		let g:neocomplete#enable_at_startup = 1
+		let g:neocomplete#auto_completion_start_length = 3
+	endfunction
+endif "}}}
+if neobundle#tap('vim-fugitive') "{{{
+	call neobundle#config({'autoload': {'functions': ['fugitive#statusline']}})
+endif "}}}
+if neobundle#tap('vaxe') "{{{
+    call neobundle#config({'autoload': {'filetypes': 'haxe'}})
+endif "}}}
+if neobundle#tap('vim-coffee-script') "{{{
+	aug _vim_coffee_script
+		au!
+		au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+	aug END
+    call neobundle#config({'autoload':{'filetypes': 'coffee'}})
+endif "}}}
+if neobundle#tap('vim-quickrun') "{{{
+	call neobundle#config({'autoload': {'commands': 'QuickRun'}})
+endif "}}}
+if neobundle#tap('vimshell.vim') "{{{
+	call neobundle#config({'autoload': {'commands': 'VimShell'}})
+endif "}}}
+if neobundle#tap('CCTree') "{{{
+    call neobundle#config({'autoload': {'filetypes': 'c'}})
+endif "}}}
+if neobundle#tap('rainbow_parentheses.vim') " {{{
+	if s:is_win()
+		call neobundle#config({'lazy':0})
+		aug _rainbow_parentheses
+			au!
+			au VimEnter * RainbowParenthesesToggle
+			au Syntax * RainbowParenthesesLoadRound
+			au Syntax * RainbowParenthesesLoadSquare
+			au Syntax * RainbowParenthesesLoadBraces
+		aug END
+		let g:rbpt_colorpairs = [
+					\ ['brown',       'RoyalBlue3'],
+					\ ['Darkblue',    'SeaGreen3'],
+					\ ['darkgray',    'DarkOrchid3'],
+					\ ['darkgreen',   'firebrick3'],
+					\ ['darkcyan',    'RoyalBlue3'],
+					\ ['darkred',     'SeaGreen3'],
+					\ ['darkmagenta', 'DarkOrchid3'],
+					\ ['brown',       'firebrick3'],
+					\ ['gray',        'RoyalBlue3'],
+					\ ['black',       'SeaGreen3'],
+					\ ['darkmagenta', 'DarkOrchid3'],
+					\ ['Darkblue',    'firebrick3'],
+					\ ['darkgreen',   'RoyalBlue3'],
+					\ ['darkcyan',    'SeaGreen3'],
+					\ ['darkred',     'DarkOrchid3'],
+					\ ['red',         'firebrick3'],
+					\ ]
+	endif
+
+endif "}}}
+if neobundle#tap('lightline.vim') "{{{
+
+	if s:is_win()
+		" とりあえずOFFにする
+		" call neobundle#config({'lazy': 0})
+		call vimwork#lightline#init()
+	endif 
+endif "}}}lightline.vim
+" Command
+if neobundle#tap('vim-partedit') "{{{
+	call neobundle#config({'autoload': {'commands': 'Partedit'}})
+endif "}}}thinca/vim-partedit
+if neobundle#tap('vinarise.vim') "{{{
+	call neobundle#config({'autoload':{'commands': 'Vinarise'}})
+endif "}}}
+if neobundle#tap('puyo.vim') "{{{
+	call neobundle#config({'autoload':{'commands': 'Puyo'}})
+endif "}}}
+" Unite ( 自動でなる ) 
 if neobundle#tap('unite.vim') "{{{
 	nmap <leader>u [unite]
 	" nnoremap [unite]uK<CR>  :<C-u>Unite bookmark<CR>|"
@@ -198,40 +288,6 @@ if neobundle#tap('unite.vim') "{{{
 		call vimwork#unite#init()
 	endfunction 
 endif "}}}
-if neobundle#tap('neosnippet') "{{{
-	function! neobundle#tapped.hooks.on_source(bundle) 
-		imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
-	endfunction
-endif "}}}
-if neobundle#tap('qfixgrep') "{{{
-	call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
-	let QFix_CloseOnJump = 1
-	let QFixWin_EnableMode = 1
-	let mygrepprg = 'grep'
-endif "}}}
-if neobundle#tap('Align') "{{{
-	call neobundle#config({'autoload': {'commands': ['Align', 'ALign'], 'mappings': '\tsp'}})
-	function! neobundle#tapped.hooks.on_source(bundle) 
-		let g:Align_xstrlen = 3
-		command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
-	endfunction
-endif "}}}
-if neobundle#tap('vimproc.vim') "{{{
-	if !s:is_win()
-		call neobundle#config({'build': {
-					\ 'windows' : 'make -f make_mingw32.mak',
-					\ 'cygwin'  : 'make -f make_cygwin.mak',
-					\ 'mac'     : 'make -f make_mac.mak',
-					\ 'unix'    : 'make -f make_unix.mak',
-					\ }})
-	endif
-endif "}}}
-if neobundle#tap('tab-diff.vim') "{{{
-	nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
-	nnoremap <leader>dn<CR> :<C-u>TabDiffEnd<CR>
-	nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
-	call neobundle#config({'autoload': {'commands' : ['TabDiffStart','TabDiffEnd','TabDiffOrig']}})
-endif "}}}
 if neobundle#tap('unite-perforce.vim') "{{{
 	nmap <leader>cl<CR> <PLUG>(p4_echo_client_data)
 	nmap <leader>cr<CR> <PLUG>(p4_lcd_clentpath)
@@ -264,78 +320,35 @@ if neobundle#tap('unite-perforce.vim') "{{{
 				\ 'mappings': '<PLUG>(p4_'
 				\ }})
 endif "}}}
-if neobundle#tap('neocomplete.vim') "{{{
-	function! neobundle#tapped.hooks.on_source(bundle) 
-		let g:neocomplete#enable_at_startup = 1
-		let g:neocomplete#auto_completion_start_length = 4
-	endfunction
-endif "}}}
-if neobundle#tap('vim-fugitive') "{{{
-	call neobundle#config({'autoload': {'functions': ['fugitive#statusline']}})
-endif "}}}
-if neobundle#tap('vaxe') "{{{
-    call neobundle#config({'autoload': {'filetypes': 'haxe'}})
-endif "}}}
-if neobundle#tap('vim-coffee-script') "{{{
-	aug _vim_coffee_script
-		au!
-		au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-	aug END
-    call neobundle#config({'autoload':{'filetypes': 'coffee'}})
-endif "}}}
-if neobundle#tap('vim-quickrun') "{{{
-	call neobundle#config({'autoload': {'commands': 'QuickRun'}})
-endif "}}}
-if neobundle#tap('vimshell.vim') "{{{
-	call neobundle#config({'autoload': {'commands': 'VimShell'}})
-endif "}}}
-if neobundle#tap('ujihisa/unite-colorscheme') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'colorscheme'}})
-endif "}}}
-if neobundle#tap('CCTree') "{{{
-    call neobundle#config({'autoload': {'filetypes': 'c'}})
+if 0 
+if neobundle#tap('neomru.vim') "{{{
+	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
 endif "}}}
 if neobundle#tap('unite-everything') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'everything'}})
 endif "}}}
-if neobundle#tap('rainbow_parentheses.vim') " {{{
-	if s:is_win()
-		call neobundle#config({'lazy':0})
-		aug _rainbow_parentheses
-			au!
-			au VimEnter * RainbowParenthesesToggle
-			au Syntax * RainbowParenthesesLoadRound
-			au Syntax * RainbowParenthesesLoadSquare
-			au Syntax * RainbowParenthesesLoadBraces
-		aug END
-		let g:rbpt_colorpairs = [
-					\ ['brown',       'RoyalBlue3'],
-					\ ['Darkblue',    'SeaGreen3'],
-					\ ['darkgray',    'DarkOrchid3'],
-					\ ['darkgreen',   'firebrick3'],
-					\ ['darkcyan',    'RoyalBlue3'],
-					\ ['darkred',     'SeaGreen3'],
-					\ ['darkmagenta', 'DarkOrchid3'],
-					\ ['brown',       'firebrick3'],
-					\ ['gray',        'RoyalBlue3'],
-					\ ['black',       'SeaGreen3'],
-					\ ['darkmagenta', 'DarkOrchid3'],
-					\ ['Darkblue',    'firebrick3'],
-					\ ['darkgreen',   'RoyalBlue3'],
-					\ ['darkcyan',    'SeaGreen3'],
-					\ ['darkred',     'DarkOrchid3'],
-					\ ['red',         'firebrick3'],
-					\ ]
-	endif
-
+if neobundle#tap('ujihisa/unite-colorscheme') "{{{
+	call neobundle#config({'autoload': {'unite_sources': 'colorscheme'}})
 endif "}}}
-if neobundle#tap('lightline.vim') "{{{
-	if s:is_win()
-		" とりあえずOFFにする
-		" call neobundle#config({'lazy': 0})
-		call vimwork#lightline#init()
-	endif 
+if neobundle#tap('unite-quickfix') "{{{
+	call neobundle#config({'autoload': {'commands': 'quickfix'}})
 endif "}}}
+if neobundle#tap('unite-tag') "{{{
+	call neobundle#config({'autoload': {'unite_sources': 'tag'}})
+endif "}}}
+if neobundle#tap('unite-outline') "{{{
+	call neobundle#config({'autoload': {'unite_sources': 'outline'}})
+endif "}}}
+if neobundle#tap('unite-setting.vim') "{{{
+	call neobundle#config({'autoload': {'unite_sources': 'setting'}})
+endif "}}}
+if neobundle#tap('unite-setting-ex.vim') "{{{
+	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
+endif "}}}
+if neobundle#tap('pasela/unite-webcolorname') "{{{
+	" call neobundle#config({'autoload': {'unite_sources': 'webcolorname'}})
+endif "}}}
+endif
 call neobundle#call_hook('on_source')
 filetype plugin indent on
 
