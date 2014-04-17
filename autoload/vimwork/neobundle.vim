@@ -1,7 +1,6 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-
 function! vimwork#neobundle#init()
 endfunction
 
@@ -24,7 +23,6 @@ call neobundle#rc()
 " NeoBundle 'tomasr/molokai'
 " NeoBundle 'vim-scripts/rdark'
 " NeoBundle 'cocopon/colorswatch.vim'
-" NeoBundle 'Shougo/neomru.vim'
 " NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
 " NeoBundle 'altercation/vim-colors-solarized'
 
@@ -132,7 +130,14 @@ if neobundle#tap('vimfiler') "{{{
 endif "}}}
 if neobundle#tap('neosnippet') "{{{
 	function! neobundle#tapped.hooks.on_source(bundle) 
+		" For snippet_complete marker.
+		" Plugin key-mappings.
+		imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+		smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+		xmap <C-k>     <Plug>(neosnippet_expand_target)
+		xmap <C-l>     <Plug>(neosnippet_start_unite_snippet_target)
 		imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
+		imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-TAB>"
 	endfunction
 endif "}}}
 if neobundle#tap('qfixgrep') "{{{
@@ -320,10 +325,11 @@ if neobundle#tap('unite-perforce.vim') "{{{
 				\ 'mappings': '<PLUG>(p4_'
 				\ }})
 endif "}}}
-if 0 
+" Unite 
 if neobundle#tap('neomru.vim') "{{{
 	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
 endif "}}}
+if 0 
 if neobundle#tap('unite-everything') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'everything'}})
 endif "}}}
@@ -352,48 +358,26 @@ endif
 call neobundle#call_hook('on_source')
 filetype plugin indent on
 
-function! s:all_key()
-	return ["1","2","3","4","5","6","7","8","9","0","a","b","c","d","e","f","g","h","i","p","q","r","s","t","u","v","w","x","z",'<cr>','<tab>']
-endfunction
-function! vimwork#neobundle#is_brank()
-	let rtn = 0
-	if col(".") == 1
-		let rtn = 1
-	elseif match(getline(".")[col(".")-2], '\s') != -1
-		let rtn = 1
-	endif
-	return rtn
-endfunction
-function! vimwork#neobundle#select_command(contents)
-	let str = "'".join(keys(a:contents), "', '")."'"
-	let key = input(str." ?")
-
-	let command_ = ""
-	if exists('a:contents[key]')
-		let command_ = a:contents[key]
-	endif
-	return command_
-endfunction
-
-" 文法確認
+" 文法確認 "{{{
 " function! vimwork#neobundle#is_comment(line, col)
     " echo synIDattr(synIDtrans(synID(a:line, a:col, 1)), 'name')
 " endfunction
-if exists('s:save_cpo')
-	let &cpo = s:save_cpo
-	unlet s:save_cpo
-endif
 " call vimwork#neobundle#is_comment(line("."), col("."))
-			
-imap <expr> <tab>
-			\ neosnippet#expandable_or_jumpable()
-			\ ? "<Plug>(neosnippet_expand_or_jump)"
-			\ : vimwork#neobundle#is_brank()
-			\ ? '<tab>'
-			\ : vimwork#neobundle#select_command({
-			\ 'e': "<C-o><Plug>(emmet-expand-abbr)",
-			\ '	': "<tab>",
-			\ })
+"}}}
+
+if 1  "{{{ NeoSnip
+	" SuperTab like snippets behavior.
+	imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+				\ "\<Plug>(neosnippet_expand_or_jump)"
+				\: pumvisible() ? "\<C-n>"
+				\: emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+				\: "\<TAB>"
+	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+				\ "\<Plug>(neosnippet_expand_or_jump)"
+				\: "\<TAB>"
+endif  "}}}
+
+
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
