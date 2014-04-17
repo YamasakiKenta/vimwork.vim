@@ -1,3 +1,8 @@
+"=============================================================================
+" FILE: command.vim
+" AUTHOR:  Yamasaki Kenta
+" Last Modified: 2014/04/17 16:30:51
+"=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
 
@@ -176,13 +181,18 @@ function! vimwork#command#winmerge() "{{{
 endfunction
 "}}}
 function! vimwork#command#update_time() "{{{
-	let l = search('Last Modified', 'bnW')
+	let l = search('^\W*Last Modified', 'bnW')
 	if l > 0
+		echo 'UPDATE'
 		let str = getline(l)
 		let str = substitute(str, ':.*', ': '.strftime("%c"), '')
 		call setline(l, str)
 	endif
 endfunction
 "}}}
+aug vimwork-command
+	au!
+	autocmd BufWrite * call vimwork#command#update_time()
+aug END
 let &cpo = s:save_cpo
 unlet s:save_cpo
