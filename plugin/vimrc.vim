@@ -31,7 +31,6 @@ set ve=block
 " set ff=dos
 set enc=utf-8
 set fenc=utf-8
-set visualbell
 " map 
 nnoremap <S-Space> za|"
 nnoremap <C-]> <C-]>zz|"

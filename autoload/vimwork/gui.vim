@@ -16,13 +16,14 @@ if 0
 	set ambiwidth=single
 	set list lcs=tab:»\ ,eol:←
 else 
-	set list lcs=tab:>\ 
+	set list lcs=tab:,\ 
 endif
 
 set go-=T
 set go-=m
 set guifont=Consolas:h10
 set guifontwide=MS_Gothic:h10
+set visualbell t_vb=
 
 highlight CursorIM guibg=Magenta guifg=NONE
 
