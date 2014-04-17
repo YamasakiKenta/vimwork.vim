@@ -1,11 +1,10 @@
 "=============================================================================
 " FILE: command.vim
 " AUTHOR:  Yamasaki Kenta
-" Last Modified: 2014/04/17 16:30:51
+" Last Modified: 2014/04/17 16:46:49
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
-
 function! vimwork#command#add_serach(...) "{{{
 " ********************************************************************************
 " 検索ワードの追加 ( OR 検索 )
@@ -181,13 +180,18 @@ function! vimwork#command#winmerge() "{{{
 endfunction
 "}}}
 function! vimwork#command#update_time() "{{{
-	let l = search('^\W*Last Modified', 'bnW')
-	if l > 0
-		echo 'UPDATE'
-		let str = getline(l)
-		let str = substitute(str, ':.*', ': '.strftime("%c"), '')
-		call setline(l, str)
-	endif
+	let pos = getpos(".")
+	for cmd in ['', 'call cursor(6,0)']
+		exe cmd
+		let l = search('^\W*Last Modified', 'bnW')
+		if l > 0
+			echo 'UPDATE'
+			let str = getline(l)
+			let str = substitute(str, ':.*', ': '.strftime("%c"), '')
+			call setline(l, str)
+		endif
+	endfor
+	call setpos('.', pos)
 endfunction
 "}}}
 aug vimwork-command
