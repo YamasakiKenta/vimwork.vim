@@ -7,7 +7,6 @@ snippet "
     "${1}"
 snippet {}
     {${1}}
-
 snippet head
     <?php
     # =============================================================================
@@ -15,14 +14,12 @@ snippet head
     # Creation date: `strftime("%c")`
     # Last Modified: `strftime("%c")`
     # =============================================================================?>
-
 snippet headf
     # =============================================================================
     # ${1}
     # Creation date: `strftime("%c")`
     # Last Modified: `strftime("%c")`
     # =============================================================================
-
 snippet render
     $this->autoRender=false;
 snippet sql
@@ -37,3 +34,5 @@ snippet rule
 snippet time
 abbr    t
     `strftime("%c")`
+snippet len
+    strlen(${1:str});
