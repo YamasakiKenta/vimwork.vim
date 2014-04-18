@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: command.vim
 " AUTHOR:  Yamasaki Kenta
-" Last Modified: 2014/04/17 16:46:49
+" Last Modified: 2014/04/18 10:40:23
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -198,5 +198,7 @@ aug vimwork-command
 	au!
 	autocmd BufWrite * call vimwork#command#update_time()
 aug END
-let &cpo = s:save_cpo
-unlet s:save_cpo
+if exists(s:save_cpo)
+	let &cpo = s:save_cpo
+	unlet s:save_cpo
+endif
