@@ -7,14 +7,14 @@ snippet "
     "${1}"
 snippet {}
     {${1}}
-snippet head
+snippet headf
     <?php
     # =============================================================================
     # FILE: `expand("%:t")`
     # Creation date: `strftime("%c")`
     # Last Modified: `strftime("%c")`
     # =============================================================================?>
-snippet headf
+snippet head
     # =============================================================================
     # ${1}
     # Creation date: `strftime("%c")`
@@ -36,3 +36,7 @@ abbr    t
     `strftime("%c")`
 snippet len
     strlen(${1:str});
+snippet element
+    <?php echo $this->element("${1}", array(${2}));?>
+snippet add
+    ${1}[] = ${2};

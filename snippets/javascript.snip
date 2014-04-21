@@ -1,17 +1,22 @@
+snippet click
+    $("${1}").click(function(){
+    });
 snippet node
     var http = require('http');
     http.createServer(function(req, res) {
     }).listen(80, "localhost");
     console.log('localhost:80');
-snippet head
+snippet headf
     // =============================================================================
     // FILE: `expand("%:t")`
     // Creation date: `strftime("%c")`
-    // Last Modified: 2014/04/17 18:00:57
+    // Last Modified: `strftime("%c")`
     // =============================================================================
-snippet headf
+snippet head
     // =============================================================================
     // ${1}
     // Creation date: `strftime("%c")`
     // Last Modified: `strftime("%c")`
     // =============================================================================
+snippet add
+    ${1}.push(${2});
