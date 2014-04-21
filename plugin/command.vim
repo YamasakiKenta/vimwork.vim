@@ -26,6 +26,11 @@ command! Winmerge call vimwork#command#winmerge()
 " Last Modified を更新する
 command! MyUpdateTimer call vimwork#command#update_time()
 
+aug vimwork-command
+	au!
+	autocmd BufWrite * call vimwork#command#update_time()
+aug END
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 

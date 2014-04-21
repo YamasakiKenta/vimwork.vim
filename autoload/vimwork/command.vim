@@ -194,10 +194,6 @@ function! vimwork#command#update_time() "{{{
 	call setpos('.', pos)
 endfunction
 "}}}
-aug vimwork-command
-	au!
-	autocmd BufWrite * call vimwork#command#update_time()
-aug END
 if exists(s:save_cpo)
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
