@@ -132,9 +132,9 @@ if neobundle#tap('neosnippet') "{{{
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		" For snippet_complete marker.
 		" Plugin key-mappings.
-		imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-		smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-		xmap <C-k>     <Plug>(neosnippet_expand_target)
+		" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+		" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+		" xmap <C-k>     <Plug>(neosnippet_expand_target)
 		xmap <C-l>     <Plug>(neosnippet_start_unite_snippet_target)
 		imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
 		imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-TAB>"
@@ -172,7 +172,7 @@ endif "}}}
 if neobundle#tap('neocomplete.vim') "{{{
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:neocomplete#enable_at_startup = 1
-		let g:neocomplete#auto_completion_start_length = 3
+		" let g:neocomplete#auto_completion_start_length = 3
 	endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
@@ -258,12 +258,10 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap [unite]R  :<C-u>Unite resume|"
 	nnoremap [unite]bt :<C-u>Unite buffer_tags|"
 	nnoremap [unite]e  :<C-u>Unite outline|"
-	nnoremap [unite]f  :<C-u>Unite file_rec|"
 	nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep|"
 	nnoremap [unite]h  :<C-u>Unite history/yank|"
 	nnoremap [unite]j  :<C-u>Unite jump|	
-	nnoremap [unite]l  :<C-u>Unite line/fast|"
-	nnoremap [unite]m  :<C-u>Unite file_mru|"
+	nnoremap [unite]l  :<C-u>Unite line|"
 	nnoremap [unite]om :<C-u>Unite output:message|"
 	nnoremap [unite]p  :<C-u>Unite settings_var|"
 	nnoremap [unite]pa :<C-u>Unite settings_var_all|"
@@ -271,7 +269,8 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap [unite]r  :<C-u>UniteResume|"
 	nnoremap [unite]s  :<C-u>Unite source|"
 	nnoremap [unite]t  :<C-u>Unite tag|"
-	nnoremap [unite]c  :<C-u>Unite cake_behavior cake_component cake_config cake_controller cake_core cake_fixture cake_helper cake_lib cake_model cake_shell cake_task cake_view
+	nnoremap [unite]m  :<C-u>Unite file_mru directory_mru|"
+	nnoremap [unite]f  :<C-u>Unite directory:**/ file_rec:! directory/new file/new|"
 	call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:unite_enable_start_insert        = 1
@@ -375,6 +374,12 @@ if 1  "{{{ NeoSnip
 	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 				\ "\<Plug>(neosnippet_expand_or_jump)"
 				\ :"\<TAB>"
+	imap <expr><C-k>  pumvisible()?
+				\ "<Plug>(neocomplete_start_unite_complete)"
+				\ :"<C-k>"
+	imap <expr><C-q>  pumvisible()?
+				\ "\<Plug>(neocomplete_start_unite_quick_match)"
+				\ :"\<C-q>"
 endif  "}}}
 
 
