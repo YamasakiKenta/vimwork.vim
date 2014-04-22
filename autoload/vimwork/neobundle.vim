@@ -10,6 +10,9 @@ endif
 call neobundle#rc()
 
 " Test
+NeoBundle "Shougo/context_filetype.vim"
+NeoBundle "osyo-manga/vim-precious"
+" NeoBundle 'shawncplus/php.vim'
 
 " color
 " NeoBundle 'vim-scripts/chlordane.vim'
@@ -78,6 +81,24 @@ NeoBundleLazy 'Shougo/vimfiler'
 function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
 endfunction
+if neobundle#tap('vim-precious') "{{{
+	" カーソル移動時の自動切り替えを無効化
+	" このオプションは filetype ごとに設定可能
+	" "*" は全ての filetype に影響する
+	let g:precious_enable_switch_CursorMoved = {
+				\   "*" : 0
+				\}
+	let g:precious_enable_switch_CursorMoved_i = {
+				\   "*" : 0
+				\}
+
+	" insert に入った時にスイッチし、抜けた時に元に戻す
+	augroup vimwork-neobundle-vim-precious
+		autocmd!
+		autocmd InsertEnter * :PreciousSwitch
+		autocmd InsertLeave * :PreciousReset
+	augroup END	
+endif "}}}
 if neobundle#tap('chain-file.vim') "{{{
 	call neobundle#config({'autoload': {'commands': 'ChainFile'}})
 	let g:chain_dict = { '__file' : {
