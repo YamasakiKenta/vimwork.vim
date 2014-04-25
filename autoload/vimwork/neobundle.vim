@@ -291,7 +291,8 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap [unite]s  :<C-u>Unite source|"
 	nnoremap [unite]t  :<C-u>Unite tag|"
 	nnoremap [unite]m  :<C-u>Unite file_mru directory_mru|"
-	nnoremap [unite]f  :<C-u>Unite directory:**/ file_rec:! directory/new file/new|"
+	nnoremap [unite]f  :<C-u>Unite file_rec:! file/new|"
+	nnoremap [unite]d  :<C-u>Unite directory:**/ directory/new|"
 	call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:unite_enable_start_insert        = 1
