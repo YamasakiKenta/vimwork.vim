@@ -1,3 +1,27 @@
+# =============================================================================
+# FILE: php.snip
+# Creation date: 2014/04/23 9:58:04
+# Last Modified: 2014/04/23 20:32:25
+# =============================================================================
+snippet log
+    function _log($str) {
+        echo "$str <br>\n";
+        shell_exec('echo \`date\` '.$str.' >> log.txt');
+    }
+snippet temp
+abbr template script
+    <?php
+    function _getTemplate($fname, $array) {
+        extract($array);
+        ob_start();
+        include $fname;
+        return ob_get_clean();
+    }
+    ?>
+snippet enc
+	mb_internal_encoding("utf-8");
+snippet keys
+    array_keys(${1:list});
 snippet <?php
 alias <?
     <?php ${1} ?>
@@ -7,22 +31,10 @@ snippet "
     "${1}"
 snippet {}
     {${1}}
-snippet headf
-    <?php
-    # =============================================================================
-    # FILE: `expand("%:t")`
-    # Creation date: `strftime("%c")`
-    # Last Modified: `strftime("%c")`
-    # =============================================================================?>
-snippet head
-    # =============================================================================
-    # ${1}
-    # Creation date: `strftime("%c")`
-    # Last Modified: `strftime("%c")`
-    # =============================================================================
 snippet render
     $this->autoRender=false;
 snippet sql
+abbr cake
     $this->${1:Model}->create();
     $this->$1->save(${2:});
     $this->$1->find(${2:});
@@ -42,3 +54,30 @@ snippet add
     ${1}[] = ${2};
 snippet type
     gettype(${1}) === gettype(${2})
+snippet =~
+    ${4:log} = preg_match("/${1}/", ${2:$str}, ${3:$rtn});
+snippet substitute
+alias   subs
+    ${1:$rtn} = preg_reprace("/${2}/", ${3:sub}, ${3:$str});
+snippet sql2
+	$conn = mysql_connect(${1:host}, ${2:user}, ${3:pass}) or die(mysql_error());  
+	mysql_select_db(${4:dbname}) or die(mysql_error());  
+	$res = mysql_query('SELECT * from users') or die(mysql_error());  
+	while ($row = mysql_fetch_array($res, MYSQL_ASSOC)) {  
+		print_r($row);
+	}  
+	mysql_free_result($res);  
+    mysql_close($conn);  
+snippet headf
+    <?php
+    # =============================================================================
+    # FILE: `expand("%:t")`
+    # Creation date: `strftime("%c")`
+    # Last Modified: `strftime("%c")`
+    # =============================================================================?>
+snippet head
+    # =============================================================================
+    # ${1}
+    # Creation date: `strftime("%c")`
+    # Last Modified: `strftime("%c")`
+    # =============================================================================
