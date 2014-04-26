@@ -12,6 +12,7 @@ call neobundle#rc()
 " Test
 NeoBundle "Shougo/context_filetype.vim"
 NeoBundle "osyo-manga/vim-precious"
+NeoBundle "rking/ag.vim"
 " NeoBundle 'shawncplus/php.vim'
 
 " color
@@ -298,18 +299,17 @@ if neobundle#tap('unite.vim') "{{{
 		let g:unite_enable_start_insert        = 1
 		let g:unite_source_history_yank_enable = 1
 		let g:unite_source_rec_max_cache_files = 100
+		let g:unite_enable_ignore_case = 1
+		let g:unite_enable_smart_case = 1
 
-		let mode = "ag"
-		if mode == 'findstr'
+		if executable("ag")
+			let g:unite_source_grep_command = 'ag'
+			let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+			let g:unite_source_grep_recursive_opt = ''
+		elseif executable("findstr")
 			let g:unite_source_grep_command       = 'findstr'
 			let g:unite_source_grep_default_opts  = '/n'
 			let g:unite_source_grep_recursive_opt = '/s'
-		elseif mode == 'ag'
-			if executable('ag')
-				let g:unite_source_grep_command = 'ag'
-				let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-				let g:unite_source_grep_recursive_opt = ''
-			endif
 		endif
 		call vimwork#unite#init()
 	endfunction 

@@ -24,11 +24,13 @@ command! -narg=* -range SortFunction call sort_function#sort_function(<line1>, <
 command! Winmerge call vimwork#command#winmerge()
 
 " Last Modified を更新する
-command! MyUpdateTimer call vimwork#command#update_time()
+command! MyUpdateTimer call vimwork#command#update_time([''])
+
+command! MySyntax call vimwork#command#syntax()
 
 aug vimwork-command
 	au!
-	autocmd BufWrite * call vimwork#command#update_time()
+	autocmd BufWrite * call vimwork#command#update_time(['call cursor(6,0)'])
 aug END
 
 let &cpo = s:save_cpo

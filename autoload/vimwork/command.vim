@@ -1,7 +1,8 @@
 "=============================================================================
 " FILE: command.vim
 " AUTHOR:  Yamasaki Kenta
-" Last Modified: 2014/04/18 10:40:23
+" Creation date: 2014/04/26 23:46:33
+" Last Modified: 2014/04/27 0:00:06
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -179,9 +180,9 @@ function! vimwork#command#winmerge() "{{{
 	]
 endfunction
 "}}}
-function! vimwork#command#update_time() "{{{
+function! vimwork#command#update_time(cmds) "{{{
 	let pos = getpos(".")
-	for cmd in ['', 'call cursor(6,0)']
+	for cmd in a:cmds
 		exe cmd
 		let l = search('^\W*Last Modified', 'bnW')
 		if l > 0
@@ -194,6 +195,9 @@ function! vimwork#command#update_time() "{{{
 	call setpos('.', pos)
 endfunction
 "}}}
+function! vimwork#command#syntax()
+	echo synIDattr(synID(line("."), col("."), 1), "name")
+endfunction
 if exists(s:save_cpo)
 	let &cpo = s:save_cpo
 	unlet s:save_cpo
