@@ -1,3 +1,9 @@
+"=============================================================================
+" FILE: command.vim
+" AUTHOR:  Yamasaki Kenta
+" Creation date: 2014/04/27 23:53:14
+" Last Modified: 2014/04/27 23:53:24
+"=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
 
@@ -28,10 +34,6 @@ command! MyUpdateTimer call vimwork#command#update_time([''])
 
 command! MySyntax call vimwork#command#syntax()
 
-aug vimwork-command
-	au!
-	autocmd BufWrite * call vimwork#command#update_time(['call cursor(6,0)'])
-aug END
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

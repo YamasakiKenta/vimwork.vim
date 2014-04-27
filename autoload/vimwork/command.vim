@@ -195,9 +195,10 @@ function! vimwork#command#update_time(cmds) "{{{
 	call setpos('.', pos)
 endfunction
 "}}}
-function! vimwork#command#syntax()
+function! vimwork#command#syntax() "{{{
 	echo synIDattr(synID(line("."), col("."), 1), "name")
 endfunction
+" }}}
 if exists(s:save_cpo)
 	let &cpo = s:save_cpo
 	unlet s:save_cpo

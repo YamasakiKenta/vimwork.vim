@@ -9,6 +9,52 @@ if has("vim_starting")
 endif
 call neobundle#rc()
 
+" " textobj
+NeoBundle "kana/vim-textobj-user"                                  "| textobj のベース
+" textobj "{{{
+NeoBundle "kana/vim-textobj-indent"                                "| カーソル位置と同じインデント                   | al, il
+" NeoBundle "thinca/vim-textobj-function-javascript"                 "| JavaScript の関数内                            | af, if
+" NeoBundle "kana/vim-textobj-syntax"                                "| シンタックス                                   | ay, iy
+" NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に検索されたパターン                       | a/, i/
+" NeoBundle "kana/vim-textobj-function"                              "| 関数内                                         | af, if
+" NeoBundle "vimtaku/vim-textobj-keyvalue"                           "| ハッシュの key と value                        | dak, dik,  dav, div
+" NeoBundle "thinca/vim-textobj-function-perl"                       "| Perl の関数内                                  | af, if
+" NeoBundle "thinca/vim-textobj-comment"                             "| コメント                                       | ac, ic
+" NeoBundle "thinca/vim-textobj-between"                             "| 任意の区切り文字                               | af, if
+" NeoBundle "sgur/vim-textobj-parameter"                             "| 関数の引数                                     | a, i,
+" NeoBundle "saihoooooooo/vim-textobj-space"                         "| 連続したスペース                               | aS, iS
+" NeoBundle "rhysd/vim-textobj-ruby"                                 "| Ruby のブロック                                | arr, brr
+" NeoBundle "rhysd/vim-textobj-lastinserted"                         "| テキストオブジェクトとして最後に挿入された範囲 | au, iu
+" NeoBundle "rhysd/vim-textobj-continuous-line"                      "| 行継続を用いている行                           | av, iv
+" NeoBundle "rbonvall/vim-textobj-latex"                             "| LaTeX                                          | ae, ie
+" NeoBundle "osyo-manga/vim-textobj-multiblock"                      "| 任意の複数の括弧のいずれか                     | asb, isb
+" NeoBundle "osyo-manga/vim-textobj-context"                         "| 別の filetype のコンテキスト                   | icx
+" NeoBundle "mjbrownie/html-textobjects"                             "| HTML                                           | ahf, ihf
+" NeoBundle "mattn/vim-textobj-url"                                  "| URL                                            | au, iu
+" NeoBundle "mattn/vim-textobj-cell"                                 "| 前後のスペースを取り除いたカーソル行           | ac, ic
+" NeoBundle "kana/vim-textobj-syntax"                                "| アンダースコアの間                             | a_, i_
+" NeoBundle "kana/vim-textobj-syntax"                                "| diff(1)                                        | adf, idf
+" NeoBundle "kana/vim-textobj-line"                                  "| カーソル行                                     | al, il
+" NeoBundle "kana/vim-textobj-jabraces"                              "| 「foo」 or 【bar】など                         | ajb, ijb
+" NeoBundle "kana/vim-textobj-fold"                                  "| fold                                           | az, iz
+" NeoBundle "kana/vim-textobj-entire"                                "| バッファ全体                                   | ae, ie
+" NeoBundle "kana/vim-textobj-django-template"                       "| django_template                                | adb, idb
+" NeoBundle "kana/vim-textobj-datetime"                              "| 日付と時刻                                     | ada, ida
+" NeoBundle "https://bitbucket.org/anyakichi/vim-textobj-xbrackets"  "| x() や x<> など                                | axb, ixb
+" NeoBundle "hchbaw/textobj-motionmotion.vim"                        "| 任意の2つの motion の間                        | am, im
+" NeoBundle "h1mesuke/textobj-wiw"                                   "| snake_case 上の word                           | a,w, i,w
+" NeoBundle "glts/vim-textobj-indblock"                              "| インデントの空白行                             | ao, io
+" NeoBundle "gilligan/textobj-lastpaste"                             "| 直前に変更またはヤンクされたテキスト           | ip
+" NeoBundle "deton/textobj-mbboundary.vim"                           "| ASCII文字とマルチバイト文字の境界を区切り      | am, im
+" NeoBundle "deris/vim-textobj-headwordofline"                       "| 行の先頭の word                                | ah, ih
+" NeoBundle "deris/vim-textobj-enclosedsyntax"                       "| Perl や Ruby の正規表現                        | aq, iq
+" NeoBundle "bps/vim-textobj-python"                                 "| Python                                         | af, if
+" NeoBundle "anyakichi/vim-textobj-ifdef2"                           "| #ifdef                                         | a#, i#
+" NeoBundle "akiyan/vim-textobj-xml-attribute"                       "| XML の属性                                     | axa, ixa
+" NeoBundle "akiyan/vim-textobj-php"                                 "| phpタグに囲まれた部分                          | aP, iP
+" NeoBundle "RyanMcG/vim-textobj-dash"                               "| ダッシュ記号の間                               | a-, i-
+" }}}
+
 " Test
 NeoBundle "Shougo/context_filetype.vim"
 NeoBundle "osyo-manga/vim-precious"
@@ -16,6 +62,7 @@ NeoBundle "rking/ag.vim"
 " NeoBundle 'shawncplus/php.vim'
 
 " color
+" {{{
 " NeoBundle 'vim-scripts/chlordane.vim'
 " NeoBundle 'nanotech/jellybeans.vim'
 " NeoBundle 'w0ng/vim-hybrid'
@@ -29,6 +76,7 @@ NeoBundle "rking/ag.vim"
 " NeoBundle 'cocopon/colorswatch.vim'
 " NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
 " NeoBundle 'altercation/vim-colors-solarized'
+" }}}
 
 " NeoBundleFetch
 " NeoBundleFetch 'Shougo/shougo-s-github'
@@ -66,13 +114,13 @@ NeoBundleLazy 'Shougo/neomru.vim'
 " NeoBundleLazy 'thinca/vim-ref'
 " NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundle 'thinca/vim-partedit'
+NeoBundle 'mattn/emmet-vim'
 NeoBundleLazy 'rbtnn/vbnet_indent.vim'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'itchyny/lightline.vim'
 NeoBundleLazy 'CCTree'
 NeoBundleLazy 'Shougo/vimshell.vim'
 NeoBundleLazy 'thinca/vim-quickrun'
-NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'vim-scripts/Align'
 NeoBundleLazy 'YamasakiKenta/chain-file.vim'
 NeoBundleLazy 'YamasakiKenta/tree.vim'
@@ -126,6 +174,7 @@ if neobundle#tap('emmet-vim') "{{{
 				\ 'mappings' : [
 				\ '<Plug>(emmet-',
 				\ '<Plug>(emmmet-',
+				\ '<tab>',
 				\ ],
 				\ }})
 	function! neobundle#tapped.hooks.on_source(bundle) 

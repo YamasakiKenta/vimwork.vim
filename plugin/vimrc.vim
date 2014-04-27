@@ -8,6 +8,7 @@ set cpo&vim
 so $VIMRUNTIME/macros/matchit.vim
 
 " set 
+set noshellslash
 set autoread
 set cursorline
 set dip=filler,icase,iwhite,vertical

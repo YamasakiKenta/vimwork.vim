@@ -16,7 +16,7 @@ if 0
 	set ambiwidth=single
 	set list lcs=tab:»\ ,eol:←
 else 
-	set list lcs=tab:,\ 
+	set list lcs=tab:\|\ 
 endif
 
 set go-=T
