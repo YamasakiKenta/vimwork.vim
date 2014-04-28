@@ -329,7 +329,7 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap [unite]R  :<C-u>Unite resume|"
 	nnoremap [unite]bt :<C-u>Unite buffer_tags|"
 	nnoremap [unite]e  :<C-u>Unite outline|"
-	nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep|"
+	nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep:**/*|"
 	nnoremap [unite]h  :<C-u>Unite history/yank|"
 	nnoremap [unite]j  :<C-u>Unite jump|	
 	nnoremap [unite]l  :<C-u>Unite line|"
