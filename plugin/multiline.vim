@@ -2,7 +2,7 @@
 " FILE: multiline.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation Date: 2014/04/27 23:52:39
-" Last Modifid: 2014/04/27 23:53:22
+" Last Modified: 2014/04/28 9:36:01
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
