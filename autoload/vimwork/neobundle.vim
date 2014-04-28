@@ -428,13 +428,6 @@ endif
 call neobundle#call_hook('on_source')
 filetype plugin indent on
 
-" 文法確認 "{{{
-" function! vimwork#neobundle#is_comment(line, col)
-    " echo synIDattr(synIDtrans(synID(a:line, a:col, 1)), 'name')
-" endfunction
-" call vimwork#neobundle#is_comment(line("."), col("."))
-"}}}
-
 if 1  "{{{ NeoSnip
 	" SuperTab like snippets behavior.
 	imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
