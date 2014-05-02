@@ -15,7 +15,7 @@ NeoBundle "kana/vim-textobj-user"                                  "| textobj �
 NeoBundle "kana/vim-textobj-indent"                                "| カーソル位置と同じインデント                   | al, il
 " NeoBundle "thinca/vim-textobj-function-javascript"                 "| JavaScript の関数内                            | af, if
 " NeoBundle "kana/vim-textobj-syntax"                                "| シンタックス                                   | ay, iy
-" NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に検索されたパターン                       | a/, i/
+NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に検索されたパターン                       | a/, i/
 " NeoBundle "kana/vim-textobj-function"                              "| 関数内                                         | af, if
 " NeoBundle "vimtaku/vim-textobj-keyvalue"                           "| ハッシュの key と value                        | dak, dik,  dav, div
 " NeoBundle "thinca/vim-textobj-function-perl"                       "| Perl の関数内                                  | af, if
