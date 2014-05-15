@@ -55,9 +55,9 @@ NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に�
 " NeoBundle "RyanMcG/vim-textobj-dash"                               "| ダッシュ記号の間                               | a-, i-
 " }}}
 
-" Test
+" FileType
 NeoBundle "Shougo/context_filetype.vim"
-NeoBundle "osyo-manga/vim-precious"
+" NeoBundleLazy "osyo-manga/vim-precious"                               "| FileTypeを切り替える
 NeoBundle "rking/ag.vim"
 " NeoBundle 'shawncplus/php.vim'
 
@@ -131,22 +131,6 @@ function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
 endfunction
 if neobundle#tap('vim-precious') "{{{
-	" カーソル移動時の自動切り替えを無効化
-	" このオプションは filetype ごとに設定可能
-	" "*" は全ての filetype に影響する
-	let g:precious_enable_switch_CursorMoved = {
-				\   "*" : 0
-				\}
-	let g:precious_enable_switch_CursorMoved_i = {
-				\   "*" : 0
-				\}
-
-	" insert に入った時にスイッチし、抜けた時に元に戻す
-	augroup vimwork-neobundle-vim-precious
-		autocmd!
-		autocmd InsertEnter * :PreciousSwitch
-		autocmd InsertLeave * :PreciousReset
-	augroup END	
 endif "}}}
 if neobundle#tap('chain-file.vim') "{{{
 	call neobundle#config({'autoload': {'commands': 'ChainFile'}})
@@ -243,7 +227,6 @@ endif "}}}
 if neobundle#tap('neocomplete.vim') "{{{
 	function! neobundle#tapped.hooks.on_source(bundle) 
 		let g:neocomplete#enable_at_startup = 1
-		" let g:neocomplete#auto_completion_start_length = 3
 	endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
@@ -271,33 +254,18 @@ endif "}}}
 if neobundle#tap('rainbow_parentheses.vim') " {{{
 	if s:is_win()
 		call neobundle#config({'lazy':0})
-		aug _rainbow_parentheses
-			au!
-			au VimEnter * RainbowParenthesesToggle
-			au Syntax * RainbowParenthesesLoadRound
-			au Syntax * RainbowParenthesesLoadSquare
-			au Syntax * RainbowParenthesesLoadBraces
-		aug END
-		let g:rbpt_colorpairs = [
-					\ ['brown',       'RoyalBlue3'],
-					\ ['Darkblue',    'SeaGreen3'],
-					\ ['darkgray',    'DarkOrchid3'],
-					\ ['darkgreen',   'firebrick3'],
-					\ ['darkcyan',    'RoyalBlue3'],
-					\ ['darkred',     'SeaGreen3'],
-					\ ['darkmagenta', 'DarkOrchid3'],
-					\ ['brown',       'firebrick3'],
-					\ ['gray',        'RoyalBlue3'],
-					\ ['black',       'SeaGreen3'],
-					\ ['darkmagenta', 'DarkOrchid3'],
-					\ ['Darkblue',    'firebrick3'],
-					\ ['darkgreen',   'RoyalBlue3'],
-					\ ['darkcyan',    'SeaGreen3'],
-					\ ['darkred',     'DarkOrchid3'],
-					\ ['red',         'firebrick3'],
-					\ ]
+		nmap <leader>r [rainbow]
+		nnoremap [rainbow]t :RainbowParenthesesToggleAll
+		if 0 
+			aug _vimwork_neobundle_rainbow
+				au!
+				au VimEnter * RainbowParenthesesToggle
+				au Syntax * RainbowParenthesesLoadRound
+				au Syntax * RainbowParenthesesLoadSquare
+				au Syntax * RainbowParenthesesLoadBraces
+			aug END
+		endif
 	endif
-
 endif "}}}
 if neobundle#tap('lightline.vim') "{{{
 
@@ -341,7 +309,7 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap [unite]s  :<C-u>Unite source|"
 	nnoremap [unite]t  :<C-u>Unite tag|"
 	nnoremap [unite]m  :<C-u>Unite file_mru directory_mru|"
-	nnoremap [unite]f  :<C-u>Unite file_rec:! file/new|"
+	nnoremap [unite]f  :<C-u>Unite file_rec:! file/new|" !は.gitignore
 	nnoremap [unite]d  :<C-u>Unite directory:**/ directory/new|"
 	call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
 	function! neobundle#tapped.hooks.on_source(bundle) 
@@ -399,6 +367,12 @@ endif "}}}
 if neobundle#tap('neomru.vim') "{{{
 	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
 endif "}}}
+if neobundle#tap('unite-setting.vim') "{{{
+	call neobundle#config({'autoload': {'unite_sources': 'setting'}})
+endif "}}}
+if neobundle#tap('unite-setting-ex.vim') "{{{
+	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
+endif "}}}
 if 0 
 if neobundle#tap('unite-everything') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'everything'}})
@@ -414,12 +388,6 @@ if neobundle#tap('unite-tag') "{{{
 endif "}}}
 if neobundle#tap('unite-outline') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'outline'}})
-endif "}}}
-if neobundle#tap('unite-setting.vim') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'setting'}})
-endif "}}}
-if neobundle#tap('unite-setting-ex.vim') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
 endif "}}}
 if neobundle#tap('pasela/unite-webcolorname') "{{{
 	" call neobundle#config({'autoload': {'unite_sources': 'webcolorname'}})
