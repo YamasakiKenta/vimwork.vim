@@ -2,7 +2,7 @@
 " FILE: command.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation date: 2014/04/26 23:46:33
-" Last Modified: 2014/04/27 0:00:06
+" Last Modified: 2014/05/15 16:16:36
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -175,9 +175,9 @@ function! vimwork#command#change_root() "{{{
 
 endfunction "}}}
 function! vimwork#command#winmerge() "{{{
-	let fname = [
-		expand("")
-	]
+	let fnames = map(range(1, winnr('$')), 'bufname(winbufnr(v:val))')
+	let cmd = 'winmergeu "'.join(fnames, '" "').'"'
+	exe '!start '.cmd
 endfunction
 "}}}
 function! vimwork#command#update_time(cmds) "{{{

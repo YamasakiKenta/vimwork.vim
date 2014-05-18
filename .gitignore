@@ -4,5 +4,6 @@ tags
 *.txt
 */*.*~
 *.orig
+*.org
 _*
 *.un~
