@@ -65,6 +65,7 @@ let s:dir = substitute(s:dir, '/plugin/vimrc.vim$', '', '')
 let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
+let g:did_install_default_menus = 1
 exe 'set dict+='.s:dir.'/dict/*'
 
 " CUI
