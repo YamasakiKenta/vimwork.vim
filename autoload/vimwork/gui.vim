@@ -27,6 +27,9 @@ set visualbell t_vb=
 
 highlight CursorIM guibg=Magenta guifg=NONE
 
+colorscheme Solarized
+set bg=light
+
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
 	unlet s:save_cpo

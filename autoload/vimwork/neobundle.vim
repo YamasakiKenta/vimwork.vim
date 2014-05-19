@@ -9,7 +9,10 @@ if has("vim_starting")
 endif
 call neobundle#rc()
 
-" " textobj
+" Test
+NeoBundle 'sjl/gundo.vim'
+
+" textobj
 NeoBundle "kana/vim-textobj-user"                                  "| textobj のベース
 " textobj "{{{
 NeoBundle "kana/vim-textobj-indent"                                "| カーソル位置と同じインデント                   | al, il
@@ -62,21 +65,20 @@ NeoBundle "rking/ag.vim"
 " NeoBundle 'shawncplus/php.vim'
 
 " color
-" {{{
-" NeoBundle 'vim-scripts/chlordane.vim'
-" NeoBundle 'nanotech/jellybeans.vim'
-" NeoBundle 'w0ng/vim-hybrid'
-" NeoBundle 'vim-scripts/twilight'
-" NeoBundle 'jonathanfilip/vim-lucius'
-" NeoBundle 'jpo/vim-railscasts-theme'
-" NeoBundle 'altercation/vim-colors-solarized'
-" NeoBundle 'vim-scripts/Wombat'
-" NeoBundle 'tomasr/molokai'
-" NeoBundle 'vim-scripts/rdark'
-" NeoBundle 'cocopon/colorswatch.vim'
-" NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
-" NeoBundle 'altercation/vim-colors-solarized'
-" }}}
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'cocopon/colorswatch.vim'
+NeoBundle 'cocopon/iceberg.vim'
+NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'vim-scripts/Wombat'
+NeoBundle 'vim-scripts/chlordane.vim'
+NeoBundle 'vim-scripts/rdark'
+NeoBundle 'vim-scripts/summerfruit256.vim'
+NeoBundle 'vim-scripts/twilight'
+NeoBundle 'w0ng/vim-hybrid'
 
 " NeoBundleFetch
 " NeoBundleFetch 'Shougo/shougo-s-github'
@@ -86,13 +88,14 @@ NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 " NeoBundle
 " NeoBundle 'violetyk/cake.vim'
 " NeoBundle 'sgur/vim-gitgutter'
-" NeoBundle 'lilydjwg/colorizer' " CSS PREVIEW
+NeoBundle 'lilydjwg/colorizer' " CSS PREVIEW
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'morhetz/gruvbox'
 
 " Unite 
 NeoBundleLazy 'Shougo/unite.vim'
