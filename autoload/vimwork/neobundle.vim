@@ -12,13 +12,13 @@ call neobundle#rc()
 " Test
 NeoBundle 'sjl/gundo.vim'
 
-" textobj
-NeoBundle "kana/vim-textobj-user"                                  "| textobj のベース
-" textobj "{{{
-NeoBundle "kana/vim-textobj-indent"                                "| カーソル位置と同じインデント                   | al, il
+" textobj 
+" "{{{
+" NeoBundle "kana/vim-textobj-user"                                  "| textobj のベース
+" NeoBundle "kana/vim-textobj-indent"                                "| カーソル位置と同じインデント                   | al, il
+" NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に検索されたパターン                       | a/, i/
 " NeoBundle "thinca/vim-textobj-function-javascript"                 "| JavaScript の関数内                            | af, if
 " NeoBundle "kana/vim-textobj-syntax"                                "| シンタックス                                   | ay, iy
-NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に検索されたパターン                       | a/, i/
 " NeoBundle "kana/vim-textobj-function"                              "| 関数内                                         | af, if
 " NeoBundle "vimtaku/vim-textobj-keyvalue"                           "| ハッシュの key と value                        | dak, dik,  dav, div
 " NeoBundle "thinca/vim-textobj-function-perl"                       "| Perl の関数内                                  | af, if
@@ -60,17 +60,20 @@ NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に�
 
 " FileType
 NeoBundle "Shougo/context_filetype.vim"
-" NeoBundleLazy "osyo-manga/vim-precious"                               "| FileTypeを切り替える
 NeoBundle "rking/ag.vim"
+" NeoBundle "osyo-manga/vim-precious"                               "| FileTypeを切り替える
 " NeoBundle 'shawncplus/php.vim'
 
 " color
+NeoBundle 'endel/vim-github-colorscheme'
+NeoBundle 'hukl/Smyck-Color-Scheme'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'cocopon/colorswatch.vim'
 NeoBundle 'cocopon/iceberg.vim'
 NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
 NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'lazz/vim-colorschemes'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'vim-scripts/Wombat'
@@ -98,9 +101,9 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'morhetz/gruvbox'
 
 " Unite 
+NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'Shougo/unite.vim'
 NeoBundleLazy 'pasela/unite-webcolorname'
-NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
@@ -150,7 +153,9 @@ if neobundle#tap('chain-file.vim') "{{{
 				\ { 'before': '/Controller/\(.*\)Controller.php$'      , 'after': '/View/\1/index.ctp'}             , 
 				\ ],'__extension' : { 
 				\ 'sql': 'xml',
-				\ 'xml': 'sql' 
+				\ 'xml': 'sql',
+				\ 'cpp': 'h',
+				\ 'h'  : 'cpp',
 				\ },
 				\ }
 	"C:\xampp\htdocs\yamasaki\cake\app\Model\MySampleData.php
