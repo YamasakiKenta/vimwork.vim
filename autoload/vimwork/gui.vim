@@ -27,8 +27,13 @@ set visualbell t_vb=
 
 highlight CursorIM guibg=Magenta guifg=NONE
 
-colorscheme Solarized
-set bg=light
+" colorscheme Solarized
+" colorscheme chlordane
+" colorscheme github
+
+"chlordane
+" set bg=light
+" set bg=dark
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
