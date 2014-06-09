@@ -1,17 +1,31 @@
+snippet inc
+    // 警告対策
+    #pragma warning(disable:4530)  
 
+    #include <cstdio>
+    #include <stdio.h>
+    #include <functional>
+    #include <iostream>
+    #include <map> 
+    #include <queue>
+    #include <string>
+    #include <tchar.h>
+    #include <time.h>
+    #include <vector>
+    #include <windows.h>
 
+    // _bstr_t
+    #include <comutil.h>
+    #pragma comment(lib, "ole32.lib")
+    #pragma comment(lib, "oleaut32.lib")
+    #pragma comment(lib, "comsupp.lib")
+    #pragma comment(lib, "comsuppd.lib")
+    #pragma comment(lib, "comsuppw.lib")
+    #pragma comment(lib, "comsuppwd.lib")
 
-
-
-
-
-
-
-
-
+    using namespace std;
 
 snippet head
-alias headf
      // =============================================================================
      // ${1:FILE: `expand("%:t")`}
      // Creation Date: `strftime("%c")`

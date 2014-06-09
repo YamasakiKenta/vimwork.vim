@@ -11,6 +11,7 @@ call neobundle#rc()
 
 " Test
 NeoBundle 'sjl/gundo.vim'
+NeoBundle 'rbtnn/rabbit-ui.vim'
 
 " textobj 
 " "{{{
@@ -136,6 +137,12 @@ NeoBundleLazy 'Shougo/vimfiler'
 function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
 endfunction
+if neobundle#tap('rabbit-ui.vim') "{{{
+	function! s:edit_csv(path)
+		call writefile(map(rabbit_ui#gridview(map(readfile(a:path),'split(v:val,",",1)')), "join(v:val, ',')"), a:path)
+	endfunction
+	command! -nargs=1 EditCSV  :call <sid>edit_csv(<q-args>)
+endif "}}}
 if neobundle#tap('vim-precious') "{{{
 endif "}}}
 if neobundle#tap('chain-file.vim') "{{{
@@ -252,6 +259,17 @@ if neobundle#tap('vim-coffee-script') "{{{
 endif "}}}
 if neobundle#tap('vim-quickrun') "{{{
 	call neobundle#config({'autoload': {'commands': 'QuickRun'}})
+	let g:quickrun_config = {
+				\ 'cpp' : {
+				\ "hook/output_encode/enable" : 1,
+				\ "hook/output_encode/encoding" : "sjis",
+				\ },
+				\ 'cs' : {
+				\ 'command': 'dmcs',
+				\ 'exec': ['%c %o %s -out:%s:p:r.exe', 'mono %s:p:r.exe %a', 'rm -f %s:p:r.exe'],
+				\ 'tempfile': '%{tempname()}.cs',
+				\ }
+				\ }
 endif "}}}
 if neobundle#tap('vimshell.vim') "{{{
 	call neobundle#config({'autoload': {'commands': 'VimShell'}})
@@ -284,6 +302,10 @@ if neobundle#tap('lightline.vim') "{{{
 	endif 
 endif "}}}lightline.vim
 " Command
+if neobundle#tap('ag.vim') "{{{
+	call neobundle#config({'autoload': {'commands': 'Ag'}})
+	nnoremap <leader>g :Ag <c-r><c-w>
+endif "}}}rking/ag.vim
 if neobundle#tap('vim-partedit') "{{{
 	call neobundle#config({'autoload': {'commands': 'Partedit'}})
 endif "}}}thinca/vim-partedit
@@ -376,7 +398,7 @@ if neobundle#tap('neomru.vim') "{{{
 	call neobundle#config({'autoload':{'unite_sources': 'file_mru'}})
 endif "}}}
 if neobundle#tap('unite-setting.vim') "{{{
-	call neobundle#config({'autoload': {'unite_sources': 'setting'}})
+	call neobundle#config({'autoload': {'unite_sources': 'settings'}})
 endif "}}}
 if neobundle#tap('unite-setting-ex.vim') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
