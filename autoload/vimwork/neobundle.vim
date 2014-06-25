@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/06/25 14:25:08
+" Last Modified: 2014/06/25 15:20:07
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -102,7 +102,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
-NeoBundleLazy 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'morhetz/gruvbox'
 
@@ -248,12 +248,12 @@ if neobundle#tap('tab-diff.vim') "{{{
 	call neobundle#config({'autoload': {'commands' : ['TabDiffStart','TabDiffEnd','TabDiffOrig']}})
 endif "}}}
 if neobundle#tap('neocomplete.vim') "{{{
-	if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
+	if !(has('lua') && (v:version > 703 || v:version == 703 && has('patch885')))
 		call neobundle#config({'lazy':0})
-		function! neobundle#tapped.hooks.on_source(bundle) 
-			let g:neocomplete#enable_at_startup = 1
-		endfunction
 	endif
+	function! neobundle#tapped.hooks.on_source(bundle) 
+		let g:neocomplete#enable_at_startup = 1
+	endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
 	call neobundle#config({'autoload': {'functions': ['fugitive#statusline']}})
