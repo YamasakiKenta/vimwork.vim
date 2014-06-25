@@ -1,3 +1,8 @@
+" =============================================================================
+" FILE: neobundle.vim
+" Creation Date: 2014/06/25 14:24:50
+" Last Modified: 2014/06/25 14:25:08
+" =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
 
@@ -97,7 +102,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
-NeoBundle 'Shougo/neocomplete.vim'
+NeoBundleLazy 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'morhetz/gruvbox'
 
@@ -187,11 +192,12 @@ if neobundle#tap('vimfiler') "{{{
 				\ 'depends' : 'Shougo/unite.vim',
 				\ 'autoload' : {
 				\ 'commands' : [
-				\ {'name' : 'VimFiler'         , 'complete' : 'customlist , vimfiler#complete'} , 
-				\ {'name' : 'VimFilerExplorer' , 'complete' : 'customlist , vimfiler#complete'} , 
-				\ {'name' : 'Edit'             , 'complete' : 'customlist , vimfiler#complete'} , 
-				\ {'name' : 'Write'            , 'complete' : 'customlist , vimfiler#complete'} , 
-				\ 'Read', 'Source'],
+				\ 'VimFiler',
+				\ 'VimFilerExplorer',
+				\ 'Edit',
+				\ 'Write',
+				\ 'Read', 
+				\ 'Source'],
 				\ 'mappings' : '<Plug>(vimfiler_',
 				\ 'explorer' : 1,
 				\ }})
@@ -242,9 +248,12 @@ if neobundle#tap('tab-diff.vim') "{{{
 	call neobundle#config({'autoload': {'commands' : ['TabDiffStart','TabDiffEnd','TabDiffOrig']}})
 endif "}}}
 if neobundle#tap('neocomplete.vim') "{{{
-	function! neobundle#tapped.hooks.on_source(bundle) 
-		let g:neocomplete#enable_at_startup = 1
-	endfunction
+	if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
+		call neobundle#config({'lazy':0})
+		function! neobundle#tapped.hooks.on_source(bundle) 
+			let g:neocomplete#enable_at_startup = 1
+		endfunction
+	endif
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
 	call neobundle#config({'autoload': {'functions': ['fugitive#statusline']}})
@@ -444,6 +453,7 @@ if 1  "{{{ NeoSnip
 	imap <expr><C-q>  pumvisible()?
 				\ "\<Plug>(neocomplete_start_unite_quick_match)"
 				\ :"\<C-q>"
+	imap <expr><tab> emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>"):"\<tab>"
 endif  "}}}
 
 

@@ -32,6 +32,7 @@ set ve=block
 " set ff=dos
 set enc=utf-8
 set fenc=utf-8
+set list lcs=tab:>\ 
 " map 
 nnoremap <leader>v :<C-u>noa vim /<C-r><C-w>/ **/* <left><left><left><left><left><left><left>|"
 nnoremap <C-/>v :<C-u>noa vim /<C-r><C-w>/ **/* <left><left><left><left><left><left><left>|"
@@ -70,9 +71,6 @@ let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
 let g:did_install_default_menus = 1
 exe 'set dict+='.s:dir.'/dict/*'
-
-" CUI
-" call vimwork#cui#init()
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
