@@ -18,14 +18,8 @@ nnoremap <A-Space> :<C-u>simalt ~<CR>|"
 
 set go-=T
 set go-=m
-if 0
-	set guifont=Consolas:h10
-	set guifontwide=MS_Gothic:h10
-else
-	set guifont=MS_Gothic:h10
-endif
-
-" 音なし
+set guifont=MS_Gothic:h10
+set guifontwide=MS_Gothic:h10
 set visualbell t_vb=
 
 highlight CursorIM guibg=Magenta guifg=NONE
