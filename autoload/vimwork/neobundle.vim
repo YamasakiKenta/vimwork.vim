@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/06/25 15:20:07
+" Last Modified: 2014/07/02 9:00:16
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -67,27 +67,27 @@ NeoBundle 'rbtnn/rabbit-ui.vim'
 " FileType
 NeoBundle "Shougo/context_filetype.vim"
 NeoBundle "rking/ag.vim"
-" NeoBundle "osyo-manga/vim-precious"                               "| FileTypeを切り替える
+" NeoBundle 'osyo-manga/vim-precious'                               "| FileTypeを切り替える
 " NeoBundle 'shawncplus/php.vim'
 
 " color
-NeoBundle 'endel/vim-github-colorscheme'
-NeoBundle 'hukl/Smyck-Color-Scheme'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'cocopon/colorswatch.vim'
-NeoBundle 'cocopon/iceberg.vim'
-NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'lazz/vim-colorschemes'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'vim-scripts/Wombat'
-NeoBundle 'vim-scripts/chlordane.vim'
-NeoBundle 'vim-scripts/rdark'
-NeoBundle 'vim-scripts/summerfruit256.vim'
-NeoBundle 'vim-scripts/twilight'
-NeoBundle 'w0ng/vim-hybrid'
+" NeoBundle 'endel/vim-github-colorscheme'
+" NeoBundle 'hukl/Smyck-Color-Scheme'
+" NeoBundle 'altercation/vim-colors-solarized'
+" NeoBundle 'cocopon/colorswatch.vim'
+" NeoBundle 'cocopon/iceberg.vim'
+" NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
+" NeoBundle 'jonathanfilip/vim-lucius'
+" NeoBundle 'jpo/vim-railscasts-theme'
+" NeoBundle 'lazz/vim-colorschemes'
+" NeoBundle 'nanotech/jellybeans.vim'
+" NeoBundle 'tomasr/molokai'
+" NeoBundle 'vim-scripts/Wombat'
+" NeoBundle 'vim-scripts/chlordane.vim'
+" NeoBundle 'vim-scripts/rdark'
+" NeoBundle 'vim-scripts/summerfruit256.vim'
+" NeoBundle 'vim-scripts/twilight'
+" NeoBundle 'w0ng/vim-hybrid'
 
 " NeoBundleFetch
 " NeoBundleFetch 'Shougo/shougo-s-github'
@@ -97,7 +97,7 @@ NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 " NeoBundle
 " NeoBundle 'violetyk/cake.vim'
 " NeoBundle 'sgur/vim-gitgutter'
-NeoBundle 'lilydjwg/colorizer' " CSS PREVIEW
+" NeoBundle 'lilydjwg/colorizer' " CSS PREVIEW ( 重い )
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
@@ -437,6 +437,13 @@ endif
 call neobundle#call_hook('on_source')
 filetype plugin indent on
 
+
+function vimwork#neobundle#is_emmet(str) 
+	let list = [
+				\ 'html',
+				\ ]
+endfunction
+
 if 1  "{{{ NeoSnip
 	" SuperTab like snippets behavior.
 	imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -453,7 +460,7 @@ if 1  "{{{ NeoSnip
 	imap <expr><C-q>  pumvisible()?
 				\ "\<Plug>(neocomplete_start_unite_quick_match)"
 				\ :"\<C-q>"
-	imap <expr><tab> emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>"):"\<tab>"
+	" imap <expr><tab> emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>"):"\<tab>"
 endif  "}}}
 
 
