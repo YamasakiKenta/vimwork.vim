@@ -62,6 +62,7 @@ nmap v/ 		<Plug>(select_search)
 vnoremap < <gv|"
 vnoremap > >gv|"
 highlight CursorIM guibg=Magenta guifg=NONE
+nnoremap <f5> :<c-u>MyUpdateTimer<cr>
 
 " dir 
 let s:dir = substitute(expand("<sfile>"), '\\', '\/', 'g')
