@@ -32,7 +32,7 @@ set ve=block
 " set ff=dos
 set enc=utf-8
 set fenc=utf-8
-set list lcs=tab:>\ 
+set list lcs=tab:`\ 
 " map 
 nnoremap <leader>v :<C-u>noa vim /<C-r><C-w>/ **/*<left><left><left><left><left><left><left>|"
 nnoremap <C-/>v :<C-u>noa vim /<C-r><C-w>/ **/*<left><left><left><left><left><left><left>|"

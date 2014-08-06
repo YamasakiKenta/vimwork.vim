@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/07/02 9:00:16
+" Last Modified: 2014/07/30 11:16:38
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -15,8 +15,18 @@ endif
 call neobundle#rc()
 
 " Test
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'taichouchou2/html5.vim'
+NeoBundle 'taichouchou2/vim-javascript'
+
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'rbtnn/rabbit-ui.vim'
+" NeoBundle 'LeafCage/unite-gvimrgb'
+" NeoBundle 'pasela/unite-webcolorname'
+" NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'vim-scripts/Better-Javascript-Indentation'
+" NeoBundle 'nathanaelkane/vim-indent-guides'
+" NeoBundle 'scrooloose/syntastic'
 
 " textobj 
 " "{{{
@@ -142,6 +152,10 @@ NeoBundleLazy 'Shougo/vimfiler'
 function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
 endfunction
+if neobundle#tap('vim-indent-guides') "{{{
+	let g:indent_guides_enable_on_vim_startup=1
+	let g:indent_guides_start_level=2
+endif "}}}
 if neobundle#tap('rabbit-ui.vim') "{{{
 	function! s:edit_csv(path)
 		call writefile(map(rabbit_ui#gridview(map(readfile(a:path),'split(v:val,",",1)')), "join(v:val, ',')"), a:path)
@@ -438,7 +452,7 @@ call neobundle#call_hook('on_source')
 filetype plugin indent on
 
 
-function vimwork#neobundle#is_emmet(str) 
+function! vimwork#neobundle#is_emmet(str) 
 	let list = [
 				\ 'html',
 				\ ]
@@ -460,7 +474,12 @@ if 1  "{{{ NeoSnip
 	imap <expr><C-q>  pumvisible()?
 				\ "\<Plug>(neocomplete_start_unite_quick_match)"
 				\ :"\<C-q>"
-	" imap <expr><tab> emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>"):"\<tab>"
+	imap <expr><TAB> 
+				\ emmet#isExpandable()
+				\ ? emmet#expandAbbrIntelligent("\<tab>")
+				\ : neosnippet#expandable_or_jumpable()
+				\ ? "\<Plug>(neosnippet_expand_or_jump)"
+				\ :"\<TAB>"
 endif  "}}}
 
 
