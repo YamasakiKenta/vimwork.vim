@@ -63,6 +63,7 @@ vnoremap < <gv|"
 vnoremap > >gv|"
 highlight CursorIM guibg=Magenta guifg=NONE
 nnoremap <f5> :<c-u>MyUpdateTimer<cr>
+nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
 
 " dir 
 let s:dir = substitute(expand("<sfile>"), '\\', '\/', 'g')

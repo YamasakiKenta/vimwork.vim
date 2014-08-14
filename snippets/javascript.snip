@@ -1,6 +1,3 @@
-snippet click
-    $("${1}").click(function(){
-    });
 snippet node
     var http = require('http');
     http.createServer(function(req, res) {
@@ -8,48 +5,17 @@ snippet node
     console.log('localhost:80');
 snippet add
     ${1}.push(${2});
-snippet gmap
-abbr google map
-    <!DOCTYPE html>
-    <html>
-      <head>
-
-        <style type="text/css">
-          #map { height: 100%; }
-        </style>
-
-        <script src="http://maps.google.com/maps/api/js?v=3&sensor=false" type="text/javascript" charset="UTF-8"></script>
-
-        <script type="text/javascript">
-        //<![CDATA[
-
-        var map;
-        
-        // 初期化。bodyのonloadでinit()を指定することで呼び出してます
-        function init() {
-
-          // (1) Google Mapで利用する初期設定用の変数
-          var latlng = new google.maps.LatLng(39, 138);
-          var opts = {
-            zoom: 6,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: latlng
-          };
-
-          // (2) Mapオブジェクトの生成
-          // getElementById("map")の"map"は、body内の<div id="map">より
-          map = new google.maps.Map(document.getElementById("map"), opts);
-        }
-
-        //]]>
-        </script>
-      </head>
-
-      <body onload="init()">
-        <div id="map"></div>
-      </body>
-
-    </html>
+snippet gmap-init
+    var map;
+    function init() {
+      var latlng = new google.maps.LatLng(39, 138);
+      var opts = {
+        zoom: 6,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: latlng
+      };
+      map = new google.maps.Map(document.getElementById("map"), opts);
+    }
 snippet head
     // =============================================================================
     // ${1:FILE: `expand("%:t")`}

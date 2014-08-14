@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/08/14 10:08:17
+" Last Modified: 2014/08/14 14:55:23
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -18,6 +18,7 @@ call neobundle#rc()
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'taichouchou2/vim-javascript'
+NeoBundle 'osyo-manga/vim-over'
 
 " NeoBundle 'sjl/gundo.vim'
 " NeoBundle 'rbtnn/rabbit-ui.vim'
