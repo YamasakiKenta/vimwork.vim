@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/08/14 10:03:37
+" Last Modified: 2014/08/14 10:08:17
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -19,8 +19,8 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'taichouchou2/vim-javascript'
 
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'rbtnn/rabbit-ui.vim'
+" NeoBundle 'sjl/gundo.vim'
+" NeoBundle 'rbtnn/rabbit-ui.vim'
 " NeoBundle 'LeafCage/unite-gvimrgb'
 " NeoBundle 'pasela/unite-webcolorname'
 " NeoBundle 'pangloss/vim-javascript'
@@ -75,8 +75,8 @@ NeoBundle 'rbtnn/rabbit-ui.vim'
 " }}}
 
 " FileType
-NeoBundle "Shougo/context_filetype.vim"
-NeoBundle "rking/ag.vim"
+" NeoBundle "Shougo/context_filetype.vim"
+" NeoBundle "rking/ag.vim"
 " NeoBundle 'osyo-manga/vim-precious'                               "| FileTypeを切り替える
 " NeoBundle 'shawncplus/php.vim'
 
@@ -108,13 +108,13 @@ NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 " NeoBundle 'violetyk/cake.vim'
 " NeoBundle 'sgur/vim-gitgutter'
 " NeoBundle 'lilydjwg/colorizer' " CSS PREVIEW ( 重い )
-NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'thinca/vim-qfreplace'
-NeoBundle 'morhetz/gruvbox'
+" NeoBundle 'morhetz/gruvbox'
 
 " Unite 
 NeoBundleLazy 'sgur/unite-everything'
