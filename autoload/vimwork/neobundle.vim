@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/07/30 11:16:38
+" Last Modified: 2014/08/14 10:03:37
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -266,7 +266,7 @@ if neobundle#tap('neocomplete.vim') "{{{
 		call neobundle#config({'lazy':0})
 	endif
 	function! neobundle#tapped.hooks.on_source(bundle) 
-		let g:neocomplete#enable_at_startup = 1
+		" let g:neocomplete#enable_at_startup = 1
 	endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
@@ -458,7 +458,7 @@ function! vimwork#neobundle#is_emmet(str)
 				\ ]
 endfunction
 
-if 1  "{{{ NeoSnip
+if 0  "{{{ NeoSnip
 	" SuperTab like snippets behavior.
 	imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 				\ "\<Plug>(neosnippet_expand_or_jump)"
