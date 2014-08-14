@@ -17,6 +17,12 @@ function! vimwork#set_cscope()
 	nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>|"
 	nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>|"
 endfunction
+function! vimwork#neobundle()
+	call vimwork#neobundle#init()
+endfunction
+function! vimwork#win7()
+	call vimwork#win7#init()
+endfunction
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
