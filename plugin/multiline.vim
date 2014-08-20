@@ -2,7 +2,7 @@
 " FILE: multiline.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation Date: 2014/04/27 23:52:39
-" Last Modified: 2014/04/30 19:44:29
+" Last Modified: 2014/08/20 11:20:41
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -22,6 +22,14 @@ endif
 set undodir=~/.vim/undo
 if !isdirectory(expand(&undodir))
 	call mkdir(expand(&undodir))
+endif
+
+if has('win32') && !has('gui')
+	set enc=sjis
+	set fenc=utf-8
+else
+	set enc=utf-8
+	set fenc=utf-8
 endif
 
 if exists('s:save_cpo')

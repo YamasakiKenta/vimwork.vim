@@ -29,9 +29,6 @@ set smartcase
 set tabstop=4
 set tw=0
 set ve=block
-" set ff=dos
-set enc=utf-8
-set fenc=utf-8
 set list lcs=tab:`\ 
 " map 
 nnoremap <leader>v :<C-u>noa vim /<C-r><C-w>/ **/*<left><left><left><left><left><left><left>|"
