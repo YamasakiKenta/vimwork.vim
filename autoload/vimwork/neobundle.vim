@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/08/14 14:55:23
+" Last Modified: 2014/08/20 14:35:15
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -148,7 +148,7 @@ NeoBundleLazy 'vim-scripts/Align'
 NeoBundleLazy 'YamasakiKenta/chain-file.vim'
 NeoBundleLazy 'YamasakiKenta/tree.vim'
 NeoBundleLazy 'YamasakiKenta/tab-diff.vim'
-NeoBundleLazy 'Shougo/vimfiler'
+NeoBundleLazy 'Shougo/vimfiler', 'ver.4.0'
 
 function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
