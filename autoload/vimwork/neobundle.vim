@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/08/22 9:56:16
+" Last Modified: 2014/08/25 9:30:03
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -21,65 +21,101 @@ NeoBundle 'taichouchou2/vim-javascript' , { 'stay_same' : 1 }
 NeoBundle 'osyo-manga/vim-over'         , { 'stay_same' : 1 }
 
 " NeoBundle 'sjl/gundo.vim'                             , { 'stay_same' : 1 }
-" NeoBundle 'rbtnn/rabbit-ui.vim'                       , { 'stay_same' : 1 }
 " NeoBundle 'LeafCage/unite-gvimrgb'                    , { 'stay_same' : 1 }
 " NeoBundle 'pasela/unite-webcolorname'                 , { 'stay_same' : 1 }
 " NeoBundle 'pangloss/vim-javascript'                   , { 'stay_same' : 1 }
-" NeoBundle 'vim-scripts/Better-Javascript-Indentation' , { 'stay_same' : 1 }
 " NeoBundle 'nathanaelkane/vim-indent-guides'           , { 'stay_same' : 1 }
 NeoBundleLazy 'scrooloose/syntastic'                      , { 'stay_same' : 1 }
 
 " textobj
-" "{{{
-" NeoBundle "kana/vim-textobj-user"                                  "| textobj のベース
-" NeoBundle "kana/vim-textobj-indent"                                "| カーソル位置と同じインデント                   | al, il
-" NeoBundle "kana/vim-textobj-lastpat"                               "| 最後に検索されたパターン                       | a/, i/
-" NeoBundle "thinca/vim-textobj-function-javascript"                 "| JavaScript の関数内                            | af, if
-" NeoBundle "kana/vim-textobj-syntax"                                "| シンタックス                                   | ay, iy
-" NeoBundle "kana/vim-textobj-function"                              "| 関数内                                         | af, if
-" NeoBundle "vimtaku/vim-textobj-keyvalue"                           "| ハッシュの key と value                        | dak, dik,  dav, div
-" NeoBundle "thinca/vim-textobj-function-perl"                       "| Perl の関数内                                  | af, if
-" NeoBundle "thinca/vim-textobj-comment"                             "| コメント                                       | ac, ic
-" NeoBundle "thinca/vim-textobj-between"                             "| 任意の区切り文字                               | af, if
-" NeoBundle "sgur/vim-textobj-parameter"                             "| 関数の引数                                     | a, i,
-" NeoBundle "saihoooooooo/vim-textobj-space"                         "| 連続したスペース                               | aS, iS
-" NeoBundle "rhysd/vim-textobj-ruby"                                 "| Ruby のブロック                                | arr, brr
-" NeoBundle "rhysd/vim-textobj-lastinserted"                         "| テキストオブジェクトとして最後に挿入された範囲 | au, iu
-" NeoBundle "rhysd/vim-textobj-continuous-line"                      "| 行継続を用いている行                           | av, iv
-" NeoBundle "rbonvall/vim-textobj-latex"                             "| LaTeX                                          | ae, ie
-" NeoBundle "osyo-manga/vim-textobj-multiblock"                      "| 任意の複数の括弧のいずれか                     | asb, isb
-" NeoBundle "osyo-manga/vim-textobj-context"                         "| 別の filetype のコンテキスト                   | icx
-" NeoBundle "mjbrownie/html-textobjects"                             "| HTML                                           | ahf, ihf
-" NeoBundle "mattn/vim-textobj-url"                                  "| URL                                            | au, iu
-" NeoBundle "mattn/vim-textobj-cell"                                 "| 前後のスペースを取り除いたカーソル行           | ac, ic
-" NeoBundle "kana/vim-textobj-syntax"                                "| アンダースコアの間                             | a_, i_
-" NeoBundle "kana/vim-textobj-syntax"                                "| diff(1)                                        | adf, idf
-" NeoBundle "kana/vim-textobj-line"                                  "| カーソル行                                     | al, il
-" NeoBundle "kana/vim-textobj-jabraces"                              "| 「foo」 or 【bar】など                         | ajb, ijb
-" NeoBundle "kana/vim-textobj-fold"                                  "| fold                                           | az, iz
-" NeoBundle "kana/vim-textobj-entire"                                "| バッファ全体                                   | ae, ie
-" NeoBundle "kana/vim-textobj-django-template"                       "| django_template                                | adb, idb
-" NeoBundle "kana/vim-textobj-datetime"                              "| 日付と時刻                                     | ada, ida
-" NeoBundle "https://bitbucket.org/anyakichi/vim-textobj-xbrackets"  "| x() や x<> など                                | axb, ixb
-" NeoBundle "hchbaw/textobj-motionmotion.vim"                        "| 任意の2つの motion の間                        | am, im
-" NeoBundle "h1mesuke/textobj-wiw"                                   "| snake_case 上の word                           | a,w, i,w
-" NeoBundle "glts/vim-textobj-indblock"                              "| インデントの空白行                             | ao, io
-" NeoBundle "gilligan/textobj-lastpaste"                             "| 直前に変更またはヤンクされたテキスト           | ip
-" NeoBundle "deton/textobj-mbboundary.vim"                           "| ASCII文字とマルチバイト文字の境界を区切り      | am, im
-" NeoBundle "deris/vim-textobj-headwordofline"                       "| 行の先頭の word                                | ah, ih
-" NeoBundle "deris/vim-textobj-enclosedsyntax"                       "| Perl や Ruby の正規表現                        | aq, iq
-" NeoBundle "bps/vim-textobj-python"                                 "| Python                                         | af, if
-" NeoBundle "anyakichi/vim-textobj-ifdef2"                           "| #ifdef                                         | a#, i#
-" NeoBundle "akiyan/vim-textobj-xml-attribute"                       "| XML の属性                                     | axa, ixa
-" NeoBundle "akiyan/vim-textobj-php"                                 "| phpタグに囲まれた部分                          | aP, iP
-" NeoBundle "RyanMcG/vim-textobj-dash"                               "| ダッシュ記号の間                               | a-, i-
-" }}}
+" NeoBundle 'RyanMcG/vim-textobj-dash'                               "| ダッシュ記号の間                               | a-, i-
+" NeoBundle 'akiyan/vim-textobj-php'                                 "| phpタグに囲まれた部分                          | aP, iP
+" NeoBundle 'akiyan/vim-textobj-xml-attribute'                       "| XML の属性                                     | axa, ixa
+" NeoBundle 'anyakichi/vim-textobj-ifdef2'                           "| #ifdef                                         | a#, i#
+" NeoBundle 'bps/vim-textobj-python'                                 "| Python                                         | af, if
+" NeoBundle 'deris/vim-textobj-enclosedsyntax'                       "| Perl や Ruby の正規表現                        | aq, iq
+" NeoBundle 'deris/vim-textobj-headwordofline'                       "| 行の先頭の word                                | ah, ih
+" NeoBundle 'deton/textobj-mbboundary.vim'                           "| ASCII文字とマルチバイト文字の境界を区切り      | am, im
+" NeoBundle 'gilligan/textobj-lastpaste'                             "| 直前に変更またはヤンクされたテキスト           | ip
+" NeoBundle 'glts/vim-textobj-indblock'                              "| インデントの空白行                             | ao, io
+" NeoBundle 'h1mesuke/textobj-wiw'                                   "| snake_case 上の word                           | a,w, i,w
+" NeoBundle 'hchbaw/textobj-motionmotion.vim'                        "| 任意の2つの motion の間                        | am, im
+" NeoBundle 'https://bitbucket.org/anyakichi/vim-textobj-xbrackets'  "| x() や x<> など                                | axb, ixb
+" NeoBundle 'kana/vim-textobj-datetime'                              "| 日付と時刻                                     | ada, ida
+" NeoBundle 'kana/vim-textobj-django-template'                       "| django_template                                | adb, idb
+" NeoBundle 'kana/vim-textobj-entire'                                "| バッファ全体                                   | ae, ie
+" NeoBundle 'kana/vim-textobj-fold'                                  "| fold                                           | az, iz
+" NeoBundle 'kana/vim-textobj-function'                              "| 関数内                                         | af, if
+" NeoBundle 'kana/vim-textobj-indent'                                "| カーソル位置と同じインデント                   | al, il
+" NeoBundle 'kana/vim-textobj-jabraces'                              "| 「foo」 or 【bar】など                         | ajb, ijb
+" NeoBundle 'kana/vim-textobj-lastpat'                               "| 最後に検索されたパターン                       | a/, i/
+" NeoBundle 'kana/vim-textobj-line'                                  "| カーソル行                                     | al, il
+" NeoBundle 'kana/vim-textobj-syntax'                                "| diff(1)                                        | adf, idf
+" NeoBundle 'kana/vim-textobj-syntax'                                "| アンダースコアの間                             | a_, i_
+" NeoBundle 'kana/vim-textobj-syntax'                                "| シンタックス                                   | ay, iy
+" NeoBundle 'kana/vim-textobj-user'                                  "| textobj のベース
+" NeoBundle 'mattn/vim-textobj-cell'                                 "| 前後のスペースを取り除いたカーソル行           | ac, ic
+" NeoBundle 'mattn/vim-textobj-url'                                  "| URL                                            | au, iu
+" NeoBundle 'mjbrownie/html-textobjects'                             "| HTML                                           | ahf, ihf
+" NeoBundle 'osyo-manga/vim-textobj-context'                         "| 別の filetype のコンテキスト                   | icx
+" NeoBundle 'osyo-manga/vim-textobj-multiblock'                      "| 任意の複数の括弧のいずれか                     | asb, isb
+" NeoBundle 'rbonvall/vim-textobj-latex'                             "| LaTeX                                          | ae, ie
+" NeoBundle 'rhysd/vim-textobj-continuous-line'                      "| 行継続を用いている行                           | av, iv
+" NeoBundle 'rhysd/vim-textobj-lastinserted'                         "| テキストオブジェクトとして最後に挿入された範囲 | au, iu
+" NeoBundle 'rhysd/vim-textobj-ruby'                                 "| Ruby のブロック                                | arr, brr
+" NeoBundle 'saihoooooooo/vim-textobj-space'                         "| 連続したスペース                               | aS, iS
+" NeoBundle 'sgur/vim-textobj-parameter'                             "| 関数の引数                                     | a, i,
+" NeoBundle 'thinca/vim-textobj-between'                             "| 任意の区切り文字                               | af, if
+" NeoBundle 'thinca/vim-textobj-comment'                             "| コメント                                       | ac, ic
+" NeoBundle 'thinca/vim-textobj-function-javascript'                 "| JavaScript の関数内                            | af, if
+" NeoBundle 'thinca/vim-textobj-function-perl'                       "| Perl の関数内                                  | af, if
+" NeoBundle 'vimtaku/vim-textobj-keyvalue'                           "| ハッシュの key と value                        | dak, dik,  dav, div
 
 " FileType
-" NeoBundle 'Shougo/context_filetype.vim',  { 'stay_same' : 1 }
 " NeoBundle 'rking/ag.vim'
 " NeoBundle 'osyo-manga/vim-precious'                               "| FileTypeを切り替える
 " NeoBundle 'shawncplus/php.vim'
+"
+" YamasakiKenta
+NeoBundleFetch 'YamasakiKenta/vimwork.vim'
+NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim' , {'stay_same' : 1 }
+NeoBundleLazy 'YamasakiKenta/unite-setting.vim'    , {'stay_same' : 1 }
+NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'   , {'stay_same' : 1 }
+NeoBundleLazy 'YamasakiKenta/chain-file.vim'       , {'stay_same' : 1 }
+NeoBundleLazy 'YamasakiKenta/tree.vim'             , {'stay_same' : 1 }
+NeoBundleLazy 'YamasakiKenta/tab-diff.vim'         , {'stay_same' : 1 }
+
+" rbtnn
+" NeoBundle 'rbtnn/rabbit-ui.vim'                       , { 'stay_same' : 1 }
+" NeoBundleLazy 'rbtnn/puyo.vim'
+NeoBundleLazy 'rbtnn/vbnet_indent.vim'       , {'stay_same' : 1 }
+
+" vim-scripts
+" NeoBundle 'vim-scripts/Better-Javascript-Indentation' , { 'stay_same' : 1 }
+NeoBundleLazy 'vim-scripts/CCTree'           , {'stay_same' : 1 }
+NeoBundleLazy 'vim-scripts/Align'            , {'stay_same' : 1 }
+
+" thinca
+" NeoBundleLazy 'thinca/vim-ref'
+NeoBundle 'thinca/vim-qfreplace'           , {'stay_same' : 1 }
+NeoBundle 'thinca/vim-partedit'              , {'stay_same' : 1 }
+NeoBundleLazy 'thinca/vim-quickrun'          , {'stay_same' : 1 }
+
+" Shougo
+" NeoBundle 'Shougo/context_filetype.vim',  { 'stay_same' : 1 }
+" NeoBundleFetch 'Shougo/shougo-s-github'
+" NeoBundleLazy 'Shougo/vimfiler', 'ver.4.0'
+" NeoBundleLazy 'Shougo/vimproc.vim' " gvimでは、初期のやつを使用する
+" NeoBundleLazy 'Shougo/vinarise.vim'
+NeoBundle      'Shougo/neocomplete.vim'
+NeoBundle      'Shougo/neosnippet'
+NeoBundle      'Shougo/neosnippet-snippets.git'
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleLazy  'Shougo/neomru.vim'
+NeoBundleLazy  'Shougo/unite-outline'
+NeoBundleLazy  'Shougo/unite.vim'
+NeoBundleLazy  'Shougo/vimfiler'
+NeoBundleLazy  'Shougo/vimshell.vim'
 
 " color
 NeoBundle 'endel/vim-github-colorscheme'        , { 'stay_same' : 1 }
@@ -100,56 +136,29 @@ NeoBundle 'vim-scripts/summerfruit256.vim'      , { 'stay_same' : 1 }
 NeoBundle 'vim-scripts/twilight'                , { 'stay_same' : 1 }
 NeoBundle 'w0ng/vim-hybrid'                     , { 'stay_same' : 1 }
 
-" NeoBundleFetch
-" NeoBundleFetch 'Shougo/shougo-s-github'
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleFetch 'YamasakiKenta/vimwork.vim'
+" git
+" NeoBundle 'sgur/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive'
+
 
 " NeoBundle
-" NeoBundle 'violetyk/cake.vim'
-" NeoBundle 'sgur/vim-gitgutter'
 " NeoBundle 'lilydjwg/colorizer' " CSS PREVIEW ( 重い )
-" NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets.git'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'fuenor/qfixgrep'                , {'stay_same' : 1 }
-NeoBundle 'thinca/vim-qfreplace'           , {'stay_same' : 1 }
 " NeoBundle 'morhetz/gruvbox'
+" NeoBundle 'violetyk/cake.vim'
+NeoBundle 'fuenor/qfixgrep'                , {'stay_same' : 1 }
 
 " Unite
-NeoBundleLazy 'Shougo/unite.vim'
-NeoBundleLazy 'sgur/unite-everything'              , {'stay_same' : 1 }
-NeoBundleLazy 'pasela/unite-webcolorname'          , {'stay_same' : 1 }
-NeoBundleLazy 'Shougo/unite-outline'               , {'stay_same' : 1 }
-NeoBundleLazy 'tsukkee/unite-tag'                  , {'stay_same' : 1 }
 NeoBundleLazy 'osyo-manga/unite-quickfix'          , {'stay_same' : 1 }
-NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim' , {'stay_same' : 1 }
-NeoBundleLazy 'YamasakiKenta/unite-setting.vim'    , {'stay_same' : 1 }
-NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'   , {'stay_same' : 1 }
+NeoBundleLazy 'pasela/unite-webcolorname'          , {'stay_same' : 1 }
+NeoBundleLazy 'sgur/unite-everything'              , {'stay_same' : 1 }
+NeoBundleLazy 'tsukkee/unite-tag'                  , {'stay_same' : 1 }
 NeoBundleLazy 'ujihisa/unite-colorscheme'          , {'stay_same' : 1 }
-NeoBundleLazy 'Shougo/neomru.vim'                  , {'stay_same' : 1 }
 
-" NeoBundleLazy
-" NeoBundleLazy 'Shougo/vimproc.vim' " gvimでは、初期のやつを使用する
-" NeoBundleLazy 'Shougo/vinarise.vim'
-" NeoBundleLazy 'rbtnn/puyo.vim'
-" NeoBundleLazy 'thinca/vim-ref'
+
 " NeoBundleLazy 'kchmck/vim-coffee-script'
-NeoBundle 'thinca/vim-partedit'              , {'stay_same' : 1 }
 NeoBundle 'mattn/emmet-vim'                  , {'stay_same' : 1 }
-NeoBundleLazy 'rbtnn/vbnet_indent.vim'       , {'stay_same' : 1 }
-NeoBundleLazy 'kien/rainbow_parentheses.vim' , {'stay_same' : 1 }
 NeoBundleLazy 'itchyny/lightline.vim'        , {'stay_same' : 1 }
-NeoBundleLazy 'CCTree'                       , {'stay_same' : 1 }
-NeoBundleLazy 'Shougo/vimshell.vim'          , {'stay_same' : 1 }
-NeoBundleLazy 'thinca/vim-quickrun'          , {'stay_same' : 1 }
-NeoBundleLazy 'vim-scripts/Align'            , {'stay_same' : 1 }
-NeoBundleLazy 'YamasakiKenta/chain-file.vim' , {'stay_same' : 1 }
-NeoBundleLazy 'YamasakiKenta/tree.vim'       , {'stay_same' : 1 }
-NeoBundleLazy 'YamasakiKenta/tab-diff.vim'   , {'stay_same' : 1 }
-" NeoBundleLazy 'Shougo/vimfiler', 'ver.4.0'
-NeoBundleLazy 'Shougo/vimfiler'
+NeoBundleLazy 'kien/rainbow_parentheses.vim' , {'stay_same' : 1 }
 
 function! s:is_win()
 	return has('GUI') && ( has('win32') || has('win64') )
