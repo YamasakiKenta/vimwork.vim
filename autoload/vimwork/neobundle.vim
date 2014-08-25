@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/08/22 9:06:26
+" Last Modified: 2014/08/22 9:56:16
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -27,7 +27,7 @@ NeoBundle 'osyo-manga/vim-over'         , { 'stay_same' : 1 }
 " NeoBundle 'pangloss/vim-javascript'                   , { 'stay_same' : 1 }
 " NeoBundle 'vim-scripts/Better-Javascript-Indentation' , { 'stay_same' : 1 }
 " NeoBundle 'nathanaelkane/vim-indent-guides'           , { 'stay_same' : 1 }
-" NeoBundle 'scrooloose/syntastic'                      , { 'stay_same' : 1 }
+NeoBundleLazy 'scrooloose/syntastic'                      , { 'stay_same' : 1 }
 
 " textobj
 " "{{{
@@ -82,23 +82,23 @@ NeoBundle 'osyo-manga/vim-over'         , { 'stay_same' : 1 }
 " NeoBundle 'shawncplus/php.vim'
 
 " color
-" NeoBundle 'endel/vim-github-colorscheme'
-" NeoBundle 'hukl/Smyck-Color-Scheme'
-" NeoBundle 'altercation/vim-colors-solarized'
-" NeoBundle 'cocopon/colorswatch.vim'
-" NeoBundle 'cocopon/iceberg.vim'
-" NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
-" NeoBundle 'jonathanfilip/vim-lucius'
-" NeoBundle 'jpo/vim-railscasts-theme'
-" NeoBundle 'lazz/vim-colorschemes'
-" NeoBundle 'nanotech/jellybeans.vim'
-" NeoBundle 'tomasr/molokai'
-" NeoBundle 'vim-scripts/Wombat'
-" NeoBundle 'vim-scripts/chlordane.vim'
-" NeoBundle 'vim-scripts/rdark'
-" NeoBundle 'vim-scripts/summerfruit256.vim'
-" NeoBundle 'vim-scripts/twilight'
-" NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'endel/vim-github-colorscheme'        , { 'stay_same' : 1 }
+NeoBundle 'hukl/Smyck-Color-Scheme'             , { 'stay_same' : 1 }
+NeoBundle 'altercation/vim-colors-solarized'    , { 'stay_same' : 1 }
+NeoBundle 'cocopon/colorswatch.vim'             , { 'stay_same' : 1 }
+NeoBundle 'cocopon/iceberg.vim'                 , { 'stay_same' : 1 }
+NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git' , { 'stay_same' : 1 }
+NeoBundle 'jonathanfilip/vim-lucius'            , { 'stay_same' : 1 }
+NeoBundle 'jpo/vim-railscasts-theme'            , { 'stay_same' : 1 }
+NeoBundle 'lazz/vim-colorschemes'               , { 'stay_same' : 1 }
+NeoBundle 'nanotech/jellybeans.vim'             , { 'stay_same' : 1 }
+NeoBundle 'tomasr/molokai'                      , { 'stay_same' : 1 }
+NeoBundle 'vim-scripts/Wombat'                  , { 'stay_same' : 1 }
+NeoBundle 'vim-scripts/chlordane.vim'           , { 'stay_same' : 1 }
+NeoBundle 'vim-scripts/rdark'                   , { 'stay_same' : 1 }
+NeoBundle 'vim-scripts/summerfruit256.vim'      , { 'stay_same' : 1 }
+NeoBundle 'vim-scripts/twilight'                , { 'stay_same' : 1 }
+NeoBundle 'w0ng/vim-hybrid'                     , { 'stay_same' : 1 }
 
 " NeoBundleFetch
 " NeoBundleFetch 'Shougo/shougo-s-github'
@@ -431,6 +431,9 @@ endif "}}}
 if neobundle#tap('unite-setting-ex.vim') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
 endif "}}}
+if neobundle#tap('syntastic') "{{{syntastic
+    call neobundle#config({'autoload': {'commands': 'SyntasticCheck'}})
+endif "}}}syntastic
 if 0
 if neobundle#tap('unite-everything') "{{{
 	call neobundle#config({'autoload': {'unite_sources': 'everything'}})
