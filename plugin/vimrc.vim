@@ -26,6 +26,7 @@ set nowrap
 set number
 set shiftwidth=4
 set smartcase
+set noexpandtab
 set tabstop=4
 set tw=0
 set ve=block

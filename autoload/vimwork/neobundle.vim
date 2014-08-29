@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/08/25 9:30:03
+" Last Modified: 2014/08/29 13:20:00
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -19,6 +19,8 @@ NeoBundle 'hail2u/vim-css3-syntax'      , { 'stay_same' : 1 }
 NeoBundle 'taichouchou2/html5.vim'      , { 'stay_same' : 1 }
 NeoBundle 'taichouchou2/vim-javascript' , { 'stay_same' : 1 }
 NeoBundle 'osyo-manga/vim-over'         , { 'stay_same' : 1 }
+NeoBundle 'voi/unite-ctags'
+NeoBundle 'vim-scripts/taglist.vim'
 
 " NeoBundle 'sjl/gundo.vim'                             , { 'stay_same' : 1 }
 " NeoBundle 'LeafCage/unite-gvimrgb'                    , { 'stay_same' : 1 }
@@ -298,8 +300,14 @@ if neobundle#tap('vim-quickrun') "{{{
 	call neobundle#config({'autoload': {'commands': 'QuickRun'}})
 	let g:quickrun_config = {
 				\ 'cpp' : {
-				\ "hook/output_encode/enable" : 1,
-				\ "hook/output_encode/encoding" : "sjis",
+				\ 'hook/output_encode/enable' : 1,
+				\ 'hook/output_encode/encoding' : 'sjis',
+				\ 'type': 'c/gcc',
+				\ },
+				\ 'c' : {
+				\ 'hook/output_encode/enable' : 1,
+				\ 'hook/output_encode/encoding' : 'sjis',
+				\ 'type': 'c/gcc',
 				\ },
 				\ 'cs' : {
 				\ 'command': 'dmcs',
