@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: chain-file.vim
 " Creation Date: 2014/08/29 10:03:43
-" Last Modified: 2014/08/29 10:54:21
+" Last Modified: 2014/09/02 11:17:50
 " =============================================================================
 "
 let s:save_cpo = &cpo
@@ -19,7 +19,7 @@ function! s:source.gather_candidates(args, context)
 	let _files = s:chain_file()
 	let _files = map(_files, "substitute(v:val, '\\', '/', 'g')")
 
-	let _cmn = get(_files, 0, '')
+	let _cmn = matchstr(get(_files, 0, ''), '.*/')
 	for _f in _files
 		while _f !~ _cmn && match(_cmn, '/')+1
 			let _cmn = substitute(_cmn, '.*\zs/.*', '', '')
