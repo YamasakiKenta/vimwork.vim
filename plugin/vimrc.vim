@@ -31,6 +31,7 @@ set tabstop=4
 set tw=0
 set ve=block
 set list lcs=tab:`\ 
+
 " map 
 nnoremap <leader>v :<C-u>noa vim /<C-r><C-w>/ **/*<left><left><left><left><left><left><left>|"
 nnoremap <C-/>v :<C-u>noa vim /<C-r><C-w>/ **/*<left><left><left><left><left><left><left>|"
@@ -62,15 +63,6 @@ vnoremap > >gv|"
 highlight CursorIM guibg=Magenta guifg=NONE
 nnoremap <f5> :<c-u>MyUpdateTimer<cr>
 nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
-
-" dir 
-let s:dir = substitute(expand("<sfile>"), '\\', '\/', 'g')
-let s:dir = substitute(s:dir, '/plugin/vimrc.vim$', '', '')
-let g:neosnippet#snippets_directory = s:dir.'/snippets'
-let g:vimwork#syntax_directory = s:dir
-let g:load_doxygen_syntax = 1
-let g:did_install_default_menus = 1
-exe 'set dict+='.s:dir.'/dict/*'
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
