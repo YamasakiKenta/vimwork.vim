@@ -2,7 +2,7 @@
 " FILE: multiline.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation Date: 2014/04/27 23:52:39
-" Last Modified: 2014/09/05 9:34:19
+" Last Modified: 2014/09/09 11:27:25
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -20,17 +20,19 @@ if !isdirectory(expand(&backupdir))
 endif
 
 " dir 
-let s:dir = substitute(substitute(expand("<sfile>"), '\\', '\/', 'g'), '/plugin/vimrc.vim$', '', '')
+let s:dir = substitute(substitute(expand("<sfile>"), '\\', '\/', 'g'), '/plugin/.*$', '', '')
 let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
 let g:did_install_default_menus = 1
 exe 'set dict+='.s:dir.'/dict/*'
 
-set undodir=~/.vim/undo
-if !isdirectory(expand(&undodir))
-	call mkdir(expand(&undodir))
-endif
+if has('persistent_undo')
+	set undodir=~/.vim/undo
+	if !isdirectory(expand(&undodir))
+		call mkdir(expand(&undodir))
+	endif
+endif 
 
 if has('win32') && !has('gui')
 	set enc=sjis
