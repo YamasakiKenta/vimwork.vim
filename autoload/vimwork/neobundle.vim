@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/09/10 9:27:11
+" Last Modified: 2014/09/10 10:06:41
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -315,9 +315,10 @@ if neobundle#tap('vim-quickrun') "{{{
                 \ 'tempfile': '%{tempname()}.cs',
                 \ },
                 \ '_' : {
-                \ 'hook/time/enable' : 1
+                \ 'hook/time/enable' : 1,
                 \ },
                 \ }
+                " \ 'runner' : 'vimproc',
 endif "}}}
 if neobundle#tap('vimshell.vim') "{{{
     call neobundle#config({'autoload': {'commands': 'VimShell'}})
