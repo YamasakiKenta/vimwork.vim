@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/09/10 10:06:41
+" Last Modified: 2014/09/25 8:55:41
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -109,7 +109,7 @@ NeoBundleLazy 'thinca/vim-quickrun'          , {'stay_same' : 1 }
 " NeoBundleLazy 'Shougo/vimfiler', 'ver.4.0'
 " NeoBundleLazy 'Shougo/vimproc.vim' " gvimでは、初期のやつを使用する
 " NeoBundleLazy 'Shougo/vinarise.vim'
-NeoBundle      'Shougo/neocomplete.vim'
+NeoBundleLazy  'Shougo/neocomplete.vim'
 NeoBundle      'Shougo/neosnippet'
 NeoBundle      'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
