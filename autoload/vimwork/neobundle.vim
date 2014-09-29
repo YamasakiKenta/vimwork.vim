@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/09/25 8:55:41
+" Last Modified: 2014/09/26 13:12:08
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -21,6 +21,7 @@ NeoBundle 'taichouchou2/vim-javascript' , { 'stay_same' : 1 }
 NeoBundle 'osyo-manga/vim-over'         , { 'stay_same' : 1 }
 NeoBundle 'voi/unite-ctags'
 NeoBundle 'vim-scripts/taglist.vim'
+" NeoBundle 'taka84u9/unite-git'
 
 " NeoBundle 'sjl/gundo.vim'                             , { 'stay_same' : 1 }
 " NeoBundle 'LeafCage/unite-gvimrgb'                    , { 'stay_same' : 1 }
@@ -376,7 +377,8 @@ if neobundle#tap('unite.vim') "{{{
     nnoremap [unite]R  :<C-u>Unite resume|"
     nnoremap [unite]bt :<C-u>Unite buffer_tags|"
     nnoremap [unite]e  :<C-u>Unite outline|"
-    nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep:**/*|"
+    " nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep:**/*|"
+    nnoremap [unite]g  :<C-u>Unite file_rec/git|"
     nnoremap [unite]h  :<C-u>Unite history/yank|"
     nnoremap [unite]j  :<C-u>Unite jump|
     nnoremap [unite]l  :<C-u>Unite line|"
