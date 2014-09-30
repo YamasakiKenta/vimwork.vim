@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/09/29 12:42:18
+" Last Modified: 2014/09/30 9:39:01
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -27,13 +27,13 @@ NeoBundle 'voi/unite-ctags'
 NeoBundleLazy 'scrooloose/syntastic'
 
 " YamasakiKenta
-NeoBundleFetch 'YamasakiKenta/vimwork.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
-NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
-NeoBundleLazy 'YamasakiKenta/chain-file.vim'
-NeoBundleLazy 'YamasakiKenta/tree.vim'
-NeoBundleLazy 'YamasakiKenta/tab-diff.vim'
+NeoBundleFetch 'YamasakiKenta/vimwork.vim'         , {'type__protocol' : 'ssh' }
+NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim' , {'type__protocol' : 'ssh' }
+NeoBundleLazy 'YamasakiKenta/unite-setting.vim'    , {'type__protocol' : 'ssh' }
+NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'   , {'type__protocol' : 'ssh' }
+NeoBundleLazy 'YamasakiKenta/chain-file.vim'       , {'type__protocol' : 'ssh' }
+NeoBundleLazy 'YamasakiKenta/tree.vim'             , {'type__protocol' : 'ssh' }
+NeoBundleLazy 'YamasakiKenta/tab-diff.vim'         , {'type__protocol' : 'ssh' }
 
 " rbtnn
 " NeoBundle 'rbtnn/rabbit-ui.vim'
