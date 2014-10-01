@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/09/29 12:42:18
+" Last Modified: 月  9/29 23:23:51 2014
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -61,6 +61,7 @@ NeoBundleLazy  'Shougo/unite-outline'
 NeoBundleLazy  'Shougo/unite.vim'
 NeoBundleLazy  'Shougo/vimfiler'
 NeoBundleLazy  'Shougo/vimshell.vim'
+NeoBundleLazy 'shougo/vimproc.vim'
 
 " color
 NeoBundle 'endel/vim-github-colorscheme'
@@ -188,6 +189,7 @@ if neobundle#tap('Align') "{{{
 endif "}}}
 if neobundle#tap('vimproc.vim') "{{{
     if !s:is_win()
+        call neobundle#config({'lazy':0})
         call neobundle#config({'build': {
                     \ 'windows' : 'make -f make_mingw32.mak',
                     \ 'cygwin'  : 'make -f make_cygwin.mak',
