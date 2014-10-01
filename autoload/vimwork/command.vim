@@ -2,7 +2,7 @@
 " FILE: command.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation date: 2014/04/26 23:46:33
-" Last Modified: 2014/05/15 16:16:36
+" Last Modified: 2014/10/01 22:57:31
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -188,7 +188,7 @@ function! vimwork#command#update_time(cmds) "{{{
 		if l > 0
 			echo 'UPDATE'
 			let str = getline(l)
-			let str = substitute(str, ':.*', ': '.strftime("%c"), '')
+			let str = substitute(str, ':.*', ': '.strftime("%Y/%m/%d %T"), '')
 			call setline(l, str)
 		endif
 	endfor
