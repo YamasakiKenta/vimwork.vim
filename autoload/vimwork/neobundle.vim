@@ -196,6 +196,11 @@ if neobundle#tap('vimproc.vim') "{{{
                     \ 'mac'     : 'make -f make_mac.mak',
                     \ 'unix'    : 'make -f make_unix.mak',
                     \ }})
+    else
+        call neobundle#config({
+                    \ 'disabled':1,
+                    \ 'autoload': {},
+                    \ })
     endif
 endif "}}}
 if neobundle#tap('tab-diff.vim') "{{{
