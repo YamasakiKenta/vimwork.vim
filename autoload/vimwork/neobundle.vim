@@ -27,7 +27,7 @@ NeoBundle 'voi/unite-ctags'
 NeoBundleLazy 'scrooloose/syntastic'
 
 " YamasakiKenta
-NeoBundleFetch 'YamasakiKenta/vimwork.vim'
+NeoBundleFetch 'YamasakiKenta/vimwork.vim' , { 'type__protocol' : 'ssh' }
 NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
 NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
