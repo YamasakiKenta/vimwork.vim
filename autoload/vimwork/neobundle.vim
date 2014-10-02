@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 月  9/29 23:23:51 2014
+" Last Modified: 
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -56,6 +56,7 @@ NeoBundle      'Shougo/neosnippet'
 NeoBundle      'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleLazy  'Shougo/neocomplete.vim'
+NeoBundleLazy  'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
 NeoBundleLazy  'Shougo/unite.vim'
@@ -210,12 +211,19 @@ if neobundle#tap('tab-diff.vim') "{{{
     call neobundle#config({'autoload': {'commands' : ['TabDiffStart','TabDiffEnd','TabDiffOrig']}})
 endif "}}}
 if neobundle#tap('neocomplete.vim') "{{{
-    if !(has('lua') && (v:version > 703 || v:version == 703 && has('patch885')))
-        call neobundle#config({'lazy':0})
-    endif
+    call neobundle#config({
+                \ 'disabled' : !has('lua')&&0,
+                \ 'vim_version' : '7.3.885'
+                \ })
     function! neobundle#tapped.hooks.on_source(bundle)
         call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
         " let g:neocomplete#enable_at_startup = 1
+    endfunction
+endif "}}}
+if neobundle#tap('neocomplcache.vim') "{{{
+    call neobundle#config({'lazy':0})
+    function! neobundle#tapped.hooks.on_source(bundle)
+        let g:neocomplcache_enable_at_startup = 1
     endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
