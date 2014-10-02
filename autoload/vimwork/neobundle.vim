@@ -25,6 +25,7 @@ NeoBundle 'taichouchou2/vim-javascript'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'voi/unite-ctags'
 NeoBundleLazy 'scrooloose/syntastic'
+NeoBundleLazy 'thinca/vim-prettyprint'
 
 " YamasakiKenta
 NeoBundleFetch 'YamasakiKenta/vimwork.vim' , { 'type__protocol' : 'ssh' }
