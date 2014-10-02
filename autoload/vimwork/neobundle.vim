@@ -433,7 +433,7 @@ function! vimwork#neobundle#is_emmet(str)
                 \ ]
 endfunction
 
-if 0  "{{{ NeoSnip
+if 1  "{{{ NeoSnip
     " SuperTab like snippets behavior.
     imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
                 \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -443,12 +443,6 @@ if 0  "{{{ NeoSnip
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
                 \ "\<Plug>(neosnippet_expand_or_jump)"
                 \ :"\<TAB>"
-    imap <expr><C-k>  pumvisible()?
-                \ "<Plug>(neocomplete_start_unite_complete)"
-                \ :"<C-k>"
-    imap <expr><C-q>  pumvisible()?
-                \ "\<Plug>(neocomplete_start_unite_quick_match)"
-                \ :"\<C-q>"
     imap <expr><TAB>
                 \ emmet#isExpandable()
                 \ ? emmet#expandAbbrIntelligent("\<tab>")
