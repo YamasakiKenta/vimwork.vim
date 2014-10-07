@@ -30,7 +30,7 @@ NeoBundleLazy 'scrooloose/syntastic'
 NeoBundleLazy 'thinca/vim-prettyprint'
 
 " YamasakiKenta
-NeoBundleFetch 'YamasakiKenta/vimwork.vim' , { 'type__protocol' : 'ssh' }
+NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
 NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
