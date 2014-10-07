@@ -9,10 +9,12 @@ set cpo&vim
 function! vimwork#neobundle#init()
 endfunction
 
-if has("vim_starting")
+if has('vim_starting')
+    set nocompatible
     set rtp+=~/.vim/bundle/neobundle.vim
 endif
-call neobundle#rc()
+
+call neobundle#begin()
 
 " Normal
 NeoBundle 'mattn/emmet-vim'
@@ -135,14 +137,11 @@ endif "}}}
 if neobundle#tap('emmet-vim') "{{{
     call neobundle#config({'autoload': {
                 \ 'filetypes': ['html','css','php'],
-                \ 'mappings' : [
-                \ '<Plug>(emmet-',
-                \ '<Plug>(emmmet-',
-                \ '<tab>',
-                \ ],
                 \ }})
     function! neobundle#tapped.hooks.on_source(bundle)
-        " let g:user_emmet_leader_key = '<c-\>'
+        imap <expr><TAB> 
+                \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+                \ :"\<TAB>"
     endfunction
 endif "}}}
 if neobundle#tap('vimfiler') "{{{
@@ -166,14 +165,6 @@ if neobundle#tap('vimfiler') "{{{
 endif "}}}
 if neobundle#tap('neosnippet') "{{{
     function! neobundle#tapped.hooks.on_source(bundle)
-        " For snippet_complete marker.
-        " Plugin key-mappings.
-        " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-        " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-        " xmap <C-k>     <Plug>(neosnippet_expand_target)
-        xmap <C-l>     <Plug>(neosnippet_start_unite_snippet_target)
-        imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
-        imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-TAB>"
     endfunction
 endif "}}}
 if neobundle#tap('qfixgrep') "{{{
@@ -225,6 +216,9 @@ if neobundle#tap('neocomplcache.vim') "{{{
     call neobundle#config({'lazy':0})
     function! neobundle#tapped.hooks.on_source(bundle)
         let g:neocomplcache_enable_at_startup = 1
+        let g:neocomplcache_auto_completion_start_length = 3
+        let g:neocomplcache_sources_list = {}
+        let g:neocomplcache_sources_list._ = ['snippets_complete']
     endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
@@ -403,6 +397,16 @@ endif "}}}
 if neobundle#tap('syntastic') "{{{syntastic
     call neobundle#config({'autoload': {'commands': 'SyntasticCheck'}})
 endif "}}}syntastic
+" mult
+if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "{{{
+    imap <expr><TAB> 
+                \ neosnippet#expandable_or_jumpable() ?
+                \ "\<Plug>(neosnippet_expand_or_jump)"
+                \ : pumvisible() ? "\<C-n>"
+                \ : emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+                \ :"\<TAB>"
+endif 
+"}}}
 if 0
 if neobundle#tap('unite-everything') "{{{
     call neobundle#config({'autoload': {'unite_sources': 'everything'}})
@@ -423,34 +427,9 @@ if neobundle#tap('pasela/unite-webcolorname') "{{{
     " call neobundle#config({'autoload': {'unite_sources': 'webcolorname'}})
 endif "}}}
 endif
-call neobundle#call_hook('on_source')
+
+call neobundle#end()
 filetype plugin indent on
-
-
-function! vimwork#neobundle#is_emmet(str)
-    let list = [
-                \ 'html',
-                \ ]
-endfunction
-
-if 1  "{{{ NeoSnip
-    " SuperTab like snippets behavior.
-    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                \ "\<Plug>(neosnippet_expand_or_jump)"
-                \ :pumvisible() ? "\<C-n>"
-                \ :emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
-                \ :"\<TAB>"
-    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                \ "\<Plug>(neosnippet_expand_or_jump)"
-                \ :"\<TAB>"
-    imap <expr><TAB>
-                \ emmet#isExpandable()
-                \ ? emmet#expandAbbrIntelligent("\<tab>")
-                \ : neosnippet#expandable_or_jumpable()
-                \ ? "\<Plug>(neosnippet_expand_or_jump)"
-                \ :"\<TAB>"
-endif  "}}}
-
 
 if exists('s:save_cpo')
     let &cpo = s:save_cpo
