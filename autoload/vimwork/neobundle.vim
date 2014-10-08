@@ -165,6 +165,7 @@ if neobundle#tap('vimfiler') "{{{
 endif "}}}
 if neobundle#tap('neosnippet') "{{{
     function! neobundle#tapped.hooks.on_source(bundle)
+        imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
     endfunction
 endif "}}}
 if neobundle#tap('qfixgrep') "{{{
