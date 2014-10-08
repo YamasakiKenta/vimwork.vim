@@ -33,8 +33,7 @@ set ve=block
 set list lcs=tab:`\ 
 
 " map 
-nnoremap <leader>v :<C-u>noa vim /<C-r><C-w>/ **/*<left><left><left><left><left><left><left>|"
-nnoremap <C-/>v :<C-u>noa vim /<C-r><C-w>/ **/*<left><left><left><left><left><left><left>|"
+nnoremap <leader>v :<C-u>noa vim // **/*<c-left><c-left><right>|"
 nnoremap <leader>/ :<C-u>Unite line<CR>|"
 nnoremap <S-Space> za|"
 nnoremap <C-]> <C-]>zz|"
