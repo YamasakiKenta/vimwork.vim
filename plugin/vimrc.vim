@@ -63,6 +63,7 @@ vnoremap > >gv|"
 highlight CursorIM guibg=Magenta guifg=NONE
 nnoremap <f5> :<c-u>MyUpdateTimer<cr>
 nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
+nnoremap <leader>K :call system("ctags -R --excmd=number")<CR>|"
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo

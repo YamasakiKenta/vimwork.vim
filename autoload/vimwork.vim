@@ -1,9 +1,6 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! vimwork#set_ctags() 
-	nnoremap <C-\>K :call system("ctags -R --excmd=number")<CR>|"
-endfunction 
 function! vimwork#set_cscope() 
 	set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 	nnoremap <C-\>L :cs kill -1<CR>:call system("cscope -b -R -q")<CR>:cs add cscope.out<CR>|"
