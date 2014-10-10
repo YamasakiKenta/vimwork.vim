@@ -28,6 +28,7 @@ NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'voi/unite-ctags'
 NeoBundleLazy 'scrooloose/syntastic'
 NeoBundleLazy 'thinca/vim-prettyprint'
+NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
 
 " YamasakiKenta
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
@@ -98,6 +99,14 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim'
 function! s:is_win()
     return has('GUI') && ( has('win32') || has('win64') )
 endfunction
+if neobundle#tap('vim-bootstrap3-snippets')  "{{{
+  call neobundle#config({
+        \ 'depends' : 'Shougo/neosnippet',
+        \ })
+  function! neobundle#tapped.hooks.on_source(bundle) 
+
+  endfunction
+endif  "}}}
 if neobundle#tap('vim-indent-guides') "{{{
     let g:indent_guides_enable_on_vim_startup=1
     let g:indent_guides_start_level=2
