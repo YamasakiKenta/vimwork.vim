@@ -29,6 +29,7 @@ NeoBundle 'voi/unite-ctags'
 NeoBundleLazy 'scrooloose/syntastic'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
+NeoBundle 'digitaltoad/vim-jade'
 
 " YamasakiKenta
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
@@ -101,8 +102,8 @@ function! s:is_win()
 endfunction
 if neobundle#tap('vim-bootstrap3-snippets')  "{{{
   call neobundle#config({
-        \ 'depends' : 'Shougo/neosnippet',
         \ })
+        " \ 'depends' : 'Shougo/neosnippet',
   function! neobundle#tapped.hooks.on_source(bundle) 
 
   endfunction
