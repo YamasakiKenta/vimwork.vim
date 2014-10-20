@@ -87,6 +87,8 @@ NeoBundle 'vim-scripts/rdark'
 NeoBundle 'vim-scripts/summerfruit256.vim'
 NeoBundle 'vim-scripts/twilight'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'amdt/vim-niji'
+                    
 
 " Unite
 NeoBundleLazy 'osyo-manga/unite-quickfix'
@@ -95,11 +97,19 @@ NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'itchyny/lightline.vim'
-NeoBundleLazy 'kien/rainbow_parentheses.vim'
 
 function! s:is_win()
     return has('GUI') && ( has('win32') || has('win64') )
 endfunction
+if neobundle#tap('amdt/vim-niji') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle) 
+    let g:niji_matching_filetypes = [
+          \ 'html', 
+          \ 'javascript',
+          \ 'php',
+          \ ]
+  endfunction
+endif "}}}
 if neobundle#tap('vim-bootstrap3-snippets')  "{{{
   call neobundle#config({
         \ })
@@ -265,6 +275,8 @@ if neobundle#tap('vim-quickrun') "{{{
                 \ },
                 \ '_' : {
                 \ 'hook/time/enable' : 1,
+                \ 'hook/output_encode/enable' : 1,
+                \ 'hook/output_encode/encoding' : 'sjis',
                 \ },
                 \ }
                 " \ 'runner' : 'vimproc',
