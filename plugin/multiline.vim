@@ -2,7 +2,7 @@
 " FILE: multiline.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation Date: 2014/04/27 23:52:39
-" Last Modified: 2014/09/10 9:27:47
+" Last Modified: 
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -42,6 +42,16 @@ else
     set enc=utf-8
     set fenc=utf-8
 endif
+
+nnoremap <PLUG>(uniq_line)
+			\ :g/./if getline(line(".")) == getline(line(".")-1)\|d<CR>
+
+nnoremap <PLUG>(select_search)
+			\ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a
+
+nnoremap <PLUG>(edit_syntax_file)
+			\ :exe 'e '.g:vimwork#syntax_directory.'/syntax/'.&filetype.'.vim'<CR>
+
 
 if exists('s:save_cpo')
     let &cpo = s:save_cpo
