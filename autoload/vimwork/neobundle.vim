@@ -20,25 +20,25 @@ call neobundle#begin()
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fuenor/qfixgrep'
-NeoBundle 'manicmaniac/vim'
-NeoBundle 'toyamarinyon/vim-swift'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'taichouchou2/vim-javascript'
-NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'voi/unite-ctags'
-NeoBundleLazy 'scrooloose/syntastic'
-NeoBundleLazy 'thinca/vim-prettyprint'
-NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
-NeoBundle 'digitaltoad/vim-jade'
+" NeoBundle 'manicmaniac/vim'
+" NeoBundle 'toyamarinyon/vim-swift'
+" NeoBundle 'hail2u/vim-css3-syntax'
+" NeoBundle 'taichouchou2/vim-javascript'
+" NeoBundle 'osyo-manga/vim-over'
+" NeoBundle 'voi/unite-ctags'
+" NeoBundleLazy 'scrooloose/syntastic'
+" NeoBundleLazy 'thinca/vim-prettyprint'
+" NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
+" NeoBundle 'digitaltoad/vim-jade'
 
 " YamasakiKenta
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
-NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
-NeoBundleLazy 'YamasakiKenta/chain-file.vim'
-NeoBundleLazy 'YamasakiKenta/tree.vim'
-NeoBundleLazy 'YamasakiKenta/tab-diff.vim'
+" NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
+" NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
+" NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
+" NeoBundleLazy 'YamasakiKenta/chain-file.vim'
+" NeoBundleLazy 'YamasakiKenta/tree.vim'
+" NeoBundleLazy 'YamasakiKenta/tab-diff.vim'
 
 " rbtnn
 " NeoBundle 'rbtnn/rabbit-ui.vim'
@@ -87,8 +87,6 @@ NeoBundle 'vim-scripts/rdark'
 NeoBundle 'vim-scripts/summerfruit256.vim'
 NeoBundle 'vim-scripts/twilight'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'amdt/vim-niji'
-                    
 
 " Unite
 NeoBundleLazy 'osyo-manga/unite-quickfix'
@@ -97,19 +95,11 @@ NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'itchyny/lightline.vim'
+NeoBundleLazy 'kien/rainbow_parentheses.vim'
 
 function! s:is_win()
     return has('GUI') && ( has('win32') || has('win64') )
 endfunction
-if neobundle#tap('amdt/vim-niji') "{{{
-  function! neobundle#tapped.hooks.on_source(bundle) 
-    let g:niji_matching_filetypes = [
-          \ 'html', 
-          \ 'javascript',
-          \ 'php',
-          \ ]
-  endfunction
-endif "}}}
 if neobundle#tap('vim-bootstrap3-snippets')  "{{{
   call neobundle#config({
         \ })
@@ -275,8 +265,6 @@ if neobundle#tap('vim-quickrun') "{{{
                 \ },
                 \ '_' : {
                 \ 'hook/time/enable' : 1,
-                \ 'hook/output_encode/enable' : 1,
-                \ 'hook/output_encode/encoding' : 'sjis',
                 \ },
                 \ }
                 " \ 'runner' : 'vimproc',
