@@ -55,29 +55,30 @@ nnoremap <PLUG>(edit_syntax_file)
 " 検索ワードの追加
 command! -narg=* AddSearch call vimwork#command#add_serach(<f-args>) 
 
+" 連番の作成
+command! -narg=0 SetNum call vimwork#command#set_num() 
+
+" シンタックスの表示
+command! EchoSyntax echo synIDattr(synID(line("."), col("."), 1), "name")
+
+" 管理
+command! ChangeRoot call vimwork#command#change_root()
+
 " フォルダ構造のコピー
 command! -nargs=+ CopyFileDir call vimwork#command#copyFileDir(<f-args>) 
 "
 " 対象の文言を抽出する
 command! -range -narg=1 GetWord call vimwork#command#get_word(<line1>, <line2>, <f-args>)
 
-" 連番の作成
-command! -narg=0 SetNum call vimwork#command#set_num() 
-
-" 管理
-command! -nargs=? MyGitUpdate call vimwork#command#my_git_update(<q-args>) 
-command! ChangeRoot call vomwork#command#change_root()
-
 " 初期設定 , 対応するファイル
 command! -narg=* -range SortFunction call sort_function#sort_function(<line1>, <line2>)
 
-" Winmerge
-command! Winmerge call vimwork#command#winmerge()
+" WinMerge
+command! WinMerge call vimwork#command#winmerge()
 
 " Last Modified を更新する
 command! MyUpdateTimer call vimwork#command#update_time([''])
 
-command! MySyntax call vimwork#command#syntax()
 
 if exists('s:save_cpo')
     let &cpo = s:save_cpo

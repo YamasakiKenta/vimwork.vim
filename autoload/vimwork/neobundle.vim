@@ -43,16 +43,16 @@ NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 " rbtnn
 " NeoBundle 'rbtnn/rabbit-ui.vim'
 " NeoBundleLazy 'rbtnn/puyo.vim'
-NeoBundleLazy 'rbtnn/vbnet_indent.vim'
+" NeoBundleLazy 'rbtnn/vbnet_indent.vim'
 
 " vim-scripts
-NeoBundleLazy 'vim-scripts/taglist.vim'
-NeoBundleLazy 'vim-scripts/CCTree'
+" NeoBundleLazy 'vim-scripts/taglist.vim'
+" NeoBundleLazy 'vim-scripts/CCTree'
 NeoBundleLazy 'vim-scripts/Align'
 
 " thinca
 " NeoBundleLazy 'thinca/vim-ref'
-NeoBundle 'thinca/vim-qfreplace'
+" NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-quickrun'
 
@@ -60,7 +60,7 @@ NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundle      'Shougo/neosnippet'
 NeoBundle      'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleLazy  'Shougo/neocomplete.vim'
+" NeoBundleLazy  'Shougo/neocomplete.vim'
 NeoBundleLazy  'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
@@ -89,13 +89,13 @@ NeoBundle 'vim-scripts/twilight'
 NeoBundle 'w0ng/vim-hybrid'
 
 " Unite
-NeoBundleLazy 'osyo-manga/unite-quickfix'
-NeoBundleLazy 'pasela/unite-webcolorname'
-NeoBundleLazy 'sgur/unite-everything'
-NeoBundleLazy 'tsukkee/unite-tag'
-NeoBundleLazy 'ujihisa/unite-colorscheme'
-NeoBundleLazy 'itchyny/lightline.vim'
-NeoBundleLazy 'kien/rainbow_parentheses.vim'
+" NeoBundleLazy 'osyo-manga/unite-quickfix'
+" NeoBundleLazy 'pasela/unite-webcolorname'
+" NeoBundleLazy 'sgur/unite-everything'
+" NeoBundleLazy 'tsukkee/unite-tag'
+" NeoBundleLazy 'ujihisa/unite-colorscheme'
+" NeoBundleLazy 'itchyny/lightline.vim'
+" NeoBundleLazy 'kien/rainbow_parentheses.vim'
 
 function! s:is_win()
     return has('GUI') && ( has('win32') || has('win64') )
