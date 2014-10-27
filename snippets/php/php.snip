@@ -1,7 +1,7 @@
 # =============================================================================
 # FILE: php.snip
 # Creation date: 2014/04/23 9:58:04
-# Last Modified: 2014/06/13 10:41:42
+# Last Modified: 2014/10/27 09:44:22
 # =============================================================================
 snippet yheader
 abbr 画像データを返す
@@ -63,7 +63,7 @@ snippet rule
     ),
 snippet time
 abbr    t
-    `strftime("%c")`
+    `strftime("%Y/%m/%d %H:%M:%S")`
 snippet len
     strlen(${1:str});
 snippet element
@@ -89,6 +89,6 @@ snippet sql2
 snippet head
     # =============================================================================
     # ${1:FILE: `expand("%:t")`}
-    # Creation Date: `strftime("%c")`
-    # Last Modified: `strftime("%c")`
+    # Creation Date: `strftime("%Y/%m/%d %H:%M:%S")`
+    # Last Modified: `strftime("%Y/%m/%d %H:%M:%S")`
     # =============================================================================

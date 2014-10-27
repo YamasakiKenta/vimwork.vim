@@ -1,8 +1,8 @@
 "=============================================================================
 " FILE: command.vim
 " AUTHOR:  Yamasaki Kenta
-" Creation date: 2014/04/26 23:46:33
-" Last Modified: 
+" Creation Date: 2014/04/26 23:46:33
+" Last Modified: 2014/10/27 09:34
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -167,13 +167,9 @@ function! vimwork#command#update_time(cmds) "{{{
     exe cmd
     let l = search('^\W*Last Modified', 'bnW')
     if l > 0
-      echo 'UPDATE'
       let str = getline(l)
-      let str = substitute(str, ':.*', ': '.strftime("%Y/%m/%d %T"), '')
+      let str = substitute(str, ':.*', ': '.strftime("%Y/%m/%d %H:%M:%S"), '')
       call setline(l, str)
-      echo l
-      echo str
-      echo input('...')
     endif
   endfor
   call setpos('.', pos)

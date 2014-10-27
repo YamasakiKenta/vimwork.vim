@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 
+" Last Modified: 2014/10/27 09:41:21
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -52,7 +52,7 @@ NeoBundleLazy 'vim-scripts/Align'
 
 " thinca
 " NeoBundleLazy 'thinca/vim-ref'
-" NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-quickrun'
 
@@ -101,12 +101,12 @@ function! s:is_win()
     return has('GUI') && ( has('win32') || has('win64') )
 endfunction
 if neobundle#tap('vim-bootstrap3-snippets')  "{{{
-  call neobundle#config({
-        \ })
-        " \ 'depends' : 'Shougo/neosnippet',
-  function! neobundle#tapped.hooks.on_source(bundle) 
+    " \ 'depends' : 'Shougo/neosnippet',
+    call neobundle#config({
+                \ })
+    function! neobundle#tapped.hooks.on_source(bundle) 
 
-  endfunction
+    endfunction
 endif  "}}}
 if neobundle#tap('vim-indent-guides') "{{{
     let g:indent_guides_enable_on_vim_startup=1
@@ -150,13 +150,13 @@ if neobundle#tap('emmet-vim') "{{{
                 \ }})
     function! neobundle#tapped.hooks.on_source(bundle)
         imap <expr><TAB> 
-                \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
-                \ :"\<TAB>"
+                    \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+                    \ :"\<TAB>"
     endfunction
 endif "}}}
 if neobundle#tap('vimfiler') "{{{
+    " \ 'depends' : 'Shougo/unite.vim',
     call neobundle#config({
-                \ 'depends' : 'Shougo/unite.vim',
                 \ 'autoload' : {
                 \ 'commands' : [
                 \ 'VimFiler',
@@ -179,10 +179,10 @@ if neobundle#tap('neosnippet') "{{{
     endfunction
 endif "}}}
 if neobundle#tap('qfixgrep') "{{{
-    call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
-    let QFix_CloseOnJump = 1
-    let QFixWin_EnableMode = 1
-    let mygrepprg = 'grep'
+    " call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
+    " let QFix_CloseOnJump = 1
+    " let QFixWin_EnableMode = 1
+    " let mygrepprg = 'grep'
 endif "}}}
 if neobundle#tap('Align') "{{{
     call neobundle#config({'autoload': {'commands': ['Align', 'ALign'], 'mappings': '\tsp'}})
@@ -267,7 +267,7 @@ if neobundle#tap('vim-quickrun') "{{{
                 \ 'hook/time/enable' : 1,
                 \ },
                 \ }
-                " \ 'runner' : 'vimproc',
+    " \ 'runner' : 'vimproc',
 endif "}}}
 if neobundle#tap('vimshell.vim') "{{{
     call neobundle#config({'autoload': {'commands': 'VimShell'}})
@@ -419,24 +419,24 @@ if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "
 endif 
 "}}}
 if 0
-if neobundle#tap('unite-everything') "{{{
-    call neobundle#config({'autoload': {'unite_sources': 'everything'}})
-endif "}}}
-if neobundle#tap('ujihisa/unite-colorscheme') "{{{
-    call neobundle#config({'autoload': {'unite_sources': 'colorscheme'}})
-endif "}}}
-if neobundle#tap('unite-quickfix') "{{{
-    call neobundle#config({'autoload': {'commands': 'quickfix'}})
-endif "}}}
-if neobundle#tap('unite-tag') "{{{
-    call neobundle#config({'autoload': {'unite_sources': 'tag'}})
-endif "}}}
-if neobundle#tap('unite-outline') "{{{
-    call neobundle#config({'autoload': {'unite_sources': 'outline'}})
-endif "}}}
-if neobundle#tap('pasela/unite-webcolorname') "{{{
-    " call neobundle#config({'autoload': {'unite_sources': 'webcolorname'}})
-endif "}}}
+    if neobundle#tap('unite-everything') "{{{
+        call neobundle#config({'autoload': {'unite_sources': 'everything'}})
+    endif "}}}
+    if neobundle#tap('ujihisa/unite-colorscheme') "{{{
+        call neobundle#config({'autoload': {'unite_sources': 'colorscheme'}})
+    endif "}}}
+    if neobundle#tap('unite-quickfix') "{{{
+        call neobundle#config({'autoload': {'commands': 'quickfix'}})
+    endif "}}}
+    if neobundle#tap('unite-tag') "{{{
+        call neobundle#config({'autoload': {'unite_sources': 'tag'}})
+    endif "}}}
+    if neobundle#tap('unite-outline') "{{{
+        call neobundle#config({'autoload': {'unite_sources': 'outline'}})
+    endif "}}}
+    if neobundle#tap('pasela/unite-webcolorname') "{{{
+        " call neobundle#config({'autoload': {'unite_sources': 'webcolorname'}})
+    endif "}}}
 endif
 
 call neobundle#end()
