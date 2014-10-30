@@ -3,6 +3,59 @@ snippet node
     http.createServer(function(req, res) {
     }).listen(80, "localhost");
     console.log('localhost:80');
+snippet enchant-touch
+    enchant(); // initialize
+    window.onload = function(){
+        var game = new Core(320, 320);
+        game.preload('chara1.png', 'icon0.png'); // preload image
+        game.fps = 20;
+
+        game.onload = function(){
+            var bear = new Sprite(32, 32);
+            bear.image = game.assets['chara1.png'];
+            bear.frame = 5;
+            game.rootScene.addChild(bear);
+
+            // add event listener (called when click/touch started)
+            game.rootScene.on('touchstart', function(evt){
+                var apple = new Sprite(16, 16);     // generate new sprite
+                apple.image = game.assets['icon0.png']; // set image
+                apple.moveTo(16, bear.y + 8);       // move to the position
+                apple.tl.moveBy(320, 0, 30);        // set movement
+                apple.frame = 15;                   // set image data
+                game.rootScene.addChild(apple);     // add to canvas
+            });
+
+            // add event listener (called when click/touch moved)
+            game.rootScene.on('touchmove', function(evt){
+                bear.y = evt.localY;    // set position to touch-y position
+            });
+        };
+
+        game.start(); // start your game!
+    }
+snippet enchant-basic
+    enchant(); // initialize
+    window.onload = function(){
+        var game = new Core(320, 320); // game stage
+        game.preload('chara1.png'); // preload image
+        game.fps = 20;
+
+        game.onload = function(){
+            var bear = new Sprite(32, 32);
+            bear.image = game.assets['chara1.png'];
+            game.rootScene.addChild(bear);
+            bear.frame = [6, 6, 7, 7];   // select sprite frame
+            
+            bear.tl.moveBy(288, 0, 90)   // move right
+                .scaleTo(-1, 1, 10)      // turn left
+                .moveBy(-288, 0, 90)     // move left
+                .scaleTo(1, 1, 10)       // turn right
+                .loop();                 // loop it
+        };
+
+        game.start(); // start your game!
+    }
 snippet add
     ${1}.push(${2});
 snippet gmap-init

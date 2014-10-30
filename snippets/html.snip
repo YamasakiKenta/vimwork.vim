@@ -1,5 +1,94 @@
 snippet rad
   border-radius: 10px; 
+snippet enchant-shooting
+    <!doctype html>
+    <html><head><script src="enchant.js"></script></head>
+    <body style="margin:0; padding: 0;">
+    <script>
+        enchant(); // initialize
+        var game = new Core(320, 320);
+        game.preload('chara1.png', 'icon0.png'); // preload image
+        game.fps = 20;
+
+        game.onload = function(){
+            // make new class for player
+            var Player = enchant.Class.create(enchant.Sprite, {
+                initialize: function(){
+                    enchant.Sprite.call(this, 32, 32);
+                    this.image = game.assets['chara1.png'];
+                    this.frame = 5;                   // set image data
+                    game.rootScene.addChild(this);     // add to canvas
+                }
+            });
+
+            // make new class for apple
+            var Apple = enchant.Class.create(enchant.Sprite, {
+                initialize: function(){
+                    enchant.Sprite.call(this, 16, 16);
+                    this.image = game.assets['icon0.png']; // set image
+                    this.moveTo(16, player.y + 8);       // move to the position
+                    this.tl.moveBy(320, 0, 30);        // set movement
+                    this.frame = 15;                   // set image data
+                    game.rootScene.addChild(this);     // add to canvas
+                }
+            });
+
+            // make new class for enemy
+            var Enemy = enchant.Class.create(enchant.Sprite, {
+                initialize: function(){
+                    enchant.Sprite.call(this, 32, 32);
+                    this.image = game.assets['chara1.png']; // set image
+                    this.moveTo(320, Math.floor(Math.random() * 320)); // set position
+                    this.scaleX = -1;
+                    this.tl.moveBy(-360, 0, 160);      // set movement
+                    game.rootScene.addChild(this);     // canvas
+                }
+            });
+
+            var player = new Player();
+
+            // generate enemy every 60 frames
+            game.rootScene.tl.then(function() {
+                var enemy = new Enemy();
+            }).delay(30).loop();                    // wait 60 frames and loop it!
+
+            // add event listener (called when click/touch started)
+            game.rootScene.on('touchstart', function(evt){
+                player.y = evt.localY;    // set position to touch-y position
+                var apple = new Apple();
+            });
+
+            // add event listener (called when click/touch moved)
+            game.rootScene.on('touchmove', function(evt){
+                player.y = evt.localY;    // set position to touch-y position
+            });
+            
+            var score = 0;
+            
+            game.rootScene.on('enterframe', function(){
+                var hits = Apple.intersect(Enemy);
+                for(var i = 0, len = hits.length; i < len; i++){
+                    game.rootScene.removeChild(hits[i][0]);
+                    game.rootScene.removeChild(hits[i][1]);
+                    score ++;
+                }
+            });
+            
+            player.tl.delay(game.fps * 10).then(function(){
+                alert('game over! score: ' + score);
+                game.stop();
+            });
+        };
+
+        game.start(); // start your game!
+    </script>
+    </body>
+    </html>
+snippet enchant
+    <!-- https://github.com/uei/enchant.js-builds -->
+    <!--enchant --> <script src="http://enchantjs.com/live-sample/enchant.js"></script>
+    <!-- {wget http://enchantjs.com/live-sample/chara1.png} -->
+    <!-- {wget http://github.com/uei/enchant.js-builds/archive/v0.8.2-b.zip & unzip enchant.js-builds-0.8.2-b.zip} -->
 snippet vp
     <meta name="viewport" content="width=device-width">
 snippet leaflet

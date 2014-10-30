@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/10/27 09:41:21
+" Last Modified: 2014/10/30 13:13:59
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -15,6 +15,9 @@ if has('vim_starting')
 endif
 
 call neobundle#begin()
+
+" git
+NeoBundle 'gregsexton/gitv'
 
 " Normal
 NeoBundle 'mattn/emmet-vim'
@@ -92,7 +95,7 @@ NeoBundle 'w0ng/vim-hybrid'
 " NeoBundleLazy 'osyo-manga/unite-quickfix'
 " NeoBundleLazy 'pasela/unite-webcolorname'
 " NeoBundleLazy 'sgur/unite-everything'
-" NeoBundleLazy 'tsukkee/unite-tag'
+NeoBundleLazy 'tsukkee/unite-tag'
 " NeoBundleLazy 'ujihisa/unite-colorscheme'
 " NeoBundleLazy 'itchyny/lightline.vim'
 " NeoBundleLazy 'kien/rainbow_parentheses.vim'
@@ -179,10 +182,11 @@ if neobundle#tap('neosnippet') "{{{
     endfunction
 endif "}}}
 if neobundle#tap('qfixgrep') "{{{
-    " call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
-    " let QFix_CloseOnJump = 1
-    " let QFixWin_EnableMode = 1
-    " let mygrepprg = 'grep'
+    call neobundle#config({'autoload': {'commands': ['Grep', 'RGrep']}})
+    let mygrepprg = 'grep'
+    let QFixWin_EnableMode = 1
+    let QFix_PreviewEnable = 0
+    let g:QFixWin_QuickFixTitleReg = '\cQuickfix\|\[Listo de rapidriparoj\]\|\[Lista de cambios rápidos\]\|\[Listo de rapidriparoj\]\|\[Liosta Ceartúchán Tapa\]\|\[Список быстрых исправлений\]\|\[Список виправлень\]'
 endif "}}}
 if neobundle#tap('Align') "{{{
     call neobundle#config({'autoload': {'commands': ['Align', 'ALign'], 'mappings': '\tsp'}})
