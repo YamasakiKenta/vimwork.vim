@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/10/30 13:13:59
+" Last Modified: 2014/10/31 09:10:19
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -60,8 +60,8 @@ NeoBundle 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-quickrun'
 
 " Shougo
-NeoBundle      'Shougo/neosnippet'
-NeoBundle      'Shougo/neosnippet-snippets.git'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundleLazy  'Shougo/neocomplete.vim'
 NeoBundleLazy  'Shougo/neocomplcache.vim'
@@ -70,7 +70,7 @@ NeoBundleLazy  'Shougo/unite-outline'
 NeoBundleLazy  'Shougo/unite.vim'
 NeoBundleLazy  'Shougo/vimfiler'
 NeoBundleLazy  'Shougo/vimshell.vim'
-NeoBundleLazy 'shougo/vimproc.vim'
+NeoBundleLazy  'shougo/vimproc.vim'
 
 " color
 NeoBundle 'endel/vim-github-colorscheme'
