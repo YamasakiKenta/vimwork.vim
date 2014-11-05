@@ -1,0 +1,28 @@
+[user]
+	name = yamasaki kenta
+	email = ymknjugg@gmail.com
+[merge]
+	tool = winmerge
+[mergetool "kdiff3"]
+	path = C:/Program Files/WinMerge/winmergeu.exe
+[diff]
+	guitool = winmerge
+	tool = winmerge
+[difftool "kdiff3"]
+	path = C:/Program Files (x86)/KDiff3/kdiff3.exe
+[core]
+	editor = C:/Users/kenta/soft/SakuraDown12f-15_forv2/sakura.exe
+	autoCRLF = true
+	pager = 
+[difftool "winmerge"]
+	path = C:/Program Files/WinMerge/winmergeu.exe
+	cmd = \"C:/Program Files/WinMerge/winmergeu.exe\" -r -u \"$LOCAL\" \"$REMOTE\"
+[i18n]
+	filesEncoding = utf-8
+[gui]
+	recentrepo = C:/Users/kenta/web/ninja
+[mergetool "winmerge"]
+	path = C:/Program Files/WinMerge/winmergeu.exe
+	cmd = \"C:/Program Files/WinMerge/WinMergeU.exe\" -u -wl -wr \"$REMOTE\" \"$MERGED\" \"$LOCAL\"
+[mergetool]
+	keepBackup = false
