@@ -1,10 +1,15 @@
+snippet ph-text
+    var text = "- phaser -\n with a sprinkle of \n pixi dust.";
+    var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+    var t = game.add.text(game.world.centerX-300, 0, text, style);
 snippet cursors
     cursors = game.input.keyboard.createCursorKeys();
 
 snippet game.world.rotation
-snippet phaser.debug
+snippet ph-debug
     game.debug.pointer( game.input.activePointer );
     game.debug.inputInfo(32, 32);
+    game.debug.spriteInfo(sprite, 200, 32);
 snippet phaser.!
     <!--phaser --> <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.1.3/phaser.min.js"></script>
     <script>
@@ -52,8 +57,6 @@ snippet game.load.image
     game.load.image(${1:'name'}, ${2:'src.png'});
 snippet phaser.game.rnd.pick
     var img = game.rnd.pick(images);
-snippet phaser.debug.inputInfo
-    game.debug.inputInfo(32, 32);
 snippet phaser.game.add.aprite
     game.add.sprite(${1:x}, ${2:y}, ${3:img})
 snippet phaser.update
