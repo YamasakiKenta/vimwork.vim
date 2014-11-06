@@ -1,3 +1,37 @@
+snippet bs-form
+    <form role="form" method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1">ログインID</label>
+            <input name="userid" type="text" class="form-control" id="exampleInputEmail1" placeholder="UserID">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">パスワード</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group clearfix">
+            <button type="submit" class="btn btn-primary col-xs-12">ログイン</button>
+        </div>
+        <p class="text-center">
+        <?php echo $this->html->link(
+            '<span class="glyphicon glyphicon-play"></span>&nbsp;パスワードをお忘れの方へ'
+            , array('controller'=>'users', 'action'=>'forget')
+            , array('escape'=>false)
+        );?>
+        </a></p>
+    </form>
+snippet panel
+    <div class="panel panel-default">
+        <!-- primary, success, info, warning, danger  -->
+        <div class="panel-heading">
+            Panel heading without title
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+        <div class="panel-footer">
+            Panel footer
+        </div>
+    </div>
 snippet btn
     btn-default
     btn-primary
