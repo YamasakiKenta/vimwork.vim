@@ -41,3 +41,34 @@ snippet bootstrap3
   <!-- bootstrap3 --> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <!-- bootstrap3 --> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
   <!-- bootstrap3 --> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+snippet bs-modal
+        // モーダル
+        $('#myModal').modal('hide').on('show.bs.modal', function(){
+        });
+        $('.modal .tag').click(tag_click);
+
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">検索条件</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">検索条件</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>ハード</h3>
+                        <div class="hard"></div>
+                        <h3>メーカー</h3>
+                        <div class="marker"></div>
+                        <h3>ジャンル</h3>
+                        <div class="janre"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                    </div>
+                </div>
+            </div>
+        </div>
