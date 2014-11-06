@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/10/31 09:10:19
+" Last Modified: 2014/11/01 22:58:17
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -96,7 +96,7 @@ NeoBundle 'w0ng/vim-hybrid'
 " NeoBundleLazy 'pasela/unite-webcolorname'
 " NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'tsukkee/unite-tag'
-" NeoBundleLazy 'ujihisa/unite-colorscheme'
+NeoBundleLazy 'ujihisa/unite-colorscheme'
 " NeoBundleLazy 'itchyny/lightline.vim'
 " NeoBundleLazy 'kien/rainbow_parentheses.vim'
 

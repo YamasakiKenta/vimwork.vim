@@ -1,0 +1,3 @@
+game.load.spritesheet
+script.animations.add
+script.animations.play

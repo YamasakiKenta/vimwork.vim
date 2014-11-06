@@ -8,6 +8,7 @@ set cpo&vim
 so $VIMRUNTIME/macros/matchit.vim
 
 " set 
+set cot+=longest
 set noshellslash
 set autoread
 set cursorline
