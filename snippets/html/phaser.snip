@@ -10,16 +10,20 @@ snippet ph-debug
     game.debug.pointer( game.input.activePointer );
     game.debug.inputInfo(32, 32);
     game.debug.spriteInfo(sprite, 200, 32);
-snippet phaser.!
-    <!--phaser --> <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.1.3/phaser.min.js"></script>
+snippet phaser-!
+abbr ph-!
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.1.3/phaser.min.js"></script>
     <script>
-    var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', {
+    var cursors;
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example');
+    var state = {
         preload: function(){
-            game.load.spritesheet('aaa', 'img/aaa1.png', 16, 16);
+            game.load.spritesheet('aaa', 'images/aaa1.png', 16, 16);
         },
         create: function(){
             game.stage.backgroundColor = '#34495e';
             game.physics.startSystem(Phaser.Physics.ARCADE);
+            cursors = game.input.keyboard.createCursorKeys();
 
             game.add.sprite(0, 0, 'aaa');
         },
@@ -28,7 +32,9 @@ snippet phaser.!
         },
         update: function(){
         }
-    });
+    };
+    game.state.add('start', state);
+    game.state.start('start');
     </script>
 snippet phaser.input
     // game.input.keyboard.createCursorKeys();
