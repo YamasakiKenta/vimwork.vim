@@ -1,14 +1,28 @@
-snippet data-bind="click: name"
-snippet data-bind="text: name"
-snippet data-bind="value: name"
+snippet     data-bind
+abbr        data-bind=""で使用するやつ
+    /*
+    visible
+    text
+    html
+    css
+    style
+    attr
+    foreach
+    if
+    ifnot
+    with
+    textInput
+    */
 snippet     ko-computed
 abbr        同期処理
     <input data-bind="value: firstName">
     ko.computed(function(){
         return ${1};
     });
-snippet     ko-init
+snippet     ko.applyBindings(
 abbr        初期化
-    function appViewModel(){
-    }
-    ko.applyBindings(new AppViewModel());
+    ko.applyBindings(function(){${1}});
+snippet ko.computed(
+    ko.computed(
+snippet ko.observable(
+    ko.observable(

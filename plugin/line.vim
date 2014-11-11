@@ -9,7 +9,7 @@ so $VIMRUNTIME/macros/matchit.vim
 
 " set 
 set cot+=longest
-set noshellslash
+set shellslash
 set autoread
 set cursorline
 set dip=filler,icase,iwhite,vertical
@@ -64,6 +64,15 @@ highlight CursorIM guibg=Magenta guifg=NONE
 nnoremap <f5> :<c-u>MyUpdateTimer<cr>
 nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
 nnoremap <c-\>K :call system("ctags -R --excmd=number")<CR>|"
+let php_sql_query = 1
+let php_baselib = 1
+let php_htmlInStrings = 1
+let php_oldStyle = 1
+let php_asp_tags = 1
+let php_noShortTags = 1
+let php_parent_error_close = 1
+let php_parent_error_open = 1
+let php_folding = 1
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo
