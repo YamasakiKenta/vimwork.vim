@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/11/01 22:58:17
+" Last Modified: 2014/11/12 11:42:49
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -37,7 +37,7 @@ NeoBundle 'fuenor/qfixgrep'
 " YamasakiKenta
 NeoBundleFetch 'YamasakiKenta/vimwork.vim'
 " NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
-" NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
+NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 " NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 " NeoBundleLazy 'YamasakiKenta/chain-file.vim'
 " NeoBundleLazy 'YamasakiKenta/tree.vim'
@@ -63,8 +63,8 @@ NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
-" NeoBundleLazy  'Shougo/neocomplete.vim'
-NeoBundleLazy  'Shougo/neocomplcache.vim'
+NeoBundleLazy  'Shougo/neocomplete.vim'
+" NeoBundleLazy  'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
 NeoBundleLazy  'Shougo/unite.vim'
@@ -269,6 +269,9 @@ if neobundle#tap('vim-quickrun') "{{{
                 \ },
                 \ '_' : {
                 \ 'hook/time/enable' : 1,
+                \ 'hook/output_encode/enable' : 1,
+                \ 'hook/output_encode/encoding' : 'sjis',
+				\ 'debug': 'x',
                 \ },
                 \ }
     " \ 'runner' : 'vimproc',
