@@ -2,7 +2,7 @@
 " FILE: multiline.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation Date: 2014/04/27 23:52:39
-" Last Modified: 
+" Last Modified: 2014/11/13 13:03:57
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -79,6 +79,13 @@ command! WinMerge call vimwork#command#winmerge()
 " Last Modified を更新する
 command! MyUpdateTimer call vimwork#command#update_time([''])
 
+" c_CTRL-X
+"   Input current buffer's directory on command line.
+cnoremap <C-X> <C-R>=<SID>GetBufferDirectory()<CR>
+function! s:GetBufferDirectory()
+  let dif = expand('%:p:h')
+  return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
+endfunction
 
 if exists('s:save_cpo')
     let &cpo = s:save_cpo
