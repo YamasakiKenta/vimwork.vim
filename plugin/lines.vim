@@ -2,7 +2,7 @@
 " FILE: multiline.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation Date: 2014/04/27 23:52:39
-" Last Modified: 2014/11/13 13:03:57
+" Last Modified: 2014/11/16 18:28:19
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -21,7 +21,7 @@ endif
 
 " dir 
 let s:dir = substitute(substitute(expand("<sfile>"), '\\', '\/', 'g'), '/plugin/.*$', '', '')
-let g:neosnippet#snippets_directory = s:dir.'/snippets'
+" let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
 let g:load_doxygen_syntax = 1
 let g:did_install_default_menus = 1
@@ -84,7 +84,7 @@ command! MyUpdateTimer call vimwork#command#update_time([''])
 cnoremap <C-X> <C-R>=<SID>GetBufferDirectory()<CR>
 function! s:GetBufferDirectory()
   let dif = expand('%:p:h')
-  return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
+  return dif . (exists('+shellslash') && !&shellslash ? '\' : '/')
 endfunction
 
 if exists('s:save_cpo')

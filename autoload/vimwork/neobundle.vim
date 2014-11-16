@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/11/12 11:42:49
+" Last Modified: 2014/11/16 21:18:50
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -20,6 +20,7 @@ call neobundle#begin()
 NeoBundle 'gregsexton/gitv'
 
 " Normal
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fuenor/qfixgrep'
@@ -64,7 +65,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleLazy  'Shougo/neocomplete.vim'
-" NeoBundleLazy  'Shougo/neocomplcache.vim'
+NeoBundleLazy  'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
 NeoBundleLazy  'Shougo/unite.vim'
@@ -152,9 +153,9 @@ if neobundle#tap('emmet-vim') "{{{
                 \ 'filetypes': ['html','css','php'],
                 \ }})
     function! neobundle#tapped.hooks.on_source(bundle)
-        imap <expr><TAB> 
-                    \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
-                    \ :"\<TAB>"
+"         imap <expr><TAB> 
+"                     \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+"                     \ :"\<TAB>"
     endfunction
 endif "}}}
 if neobundle#tap('vimfiler') "{{{
@@ -177,6 +178,8 @@ if neobundle#tap('vimfiler') "{{{
     endfunction
 endif "}}}
 if neobundle#tap('neosnippet') "{{{
+    let s:dir = substitute(substitute(expand("<sfile>"), '\\', '\/', 'g'), '/autoload/.*$', '', '')
+    let g:neosnippet#snippets_directory = s:dir.'/snippets'
     function! neobundle#tapped.hooks.on_source(bundle)
         imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
     endfunction
@@ -223,17 +226,22 @@ if neobundle#tap('neocomplete.vim') "{{{
                 \ 'vim_version' : '7.3.885'
                 \ })
     function! neobundle#tapped.hooks.on_source(bundle)
-        call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
-        " let g:neocomplete#enable_at_startup = 1
+        " call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
+        let g:neocomplete#enable_at_startup = 1
+		imap <C-k>  <Plug>(neocomplete_start_unite_complete)
+		imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)
     endfunction
 endif "}}}
 if neobundle#tap('neocomplcache.vim') "{{{
     call neobundle#config({'lazy':0})
     function! neobundle#tapped.hooks.on_source(bundle)
         let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_auto_completion_start_length = 3
-        let g:neocomplcache_sources_list = {}
-        let g:neocomplcache_sources_list._ = ['snippets_complete']
+        " let g:neocomplcache_auto_completion_start_length = 3
+        " let g:neocomplcache_sources_list = {}
+        " let g:neocomplcache_sources_list._ = ['snippets_complete']
+        "
+		imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+		imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
     endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{
@@ -417,12 +425,12 @@ if neobundle#tap('syntastic') "{{{syntastic
 endif "}}}syntastic
 " mult
 if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "{{{
-    imap <expr><TAB> 
-                \ neosnippet#expandable_or_jumpable() ?
-                \ "\<Plug>(neosnippet_expand_or_jump)"
-                \ : pumvisible() ? "\<C-n>"
-                \ : emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
-                \ :"\<TAB>"
+"     imap <expr><TAB> 
+"                 \ neosnippet#expandable_or_jumpable() ?
+"                 \ "\<Plug>(neosnippet_expand_or_jump)"
+"                 \ : pumvisible() ? "\<C-n>"
+"                 \ : emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+"                 \ :"\<TAB>"
 endif 
 "}}}
 if 0

@@ -25,10 +25,10 @@ set modeline
 set noswapfile
 set nowrap
 set number
-set shiftwidth=4
+set shiftwidth=2
 set smartcase
 set expandtab
-set tabstop=4
+set tabstop=2
 set tw=0
 set ve=block
 set list lcs=tab:`\ 
