@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/11/18 12:30:56
+" Last Modified: 2014/11/19 13:01:56
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -64,7 +64,7 @@ NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleLazy  'Shougo/neocomplete.vim'
+NeoBundle      'Shougo/neocomplete.vim'
 NeoBundle      'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
