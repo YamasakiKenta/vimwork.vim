@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/11/16 21:18:50
+" Last Modified: 2014/11/18 12:30:56
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -65,7 +65,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleLazy  'Shougo/neocomplete.vim'
-NeoBundleLazy  'Shougo/neocomplcache.vim'
+NeoBundle      'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
 NeoBundleLazy  'Shougo/unite.vim'
@@ -146,6 +146,7 @@ if neobundle#tap('chain-file.vim') "{{{
                 \ 'h'  : 'cpp',
                 \ },
                 \ }
+    nnoremap <leader>a<CR>  :<C-u>ChainFile<CR>|"
     "C:\xampp\htdocs\yamasaki\cake\app\Model\MySampleData.php
 endif "}}}
 if neobundle#tap('emmet-vim') "{{{
@@ -226,22 +227,26 @@ if neobundle#tap('neocomplete.vim') "{{{
                 \ 'vim_version' : '7.3.885'
                 \ })
     function! neobundle#tapped.hooks.on_source(bundle)
-        " call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
-        let g:neocomplete#enable_at_startup = 1
-		imap <C-k>  <Plug>(neocomplete_start_unite_complete)
-		imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)
+      " call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
+      let g:neocomplete#enable_at_startup = 1
+      let g:neocomplete#sources = {}
+      let g:neocomplete#sources._ = ['snippets_complete']
+      imap <C-k>  <Plug>(neocomplete_start_unite_complete)
+      imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)
     endfunction
 endif "}}}
 if neobundle#tap('neocomplcache.vim') "{{{
-    call neobundle#config({'lazy':0})
+    call neobundle#config({
+                \ 'disabled' : !(!has('lua')&&0),
+                \ })
     function! neobundle#tapped.hooks.on_source(bundle)
-        let g:neocomplcache_enable_at_startup = 1
-        " let g:neocomplcache_auto_completion_start_length = 3
-        " let g:neocomplcache_sources_list = {}
-        " let g:neocomplcache_sources_list._ = ['snippets_complete']
-        "
-		imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-		imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+      let g:neocomplcache_enable_at_startup = 1
+      " let g:neocomplcache_auto_completion_start_length = 3
+      " let g:neocomplcache_sources_list = {}
+      " let g:neocomplcache_sources_list._ = ['snippets_complete']
+      "
+      imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+      imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
     endfunction
 endif "}}}
 if neobundle#tap('vim-fugitive') "{{{

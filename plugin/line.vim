@@ -46,7 +46,6 @@ nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
 nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
 nnoremap <F1> <ESC>
 nnoremap <c-]> g<c-]>|"
-nnoremap <leader>a<CR>  :<C-u>ChainFile<CR>|"
 nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")\|echo @+<CR>|"
 nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")\|echo @+<CR>|"
 nnoremap <leader>rn<CR> :<C-u>windo set noscrollbind<CR>|"
