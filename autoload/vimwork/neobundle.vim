@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/11/19 13:01:56
+" Last Modified: 2014/11/26 09:33:05
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -430,12 +430,12 @@ if neobundle#tap('syntastic') "{{{syntastic
 endif "}}}syntastic
 " mult
 if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "{{{
-"     imap <expr><TAB> 
-"                 \ neosnippet#expandable_or_jumpable() ?
-"                 \ "\<Plug>(neosnippet_expand_or_jump)"
-"                 \ : pumvisible() ? "\<C-n>"
-"                 \ : emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
-"                 \ :"\<TAB>"
+      imap <expr><TAB> 
+                  \ neosnippet#expandable_or_jumpable() ?
+                  \ "\<Plug>(neosnippet_expand_or_jump)"
+                  \ : pumvisible() ? "\<C-n>"
+                  \ : emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+                  \ :"\<TAB>"
 endif 
 "}}}
 if 0
