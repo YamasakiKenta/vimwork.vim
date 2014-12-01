@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/11/26 09:33:05
+" Last Modified: 2014/11/28 13:33:27
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -228,7 +228,7 @@ if neobundle#tap('neocomplete.vim') "{{{
                 \ })
     function! neobundle#tapped.hooks.on_source(bundle)
       " call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
-      let g:neocomplete#enable_at_startup = 1
+      " let g:neocomplete#enable_at_startup = 1
       let g:neocomplete#sources = {}
       let g:neocomplete#sources._ = ['snippets_complete']
       imap <C-k>  <Plug>(neocomplete_start_unite_complete)
@@ -240,7 +240,7 @@ if neobundle#tap('neocomplcache.vim') "{{{
                 \ 'disabled' : !(!has('lua')&&0),
                 \ })
     function! neobundle#tapped.hooks.on_source(bundle)
-      let g:neocomplcache_enable_at_startup = 1
+      " let g:neocomplcache_enable_at_startup = 1
       " let g:neocomplcache_auto_completion_start_length = 3
       " let g:neocomplcache_sources_list = {}
       " let g:neocomplcache_sources_list._ = ['snippets_complete']
