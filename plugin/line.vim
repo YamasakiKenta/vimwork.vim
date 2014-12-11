@@ -72,6 +72,9 @@ nnoremap <c-\>K :call system("ctags -R --excmd=number")<CR>|"
 " let php_parent_error_close = 0
 " let php_parent_error_open = 0
 " let php_folding = 0
+"
+syntax sync minlines=1000
+syntax sync maxlines=500
 
 if exists('s:save_cpo')
 	let &cpo = s:save_cpo

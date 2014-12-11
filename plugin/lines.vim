@@ -2,16 +2,16 @@
 " FILE: multiline.vim
 " AUTHOR:  Yamasaki Kenta
 " Creation Date: 2014/04/27 23:52:39
-" Last Modified: 2014/11/17 23:34:34
+" Last Modified: 2014/12/04 09:58:41
 "=============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
 
 aug vimwork_vimrc
     au!
-    au BufRead,BufNewFile *.pc set filetype=c
-    au BufWrite * call vimwork#command#update_time(['call cursor(6,0)'])
-    au BufEnter * syn sync fromstart
+    " au BufRead,BufNewFile *.pc set filetype=c
+    " au BufWrite * call vimwork#command#update_time(['call cursor(6,0)'])
+    " au BufEnter * syn sync fromstart
 aug END
 
 set backupdir=~/.vim/bak

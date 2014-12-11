@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/11/28 13:33:27
+" Last Modified: 2014/12/04 09:05:20
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -72,6 +72,9 @@ NeoBundleLazy  'Shougo/unite.vim'
 NeoBundleLazy  'Shougo/vimfiler'
 NeoBundleLazy  'Shougo/vimshell.vim'
 NeoBundleLazy  'shougo/vimproc.vim'
+
+" NeoSnip
+NeoBundle 'violetyk/neosnippet-cakephp2'
 
 " color
 NeoBundle 'endel/vim-github-colorscheme'
