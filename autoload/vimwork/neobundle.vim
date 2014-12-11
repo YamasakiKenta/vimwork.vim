@@ -64,7 +64,7 @@ NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle      'Shougo/neocomplete.vim'
+" NeoBundle      'Shougo/neocomplete.vim'
 " NeoBundle      'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
@@ -74,7 +74,7 @@ NeoBundleLazy  'Shougo/vimshell.vim'
 NeoBundleLazy  'shougo/vimproc.vim'
 
 " NeoSnip
-NeoBundle 'violetyk/neosnippet-cakephp2'
+" NeoBundle 'violetyk/neosnippet-cakephp2'
 
 " color
 NeoBundle 'endel/vim-github-colorscheme'

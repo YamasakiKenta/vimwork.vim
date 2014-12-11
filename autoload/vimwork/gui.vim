@@ -18,8 +18,11 @@ nnoremap <A-Space> :<C-u>simalt ~<CR>|"
 
 set go-=T
 set go-=m
-set guifont=MS_Gothic:h10
 set guifontwide=MS_Gothic:h10
+set guifont=MS_Gothic:h10
+set guifont=@MeiryoKe_Gothic:h10
+set guifont=ゆたぽん（コーディング）:h10:cSHIFTJIS
+set guifont=VL_ゴシック:h10:cSHIFTJIS
 set visualbell t_vb=
 
 highlight CursorIM guibg=Magenta guifg=NONE

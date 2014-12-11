@@ -7,12 +7,12 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-aug vimwork_vimrc
-    au!
+" aug vimwork_vimrc
+    " au!
     " au BufRead,BufNewFile *.pc set filetype=c
     " au BufWrite * call vimwork#command#update_time(['call cursor(6,0)'])
     " au BufEnter * syn sync fromstart
-aug END
+" aug END
 
 set backupdir=~/.vim/bak
 if !isdirectory(expand(&backupdir))
@@ -21,10 +21,8 @@ endif
 
 " dir 
 let s:dir = substitute(substitute(expand("<sfile>"), '\\', '\/', 'g'), '/plugin/.*$', '', '')
-" let g:neosnippet#snippets_directory = s:dir.'/snippets'
+let g:neosnippet#snippets_directory = s:dir.'/snippets'
 let g:vimwork#syntax_directory = s:dir
-let g:load_doxygen_syntax = 1
-let g:did_install_default_menus = 1
 exe 'set dict+='.s:dir.'/dict/*'
 
 if has('persistent_undo')
@@ -87,7 +85,9 @@ function! s:GetBufferDirectory()
   return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
 endfunction
 
+
 if exists('s:save_cpo')
     let &cpo = s:save_cpo
     unlet s:save_cpo
 endif
+
