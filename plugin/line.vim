@@ -32,6 +32,9 @@ set tabstop=2
 set tw=0
 set ve=block
 set list lcs=tab:`\ 
+set softtabstop=2 
+set autoindent 
+set smartindent
 
 " map 
 nnoremap <leader>v :<C-u>noa vim // **/*<c-left><c-left><right>|"
