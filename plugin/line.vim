@@ -59,13 +59,15 @@ map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>:echo @/<CR>|"
 map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'\|echo @/<CR>|"
 nmap <leader>sy<CR> 	<Plug>(edit_syntax_file)
 nmap <leader>uq<CR> 	<Plug>(uniq_line)
-nmap v/ 		<Plug>(select_search)
+nmap giv 		<Plug>(select_search)
 vnoremap < <gv|"
 vnoremap > >gv|"
 highlight CursorIM guibg=Magenta guifg=NONE
 nnoremap <f5> :<c-u>MyUpdateTimer<cr>
 nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
 nnoremap <c-\>K :call system("ctags -R --excmd=number")<CR>|"
+nnoremap go :let b:tmp=&fo\|set fo-=ro\|exe 'norm o'\|let &fo=b:tmp\|unl! b:tmp<CR>|" コメントアウト無視
+nnoremap gO :let b:tmp=&fo\|set fo-=ro\|exe 'norm O'\|let &fo=b:tmp\|unl! b:tmp<CR>|" コメントアウト無視
 " let php_sql_query = 0
 " let php_baselib = 0
 " let php_htmlInStrings = 0

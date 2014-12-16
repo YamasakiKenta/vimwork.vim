@@ -22,6 +22,8 @@ call neobundle#begin()
 NeoBundle 'gregsexton/gitv'
 
 " Normal
+NeoBundle 'osyo-manga/vim-over' "2014.12.16
+" NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'jacquesbh/vim-showmarks'
@@ -112,9 +114,16 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'tacroe/unite-mark'
 
-function! s:is_win()
+" Util
+function! s:is_win() "{{{
     return has('GUI') && ( has('win32') || has('win64') )
-endfunction
+endfunction "}}}
+" neobundle#tap
+if neobundle#tap('incsearch.vim') "{{{
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+endif "}}}
 if neobundle#tap('vim-showmarks') "{{{
   set viminfo='50,\"1000,:0,n~/.vim/viminfo
   " set foldmethod=marker
@@ -397,6 +406,7 @@ if neobundle#tap('unite.vim') "{{{
     nnoremap [unite]R  :<C-u>Unite resume|"
     nnoremap [unite]bt :<C-u>Unite buffer_tags|"
     nnoremap [unite]e  :<C-u>Unite outline|"
+    nnoremap [unite]c  :<C-u>Unite command|"
     " nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep:**/*|"
     nnoremap [unite]g  :<C-u>Unite file_rec/git|"
     nnoremap [unite]h  :<C-u>Unite history/yank|"
