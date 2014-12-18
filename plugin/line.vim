@@ -32,6 +32,9 @@ set tabstop=2
 set tw=0
 set ve=block
 set list lcs=tab:`\ 
+set softtabstop=2 
+set autoindent 
+set smartindent
 
 " map 
 nnoremap <leader>v :<C-u>noa vim // **/*<c-left><c-left><right>|"
@@ -56,13 +59,15 @@ map + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>:echo @/<CR>|"
 map * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'\|echo @/<CR>|"
 nmap <leader>sy<CR> 	<Plug>(edit_syntax_file)
 nmap <leader>uq<CR> 	<Plug>(uniq_line)
-nmap v/ 		<Plug>(select_search)
+nmap giv 		<Plug>(select_search)
 vnoremap < <gv|"
 vnoremap > >gv|"
 highlight CursorIM guibg=Magenta guifg=NONE
 nnoremap <f5> :<c-u>MyUpdateTimer<cr>
 nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
 nnoremap <c-\>K :call system("ctags -R --excmd=number")<CR>|"
+nnoremap go yypC
+nnoremap gO yyPC
 " let php_sql_query = 0
 " let php_baselib = 0
 " let php_htmlInStrings = 0

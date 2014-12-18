@@ -16,10 +16,22 @@ endif
 
 call neobundle#begin()
 
+" syntax
+
 " git
 NeoBundle 'gregsexton/gitv'
 
+" Indent
+NeoBundle 'vim-scripts/JavaScript-Indent' " 2014.12.17
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
 " Normal
+NeoBundle 'YamasakiKenta/jq-wrapper.vim' " 2014.12.17
+NeoBundle 'osyo-manga/vim-over' "2014.12.16
+" NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
+NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'jacquesbh/vim-showmarks'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -77,36 +89,82 @@ NeoBundleLazy  'shougo/vimproc.vim'
 " NeoBundle 'violetyk/neosnippet-cakephp2'
 
 " color
-NeoBundle 'endel/vim-github-colorscheme'
-NeoBundle 'hukl/Smyck-Color-Scheme'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'cocopon/colorswatch.vim'
-NeoBundle 'cocopon/iceberg.vim'
-NeoBundle 'gh:svjunic/RadicalGoodSpeed.vim.git'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'lazz/vim-colorschemes'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'vim-scripts/Wombat'
-NeoBundle 'vim-scripts/chlordane.vim'
-NeoBundle 'vim-scripts/rdark'
-NeoBundle 'vim-scripts/summerfruit256.vim'
-NeoBundle 'vim-scripts/twilight'
-NeoBundle 'w0ng/vim-hybrid'
+NeoBundleLazy 'ciaranm/inkpot'
+NeoBundleLazy 'endel/vim-github-colorscheme'
+NeoBundleLazy 'hukl/Smyck-Color-Scheme'
+NeoBundleLazy 'altercation/vim-colors-solarized'
+NeoBundleLazy 'cocopon/colorswatch.vim'
+NeoBundleLazy 'cocopon/iceberg.vim'
+NeoBundleLazy 'svjunic/RadicalGoodSpeed.vim'
+NeoBundleLazy 'jonathanfilip/vim-lucius'
+NeoBundleLazy 'jpo/vim-railscasts-theme'
+NeoBundleLazy 'lazz/vim-colorschemes'
+NeoBundleLazy 'nanotech/jellybeans.vim'
+NeoBundleLazy 'tomasr/molokai'
+NeoBundleLazy 'vim-scripts/Wombat'
+NeoBundleLazy 'vim-scripts/chlordane.vim'
+NeoBundleLazy 'vim-scripts/rdark'
+NeoBundleLazy 'vim-scripts/summerfruit256.vim'
+NeoBundleLazy 'vim-scripts/twilight'
+NeoBundleLazy 'w0ng/vim-hybrid'
 
 " Unite
 " NeoBundleLazy 'osyo-manga/unite-quickfix'
-" NeoBundleLazy 'pasela/unite-webcolorname'
+NeoBundleLazy 'pasela/unite-webcolorname'
 " NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
-" NeoBundleLazy 'itchyny/lightline.vim'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
+NeoBundleLazy 'tacroe/unite-mark'
 
-function! s:is_win()
+" Util
+function! s:is_win() "{{{
     return has('GUI') && ( has('win32') || has('win64') )
-endfunction
+endfunction "}}}
+" neobundle#tap
+if neobundle#tap('incsearch.vim') "{{{
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+endif "}}}
+if neobundle#tap('vim-showmarks') "{{{
+  set viminfo='50,\"1000,:0,n~/.vim/viminfo
+  " set foldmethod=marker
+  let g:showmarks_marks_notime = 1
+  let g:unite_source_mark_marks = '01abcABCDEFGHIJKLNMOPQRSTUVWXYZ'
+  let g:showmarks_enable       = 0
+  if !exists('g:markrement_char')
+    let g:markrement_char = [
+          \     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+          \     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+          \     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+          \     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+          \ ]
+  en
+
+  fu! s:AutoMarkrement()
+    if !exists('b:markrement_pos')
+      let b:markrement_pos = 0
+    else
+      let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
+    en
+    exe 'mark' g:markrement_char[b:markrement_pos]
+    echo 'marked' g:markrement_char[b:markrement_pos]
+  endf
+
+  " aug show-marks-sync
+    " au!
+    " au BufReadPost * sil! ShowMarksOnce
+  " aug END
+
+  nn [Mark] <Nop>
+  nm <leader>m [Mark]
+  nn <silent> [Mark]m :Unite mark<CR>
+  nn [Mark] :<C-u>call <SID>AutoMarkrement()<CR><CR>:ShowMarksOnce<CR>
+  com! -bar MarksDelete sil :delm! | :delm 0-9A-Z | :wv! | :ShowMarksOnce
+  nn <silent>[Mark]d :MarksDelete<CR>
+endif "}}}
 if neobundle#tap('vim-bootstrap3-snippets')  "{{{
     " \ 'depends' : 'Shougo/neosnippet',
     call neobundle#config({
@@ -118,6 +176,7 @@ endif  "}}}
 if neobundle#tap('vim-indent-guides') "{{{
     let g:indent_guides_enable_on_vim_startup=1
     let g:indent_guides_start_level=2
+    let g:indent_guides_guide_size=1
 endif "}}}
 if neobundle#tap('rabbit-ui.vim') "{{{
     function! s:edit_csv(path)
@@ -318,7 +377,6 @@ if neobundle#tap('rainbow_parentheses.vim') " {{{
     endif
 endif "}}}
 if neobundle#tap('lightline.vim') "{{{
-
     if s:is_win()
         " とりあえずOFFにする
         " call neobundle#config({'lazy': 0})
@@ -351,6 +409,7 @@ if neobundle#tap('unite.vim') "{{{
     nnoremap [unite]R  :<C-u>Unite resume|"
     nnoremap [unite]bt :<C-u>Unite buffer_tags|"
     nnoremap [unite]e  :<C-u>Unite outline|"
+    nnoremap [unite]c  :<C-u>Unite command|"
     " nnoremap [unite]g  :<C-u>Unite -buffer-name=grep grep:**/*|"
     nnoremap [unite]g  :<C-u>Unite file_rec/git|"
     nnoremap [unite]h  :<C-u>Unite history/yank|"
@@ -428,9 +487,35 @@ endif "}}}
 if neobundle#tap('unite-setting-ex.vim') "{{{
     call neobundle#config({'autoload': {'unite_sources': 'settings/ex'}})
 endif "}}}
-if neobundle#tap('syntastic') "{{{syntastic
+if neobundle#tap('syntastic') "{{{
     call neobundle#config({'autoload': {'commands': 'SyntasticCheck'}})
 endif "}}}syntastic
+if neobundle#tap('unite-colorscheme') "{{{
+  let options = {
+        \   'autoload': {
+        \   'on_source': 'unite-colorscheme'
+        \   }
+        \ }
+  call neobundle#config('inkpot', options)
+  call neobundle#config('vim-github-colorscheme', options)
+  call neobundle#config('Smyck-Color-Scheme', options)
+  call neobundle#config('vim-colors-solarized', options)
+  call neobundle#config('colorswatch.vim', options)
+  call neobundle#config('iceberg.vim', options)
+  call neobundle#config('RadicalGoodSpeed.vim', options)
+  call neobundle#config('vim-lucius', options)
+  call neobundle#config('vim-railscasts-theme', options)
+  call neobundle#config('vim-colorschemes', options)
+  call neobundle#config('jellybeans.vim', options)
+  call neobundle#config('molokai', options)
+  call neobundle#config('Wombat', options)
+  call neobundle#config('chlordane.vim', options)
+  call neobundle#config('rdark', options)
+  call neobundle#config('summerfruit256.vim', options)
+  call neobundle#config('twilight', options)
+  call neobundle#config('vim-hybrid', options)
+
+endif "}}}
 " mult
 if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "{{{
       imap <expr><TAB> 
@@ -441,27 +526,6 @@ if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "
                   \ :"\<TAB>"
 endif 
 "}}}
-if 0
-    if neobundle#tap('unite-everything') "{{{
-        call neobundle#config({'autoload': {'unite_sources': 'everything'}})
-    endif "}}}
-    if neobundle#tap('ujihisa/unite-colorscheme') "{{{
-        call neobundle#config({'autoload': {'unite_sources': 'colorscheme'}})
-    endif "}}}
-    if neobundle#tap('unite-quickfix') "{{{
-        call neobundle#config({'autoload': {'commands': 'quickfix'}})
-    endif "}}}
-    if neobundle#tap('unite-tag') "{{{
-        call neobundle#config({'autoload': {'unite_sources': 'tag'}})
-    endif "}}}
-    if neobundle#tap('unite-outline') "{{{
-        call neobundle#config({'autoload': {'unite_sources': 'outline'}})
-    endif "}}}
-    if neobundle#tap('pasela/unite-webcolorname') "{{{
-        " call neobundle#config({'autoload': {'unite_sources': 'webcolorname'}})
-    endif "}}}
-endif
-
 call neobundle#end()
 filetype plugin indent on
 

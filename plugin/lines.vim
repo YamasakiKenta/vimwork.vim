@@ -45,7 +45,7 @@ nnoremap <PLUG>(uniq_line)
 			\ :g/./if getline(line(".")) == getline(line(".")-1)\|d<CR>
 
 nnoremap <PLUG>(select_search)
-			\ :<C-u>let @a = @/<CR>/<C-p>/e<CR>:let @/ = @a<CR>ma<C-o>v`a
+			\ //e<cr>??s<cr><c-v>//e<cr>
 
 nnoremap <PLUG>(edit_syntax_file)
 			\ :exe 'e '.g:vimwork#syntax_directory.'/syntax/'.&filetype.'.vim'<CR>
@@ -84,7 +84,6 @@ function! s:GetBufferDirectory()
   let dir = expand('%:p:h')
   return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
 endfunction
-
 
 if exists('s:save_cpo')
     let &cpo = s:save_cpo

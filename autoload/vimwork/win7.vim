@@ -1,6 +1,10 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+if !has('win64')
+  finish
+endif
+
 function! vimwork#win7#init()
 endfunction
 
