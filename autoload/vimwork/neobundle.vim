@@ -1,7 +1,7 @@
 " =============================================================================
 " FILE: neobundle.vim
 " Creation Date: 2014/06/25 14:24:50
-" Last Modified: 2014/12/04 09:05:20
+" Last Modified: 2014/12/15 00:02:25
 " =============================================================================
 let s:save_cpo = &cpo
 set cpo&vim
@@ -102,7 +102,7 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 " NeoBundleLazy 'itchyny/lightline.vim'
-" NeoBundleLazy 'kien/rainbow_parentheses.vim'
+NeoBundleLazy 'kien/rainbow_parentheses.vim'
 
 function! s:is_win()
     return has('GUI') && ( has('win32') || has('win64') )
