@@ -85,7 +85,6 @@ function! s:GetBufferDirectory()
   return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
 endfunction
 
-
 if exists('s:save_cpo')
     let &cpo = s:save_cpo
     unlet s:save_cpo

@@ -21,13 +21,17 @@ call neobundle#begin()
 " git
 NeoBundle 'gregsexton/gitv'
 
+" Indent
+NeoBundle 'vim-scripts/JavaScript-Indent' " 2014.12.17
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
 " Normal
+NeoBundle 'YamasakiKenta/jq-wrapper.vim' " 2014.12.17
 NeoBundle 'osyo-manga/vim-over' "2014.12.16
 " NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'jacquesbh/vim-showmarks'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -110,7 +114,7 @@ NeoBundleLazy 'pasela/unite-webcolorname'
 " NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
-" NeoBundleLazy 'itchyny/lightline.vim'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'tacroe/unite-mark'
 
@@ -373,7 +377,6 @@ if neobundle#tap('rainbow_parentheses.vim') " {{{
     endif
 endif "}}}
 if neobundle#tap('lightline.vim') "{{{
-
     if s:is_win()
         " とりあえずOFFにする
         " call neobundle#config({'lazy': 0})
