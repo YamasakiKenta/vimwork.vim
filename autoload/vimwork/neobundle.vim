@@ -91,6 +91,7 @@ NeoBundleLazy  'shougo/vimproc.vim'
 " NeoBundle 'violetyk/neosnippet-cakephp2'
 
 " color
+NeoBundle 'junegunn/seoul256.vim'
 NeoBundleLazy 'ciaranm/inkpot'
 NeoBundleLazy 'endel/vim-github-colorscheme'
 NeoBundleLazy 'hukl/Smyck-Color-Scheme'
@@ -495,9 +496,11 @@ endif "}}}syntastic
 if neobundle#tap('unite-colorscheme') "{{{
   let options = {
         \   'autoload': {
-        \   'on_source': 'unite-colorscheme'
+        \   'on_source': 'unite-colorscheme',
+        \   'commands': 'colorscheme',
         \   }
         \ }
+  call neobundle#config('seoul256.vim', options)
   call neobundle#config('inkpot', options)
   call neobundle#config('vim-github-colorscheme', options)
   call neobundle#config('Smyck-Color-Scheme', options)

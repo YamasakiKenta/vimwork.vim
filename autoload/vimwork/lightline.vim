@@ -27,7 +27,8 @@ function! MyFugitive()
   try
     if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
       let _ = fugitive#head()
-      return strlen(_) ? '-'._ : ''
+      return _
+      " return strlen(_) ? '-'._ : ''
     endif
   catch
   endtry
