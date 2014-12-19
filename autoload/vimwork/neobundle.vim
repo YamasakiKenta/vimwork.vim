@@ -83,7 +83,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundle      'Shougo/neocomplcache.vim'
 NeoBundleLazy  'Shougo/neomru.vim'
 NeoBundleLazy  'Shougo/unite-outline'
-NeoBundleLazy  'Shougo/unite.vim'
+NeoBundle      'Shougo/unite.vim'
 NeoBundleLazy  'Shougo/vimfiler'
 NeoBundleLazy  'Shougo/vimshell.vim'
 NeoBundleLazy  'shougo/vimproc.vim'
@@ -502,26 +502,31 @@ if neobundle#tap('unite-colorscheme') "{{{
         \   'commands': 'colorscheme',
         \   }
         \ }
-  call neobundle#config('seoul256.vim', options)
-  call neobundle#config('inkpot', options)
-  call neobundle#config('vim-github-colorscheme', options)
-  call neobundle#config('Smyck-Color-Scheme', options)
-  call neobundle#config('vim-colors-solarized', options)
-  call neobundle#config('colorswatch.vim', options)
-  call neobundle#config('iceberg.vim', options)
-  call neobundle#config('RadicalGoodSpeed.vim', options)
-  call neobundle#config('vim-lucius', options)
-  call neobundle#config('vim-railscasts-theme', options)
-  call neobundle#config('vim-colorschemes', options)
-  call neobundle#config('jellybeans.vim', options)
-  call neobundle#config('molokai', options)
-  call neobundle#config('Wombat', options)
-  call neobundle#config('chlordane.vim', options)
-  call neobundle#config('rdark', options)
-  call neobundle#config('summerfruit256.vim', options)
-  call neobundle#config('twilight', options)
-  call neobundle#config('vim-hybrid', options)
-
+  let lists  = [
+              \ 'inkpot',
+              \ 'vim-github-colorscheme',
+              \ 'Smyck-Color-Scheme',
+              \ 'vim-colors-solarized',
+              \ 'colorswatch.vim',
+              \ 'iceberg.vim',
+              \ 'RadicalGoodSpeed.vim',
+              \ 'vim-lucius',
+              \ 'vim-railscasts-theme',
+              \ 'vim-colorschemes',
+              \ 'jellybeans.vim',
+              \ 'molokai',
+              \ 'Wombat',
+              \ 'chlordane.vim',
+              \ 'rdark',
+              \ 'summerfruit256.vim',
+              \ 'twilight',
+              \ 'vim-hybrid'
+              \ ]
+  for item in lists 
+    if neobundle#tap(item)
+        call neobundle#config(item, options)
+    endif
+  endfor
 endif "}}}
 " mult
 if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "{{{
