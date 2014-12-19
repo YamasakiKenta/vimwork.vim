@@ -25,14 +25,14 @@ set modeline
 set noswapfile
 set nowrap
 set number
-set shiftwidth=2
+set shiftwidth=4
 set smartcase
 set expandtab
-set tabstop=2
+set tabstop=4
 set tw=0
 set ve=block
 set list lcs=tab:`\ 
-set softtabstop=2 
+set softtabstop=4 
 set autoindent 
 set smartindent
 

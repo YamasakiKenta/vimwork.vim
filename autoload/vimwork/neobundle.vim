@@ -28,6 +28,7 @@ NeoBundle 'Yggdroot/indentLine' " 2014.12.20
 
 " Normal
 NeoBundle 'tmhedberg/matchit' " 2014.12.20
+NeoBundle 'majutsushi/tagbar' " 2014.12.19
 NeoBundle 'YamasakiKenta/jq-wrapper.vim' " 2014.12.17
 NeoBundle 'osyo-manga/vim-over' "2014.12.16
 " NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
@@ -64,7 +65,7 @@ NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 " NeoBundleLazy 'rbtnn/vbnet_indent.vim'
 
 " vim-scripts
-" NeoBundleLazy 'vim-scripts/taglist.vim'
+NeoBundleLazy 'vim-scripts/taglist.vim'
 " NeoBundleLazy 'vim-scripts/CCTree'
 NeoBundleLazy 'vim-scripts/Align'
 
@@ -362,6 +363,7 @@ if neobundle#tap('CCTree') "{{{
 endif "}}}
 if neobundle#tap('taglist') "{{{
     call neobundle#config({'autoload': {'commands': 'Tlist'}})
+    let g:tlist_javascript_settings = 'javascript;c:class;m:method;F:function;p:property'
 endif "}}}
 if neobundle#tap('rainbow_parentheses.vim') " {{{
     if s:is_win()
@@ -531,6 +533,7 @@ if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "
                   \ :"\<TAB>"
 endif 
 "}}}
+
 call neobundle#end()
 filetype plugin indent on
 
