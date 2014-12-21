@@ -23,9 +23,11 @@ NeoBundle 'gregsexton/gitv'
 
 " Indent
 NeoBundle 'vim-scripts/JavaScript-Indent' " 2014.12.17
-NeoBundle 'nathanaelkane/vim-indent-guides'
+" NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'Yggdroot/indentLine' " 2014.12.20
 
 " Normal
+NeoBundle 'tmhedberg/matchit' " 2014.12.20
 NeoBundle 'YamasakiKenta/jq-wrapper.vim' " 2014.12.17
 NeoBundle 'osyo-manga/vim-over' "2014.12.16
 " NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
@@ -114,7 +116,7 @@ NeoBundleLazy 'pasela/unite-webcolorname'
 " NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
-NeoBundle 'itchyny/lightline.vim'
+" NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'tacroe/unite-mark'
 
