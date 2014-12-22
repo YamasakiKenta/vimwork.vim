@@ -32,7 +32,7 @@ NeoBundle 'majutsushi/tagbar' " 2014.12.19
 NeoBundle 'YamasakiKenta/jq-wrapper.vim' " 2014.12.17
 NeoBundle 'osyo-manga/vim-over' "2014.12.16
 " NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
-NeoBundle 'lilydjwg/colorizer'
+NeoBundleLazy 'lilydjwg/colorizer' " 2014.12.19
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'jacquesbh/vim-showmarks'
 NeoBundle 'tpope/vim-surround'
@@ -65,7 +65,7 @@ NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 " NeoBundleLazy 'rbtnn/vbnet_indent.vim'
 
 " vim-scripts
-NeoBundleLazy 'vim-scripts/taglist.vim'
+NeoBundle 'vim-scripts/taglist.vim'
 " NeoBundleLazy 'vim-scripts/CCTree'
 NeoBundleLazy 'vim-scripts/Align'
 
@@ -127,6 +127,13 @@ function! s:is_win() "{{{
     return has('GUI') && ( has('win32') || has('win64') )
 endfunction "}}}
 " neobundle#tap
+if neobundle#tap('colorizer') "{{{1
+    let g:colorizer_startup = 0
+    call neobundle#config({
+    \ 'autoload': {
+    \ 'commands': ['ColorHighlight', 'ColorToggle', 'ColorClear'],
+    \ }})
+endif "}}}1
 if neobundle#tap('incsearch.vim') "{{{
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
@@ -430,6 +437,13 @@ if neobundle#tap('unite.vim') "{{{
     nnoremap [unite]m  :<C-u>Unite file_mru directory_mru|"
     nnoremap [unite]f  :<C-u>Unite file_rec:! file/new|" !は.gitignore
     nnoremap [unite]d  :<C-u>Unite directory:**/ directory/new|"
+
+    " nnoremap <leader>/ :<C-u>Unite -custom-line-enable-highlight line:<c-r>/<CR>|"
+
+    nnoremap <silent> <leader>/  :<C-u>Unite line:all -input=<c-r>/<cr>
+
+    nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
+
     call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
     function! neobundle#tapped.hooks.on_source(bundle)
         let g:unite_enable_start_insert        = 1

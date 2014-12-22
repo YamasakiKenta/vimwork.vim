@@ -38,7 +38,6 @@ set smartindent
 
 " map 
 nnoremap <leader>v :<C-u>noa vim // **/*<c-left><c-left><right>|"
-nnoremap <leader>/ :<C-u>Unite line<CR>|"
 nnoremap <S-Space> za|"
 nnoremap <C-]> <C-]>zz|"
 nnoremap <C-j> j.|"
@@ -64,7 +63,6 @@ vnoremap < <gv|"
 vnoremap > >gv|"
 highlight CursorIM guibg=Magenta guifg=NONE
 nnoremap <f5> :<c-u>MyUpdateTimer<cr>
-nnoremap <leader>ufd :<C-u>Unite file:~/.vim/bundle/vimwork.vim/dict
 nnoremap <c-\>K :call system("ctags -R --excmd=number")<CR>|"
 nnoremap go yypC
 nnoremap gO yyPC
