@@ -34,7 +34,7 @@ NeoBundle 'osyo-manga/vim-over' "2014.12.16
 " NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
 NeoBundleLazy 'lilydjwg/colorizer' " 2014.12.19
 NeoBundle 'tpope/vim-abolish'
-NeoBundle 'jacquesbh/vim-showmarks'
+" NeoBundle 'jacquesbh/vim-showmarks'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -47,7 +47,6 @@ NeoBundle 'fuenor/qfixgrep'
 " NeoBundle 'voi/unite-ctags'
 " NeoBundleLazy 'scrooloose/syntastic'
 " NeoBundleLazy 'thinca/vim-prettyprint'
-" NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
 " NeoBundle 'digitaltoad/vim-jade'
 
 " YamasakiKenta
@@ -76,6 +75,7 @@ NeoBundle 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-quickrun'
 
 " Shougo
+NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -89,7 +89,8 @@ NeoBundleLazy  'Shougo/vimshell.vim'
 NeoBundleLazy  'shougo/vimproc.vim'
 
 " NeoSnip
-" NeoBundle 'violetyk/neosnippet-cakephp2'
+NeoBundle 'violetyk/neosnippet-cakephp2'
+NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
 
 " color
 NeoBundle 'junegunn/seoul256.vim'
@@ -118,9 +119,11 @@ NeoBundleLazy 'pasela/unite-webcolorname'
 " NeoBundleLazy 'sgur/unite-everything'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
-" NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'tacroe/unite-mark'
+NeoBundleLazy 'tsukkee/unite-help'
+
+NeoBundle 'itchyny/lightline.vim'
 
 " Util
 function! s:is_win() "{{{
@@ -164,11 +167,6 @@ if neobundle#tap('vim-showmarks') "{{{
     echo 'marked' g:markrement_char[b:markrement_pos]
   endf
 
-  " aug show-marks-sync
-    " au!
-    " au BufReadPost * sil! ShowMarksOnce
-  " aug END
-
   nn [Mark] <Nop>
   nm <leader>m [Mark]
   nn <silent> [Mark]m :Unite mark<CR>
@@ -176,14 +174,6 @@ if neobundle#tap('vim-showmarks') "{{{
   com! -bar MarksDelete sil :delm! | :delm 0-9A-Z | :wv! | :ShowMarksOnce
   nn <silent>[Mark]d :MarksDelete<CR>
 endif "}}}
-if neobundle#tap('vim-bootstrap3-snippets')  "{{{
-    " \ 'depends' : 'Shougo/neosnippet',
-    call neobundle#config({
-                \ })
-    function! neobundle#tapped.hooks.on_source(bundle) 
-
-    endfunction
-endif  "}}}
 if neobundle#tap('vim-indent-guides') "{{{
     let g:indent_guides_enable_on_vim_startup=1
     let g:indent_guides_start_level=2
@@ -194,8 +184,6 @@ if neobundle#tap('rabbit-ui.vim') "{{{
         call writefile(map(rabbit_ui#gridview(map(readfile(a:path),'split(v:val,",",1)')), "join(v:val, ',')"), a:path)
     endfunction
     command! -nargs=1 EditCSV  :call <sid>edit_csv(<q-args>)
-endif "}}}
-if neobundle#tap('vim-precious') "{{{
 endif "}}}
 if neobundle#tap('chain-file.vim') "{{{
     call neobundle#config({'autoload': {'commands': 'ChainFile'}})
@@ -220,16 +208,15 @@ if neobundle#tap('chain-file.vim') "{{{
                 \ },
                 \ }
     nnoremap <leader>a<CR>  :<C-u>ChainFile<CR>|"
-    "C:\xampp\htdocs\yamasaki\cake\app\Model\MySampleData.php
 endif "}}}
 if neobundle#tap('emmet-vim') "{{{
     call neobundle#config({'autoload': {
                 \ 'filetypes': ['html','css','php'],
                 \ }})
     function! neobundle#tapped.hooks.on_source(bundle)
-"         imap <expr><TAB> 
-"                     \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
-"                     \ :"\<TAB>"
+        imap <expr><TAB> 
+        \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+        \ :"\<TAB>"
     endfunction
 endif "}}}
 if neobundle#tap('vimfiler') "{{{
@@ -289,9 +276,9 @@ if neobundle#tap('vimproc.vim') "{{{
     endif
 endif "}}}
 if neobundle#tap('tab-diff.vim') "{{{
-    nnoremap <leader>dy<CR> :<C-u>TabDiffStart<CR>
-    nnoremap <leader>dn<CR> :<C-u>TabDiffEnd<CR>
-    nnoremap <leader>do<CR> :<C-u>TabDiffOrig<CR>
+    nnoremap <leader>dy :<C-u>TabDiffStart
+    nnoremap <leader>dn :<C-u>TabDiffEnd
+    nnoremap <leader>do :<C-u>TabDiffOrig
     call neobundle#config({'autoload': {'commands' : ['TabDiffStart','TabDiffEnd','TabDiffOrig']}})
 endif "}}}
 if neobundle#tap('neocomplete.vim') "{{{
@@ -390,11 +377,9 @@ if neobundle#tap('rainbow_parentheses.vim') " {{{
 endif "}}}
 if neobundle#tap('lightline.vim') "{{{
     if s:is_win()
-        " とりあえずOFFにする
-        " call neobundle#config({'lazy': 0})
-        call vimwork#lightline#init()
+        " call vimwork#lightline#init()
     endif
-endif "}}}lightline.vim
+endif "}}}
 " Command
 if neobundle#tap('ag.vim') "{{{
     call neobundle#config({'autoload': {'commands': 'Ag'}})
@@ -412,6 +397,7 @@ endif "}}}
 " Unite ( 自動でなる )
 if neobundle#tap('unite.vim') "{{{
     nmap <leader>u [unite]
+    nmap <space> [unite]
     " nnoremap [unite]uK<CR>  :<C-u>Unite bookmark<CR>|"
     " nnoremap [unite]uM<CR>  :<C-u>Unite directory_mru -default-action=cd<CR>|"
     " nnoremap [unite]ub<CR>  :<C-u>Unite buffer<CR>|"
@@ -432,7 +418,8 @@ if neobundle#tap('unite.vim') "{{{
     nnoremap [unite]pa :<C-u>Unite settings_var_all|"
     nnoremap [unite]pt :<C-u>Unite settings/ex|"
     nnoremap [unite]r  :<C-u>UniteResume|"
-    nnoremap [unite]s  :<C-u>Unite source|"
+    nnoremap [unite]n  :<C-u>Unite neosnippet
+    nnoremap [unite]s  :<C-u>Unite neosnippet/user neosnippet/runtime|"
     nnoremap [unite]t  :<C-u>Unite tag|"
     nnoremap [unite]m  :<C-u>Unite file_mru directory_mru|"
     nnoremap [unite]f  :<C-u>Unite file_rec:! file/new|" !は.gitignore
@@ -542,11 +529,12 @@ if neobundle#tap('unite-colorscheme') "{{{
     endif
   endfor
 endif "}}}
+
 " mult
 if neobundle#is_installed('emmet-vim') && neobundle#is_installed('neosnippet') "{{{
       imap <expr><TAB> 
-                  \ neosnippet#expandable_or_jumpable() ?
-                  \ "\<Plug>(neosnippet_expand_or_jump)"
+                  \ neosnippet#jumpable()() ?
+                  \ "\<Plug>(neosnippet_jump)"
                   \ : pumvisible() ? "\<C-n>"
                   \ : emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
                   \ :"\<TAB>"

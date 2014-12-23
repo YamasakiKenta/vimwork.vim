@@ -15,17 +15,7 @@ alias tap
       function! neobundle#tapped.hooks.on_source(bundle) 
       endfunction
     endif 
-snippet head
-    " =============================================================================
-    " ${1:FILE: `expand("%:t")`}
-    " Creation Date: `strftime("%Y/%m/%d %H:%M:%S")`
-    " Last Modified: `strftime("%Y/%m/%d %H:%M:%S")`
-    " =============================================================================
-
-snippet     tab
-abbr        set tab space
-alias       space
-options     head
+snippet tab
     set expandtab
     set autoindent
     set tabstop=4
