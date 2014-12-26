@@ -66,6 +66,8 @@ nnoremap <f5> :<c-u>MyUpdateTimer<cr>
 nnoremap <c-\>K :call system("ctags -R --excmd=number")<CR>|"
 nnoremap go yypC
 nnoremap gO yyPC
+nmap <tab> <c-w>
+nmap <tab><tab> <c-w><c-w>
 " let php_sql_query = 0
 " let php_baselib = 0
 " let php_htmlInStrings = 0
