@@ -12,7 +12,7 @@ set cot+=longest
 set noshellslash
 set autoread
 set cursorline
-set dip=filler,icase,iwhite,vertical
+set dip=filler,icase,iwhite,vertical,context:0
 set fdm=marker
 set fo+=ro
 set grepprg=ag\ --nogroup\ --nocolor\ --column\ --smart-case

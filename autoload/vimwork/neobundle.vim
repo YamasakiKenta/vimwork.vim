@@ -17,6 +17,9 @@ endif
 call neobundle#begin()
 
 " syntax
+" NeoBundle 'taichouchou2/html5.vim'
+" NeoBundle 'othree/html5.vim'
+" NeoBundle 'alpaca-tc/html5.vim'
 
 " git
 NeoBundle 'gregsexton/gitv'
@@ -424,8 +427,6 @@ if neobundle#tap('unite.vim') "{{{
     nnoremap [unite]m  :<C-u>Unite file_mru directory_mru|"
     nnoremap [unite]f  :<C-u>Unite file_rec:! file/new|" !は.gitignore
     nnoremap [unite]d  :<C-u>Unite directory:**/ directory/new|"
-
-    " nnoremap <leader>/ :<C-u>Unite -custom-line-enable-highlight line:<c-r>/<CR>|"
 
     nnoremap <silent> <leader>/  :<C-u>Unite line:all -input=<c-r>/<cr>
 
