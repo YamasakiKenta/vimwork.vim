@@ -11,7 +11,7 @@ so $VIMRUNTIME/macros/matchit.vim
 set cot+=longest
 set noshellslash
 set autoread
-set cursorline
+set nocursorline
 set dip=filler,icase,iwhite,vertical,context:0
 set fdm=marker
 set fo+=ro
