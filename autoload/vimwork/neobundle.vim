@@ -22,7 +22,7 @@ call neobundle#begin()
 " NeoBundle 'alpaca-tc/html5.vim'
 
 " git
-NeoBundle 'gregsexton/gitv'
+" NeoBundle 'gregsexton/gitv'
 
 " Indent
 NeoBundle 'vim-scripts/JavaScript-Indent' " 2014.12.17
@@ -36,9 +36,9 @@ NeoBundle 'YamasakiKenta/jq-wrapper.vim' " 2014.12.17
 NeoBundle 'osyo-manga/vim-over' "2014.12.16
 " NeoBundle 'haya14busa/incsearch.vim' " 2014.12.16 - 初動がきになる
 NeoBundleLazy 'lilydjwg/colorizer' " 2014.12.19
-NeoBundle 'tpope/vim-abolish'
+" NeoBundle 'tpope/vim-abolish'
 " NeoBundle 'jacquesbh/vim-showmarks'
-NeoBundle 'tpope/vim-surround'
+" NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fuenor/qfixgrep'
@@ -55,7 +55,7 @@ NeoBundle 'fuenor/qfixgrep'
 " YamasakiKenta
 NeoBundleFetch 'git@github.com:YamasakiKenta/vimwork.vim.git' " 2014.12.25
 " NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
-NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
+" NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 " NeoBundleLazy 'YamasakiKenta/unite-perforce.vim'
 " NeoBundleLazy 'YamasakiKenta/chain-file.vim'
 " NeoBundleLazy 'YamasakiKenta/tree.vim'
@@ -67,7 +67,7 @@ NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
 " NeoBundleLazy 'rbtnn/vbnet_indent.vim'
 
 " vim-scripts
-NeoBundle 'vim-scripts/taglist.vim'
+" NeoBundle 'vim-scripts/taglist.vim'
 " NeoBundleLazy 'vim-scripts/CCTree'
 NeoBundleLazy 'vim-scripts/Align'
 
@@ -78,7 +78,7 @@ NeoBundle 'thinca/vim-partedit'
 NeoBundleLazy 'thinca/vim-quickrun'
 
 " Shougo
-NeoBundleFetch 'Shougo/shougo-s-github'
+" NeoBundleFetch 'Shougo/shougo-s-github'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -92,41 +92,41 @@ NeoBundleLazy  'Shougo/vimshell.vim'
 NeoBundleLazy  'shougo/vimproc.vim'
 
 " NeoSnip
-NeoBundle 'violetyk/neosnippet-cakephp2'
-NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
+" NeoBundle 'violetyk/neosnippet-cakephp2'
+" NeoBundle 'chrisgillis/vim-bootstrap3-snippets'
 
 " color
-NeoBundle 'junegunn/seoul256.vim'
-NeoBundleLazy 'ciaranm/inkpot'
-NeoBundleLazy 'endel/vim-github-colorscheme'
-NeoBundleLazy 'hukl/Smyck-Color-Scheme'
-NeoBundleLazy 'altercation/vim-colors-solarized'
-NeoBundleLazy 'cocopon/colorswatch.vim'
-NeoBundleLazy 'cocopon/iceberg.vim'
-NeoBundleLazy 'svjunic/RadicalGoodSpeed.vim'
-NeoBundleLazy 'jonathanfilip/vim-lucius'
-NeoBundleLazy 'jpo/vim-railscasts-theme'
-NeoBundleLazy 'lazz/vim-colorschemes'
-NeoBundleLazy 'nanotech/jellybeans.vim'
-NeoBundleLazy 'tomasr/molokai'
-NeoBundleLazy 'vim-scripts/Wombat'
-NeoBundleLazy 'vim-scripts/chlordane.vim'
-NeoBundleLazy 'vim-scripts/rdark'
-NeoBundleLazy 'vim-scripts/summerfruit256.vim'
-NeoBundleLazy 'vim-scripts/twilight'
-NeoBundleLazy 'w0ng/vim-hybrid'
+" NeoBundle 'junegunn/seoul256.vim'
+" NeoBundleLazy 'ciaranm/inkpot'
+" NeoBundleLazy 'endel/vim-github-colorscheme'
+" NeoBundleLazy 'hukl/Smyck-Color-Scheme'
+" NeoBundleLazy 'altercation/vim-colors-solarized'
+" NeoBundleLazy 'cocopon/colorswatch.vim'
+" NeoBundleLazy 'cocopon/iceberg.vim'
+" NeoBundleLazy 'svjunic/RadicalGoodSpeed.vim'
+" NeoBundleLazy 'jonathanfilip/vim-lucius'
+" NeoBundleLazy 'jpo/vim-railscasts-theme'
+" NeoBundleLazy 'lazz/vim-colorschemes'
+" NeoBundleLazy 'nanotech/jellybeans.vim'
+" NeoBundleLazy 'tomasr/molokai'
+" NeoBundleLazy 'vim-scripts/Wombat'
+" NeoBundleLazy 'vim-scripts/chlordane.vim'
+" NeoBundleLazy 'vim-scripts/rdark'
+" NeoBundleLazy 'vim-scripts/summerfruit256.vim'
+" NeoBundleLazy 'vim-scripts/twilight'
+" NeoBundleLazy 'w0ng/vim-hybrid'
 
 " Unite
 " NeoBundleLazy 'osyo-manga/unite-quickfix'
-NeoBundleLazy 'pasela/unite-webcolorname'
+" NeoBundleLazy 'pasela/unite-webcolorname'
 " NeoBundleLazy 'sgur/unite-everything'
-NeoBundleLazy 'tsukkee/unite-tag'
-NeoBundleLazy 'ujihisa/unite-colorscheme'
-NeoBundleLazy 'kien/rainbow_parentheses.vim'
-NeoBundleLazy 'tacroe/unite-mark'
-NeoBundleLazy 'tsukkee/unite-help'
+" NeoBundleLazy 'tsukkee/unite-tag'
+" NeoBundleLazy 'ujihisa/unite-colorscheme'
+" NeoBundleLazy 'kien/rainbow_parentheses.vim'
+" NeoBundleLazy 'tacroe/unite-mark'
+" NeoBundleLazy 'tsukkee/unite-help'
 
-NeoBundle 'itchyny/lightline.vim'
+" NeoBundle 'itchyny/lightline.vim'
 
 " Util
 function! s:is_win() "{{{
