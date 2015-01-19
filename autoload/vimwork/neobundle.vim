@@ -53,6 +53,7 @@ NeoBundle 'fuenor/qfixgrep'
 " NeoBundle 'digitaltoad/vim-jade'
 
 " YamasakiKenta
+NeoBundleFetch 'git@github.com:YamasakiKenta/game.git' " 2014.01.17
 NeoBundleFetch 'git@github.com:YamasakiKenta/vimwork.vim.git' " 2014.12.25
 " NeoBundleLazy 'YamasakiKenta/unite-setting-ex.vim'
 " NeoBundleLazy 'YamasakiKenta/unite-setting.vim'
