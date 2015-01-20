@@ -16,6 +16,7 @@ filetype indent on
 filetype plugin on
 nnoremap <A-Space> :<C-u>simalt ~<CR>|"
 
+set enc=utf-8
 set go-=T
 set go-=m
 set guifontwide=MS_Gothic:h10

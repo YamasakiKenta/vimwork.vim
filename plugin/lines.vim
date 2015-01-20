@@ -33,14 +33,6 @@ if has('persistent_undo')
     endif
 endif 
 
-if has('win32') && !has('gui')
-    set enc=sjis
-    set fenc=utf-8
-else
-    set enc=utf-8
-    set fenc=utf-8
-endif
-
 nnoremap <PLUG>(uniq_line)
 			\ :g/./if getline(line(".")) == getline(line(".")-1)\|d<CR>
 
