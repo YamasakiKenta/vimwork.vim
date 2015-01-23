@@ -1,0 +1,116 @@
+" NeoBundle {{{1
+filetype off
+filetype plugin indent off
+
+if has('vim_starting')
+    set nocompatible
+    set rtp+=~/.vim/bundle/neobundle.vim
+endif
+
+
+call neobundle#begin()
+
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'vim-scripts/Align'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets.git'
+NeoBundle 'fuenor/qfixgrep'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundleLazy  'Shougo/unite-outline'
+" NeoBundle 'thinca/vim-qfreplace'
+
+if neobundle#tap('neosnippet') "{{{1
+    function! neobundle#tapped.hooks.on_source(bundle)
+        let g:neosnippet#snippets_directory = '~/.vim/bundle/vimwork.vim/snippets'
+        imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
+    endfunction
+endif "}}}1
+
+NeoBundleLazy 'Shougo/unite.vim'
+if neobundle#tap('unite.vim') "{{{1
+    let g:unite_enable_start_insert = 1
+    nmap <leader>u [unite]
+    call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
+    nnoremap [unite]m :<c-u>Unite file_mru directory_mru
+    nnoremap [unite]r :<c-u>UniteResume
+endif "}}}1
+
+NeoBundle 'mattn/emmet-vim'
+if neobundle#tap('emmet-vim') "{{{1
+    call neobundle#config({'autoload': {
+                \ 'filetypes': ['html','css','php'],
+                \ }})
+    function! neobundle#tapped.hooks.on_source(bundle)
+        imap <expr><TAB> 
+        \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
+        \ :"\<TAB>"
+    endfunction
+endif "}}}1
+
+call neobundle#end()
+filetype plugin indent on
+" }}}1
+
+" map {{{1
+nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")\|echo @+<CR>|"
+nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")\|echo @+<CR>|"
+nnoremap <S-Space> za|"
+nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
+nnoremap <C-n> :<C-u>cn<CR>|"
+nnoremap <C-p> :<C-u>cN<CR>|"
+nnoremap <C-j> j.|"
+nnoremap <C-k> n.|"
+nnoremap * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'\|echo @/<CR>|"
+nnoremap + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>:echo @/<CR>|"
+vnoremap < <gv|"
+vnoremap > >gv|"
+" }}}1
+
+command! -narg=* AddSearch call <SID>addSearch(<f-args>) 
+function! s:addSearch(...) 
+    if a:0 > 0
+        let @/ = @/.'\|\<'.join(a:000,'\>\|\<').'\>'
+    endif
+endfunction
+
+" command {{{1
+let g:plugin_cmdex_disable = 1
+cnoremap <C-X> <C-R>=<SID>GetBufferDirectory()<CR>
+function! s:GetBufferDirectory()
+    let dir = expand('%:p:h')
+    return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
+endfunction
+" }}}1
+
+" set {{{1
+set ve=block
+set nowrap
+set noswapfile
+set number
+set fdm=marker
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set list lcs=tab:`\ 
+" }}}1
+
+" set - lines {{{1
+set backupdir=~/.vim/bak
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir))
+endif
+
+if has('persistent_undo')
+    set noudf
+    set undodir=~/.vim/undo
+    if !isdirectory(expand(&undodir))
+        call mkdir(expand(&undodir))
+    endif
+endif 
+" }}}1
+
+nnoremap <leader>cg :lcd C:/xampp/htdocs/ga/main/
+nnoremap <leader>de :lcd C:/Users/k-yamasaki-3/Desktop
+
