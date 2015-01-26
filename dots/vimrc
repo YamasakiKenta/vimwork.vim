@@ -18,8 +18,22 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets.git'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'thinca/vim-qfreplace'
 NeoBundleLazy  'Shougo/unite-outline'
-" NeoBundle 'thinca/vim-qfreplace'
+
+
+if neobundle#tap('Align') "{{{1
+    let g:Align_xstrlen = 3 " 重いらしい
+    " http://d.hatena.ne.jp/gnarl/20120104/1325668347
+endif "}}}1
+
+if neobundle#tap('qfixgrep') "{{{1
+    " QuickFixウィンドウでもプレビューや絞り込みを有効化
+    let QFixWin_EnableMode = 1
+
+    " QFixHowm/QFixGrepの結果表示にロケーションリストを使用する/しない
+    " let QFix_UseLocationList = 1
+endif "}}}1
 
 if neobundle#tap('neosnippet') "{{{1
     function! neobundle#tapped.hooks.on_source(bundle)
@@ -75,6 +89,8 @@ function! s:addSearch(...)
     endif
 endfunction
 
+so $VIMRUNTIME/macros/matchit.vim
+
 " command {{{1
 let g:plugin_cmdex_disable = 1
 cnoremap <C-X> <C-R>=<SID>GetBufferDirectory()<CR>
@@ -82,6 +98,67 @@ function! s:GetBufferDirectory()
     let dir = expand('%:p:h')
     return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
 endfunction
+
+nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
+command! -narg=0 SetNum call <SID>set_num() 
+function! s:set_num() "{{{
+" ********************************************************************************
+" 連番の作成
+" カーソル以降の数字を、前の数字にひとつ加算したものにする ( マイナスは、考慮しない ) 
+" ********************************************************************************
+"
+  " カーソル位置の取得
+  let pos = getpos(".")
+  let lnum = pos[1]
+  let col  = pos[2] - 1
+
+  "=====================
+  " 前の行
+  "=====================
+  let lstr = getline(lnum-1)
+
+  " 数字の取得
+  let nums = split(lstr, '\D\+') + [1]
+
+  "=====================
+  " 現在の行
+  "=====================
+  let lstr  = getline(lnum)
+
+  "================================================================================
+  " 数字の末尾で分割
+  "--------------------------------------------------------------------------------
+  " 1 : aaa12(3)4aaaa  : () カーソル位置
+  " 2 : aaa1234 , aaaa : カーソルより後ろの数字の末尾で分割
+  " 3 : aaa     , aaa  : 数字の削除
+  "================================================================================
+  let col = match(lstr, '\d\D\|\d$', col) + 1
+
+  " カーソル後に数字がある場合は処理する
+  if col > 0
+    " 数字の前の文字の取得
+    let head = strpart(lstr, 0, col)
+
+    " 数字の数を抽出
+    let head_ncnt = len(split(head, '\D\+')) - 1
+
+    " 文の取得
+    " 変更する部分の数字は削除する
+    let str = [
+          \ substitute(head, '\d\+$','',''),
+          \ get(nums, head_ncnt, 0) + 1,
+          \ strpart(lstr, col ),
+          \ ]
+
+    " 書き込み
+    call setline(lnum, join(str,''))
+
+    " カーソル移動
+    call cursor(lnum, len(str[0].str[1]))
+  endif
+
+endfunction
+"}}}
 " }}}1
 
 " set {{{1
