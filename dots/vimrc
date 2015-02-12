@@ -84,13 +84,6 @@ nnoremap go yypC
 nnoremap gO yyPC
 " }}}1
 
-command! -narg=* AddSearch call <SID>addSearch(<f-args>) 
-function! s:addSearch(...) 
-    if a:0 > 0
-        let @/ = @/.'\|\<'.join(a:000,'\>\|\<').'\>'
-    endif
-endfunction
-
 so $VIMRUNTIME/macros/matchit.vim
 
 " command 
@@ -160,6 +153,14 @@ function! s:set_num() "{{{
     call cursor(lnum, len(str[0].str[1]))
   endif
 
+endfunction
+"}}}
+"
+command! -narg=* AddSearch call <SID>addSearch(<f-args>) 
+function! s:addSearch(...) "{{{
+    if a:0 > 0
+        let @/ = @/.'\|\<'.join(a:000,'\>\|\<').'\>'
+    endif
 endfunction
 "}}}
 " }}}1
