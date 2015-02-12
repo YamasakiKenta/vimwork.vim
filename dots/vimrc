@@ -10,15 +10,18 @@ endif
 
 call neobundle#begin()
 
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'thinca/vim-partedit'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets.git'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundleLazy  'Shougo/unite-outline'
 
 
@@ -80,6 +83,8 @@ nnoremap * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'\|echo @/<CR>|"
 nnoremap + :<C-u>AddSearch <C-r>=expand("<cword>")<CR><CR>:echo @/<CR>|"
 vnoremap < <gv|"
 vnoremap > >gv|"
+nnoremap go yypC
+nnoremap gO yyPC
 " }}}1
 
 command! -narg=* AddSearch call <SID>addSearch(<f-args>) 
@@ -187,7 +192,4 @@ if has('persistent_undo')
     endif
 endif 
 " }}}1
-
-nnoremap <leader>cg :lcd C:/xampp/htdocs/ga/main/
-nnoremap <leader>de :lcd C:/Users/k-yamasaki-3/Desktop
 
