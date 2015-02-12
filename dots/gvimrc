@@ -1,4 +1,4 @@
-set cursorline
+set nocursorline
 set enc=utf-8
 set go-=T
 set go-=m
