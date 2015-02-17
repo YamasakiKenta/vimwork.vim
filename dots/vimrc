@@ -1,5 +1,6 @@
+" ****************************************
 " NeoBundle
-" {{{1
+" ****************************************
 filetype off
 filetype plugin indent off
 
@@ -21,63 +22,99 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundleLazy  'Shougo/unite-outline'
 " NeoBundle 'kchmck/vim-coffee-script'
 
+NeoBundle 'bronson/vim-trailing-whitespace'
+if neobundle#tap('vim-trailing-whitespace') "{{{
+    let g:extra_whitespace_ignored_filetypes = ['unite']
+endif
+"}}}
 NeoBundle 'vim-scripts/Align'
-if neobundle#tap('Align') "{{{2
+if neobundle#tap('Align') "{{{
     let g:Align_xstrlen = 3 " 重いらしい
     " http://d.hatena.ne.jp/gnarl/20120104/1325668347
-endif "}}}2
+endif "}}}
 NeoBundle 'fuenor/qfixgrep'
-if neobundle#tap('qfixgrep') "{{{2
+if neobundle#tap('qfixgrep') "{{{
     " QuickFixウィンドウでもプレビューや絞り込みを有効化
     let QFixWin_EnableMode = 1
 
     " QFixHowm/QFixGrepの結果表示にロケーションリストを使用する/しない
     " let QFix_UseLocationList = 1
-endif "}}}2
+endif "}}}
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
-if neobundle#tap('neosnippet') "{{{2
+if neobundle#tap('neosnippet') "{{{
     function! neobundle#tapped.hooks.on_source(bundle)
         let g:neosnippet#snippets_directory = '~/.vim/bundle/vimwork.vim/snippets'
         imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
     endfunction
-endif "}}}2
+endif "}}}
 NeoBundleLazy 'Shougo/unite.vim'
-if neobundle#tap('unite.vim') "{{{2
+if neobundle#tap('unite.vim') "{{{
     let g:unite_enable_start_insert = 1
     nmap <leader>u [unite]
     call neobundle#config({'autoload': {'commands':[{'name': 'Unite', 'complete': 'customlist,unite#complete_source'}]}})
     nnoremap [unite]m :<c-u>Unite file_mru directory_mru
     nnoremap [unite]r :<c-u>UniteResume
-endif "}}}2
+endif "}}}
 NeoBundle 'mattn/emmet-vim'
-if neobundle#tap('emmet-vim') "{{{2
+if neobundle#tap('emmet-vim') "{{{
     " let g:user_emmet_leader_key='<C-Z>'
-    let g:user_emmet_settings = { 
-                \ 'variables': { 
-                \ 'lang' : 'ja' 
-                \ } 
+    let g:user_emmet_settings = {
+                \ 'variables': {
+                \ 'lang' : 'ja'
+                \ }
                 \ }
     call neobundle#config({'autoload': {
                 \ 'filetypes': ['html','css','php'],
                 \ }})
     function! neobundle#tapped.hooks.on_source(bundle)
-        imap <expr><TAB> 
+        imap <expr><TAB>
         \ emmet#isExpandable()? emmet#expandAbbrIntelligent("\<tab>")
         \ :"\<TAB>"
     endfunction
-endif "}}}2
+endif "}}}
+NeoBundle 'joonty/vdebug'
+if neobundle#tap('vdebug') "{{{
+    let g:vdebug_keymap = {
+                \ 'run'               : '<F5>',
+                \ 'run_to_cursor'     : '<F1>',
+                \ 'step_over'         : '<F2>',
+                \ 'step_into'         : '<F3>',
+                \ 'step_out'          : '<F4>',
+                \ 'close'             : '<F6>',
+                \ 'detach'            : '<F7>',
+                \ 'set_breakpoint'    : '<F10>',
+                \ 'get_context'       : '<F11>',
+                \ 'eval_under_cursor' : '<F12>',
+                \ }
+    if(1)
+    let g:vdebug_keymap = {
+                \ 'run'               : '<F8>',
+                \ 'run_to_cursor'     : '<F1>',
+                \ 'step_over'         : '<F10>',
+                \ 'step_into'         : '<F11>',
+                \ 'step_out'          : '<S-F11>',
+                \ 'close'             : '<F6>',
+                \ 'detach'            : '<F7>',
+                \ 'set_breakpoint'    : '<F9>',
+                \ 'get_context'       : '<F11>',
+                \ 'eval_under_cursor' : '<F12>',
+                \ }
+    endif
+endif
+" }}}
 
 call neobundle#end()
 filetype plugin indent on
 " }}}1
 
+" ****************************************
 " Map
-" {{{1
+" ****************************************
 nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")\|echo @+<CR>|"
 nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")\|echo @+<CR>|"
 nnoremap <S-Space> za|"
-nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|" 
+nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"
 nnoremap <C-n> :<C-u>cn<CR>|"
 nnoremap <C-p> :<C-u>cN<CR>|"
 nnoremap <C-j> j.|"
@@ -88,12 +125,12 @@ vnoremap < <gv|"
 vnoremap > >gv|"
 nnoremap go yypC
 nnoremap gO yyPC
-" }}}1
 
 so $VIMRUNTIME/macros/matchit.vim
 
-" command 
-" {{{1
+" ****************************************
+" command
+" ****************************************
 let g:plugin_cmdex_disable = 1
 cnoremap <C-X> <C-R>=<SID>GetBufferDirectory()<CR>
 function! s:GetBufferDirectory()
@@ -102,38 +139,38 @@ function! s:GetBufferDirectory()
 endfunction
 
 nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
-command! -narg=0 SetNum call <SID>set_num() 
+command! -narg=0 SetNum call <SID>set_num()
 function! s:set_num() "{{{
-" ********************************************************************************
+" --------------------
 " 連番の作成
-" カーソル以降の数字を、前の数字にひとつ加算したものにする ( マイナスは、考慮しない ) 
-" ********************************************************************************
+" カーソル以降の数字を、前の数字にひとつ加算したものにする ( マイナスは、考慮しない )
+" --------------------
 "
   " カーソル位置の取得
   let pos = getpos(".")
   let lnum = pos[1]
   let col  = pos[2] - 1
 
-  "=====================
+  " =====================
   " 前の行
-  "=====================
+  " =====================
   let lstr = getline(lnum-1)
 
   " 数字の取得
   let nums = split(lstr, '\D\+') + [1]
 
-  "=====================
+  " =====================
   " 現在の行
-  "=====================
+  " =====================
   let lstr  = getline(lnum)
 
-  "================================================================================
+  " ====================
   " 数字の末尾で分割
-  "--------------------------------------------------------------------------------
+  " --------------------
   " 1 : aaa12(3)4aaaa  : () カーソル位置
   " 2 : aaa1234 , aaaa : カーソルより後ろの数字の末尾で分割
   " 3 : aaa     , aaa  : 数字の削除
-  "================================================================================
+  " ====================
   let col = match(lstr, '\d\D\|\d$', col) + 1
 
   " カーソル後に数字がある場合は処理する
@@ -162,17 +199,18 @@ function! s:set_num() "{{{
 endfunction
 "}}}
 "
-command! -narg=* AddSearch call <SID>addSearch(<f-args>) 
+command! -narg=* AddSearch call <SID>addSearch(<f-args>)
 function! s:addSearch(...) "{{{
     if a:0 > 0
         let @/ = @/.'\|\<'.join(a:000,'\>\|\<').'\>'
     endif
 endfunction
 "}}}
-" }}}1
 
-" set 
-" {{{1
+" ****************************************
+" set
+" ****************************************
+set synmaxcol=200  " 行が長いと思い
 set ve=block
 set nowrap
 set noswapfile
@@ -181,11 +219,9 @@ set fdm=marker
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set list lcs=tab:`\ 
-" }}}1
+set list lcs=tab:`\
 
-" set - lines 
-" {{{1
+" set - lines
 set backupdir=~/.vim/bak
 if !isdirectory(expand(&backupdir))
     call mkdir(expand(&backupdir))
@@ -197,6 +233,5 @@ if has('persistent_undo')
     if !isdirectory(expand(&undodir))
         call mkdir(expand(&undodir))
     endif
-endif 
-" }}}1
+endif
 
