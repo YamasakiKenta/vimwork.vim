@@ -1,5 +1,7 @@
-include javascript/* 
+include javascript/*
 include css/*
+snippet viewport
+    <meta name="viewport" content="width=device-width">
 snippet knockout
     <!-- knockout --> <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
 snippet highstock
@@ -13,7 +15,7 @@ snippet leaflet
 snippet jquery
     <!-- jquery --> <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <!-- jquery --> <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <!-- jquery --> <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>    
+    <!-- jquery --> <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 snippet d3
     <!-- d3 --> <script src="https://d3js.org/d3.v3.min.js"></script>
 snippet angularJS
@@ -32,7 +34,7 @@ snippet enchant
     <!-- {wget http://enchantjs.com/live-sample/chara1.png} -->
     <!-- {wget http://github.com/uei/enchant.js-builds/archive/v0.8.2-b.zip & unzip enchant.js-builds-0.8.2-b.zip} -->
 snippet bootstrap3
-alias bs bootstrap 
+alias bs bootstrap
   <!-- bootstrap3 --> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <!-- bootstrap3 --> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
   <!-- bootstrap3 --> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -45,10 +47,10 @@ snippet datatables
     <!-- datatables --> <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
     <!-- datatables --> <script src="https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 snippet head
-    <!-- 
+    <!--
      =============================================================================
      ${1:FILE: `expand("%:t")`}
      Creation Date: `strftime("%Y/%m/%d %H:%M:%S")`
      Last Modified: `strftime("%Y/%m/%d %H:%M:%S")`
-     ============================================================================= 
+     =============================================================================
      -->
