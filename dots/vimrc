@@ -161,6 +161,7 @@ vnoremap < <gv|"
 vnoremap > >gv|"
 nnoremap go yypC
 nnoremap gO yyPC
+nnoremap n nzz
 
 so $VIMRUNTIME/macros/matchit.vim
 
