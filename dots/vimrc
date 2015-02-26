@@ -12,6 +12,7 @@ endif
 
 call neobundle#begin()
 
+NeoBundle 'vim-scripts/smarty-syntax'
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'thinca/vim-partedit'
@@ -40,6 +41,10 @@ if neobundle#tap('vim-quickrun') "{{{
                 \ 'command': 'dmcs',
                 \ 'exec': ['%c %o %s -out:%s:p:r.exe', 'mono %s:p:r.exe %a', 'rm -f %s:p:r.exe'],
                 \ 'tempfile': '%{tempname()}.cs',
+                \ },
+                \ 'java' : {
+                \ 'hook/output_encode/enable' : 1,
+                \ 'hook/output_encode/encoding' : 'sjis',
                 \ },
                 \ '_' : {
                 \ 'hook/time/enable' : 1,
@@ -75,6 +80,7 @@ if neobundle#tap('qfixgrep') "{{{
 
     " QFixHowm/QFixGrepの結果表示にロケーションリストを使用する/しない
     " let QFix_UseLocationList = 1
+    let g:QFixWin_QuickFixTitleReg = '\cQuickfix'
 endif "}}}
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -161,7 +167,7 @@ vnoremap < <gv|"
 vnoremap > >gv|"
 nnoremap go yypC
 nnoremap gO yyPC
-nnoremap n nzz
+" nnoremap n nzz
 
 so $VIMRUNTIME/macros/matchit.vim
 
