@@ -46,6 +46,10 @@ if neobundle#tap('vim-quickrun') "{{{
                 \ 'hook/output_encode/enable' : 1,
                 \ 'hook/output_encode/encoding' : 'sjis',
                 \ },
+                \ 'php' : {
+                \ 'hook/output_encode/enable' : 1,
+                \ 'hook/output_encode/encoding' : 'utf-8',
+                \ },
                 \ '_' : {
                 \ 'hook/time/enable' : 1,
                 \ 'hook/output_encode/enable' : 1,
