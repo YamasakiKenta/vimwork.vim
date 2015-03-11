@@ -12,17 +12,27 @@ endif
 
 call neobundle#begin()
 
+" NeoBundle 'Yggdroot/indentLine' " 2014.12.20
 NeoBundle 'vim-scripts/smarty-syntax'
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'thinca/vim-partedit'
-NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'thinca/vim-qfreplace'
-NeoBundleLazy  'Shougo/unite-outline'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundleLazy 'Shougo/unite-outline'
+NeoBundleLazy 'ujihisa/unite-colorscheme'
 " NeoBundle 'kchmck/vim-coffee-script'
 
+NeoBundle 'Shougo/vimfiler'
+if neobundle#tap('incsearch.vim') "{{{
+    function! neobundle#tapped.hooks.on_source(bundle)
+        " let g:vimfiler_as_default_explorer  = 1  " # 初期filer
+        let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
+    endfunction
+endif "}}}
 NeoBundle 'thinca/vim-quickrun'
 if neobundle#tap('vim-quickrun') "{{{
     call neobundle#config({'autoload': {'commands': 'QuickRun'}})
