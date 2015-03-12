@@ -1,5 +1,7 @@
 include javascript/*
 include css/*
+snippet prefixfree
+    <!-- prefixfree --> <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 snippet viewport
     <meta name="viewport" content="width=device-width">
 snippet knockout
@@ -13,8 +15,10 @@ snippet leaflet
     <!-- leaflet --> <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
     <!-- leaflet --> <script src="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 snippet jquery
-    <!-- jquery --> <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <!-- jquery --> <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+snippet jquery-ui
+alias jqueryui
+    <!-- jquery --> <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <!-- jquery --> <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 snippet d3
     <!-- d3 --> <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -43,14 +47,6 @@ snippet phaser
 snippet datatables
     <!-- datatables --> <link rel="stylesheet" href="https://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
     <!-- datatables --> <script src="https://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
-
+snippet datatable-bs
     <!-- datatables --> <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
     <!-- datatables --> <script src="https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-snippet head
-    <!--
-     =============================================================================
-     ${1:FILE: `expand("%:t")`}
-     Creation Date: `strftime("%Y/%m/%d %H:%M:%S")`
-     Last Modified: `strftime("%Y/%m/%d %H:%M:%S")`
-     =============================================================================
-     -->
