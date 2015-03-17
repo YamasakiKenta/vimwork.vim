@@ -26,6 +26,21 @@ NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 " NeoBundle 'kchmck/vim-coffee-script'
 
+NeoBundle 'Shougo/neocomplete.vim'
+if neobundle#tap('neocomplete.vim') "{{{
+    call neobundle#config({
+                \ 'disabled' : !has('lua')&&0,
+                \ 'vim_version' : '7.3.885'
+                \ })
+    function! neobundle#tapped.hooks.on_source(bundle)
+      " call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
+      " let g:neocomplete#enable_at_startup = 1
+      let g:neocomplete#sources = {}
+      let g:neocomplete#sources._ = ['snippets_complete']
+      imap <C-k>  <Plug>(neocomplete_start_unite_complete)
+      imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)
+    endfunction
+endif "}}}
 NeoBundle 'Shougo/vimfiler'
 if neobundle#tap('incsearch.vim') "{{{
     function! neobundle#tapped.hooks.on_source(bundle)
