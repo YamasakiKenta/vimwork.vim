@@ -1,5 +1,27 @@
 include javascript/*
 include css/*
+snippet qunit
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>QUnit Example</title>
+            <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.17.1.css">
+        </head>
+        <body>
+            <div id="qunit"></div>
+            <div id="qunit-fixture"></div>
+            <input id="test-input" type="">
+            <!-- jquery --> <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+            <script src="https://code.jquery.com/qunit/qunit-1.17.1.js"></script>
+            <script>
+                QUnit.test( "hello test", function( assert ) {
+                    assert.ok( 1 == "1", "通ったよ" );
+                    assert.ok( 2 == "1", "通らないよ" );
+                });
+            </script>
+        </body>
+    </html>
 snippet prefixfree
     <!-- prefixfree --> <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 snippet viewport

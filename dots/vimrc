@@ -23,6 +23,7 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
+NeoBundle 'karakaram/vim-quickrun-phpunit'
 
 " NeoBundle 'Shougo/neocomplete.vim'
 if neobundle#tap('neocomplete.vim') "{{{
