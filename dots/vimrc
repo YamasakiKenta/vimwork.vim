@@ -24,6 +24,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundle 'karakaram/vim-quickrun-phpunit'
+NeoBundle 'vim-scripts/JavaScript-Indent' " 2015.03.30
 
 " NeoBundle 'Shougo/neocomplete.vim'
 if neobundle#tap('neocomplete.vim') "{{{
@@ -284,6 +285,7 @@ endfunction
 " set
 " ****************************************
 " set synmaxcol=1000  " 行が長いと思い
+set autoread " 2015.04.10
 set ve=block
 set nowrap
 set noswapfile
@@ -293,6 +295,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set list lcs=tab:`\ |
+" set isk+=-
 
 " set - lines
 set backupdir=~/.vim/bak
