@@ -41,7 +41,8 @@ if neobundle#tap('neocomplete.vim') "{{{
       imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)
     endfunction
 endif "}}}
-NeoBundle 'Shougo/vimfiler', {'rev': 'ver.4.1'}
+" NeoBundle 'Shougo/vimfiler', {'rev': 'ver.4.1'}
+NeoBundle 'Shougo/vimfiler'
 if neobundle#tap('vimfiler.vim') "{{{
     function! neobundle#tapped.hooks.on_source(bundle)
         " let g:vimfiler_as_default_explorer  = 1  " # 初期filer
