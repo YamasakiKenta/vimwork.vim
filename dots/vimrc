@@ -216,7 +216,7 @@ function! s:GetBufferDirectory()
     return dir . (exists('+shellslash') && !&shellslash ? '\' : '/')
 endfunction
 
-nnoremap <C-s> 	 :<C-u>SetNum<CR>|"
+nnoremap <C-s> :<C-u>SetNum<CR>|"
 command! -narg=0 SetNum call <SID>set_num()
 function! s:set_num() "{{{
 " --------------------
