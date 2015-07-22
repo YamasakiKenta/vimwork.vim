@@ -12,6 +12,9 @@ endif
 
 call neobundle#begin()
 
+ NeoBundleFetch 'YamasakiKenta/vimwork.vim'
+ NeoBundleFetch 'Shougo/neobundle.vim'
+
 " NeoBundle 'Yggdroot/indentLine' " 2014.12.20
 NeoBundle 'vim-scripts/smarty-syntax'
 NeoBundle 'StanAngeloff/php.vim'
