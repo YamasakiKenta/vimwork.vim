@@ -28,6 +28,10 @@ NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundle 'karakaram/vim-quickrun-phpunit'
 NeoBundle 'vim-scripts/JavaScript-Indent' " 2015.03.30
+" NeoBundle 'rhysd/vim-color-splatoon' " 2015.08.10
+NeoBundle 'nanotech/jellybeans.vim' " 2015.08.11
+NeoBundle 'sjl/badwolf' " 2015.08.11
+NeoBundle 'jnurmine/Zenburn' " 2015.08.11
 
 " NeoBundle 'Shougo/neocomplete.vim'
 if neobundle#tap('neocomplete.vim') "{{{
@@ -192,8 +196,8 @@ nnoremap <leader>fp<CR> :<C-u>let @+ = expand("%:p")\|echo @+<CR>|"
 nnoremap <leader>ft<CR> :<C-u>let @+ = expand("%:t")\|echo @+<CR>|"
 nnoremap <S-Space> za|"
 nnoremap <ESC><ESC> :<C-u>noh<CR><ESC>|"
-nnoremap <C-n> :<C-u>cn<CR>|"
-nnoremap <C-p> :<C-u>cN<CR>|"
+nnoremap <C-n> :<C-u>cn<CR>:e<cr>|"
+nnoremap <C-p> :<C-u>cN<CR>:e<cr>|"
 nnoremap <C-j> j.|"
 nnoremap <C-k> n.|"
 nnoremap * :<C-u>set hls<CR>:let @/ = '\<'.expand("<cword>").'\>'\|echo @/<CR>|"
