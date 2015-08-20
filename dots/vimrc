@@ -108,6 +108,7 @@ endif
 NeoBundle 'vim-scripts/Align'
 if neobundle#tap('Align') "{{{
     let g:Align_xstrlen = 3 " 重いらしい
+    command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
     " http://d.hatena.ne.jp/gnarl/20120104/1325668347
 endif "}}}
 NeoBundle 'fuenor/qfixgrep'
@@ -136,6 +137,7 @@ if neobundle#tap('unite.vim') "{{{
     " nnoremap [unite]m :<c-u>Unite file_mru directory_mru
     nnoremap [unite]m :<c-u>Unite file_mru
     nnoremap [unite]r :<c-u>UniteResume
+    nnoremap [unite]g :<c-u>Unite file_rec/git
 endif "}}}
 NeoBundle 'mattn/emmet-vim'
 if neobundle#tap('emmet-vim') "{{{
