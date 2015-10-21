@@ -310,6 +310,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set list lcs=tab:`\ |
+set nf=""
 " set isk+=-
 
 " set - lines
