@@ -50,7 +50,7 @@ if neobundle#tap('neocomplete.vim') "{{{
 endif "}}}
 " NeoBundle 'Shougo/vimfiler', {'rev': 'ver.4.1'}
 NeoBundle 'Shougo/vimfiler'
-if neobundle#tap('vimfiler.vim') "{{{
+if neobundle#tap('vimfiler') "{{{
     function! neobundle#tapped.hooks.on_source(bundle)
         " let g:vimfiler_as_default_explorer  = 1  " # 初期filer
         let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
