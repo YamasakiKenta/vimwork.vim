@@ -311,6 +311,7 @@ set expandtab
 set list lcs=tab:`\ |
 set nf=""
 " set isk+=-
+set viminfo+=n~/.vim/viminfo
 
 " set - lines
 set backupdir=~/.vim/bak
