@@ -10,7 +10,7 @@ if has('vim_starting')
 endif
 
 
-call neobundle#begin()
+call neobundle#begin(substitute(expand('~/.vim/bundle/'), '\\', '/', 'g'))
 
  NeoBundleFetch 'YamasakiKenta/vimwork.vim'
  NeoBundleFetch 'Shougo/neobundle.vim'
