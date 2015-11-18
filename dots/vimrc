@@ -160,7 +160,9 @@ if neobundle#tap('emmet-vim') "{{{
         \ :"\<TAB>"
     endfunction
 endif "}}}
-NeoBundle 'joonty/vdebug'
+NeoBundle 'joonty/vdebug', {
+    \ 'disabled': has('python3')
+    \ }
 if neobundle#tap('vdebug') "{{{
     " let g:vdebug_keymap = {
     "             \ 'run'               : '<F5>',   F8
