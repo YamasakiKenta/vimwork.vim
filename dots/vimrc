@@ -214,6 +214,7 @@ vnoremap < <gv|"
 vnoremap > >gv|"
 nnoremap go yypC
 nnoremap gO yyPC
+vnoremap / "ay/<c-r>a<cr><c-o>|"
 " nnoremap n nzz
 
 so $VIMRUNTIME/macros/matchit.vim
