@@ -19,7 +19,7 @@ call neobundle#begin(substitute(expand('~/.vim/bundle/'), '\\', '/', 'g'))
 NeoBundle 'vim-scripts/smarty-syntax'
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'thinca/vim-partedit'
+" NeoBundle 'thinca/vim-partedit' 2015.12.15:OFF
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'thinca/vim-qfreplace'
