@@ -12,13 +12,12 @@ endif
 
 call neobundle#begin(substitute(expand('~/.vim/bundle/'), '\\', '/', 'g'))
 
- NeoBundleFetch 'YamasakiKenta/vimwork.vim'
- NeoBundleFetch 'Shougo/neobundle.vim'
-
-" NeoBundle 'Yggdroot/indentLine' " 2014.12.20
-NeoBundle 'vim-scripts/smarty-syntax'
-NeoBundle 'StanAngeloff/php.vim'
-NeoBundle 'tpope/vim-surround'
+NeoBundleFetch 'YamasakiKenta/vimwork.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Yggdroot/indentLine' " 2014.12.20
+" NeoBundle 'vim-scripts/smarty-syntax'
+" NeoBundle 'StanAngeloff/php.vim'
+" NeoBundle 'tpope/vim-surround'
 " NeoBundle 'thinca/vim-partedit' 2015.12.15:OFF
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -26,12 +25,12 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
-NeoBundle 'karakaram/vim-quickrun-phpunit'
-NeoBundle 'vim-scripts/JavaScript-Indent' " 2015.03.30
+" NeoBundle 'karakaram/vim-quickrun-phpunit'
+" NeoBundle 'vim-scripts/JavaScript-Indent' " 2015.03.30
 " NeoBundle 'rhysd/vim-color-splatoon' " 2015.08.10
-NeoBundle 'nanotech/jellybeans.vim' " 2015.08.11
-NeoBundle 'sjl/badwolf' " 2015.08.11
-NeoBundle 'jnurmine/Zenburn' " 2015.08.11
+" NeoBundle 'nanotech/jellybeans.vim' " 2015.08.11
+" NeoBundle 'sjl/badwolf' " 2015.08.11
+" NeoBundle 'jnurmine/Zenburn' " 2015.08.11
 
 " NeoBundle 'Shougo/neocomplete.vim'
 if neobundle#tap('neocomplete.vim') "{{{
@@ -48,12 +47,12 @@ if neobundle#tap('neocomplete.vim') "{{{
       imap <C-q>  <Plug>(neocomplete_start_unite_quick_match)
     endfunction
 endif "}}}
-NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimfiler', {'rev': 'ver.4.1'} " 2016.01.12 : パスが表示されないのでバージョンを変更した
 if neobundle#tap('vimfiler') "{{{
-    function! neobundle#tapped.hooks.on_source(bundle)
+    " function! neobundle#tapped.hooks.on_source(bundle)
         " let g:vimfiler_as_default_explorer  = 1  " # 初期filer
-        let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
-    endfunction
+        " let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
+    " endfunction
 endif "}}}
 NeoBundle 'thinca/vim-quickrun'
 if neobundle#tap('vim-quickrun') "{{{
