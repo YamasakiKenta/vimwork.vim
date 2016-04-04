@@ -5,8 +5,5 @@ set go-=m
 set guifontwide=MS_Gothic:h10
 set guifont=VL_ゴシック:h10:cSHIFTJIS
 nnoremap <A-Space> :<C-u>simalt ~<CR>|"
-" set visualbell t_vb=
-" highlight CursorIM guibg=Magenta guifg=NONE
-"
 set background=dark
 colo solarized
