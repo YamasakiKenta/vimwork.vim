@@ -268,6 +268,23 @@ endfunction
 " --------------------
 " set
 " --------------------
+" http://lambdalisue.hatenablog.com/entry/2015/12/25/000046
+let g:loaded_gzip = 1
+let g:loaded_tar = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
+let g:loaded_rrhelper = 1
+let g:loaded_2html_plugin = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_getscript = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+
 set autoread
 set ve=block
 set nowrap
@@ -281,6 +298,9 @@ set list lcs=tab:.\ |
 set nf=""
 set viminfo+=n~/.cache/viminfo
 " set isk+=-
+
+vnoremap / "ay/<c-r>a<cr><c-o>
+nnoremap <leader>cg :<c-u>exe('cd '.system('git rev-parse --show-cdup'))
 
 " set - lines
 set backupdir=~/.cache/bak
