@@ -5,29 +5,36 @@ if &compatible
     set nocompatible
 endif
 
-set rtp+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set rtp^=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.cache/dein'))
 
 call dein#add('YamasakiKenta/vimwork.vim', {'rtp': ''})
-call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Yggdroot/indentLine') " 2014.12.20
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('thinca/vim-qfreplace')
 call dein#add('tpope/vim-fugitive')
-call dein#add('Shougo/unite-outline')
-call dein#add('ujihisa/unite-colorscheme')
+" call dein#add('Shougo/unite-outline')
+" call dein#add('ujihisa/unite-colorscheme')
+call dein#add('thinca/vim-prettyprint') " 2016.04.20 - 普段は使わない
 
-" call dein#add( 'Shougo/neocomplete.vim' )
+" call dein#add('haya14busa/vim-debugger')
+
+call dein#add('itchyny/vim-parenmatch')
+if dein#tap('vim-parenmatch')
+        let g:loaded_matchparen = 1
+endif
+
+" call dein#add('Shougo/neocomplete.vim')
 if dein#tap('neocomplete.vim')
     call dein({
                 \ 'disabled' : !has('lua')&&0,
                 \ 'vim_version' : '7.3.885'
                 \ })
     function! dein.hooks.on_source(bundle)
-      " call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
-      " let g:neocomplete#enable_at_startup = 1
+      call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
+      let g:neocomplete#enable_at_startup = 1
       let g:neocomplete#sources = {}
       let g:neocomplete#sources._ = ['snippets_complete']
       imap <C-k>  <Plug>(neocomplete_start_unite_complete)
@@ -35,15 +42,14 @@ if dein#tap('neocomplete.vim')
     endfunction
 endif
 
-call dein#add( 'Shougo/vimfiler', {'rev': 'ver.4.1'} ) " 2016.01.12 : 最新ではパスが表示されない
+call dein#add('Shougo/vimfiler', {'rev': 'ver.4.1', 'frozen': 1}) " 2016.01.12 : 最新ではパスが表示されない
 if dein#tap('vimfiler')
     let g:vimfiler_as_default_explorer  = 1  " # 初期filer
     let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 endif
 
-call dein#add( 'thinca/vim-quickrun' )
+call dein#add('thinca/vim-quickrun')
 if dein#tap('vim-quickrun')
-    " call dein({'autoload': {'commands': 'QuickRun'}})
     let g:quickrun_config = {
                 \ 'cpp' : {
                 \ 'hook/output_encode/enable' : 1,
@@ -80,43 +86,35 @@ if dein#tap('vim-quickrun')
                 \ 'tempfile': '{tempname()}.vbs',
             \ }
         \ }
-       " \ 'runner' : 'vimproc',
 endif
 
 call dein#add('lilydjwg/colorizer')
 if dein#tap('colorizer')
     let g:colorizer_startup = 0
-    " call dein#config({
-    " \ 'autoload': {
-    " \ 'commands': ['ColorHighlight', 'ColorToggle', 'ColorClear'],
-    " \ }})
 endif
 
-call dein#add( 'bronson/vim-trailing-whitespace' )
+call dein#add('bronson/vim-trailing-whitespace')
 if dein#tap('vim-trailing-whitespace')
-    let g:extra_whitespace_ignored_filetypes = ['unite']
+    let g:extra_whitespace_ignored_filetypes = [
+                \ 'unite'
+                \ ]
 endif
 
-call dein#add( 'vim-scripts/Align' )
+call dein#add('vim-scripts/Align')
 if dein#tap('Align')
-    let g:Align_xstrlen = 3 " 重いらしい
+    let g:Align_xstrlen = 3
     command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
-    " http://d.hatena.ne.jp/gnarl/20120104/1325668347
 endif
 
-call dein#add( 'fuenor/qfixgrep' )
+call dein#add('fuenor/qfixgrep')
 if dein#tap('qfixgrep')
-    " QuickFixウィンドウでもプレビューや絞り込みを有効化
     let QFixWin_EnableMode = 1
-
-    " QFixHowm/QFixGrepの結果表示にロケーションリストを使用する/しない
-    " let QFix_UseLocationList = 1
     let g:QFixWin_QuickFixTitleReg = '\cQuickfix'
     let g:QFixWin_LocationListTitleReg = '\cLocation'
 endif
 
-call dein#add( 'Shougo/neosnippet' )
-call dein#add( 'Shougo/neosnippet-snippets' )
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
 if dein#tap('neosnippet')
     let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/YamasakiKenta/vimwork.vim/snippets'
     imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
@@ -126,12 +124,12 @@ call dein#add('Shougo/unite.vim')
 if dein#tap('unite.vim')
     let g:unite_enable_start_insert = 1
     nmap <leader>u [unite]
-    nnoremap [unite]m :<c-u>Unite file_mru
+    nnoremap [unite]m :<c-u>Unite neomru/file
     nnoremap [unite]r :<c-u>UniteResume
     nnoremap [unite]g :<c-u>Unite file_rec/git
 endif
 
-call dein#add( 'mattn/emmet-vim' )
+call dein#add('mattn/emmet-vim')
 if dein#tap('emmet-vim')
     let g:user_emmet_settings = {
                 \ 'variables': {
@@ -144,7 +142,7 @@ if dein#tap('emmet-vim')
                 \ :"\<TAB>"
 endif
 
-call dein#add( 'joonty/vdebug', {
+call dein#add('joonty/vdebug', {
     \ 'disabled': has('python3')
     \ })
 if dein#tap('vdebug')
@@ -185,8 +183,6 @@ nnoremap go yypC
 nnoremap gO yyPC
 vnoremap / "ay/<c-r>a<cr><c-o>|"
 
-so $VIMRUNTIME/macros/matchit.vim
-
 " ****************************************
 " command
 " ****************************************
@@ -199,13 +195,13 @@ endfunction
 
 nnoremap <C-s> :<C-u>SetNum<CR>|"
 command! -narg=0 SetNum call <SID>set_num()
-function! s:set_num()
+
 " --------------------
-"
 " 連番の作成
-" カーソル以降の数字を、前の数字にひとつ加算したものにする ( マイナスは、考慮しない )
+" カーソル以降の数字を、前の数字にひとつ加算したものにする (マイナスは、考慮しない)
 " --------------------
-"
+function! s:set_num()
+
   " カーソル位置の取得
   let pos = getpos(".")
   let lnum = pos[1]
@@ -246,7 +242,7 @@ function! s:set_num()
     let str = [
           \ substitute(head, '\d\+$','',''),
           \ get(nums, head_ncnt, 0) + 1,
-          \ strpart(lstr, col ),
+          \ strpart(lstr, col),
           \ ]
 
     " 書き込み
@@ -268,6 +264,7 @@ endfunction
 " --------------------
 " set
 " --------------------
+
 " http://lambdalisue.hatenablog.com/entry/2015/12/25/000046
 let g:loaded_gzip = 1
 let g:loaded_tar = 1
@@ -285,6 +282,17 @@ let g:loaded_netrwPlugin = 1
 let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
 
+" let php_sql_query = 1
+" let php_baselib = 1
+" let php_htmlInStrings = 1
+" let php_oldStyle = 1
+" let php_asp_tags = 1
+" let php_noShortTags = 1
+" let php_parent_error_close = 1
+" let php_parent_error_open = 1
+" let php_folding = 1
+" let php_sync_method = -1
+
 set autoread
 set ve=block
 set nowrap
@@ -297,12 +305,10 @@ set expandtab
 set list lcs=tab:.\ |
 set nf=""
 set viminfo+=n~/.cache/viminfo
-" set isk+=-
 
 vnoremap / "ay/<c-r>a<cr><c-o>
 nnoremap <leader>cg :<c-u>exe('cd '.system('git rev-parse --show-cdup'))
 
-" set - lines
 set backupdir=~/.cache/bak
 if !isdirectory(expand(&backupdir))
     call mkdir(expand(&backupdir))
