@@ -51,41 +51,41 @@ endif
 call dein#add('thinca/vim-quickrun')
 if dein#tap('vim-quickrun')
     let g:quickrun_config = {
-                \ 'cpp' : {
-                \ 'hook/output_encode/enable' : 1,
-                \ 'hook/output_encode/encoding' : 'sjis',
-                \ 'type': 'c/gcc',
-                \ },
-                \ 'c' : {
-                \ 'hook/output_encode/enable' : 1,
-                \ 'hook/output_encode/encoding' : 'sjis',
-                \ 'type': 'c/gcc',
-                \ },
-                \ 'cs' : {
-                \ 'command': 'dmcs',
-                \ 'exec': ['%c %o %s -out:%s:p:r.exe', 'mono %s:p:r.exe %a', 'rm -f %s:p:r.exe'],
-                \ 'tempfile': '%{tempname()}.cs',
-                \ },
-                \ 'java' : {
-                \ 'hook/output_encode/enable' : 1,
-                \ 'hook/output_encode/encoding' : 'sjis',
-                \ },
-                \ 'php' : {
-                \ 'hook/output_encode/enable' : 1,
-                \ 'hook/output_encode/encoding' : 'utf-8',
-                \ },
-                \ '_' : {
-                \ 'hook/time/enable' : 1,
-                \ 'hook/output_encode/enable' : 1,
-                \ 'hook/output_encode/encoding' : 'sjis',
-                \ 'debug': 'x',
-                \ },
-                \ 'vb' : {
-                \ 'command': 'cscript',
-                \ 'cmdopt': '//Nologo',
-                \ 'tempfile': '{tempname()}.vbs',
-            \ }
+            \ 'cpp' : {
+            \ 'hook/output_encode/enable' : 1,
+            \ 'hook/output_encode/encoding' : 'sjis',
+            \ 'type': 'c/gcc',
+            \ },
+            \ 'c' : {
+            \ 'hook/output_encode/enable' : 1,
+            \ 'hook/output_encode/encoding' : 'sjis',
+            \ 'type': 'c/gcc',
+            \ },
+            \ 'cs' : {
+            \ 'command': 'dmcs',
+            \ 'exec': ['%c %o %s -out:%s:p:r.exe', 'mono %s:p:r.exe %a', 'rm -f %s:p:r.exe'],
+            \ 'tempfile': '%{tempname()}.cs',
+            \ },
+            \ 'java' : {
+            \ 'hook/output_encode/enable' : 1,
+            \ 'hook/output_encode/encoding' : 'sjis',
+            \ },
+            \ 'php' : {
+            \ 'hook/output_encode/enable' : 1,
+            \ 'hook/output_encode/encoding' : 'utf-8',
+            \ },
+            \ '_' : {
+            \ 'hook/time/enable' : 1,
+            \ 'hook/output_encode/enable' : 1,
+            \ 'hook/output_encode/encoding' : 'sjis',
+            \ 'debug': 'x',
+            \ },
+            \ 'vb' : {
+            \ 'command': 'cscript',
+            \ 'cmdopt': '//Nologo',
+            \ 'tempfile': '{tempname()}.vbs',
         \ }
+    \ }
 endif
 
 call dein#add('lilydjwg/colorizer')
