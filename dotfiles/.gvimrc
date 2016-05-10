@@ -7,3 +7,6 @@ set guifont=VL_ゴシック:h10:cSHIFTJIS
 nnoremap <A-Space> :<C-u>simalt ~<CR>|"
 set background=dark
 colo solarized
+source $VIMRUNTIME/delmenu.vim
+set langmenu=ja_jp.utf-8
+source $VIMRUNTIME/menu.vim
