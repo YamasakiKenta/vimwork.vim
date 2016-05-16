@@ -305,6 +305,7 @@ set expandtab
 set list lcs=tab:.\ |
 set nf=""
 set viminfo+=n~/.cache/viminfo
+set wildmode=longest:full,full
 
 vnoremap / "ay/<c-r>a<cr><c-o>
 nnoremap <leader>cg :<c-u>exe('cd '.system('git rev-parse --show-cdup'))
