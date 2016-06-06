@@ -9,17 +9,19 @@ set rtp^=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.cache/dein'))
 
+call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 call dein#add('YamasakiKenta/vimwork.vim', {'rtp': ''})
 call dein#add('Shougo/neomru.vim')
 call dein#add('Yggdroot/indentLine') " 2014.12.20
-call dein#add('altercation/vim-colors-solarized')
+call dein#add('morhetz/gruvbox')
 call dein#add('thinca/vim-qfreplace')
 call dein#add('tpope/vim-fugitive')
-" call dein#add('Shougo/unite-outline')
-" call dein#add('ujihisa/unite-colorscheme')
 call dein#add('thinca/vim-prettyprint') " 2016.04.20 - 普段は使わない
 
-" call dein#add('haya14busa/vim-debugger')
+" color
+call dein#add('ujihisa/unite-colorscheme')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('w0ng/vim-hybrid')
 
 call dein#add('itchyny/vim-parenmatch')
 if dein#tap('vim-parenmatch')
@@ -305,7 +307,7 @@ set expandtab
 set list lcs=tab:.\ |
 set nf=""
 set viminfo+=n~/.cache/viminfo
-set wildmode=longest:full,full
+" set wildmode=longest:full,full
 
 vnoremap / "ay/<c-r>a<cr><c-o>
 nnoremap <leader>cg :<c-u>exe('cd '.system('git rev-parse --show-cdup'))
