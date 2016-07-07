@@ -5,8 +5,8 @@ set go-=m
 set guifontwide=MS_Gothic:h10
 set guifont=VL_ゴシック:h10:cSHIFTJIS
 nnoremap <A-Space> :<C-u>simalt ~<CR>|"
-set background=dark
-colo solarized
+" set background=dark
+" colo solarized
 " colo gruvbox
  "colo hybrid
 source $VIMRUNTIME/delmenu.vim

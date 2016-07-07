@@ -20,8 +20,10 @@ call dein#add('thinca/vim-prettyprint') " 2016.04.20 - 普段は使わない
 
 " color
 call dein#add('ujihisa/unite-colorscheme')
-call dein#add('altercation/vim-colors-solarized')
-call dein#add('w0ng/vim-hybrid')
+" call dein#add('altercation/vim-colors-solarized')
+" call dein#add('w0ng/vim-hybrid')
+" call dein#add('sjl/badwolf') " 2016.6.23
+" call dein#add('dracula/vim') " 2016.6.27
 
 call dein#add('itchyny/vim-parenmatch')
 if dein#tap('vim-parenmatch')
@@ -309,13 +311,19 @@ set nf=""
 set viminfo+=n~/.cache/viminfo
 " set wildmode=longest:full,full
 
-vnoremap / "ay/<c-r>a<cr><c-o>
-nnoremap <leader>cg :<c-u>exe('cd '.system('git rev-parse --show-cdup'))
+" vnoremap / "ay/<c-r>a<cr><c-o>
+" nnoremap <leader>cg :<c-u>exe('cd '.system('git rev-parse --show-cdup'))
 
 set backupdir=~/.cache/bak
 if !isdirectory(expand(&backupdir))
     call mkdir(expand(&backupdir))
 endif
+
+aug vimwork
+    au!
+    au BufNewFile,BufRead *.tag setf html
+aug END
+
 
 if has('persistent_undo')
     set noudf
