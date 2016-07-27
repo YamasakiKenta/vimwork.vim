@@ -1,8 +1,0 @@
-snippet     redirect
-            $this->redirect(array=>('controller'=>${1},'action'=>${2}));
-snippet     setFlash
-abbr        メッセージを作成します
-            $this->Session->setFlash(${1:''});
-snippet     url
-abbr        View用のURL
-            <?php $this->html->url(array('controller'=>'${1}', 'action'=>'${2}'))?>

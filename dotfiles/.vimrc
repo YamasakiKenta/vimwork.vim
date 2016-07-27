@@ -5,21 +5,21 @@ if &compatible
     set nocompatible
 endif
 
-set rtp^=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set rtp^=~/.cache/plugin/dein.vim
 
 call dein#begin(expand('~/.cache/dein'))
 
-call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-call dein#add('YamasakiKenta/vimwork.vim', {'rtp': ''})
+call dein#add('~/.cache/plugin/dein.vim')
+call dein#add('~/.cache/plugin/vimwork.vim', {'rtp': ''})
 call dein#add('Shougo/neomru.vim')
 call dein#add('Yggdroot/indentLine') " 2014.12.20
-call dein#add('morhetz/gruvbox')
 call dein#add('thinca/vim-qfreplace')
 call dein#add('tpope/vim-fugitive')
-call dein#add('thinca/vim-prettyprint') " 2016.04.20 - 普段は使わない
+" call dein#add('thinca/vim-prettyprint') " 2016.04.20
 
 " color
 call dein#add('ujihisa/unite-colorscheme')
+" call dein#add('morhetz/gruvbox')
 " call dein#add('altercation/vim-colors-solarized')
 " call dein#add('w0ng/vim-hybrid')
 " call dein#add('sjl/badwolf') " 2016.6.23
@@ -46,7 +46,8 @@ if dein#tap('neocomplete.vim')
     endfunction
 endif
 
-call dein#add('Shougo/vimfiler', {'rev': 'ver.4.1', 'frozen': 1}) " 2016.01.12 : 最新ではパスが表示されない
+" call dein#add('Shougo/vimfiler', {'rev': 'ver.4.1', 'frozen': 1}) " 2016.01.12 : 最新ではパスが表示されない
+call dein#add('Shougo/vimfiler') " 2016.01.12 - ver.4.1は安定している
 if dein#tap('vimfiler')
     let g:vimfiler_as_default_explorer  = 1  " # 初期filer
     let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
@@ -147,7 +148,7 @@ if dein#tap('emmet-vim')
 endif
 
 call dein#add('joonty/vdebug', {
-    \ 'disabled': has('python3')
+    \ 'disabled': has('python')
     \ })
 if dein#tap('vdebug')
     let g:vdebug_keymap = {
@@ -323,7 +324,6 @@ aug vimwork
     au!
     au BufNewFile,BufRead *.tag setf html
 aug END
-
 
 if has('persistent_undo')
     set noudf
