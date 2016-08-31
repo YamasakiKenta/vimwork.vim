@@ -12,3 +12,4 @@ nnoremap <A-Space> :<C-u>simalt ~<CR>|"
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
 source $VIMRUNTIME/menu.vim
+set vb t_vb=

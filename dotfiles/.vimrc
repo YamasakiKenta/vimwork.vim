@@ -4,28 +4,26 @@
 if &compatible
     set nocompatible
 endif
-
 set rtp^=~/.cache/plugin/dein.vim
-
 call dein#begin(expand('~/.cache/dein'))
+" call dein#add('~/.cache/plugin/dein.vim', {'rtp': ''})
+" call dein#add('~/.cache/plugin/vimwork.vim', {'rtp': ''})
 
-call dein#add('~/.cache/plugin/dein.vim')
-call dein#add('~/.cache/plugin/vimwork.vim', {'rtp': ''})
 call dein#add('Shougo/neomru.vim')
-call dein#add('Yggdroot/indentLine') " 2014.12.20
-call dein#add('thinca/vim-qfreplace')
-call dein#add('tpope/vim-fugitive')
+" call dein#add('Yggdroot/indentLine') " 2014.12.20
+" call dein#add('thinca/vim-qfreplace')
+" call dein#add('tpope/vim-fugitive')
 " call dein#add('thinca/vim-prettyprint') " 2016.04.20
 
 " color
-call dein#add('ujihisa/unite-colorscheme')
+" call dein#add('ujihisa/unite-colorscheme')
 " call dein#add('morhetz/gruvbox')
 " call dein#add('altercation/vim-colors-solarized')
 " call dein#add('w0ng/vim-hybrid')
 " call dein#add('sjl/badwolf') " 2016.6.23
 " call dein#add('dracula/vim') " 2016.6.27
 
-call dein#add('itchyny/vim-parenmatch')
+" call dein#add('itchyny/vim-parenmatch')
 if dein#tap('vim-parenmatch')
         let g:loaded_matchparen = 1
 endif
@@ -49,10 +47,9 @@ endif
 " call dein#add('Shougo/vimfiler', {'rev': 'ver.4.1', 'frozen': 1}) " 2016.01.12 : 最新ではパスが表示されない
 call dein#add('Shougo/vimfiler') " 2016.01.12 - ver.4.1は安定している
 if dein#tap('vimfiler')
-    let g:vimfiler_as_default_explorer  = 1  " # 初期filer
+    let g:vimfiler_as_default_explorer  = 0  " # 初期filer
     let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 endif
-
 call dein#add('thinca/vim-quickrun')
 if dein#tap('vim-quickrun')
     let g:quickrun_config = {
@@ -93,7 +90,7 @@ if dein#tap('vim-quickrun')
     \ }
 endif
 
-call dein#add('lilydjwg/colorizer')
+" call dein#add('lilydjwg/colorizer')
 if dein#tap('colorizer')
     let g:colorizer_startup = 0
 endif
@@ -105,23 +102,23 @@ if dein#tap('vim-trailing-whitespace')
                 \ ]
 endif
 
-call dein#add('vim-scripts/Align')
+" call dein#add('vim-scripts/Align')
 if dein#tap('Align')
     let g:Align_xstrlen = 3
     command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
 endif
 
-call dein#add('fuenor/qfixgrep')
+" call dein#add('fuenor/qfixgrep')
 if dein#tap('qfixgrep')
     let QFixWin_EnableMode = 1
     let g:QFixWin_QuickFixTitleReg = '\cQuickfix'
     let g:QFixWin_LocationListTitleReg = '\cLocation'
 endif
 
-call dein#add('Shougo/neosnippet')
-call dein#add('Shougo/neosnippet-snippets')
+" call dein#add('Shougo/neosnippet')
+" call dein#add('Shougo/neosnippet-snippets')
 if dein#tap('neosnippet')
-    let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/YamasakiKenta/vimwork.vim/snippets'
+    let g:neosnippet#snippets_directory = '~/.cache/plugin/vimwork.vim/snippets'
     imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
 endif
 
@@ -164,7 +161,6 @@ if dein#tap('vdebug')
                 \ 'eval_under_cursor' : '<F12>',
                 \ }
 endif
-
 
 call dein#end()
 filetype plugin indent on
@@ -282,8 +278,8 @@ let g:loaded_vimball = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_getscript = 1
 let g:loaded_getscriptPlugin = 1
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
+" let g:loaded_netrw = 1 " #netrw必須 1/2
+" let g:loaded_netrwPlugin = 1 " #netrw必須 2/2
 let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
 
@@ -323,6 +319,7 @@ endif
 aug vimwork
     au!
     au BufNewFile,BufRead *.tag setf html
+    au BufNewFile,BufRead *.frm setf vb
 aug END
 
 if has('persistent_undo')
