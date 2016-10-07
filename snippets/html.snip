@@ -39,6 +39,18 @@ snippet highstock
 snippet leaflet
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <div id="map" style="height:100%;width:100%"></div>
+    <style>
+        body{padding:0:margin:0;}
+        html,body,#map{height:100%;width:100%;}
+    </style>
+    <script>
+        var map = L.map('map');
+        L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+          attribution: "<a href='http://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+        }).addTo(map);
+        map.setView([35.3622222, 138.7313889], 5);
+    </script>
 snippet jquery-ui
 alias jqueryui
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />

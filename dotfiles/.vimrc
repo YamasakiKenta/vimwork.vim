@@ -4,36 +4,38 @@
 if &compatible
     set nocompatible
 endif
+
 set rtp^=~/.cache/plugin/dein.vim
 call dein#begin(expand('~/.cache/dein'))
-" call dein#add('~/.cache/plugin/dein.vim', {'rtp': ''})
-" call dein#add('~/.cache/plugin/vimwork.vim', {'rtp': ''})
+" call dein#add('~/.cache/plugin/dein.vim', {'rtp': '', 'merged': 0})
+" call dein#add('~/.cache/plugin/vimwork.vim', {'rtp': '', 'merged': 0})
+" call dein#add('Shougo/denite.nvim', {'merged': 0})
 
-call dein#add('Shougo/neomru.vim')
-" call dein#add('Yggdroot/indentLine') " 2014.12.20
-" call dein#add('thinca/vim-qfreplace')
-" call dein#add('tpope/vim-fugitive')
-" call dein#add('thinca/vim-prettyprint') " 2016.04.20
+call dein#add('Shougo/neomru.vim', {'merged': 0})
+" call dein#add('Yggdroot/indentLine', {'merged': 0}) " 2014.12.20
+call dein#add('thinca/vim-qfreplace', {'merged': 0})
+" call dein#add('tpope/vim-fugitive', {'merged': 0})
+" call dein#add('thinca/vim-prettyprint', {'merged': 0}) " 2016.04.20
 
 " color
-" call dein#add('ujihisa/unite-colorscheme')
-" call dein#add('morhetz/gruvbox')
-" call dein#add('altercation/vim-colors-solarized')
-" call dein#add('w0ng/vim-hybrid')
-" call dein#add('sjl/badwolf') " 2016.6.23
-" call dein#add('dracula/vim') " 2016.6.27
+" call dein#add('ujihisa/unite-colorscheme', {'merged': 0})
+" call dein#add('morhetz/gruvbox', {'merged': 0})
+" call dein#add('altercation/vim-colors-solarized', {'merged': 0})
+" call dein#add('w0ng/vim-hybrid', {'merged': 0})
+" call dein#add('sjl/badwolf', {'merged': 0}) " 2016.6.23
+" call dein#add('dracula/vim', {'merged': 0}) " 2016.6.27
 
-" call dein#add('itchyny/vim-parenmatch')
+" call dein#add('itchyny/vim-parenmatch', {'merged': 0})
 if dein#tap('vim-parenmatch')
         let g:loaded_matchparen = 1
 endif
 
-" call dein#add('Shougo/neocomplete.vim')
+" call dein#add('Shougo/neocomplete.vim', {'merged': 0})
 if dein#tap('neocomplete.vim')
     call dein({
-                \ 'disabled' : !has('lua')&&0,
-                \ 'vim_version' : '7.3.885'
-                \ })
+        \ 'disabled' : !has('lua')&&0,
+        \ 'vim_version' : '7.3.885'
+    \ })
     function! dein.hooks.on_source(bundle)
       call neocomplete#custom#source('file', 'disabled_filetypes', {'_':1})
       let g:neocomplete#enable_at_startup = 1
@@ -44,13 +46,13 @@ if dein#tap('neocomplete.vim')
     endfunction
 endif
 
-" call dein#add('Shougo/vimfiler', {'rev': 'ver.4.1', 'frozen': 1}) " 2016.01.12 : 最新ではパスが表示されない
-call dein#add('Shougo/vimfiler') " 2016.01.12 - ver.4.1は安定している
+" call dein#add('Shougo/vimfiler', {'rev': 'ver.4.1', 'frozen': 1, 'merged': 0}) " 2016.01.12 : 最新ではパスが表示されない
+call dein#add('Shougo/vimfiler', {'merged': 0}) " 2016.01.12 - ver.4.1は安定している
 if dein#tap('vimfiler')
     let g:vimfiler_as_default_explorer  = 0  " # 初期filer
     let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
 endif
-call dein#add('thinca/vim-quickrun')
+call dein#add('thinca/vim-quickrun', {'merged': 0})
 if dein#tap('vim-quickrun')
     let g:quickrun_config = {
             \ 'cpp' : {
@@ -90,39 +92,39 @@ if dein#tap('vim-quickrun')
     \ }
 endif
 
-" call dein#add('lilydjwg/colorizer')
+" call dein#add('lilydjwg/colorizer', {'merged': 0})
 if dein#tap('colorizer')
     let g:colorizer_startup = 0
 endif
 
-call dein#add('bronson/vim-trailing-whitespace')
+call dein#add('bronson/vim-trailing-whitespace', {'merged': 0})
 if dein#tap('vim-trailing-whitespace')
     let g:extra_whitespace_ignored_filetypes = [
                 \ 'unite'
                 \ ]
 endif
 
-" call dein#add('vim-scripts/Align')
+call dein#add('vim-scripts/Align', {'merged': 0})
 if dein#tap('Align')
     let g:Align_xstrlen = 3
     command! -bang -range -nargs=* ALign <line1>,<line2>call Align#Align(<bang>0,<q-args>)
 endif
 
-" call dein#add('fuenor/qfixgrep')
+call dein#add('fuenor/qfixgrep', {'merged': 0})
 if dein#tap('qfixgrep')
     let QFixWin_EnableMode = 1
     let g:QFixWin_QuickFixTitleReg = '\cQuickfix'
     let g:QFixWin_LocationListTitleReg = '\cLocation'
 endif
 
-" call dein#add('Shougo/neosnippet')
-" call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/neosnippet', {'merged': 0})
+call dein#add('Shougo/neosnippet-snippets', {'merged': 0})
 if dein#tap('neosnippet')
     let g:neosnippet#snippets_directory = '~/.cache/plugin/vimwork.vim/snippets'
     imap <C-Space> <PLUG>(neosnippet_expand_or_jump)
 endif
 
-call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/unite.vim', {'merged': 0})
 if dein#tap('unite.vim')
     let g:unite_enable_start_insert = 1
     nmap <leader>u [unite]
@@ -131,7 +133,7 @@ if dein#tap('unite.vim')
     nnoremap [unite]g :<c-u>Unite file_rec/git
 endif
 
-call dein#add('mattn/emmet-vim')
+call dein#add('mattn/emmet-vim', {'merged': 0})
 if dein#tap('emmet-vim')
     let g:user_emmet_settings = {
                 \ 'variables': {
@@ -145,25 +147,27 @@ if dein#tap('emmet-vim')
 endif
 
 call dein#add('joonty/vdebug', {
-    \ 'disabled': has('python')
+    \ 'disabled': has('python'),
+    \ 'merged': 0
     \ })
 if dein#tap('vdebug')
     let g:vdebug_keymap = {
-                \ 'run'               : '<F8>',
-                \ 'run_to_cursor'     : '<F1>',
-                \ 'step_over'         : '<F10>',
-                \ 'step_into'         : '<F11>',
-                \ 'step_out'          : '<S-F11>',
-                \ 'close'             : '<F6>',
-                \ 'detach'            : '<F7>',
-                \ 'set_breakpoint'    : '<F9>',
-                \ 'get_context'       : '<S-F12>',
-                \ 'eval_under_cursor' : '<F12>',
-                \ }
+        \ 'run'               : '<F8>',
+        \ 'run_to_cursor'     : '<F1>',
+        \ 'step_over'         : '<F10>',
+        \ 'step_into'         : '<F11>',
+        \ 'step_out'          : '<S-F11>',
+        \ 'close'             : '<F6>',
+        \ 'detach'            : '<F7>',
+        \ 'set_breakpoint'    : '<F9>',
+        \ 'get_context'       : '<S-F12>',
+        \ 'eval_under_cursor' : '<F12>',
+    \ }
 endif
 
 call dein#end()
 filetype plugin indent on
+syntax enable
 
 " ****************************************
 " Map
@@ -278,8 +282,8 @@ let g:loaded_vimball = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_getscript = 1
 let g:loaded_getscriptPlugin = 1
-" let g:loaded_netrw = 1 " #netrw必須 1/2
-" let g:loaded_netrwPlugin = 1 " #netrw必須 2/2
+let g:loaded_netrw = 1 " #netrw必須 1/2
+let g:loaded_netrwPlugin = 1 " #netrw必須 2/2
 let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
 
