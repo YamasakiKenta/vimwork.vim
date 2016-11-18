@@ -14,7 +14,7 @@ call dein#begin(expand('~/.cache/dein'))
 call dein#add('Shougo/neomru.vim', {'merged': 0})
 " call dein#add('Yggdroot/indentLine', {'merged': 0}) " 2014.12.20
 call dein#add('thinca/vim-qfreplace', {'merged': 0})
-" call dein#add('tpope/vim-fugitive', {'merged': 0})
+call dein#add('tpope/vim-fugitive', {'merged': 0})
 " call dein#add('thinca/vim-prettyprint', {'merged': 0}) " 2016.04.20
 
 " color
@@ -129,8 +129,14 @@ if dein#tap('unite.vim')
     let g:unite_enable_start_insert = 1
     nmap <leader>u [unite]
     nnoremap [unite]m :<c-u>Unite neomru/file
-    nnoremap [unite]r :<c-u>UniteResume
     nnoremap [unite]g :<c-u>Unite file_rec/git
+endif
+
+call dein#add('Shougo/denite.nvim', {'merged': 0})
+if dein#tap('denite.nvim')
+    nmap <leader>d [denite]
+    nnoremap [denite]m :<c-u>Denite file_mru
+    nnoremap [denite]g :<c-u>Denite file_rec
 endif
 
 call dein#add('mattn/emmet-vim', {'merged': 0})
