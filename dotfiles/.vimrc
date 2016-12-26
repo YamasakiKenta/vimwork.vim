@@ -288,10 +288,13 @@ let g:loaded_vimball = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_getscript = 1
 let g:loaded_getscriptPlugin = 1
-let g:loaded_netrw = 1 " #netrw必須 1/2
-let g:loaded_netrwPlugin = 1 " #netrw必須 2/2
+" let g:loaded_netrw = 1 " #netrw必須 1/2
+" let g:loaded_netrwPlugin = 1 " #netrw必須 2/2
 let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
+
+" netrw
+let g:netrw_liststyle = 3
 
 " let php_sql_query = 1
 " let php_baselib = 1
@@ -330,6 +333,7 @@ aug vimwork
     au!
     au BufNewFile,BufRead *.tag setf html
     au BufNewFile,BufRead *.frm setf vb
+    au BufNewFile,BufRead *.dcm setf vb
 aug END
 
 if has('persistent_undo')
