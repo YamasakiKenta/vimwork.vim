@@ -11,6 +11,8 @@ call dein#begin(expand('~/.cache/dein'))
 " call dein#add('~/.cache/plugin/vimwork.vim', {'rtp': '', 'merged': 0})
 " call dein#add('Shougo/denite.nvim', {'merged': 0})
 
+call dein#add('cocopon/vaffle.vim', {'merged': 0})
+
 call dein#add('Shougo/neomru.vim', {'merged': 0})
 " call dein#add('Yggdroot/indentLine', {'merged': 0}) " 2014.12.20
 call dein#add('thinca/vim-qfreplace', {'merged': 0})
@@ -18,9 +20,9 @@ call dein#add('tpope/vim-fugitive', {'merged': 0})
 " call dein#add('thinca/vim-prettyprint', {'merged': 0}) " 2016.04.20
 
 " color
-" call dein#add('ujihisa/unite-colorscheme', {'merged': 0})
+call dein#add('ujihisa/unite-colorscheme', {'merged': 0})
 " call dein#add('morhetz/gruvbox', {'merged': 0})
-" call dein#add('altercation/vim-colors-solarized', {'merged': 0})
+call dein#add('altercation/vim-colors-solarized', {'merged': 0})
 " call dein#add('w0ng/vim-hybrid', {'merged': 0})
 " call dein#add('sjl/badwolf', {'merged': 0}) " 2016.6.23
 " call dein#add('dracula/vim', {'merged': 0}) " 2016.6.27
@@ -47,7 +49,7 @@ if dein#tap('neocomplete.vim')
 endif
 
 " call dein#add('Shougo/vimfiler', {'rev': 'ver.4.1', 'frozen': 1, 'merged': 0}) " 2016.01.12 : 最新ではパスが表示されない
-call dein#add('Shougo/vimfiler', {'merged': 0}) " 2016.01.12 - ver.4.1は安定している
+" call dein#add('Shougo/vimfiler', {'merged': 0}) " 2016.01.12 - ver.4.1は安定している
 if dein#tap('vimfiler')
     let g:vimfiler_as_default_explorer  = 0  " # 初期filer
     let g:vimfiler_safe_mode_by_default = 0  " # safe_mode
@@ -97,7 +99,7 @@ if dein#tap('colorizer')
     let g:colorizer_startup = 0
 endif
 
-call dein#add('bronson/vim-trailing-whitespace', {'merged': 0})
+" call dein#add('bronson/vim-trailing-whitespace', {'merged': 0})
 if dein#tap('vim-trailing-whitespace')
     let g:extra_whitespace_ignored_filetypes = [
                 \ 'unite'
@@ -288,8 +290,8 @@ let g:loaded_vimball = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_getscript = 1
 let g:loaded_getscriptPlugin = 1
-" let g:loaded_netrw = 1 " #netrw必須 1/2
-" let g:loaded_netrwPlugin = 1 " #netrw必須 2/2
+let g:loaded_netrw = 1 " #netrw必須 1/2
+let g:loaded_netrwPlugin = 1 " #netrw必須 2/2
 let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
 
